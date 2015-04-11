@@ -15,13 +15,13 @@
 #include <fstream>
 #include <iostream>
 #include <string.h>
-//#include <windows.h>
 #include <stdio.h>
 #include <set>
 #include <vector>
 #include "kmeans.h"
 #include "meanshift.h"
 
+#include "Classifier.h"
 using namespace std;
 
 #include "opencv\cv.h"
@@ -42,25 +42,6 @@ const double THRES_AREA_ROI_MIN = 0.001;		// 第一轮筛选时检测框面积下限阈值
 const double THRES_DIFF_FRAME_BINARY = 0.03 * 255;	// 帧差法获取连通域时设定的阈值
 const double THRES_JUD_RATIO = 0.75;				// 帧差法判定检测框中连通域与外围矩形的面积比阈值
 
-// element of integral map
-struct integral
-{
-	double direction[9];
-};
-
-struct feature
-{
-	int h;
-	int w;
-	int height;
-	int width;
-	double histogram[100];
-	double max;
-	double min;
-	double z;
-	double threshold;
-	double projection[36];
-};
 
 struct rect
 {
@@ -93,8 +74,6 @@ void cvMouseCallback(int mouseEvent, int x, int y, int flags, void* param);
 // 使用HOG分类器进行行人检测
 void Detection(
 	IplImage *img, IplImage *gray,
-	feature *classifier[], int numweak[],
-	integral **source, integral **s,
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor);
 
@@ -102,55 +81,46 @@ void Detection(
 CvSeq* ConnectedComponents(cv::Mat &mask_process, int poly1_hull0, float perimScale, int number = 0,
 	cv::Rect &bounding_box = cv::Rect(), cv::Point &contour_centers = cv::Point(-1, -1));
 
-// 读入分类器信息
-void ReadClassifier(feature *classifier[], int numweak[]);
 
 // 使用HOG分类器，背景剪除的行人检测(单幅图像)
 void combo_DetectPicture(
 	const TCHAR *pIn, const TCHAR *pOut,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, IplImage* background);
 
 // 使用HOG分类器，背景剪除和帧差法的行人检测，返回已经标出行人的图像(单幅图像)
 IplImage* combo_DetectPicture(
 	IplImage* frame, IplImage* frame_pre, CvRect roi,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, IplImage* background);
 
 // 使用HOG分类器，背景剪除的行人检测，返回已经标出行人的图像(单幅图像)
 IplImage* combo_DetectPicture(
 	IplImage* frame,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, IplImage* background);
 
 // 使用HOG分类器，帧差法的行人检测，返回已经标出行人的图像(单幅图像)
 IplImage* combo_DetectPicture_diff(
 	IplImage* frame, IplImage* frame_pre,
-	feature *classifier[], int numweak[],
 	double smin, double smax, double thres_binary_frame,
 	double scalestep, int slidestep, int neighbor);
 
 // 使用背景剪除，帧差法的视频行人检测，返回中间人工标定所需的时间
 double combo_DetectVideo(
-	const TCHAR *pIn, const TCHAR *pOut, bool isdraw,
-	bool isdiff, feature *classifier[], int numweak[],
+	const TCHAR *pIn, const TCHAR *pOut, bool isdraw, bool isdiff,
 	double smin, double smax, double scale,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1);
 
 // 单纯使用HOG分类器进行的行人检测(视频)
 void DetectVideo(
 	const TCHAR *pIn, const TCHAR *pOut, const TCHAR *pPolygon,
-	feature *classifier[], int numweak[],
 	double smin, double smax, double scale,
 	double scalestep, int slidestep, int neighbor);
 
 // 单纯使用HOG分类器进行的行人检测(单幅图像)
 void DetectPicture(
 	const TCHAR *pIn, const TCHAR *pOut, const TCHAR *pPolygon,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor);
 
@@ -171,7 +141,6 @@ IplImage* video_bkg_detect(
 // 使用帧差法和HOG分类器的视频行人检测函数
 void combo_DetectVideo_framediff(
 	const TCHAR *pIn, const TCHAR *pOut,
-	feature *classifier[], int numweak[],
 	double smin, double smax, double thres_binary_frame,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1);
 

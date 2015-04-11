@@ -1,55 +1,7 @@
 #include "HogDetection.h"
-#include "HogTracking.h"
-#include "FeatureExtractor.hpp"
+#include "FeatureExtractor.h"
 
-#define SINPI1 0.173648
-#define COSPI1 0.984808
-#define SINPI2 0.500000
-#define COSPI2 0.866025
-#define SINPI3 0.766044
-#define COSPI3 0.642788
-#define SINPI4 0.939693
-#define COSPI4 0.342020
-#define SINPI5 1.000000
-#define COSPI5 0.000000
-#define SINPI6 0.939693
-#define COSPI6 -0.342020
-#define SINPI7 0.766044
-#define COSPI7 -0.642788
-#define SINPI8 0.500000
-#define COSPI8 -0.866025
-#define SINPI9 0.173648
-#define COSPI9 -0.984808
-
-const double xVector[9] = { COSPI1, COSPI2, COSPI3, COSPI4, COSPI5, COSPI6, COSPI7, COSPI8, COSPI9 };
-const double yVector[9] = { SINPI1, SINPI2, SINPI3, SINPI4, SINPI5, SINPI6, SINPI7, SINPI8, SINPI9 };
-
-inline int Direct(double x, double y) {
-	double max = 0.0;
-	int ret = 0;
-	for (int i = 0; i < 9; i++) {
-		double proj = fabs(x * xVector[i] + y * yVector[i]);
-		if (proj > max) {
-			max = proj;
-			ret = i;
-		}
-	}
-	return ret;
-}
-
-int Direct(double x)
-{
-	if (x >= 0 && x < pi / 9) return 0;
-	else if (x >= pi / 9 && x < pi * 2 / 9) return 1;
-	else if (x >= pi * 2 / 9 && x < pi * 3 / 9) return 2;
-	else if (x >= pi * 3 / 9 && x < pi * 4 / 9) return 3;
-	else if (x >= pi * 4 / 9 && x < pi * 5 / 9) return 4;
-	else if (x >= pi * 5 / 9 && x < pi * 6 / 9) return 5;
-	else if (x >= pi * 6 / 9 && x < pi * 7 / 9) return 6;
-	else if (x >= pi * 7 / 9 && x < pi * 8 / 9) return 7;
-	else if (x >= pi * 8 / 9 && x < pi * 9 / 9) return 8;
-	else { cout << "ERROR!" << endl << "x=" << x << endl; return 0; }
-}
+const AdaBoostClassifier classf("..\\HOGClassifier\\");
 
 int IsEqual(rect *r1, rect *r2)
 {
@@ -70,91 +22,6 @@ int IsEqual(rect *r1, rect *r2)
 		return 0;
 }
 
-void cal_HOG(IplImage* img, integral **source, integral **s)
-{
-
-	for (int i = 0; i < 1; i++)
-	{
-		for (int j = 0; j < img->width; j++)
-		{
-			for (int k = 0; k < 9; k++)
-			{
-				source[i][j].direction[k] = 0;
-				s[i][j].direction[k] = 0;
-			}
-		}
-	}
-
-	// calculate HOG
-	int height = img->height;
-	int width = img->width;
-	int step = img->widthStep;
-	uchar *data = (uchar *)img->imageData;
-
-	for (int i = 1; i < height - 1; i++)
-	{
-		for (int j = 1; j < width - 1; j++)
-		{
-			double tempX = (double)data[(i - 1)*step + (j + 1)] - (double)data[(i - 1)*step + (j - 1)]
-				+ 2 * (double)data[(i)*step + (j + 1)] - 2 * (double)data[(i)*step + (j - 1)]
-				+ (double)data[(i + 1)*step + (j + 1)] - (double)data[(i + 1)*step + (j - 1)];
-
-			double tempY = (double)data[(i + 1)*step + (j - 1)] - (double)data[(i - 1)*step + (j - 1)]
-				+ 2 * (double)data[(i + 1)*step + (j)] - 2 * (double)data[(i - 1)*step + (j)]
-				+ (double)data[(i + 1)*step + (j + 1)] - (double)data[(i - 1)*step + (j + 1)];
-
-			double x = atan2(tempY, tempX);
-			double temp = sqrt(tempX*tempX + tempY*tempY);
-
-			if (x < 0) x += pi;
-			else if (x > pi) x -= pi;
-
-			if (i == 1)
-			{
-				s[i - 1][j - 1].direction[Direct(x)] = temp;
-			}
-			else
-			{
-				s[i - 1][j - 1].direction[0] = s[i - 1 - 1][j - 1].direction[0];
-				s[i - 1][j - 1].direction[1] = s[i - 1 - 1][j - 1].direction[1];
-				s[i - 1][j - 1].direction[2] = s[i - 1 - 1][j - 1].direction[2];
-				s[i - 1][j - 1].direction[3] = s[i - 1 - 1][j - 1].direction[3];
-				s[i - 1][j - 1].direction[4] = s[i - 1 - 1][j - 1].direction[4];
-				s[i - 1][j - 1].direction[5] = s[i - 1 - 1][j - 1].direction[5];
-				s[i - 1][j - 1].direction[6] = s[i - 1 - 1][j - 1].direction[6];
-				s[i - 1][j - 1].direction[7] = s[i - 1 - 1][j - 1].direction[7];
-				s[i - 1][j - 1].direction[8] = s[i - 1 - 1][j - 1].direction[8];
-
-				s[i - 1][j - 1].direction[Direct(x)] = s[i - 1 - 1][j - 1].direction[Direct(x)] + temp;
-			}
-
-			if (j == 1)
-			{
-				source[i - 1][j - 1].direction[0] = s[i - 1][j - 1].direction[0];
-				source[i - 1][j - 1].direction[1] = s[i - 1][j - 1].direction[1];
-				source[i - 1][j - 1].direction[2] = s[i - 1][j - 1].direction[2];
-				source[i - 1][j - 1].direction[3] = s[i - 1][j - 1].direction[3];
-				source[i - 1][j - 1].direction[4] = s[i - 1][j - 1].direction[4];
-				source[i - 1][j - 1].direction[5] = s[i - 1][j - 1].direction[5];
-				source[i - 1][j - 1].direction[6] = s[i - 1][j - 1].direction[6];
-				source[i - 1][j - 1].direction[7] = s[i - 1][j - 1].direction[7];
-				source[i - 1][j - 1].direction[8] = s[i - 1][j - 1].direction[8];
-			}
-			else
-			{
-				source[i - 1][j - 1].direction[0] = source[i - 1][j - 1 - 1].direction[0] + s[i - 1][j - 1].direction[0];
-				source[i - 1][j - 1].direction[1] = source[i - 1][j - 1 - 1].direction[1] + s[i - 1][j - 1].direction[1];
-				source[i - 1][j - 1].direction[2] = source[i - 1][j - 1 - 1].direction[2] + s[i - 1][j - 1].direction[2];
-				source[i - 1][j - 1].direction[3] = source[i - 1][j - 1 - 1].direction[3] + s[i - 1][j - 1].direction[3];
-				source[i - 1][j - 1].direction[4] = source[i - 1][j - 1 - 1].direction[4] + s[i - 1][j - 1].direction[4];
-				source[i - 1][j - 1].direction[5] = source[i - 1][j - 1 - 1].direction[5] + s[i - 1][j - 1].direction[5];
-				source[i - 1][j - 1].direction[6] = source[i - 1][j - 1 - 1].direction[6] + s[i - 1][j - 1].direction[6];
-				source[i - 1][j - 1].direction[7] = source[i - 1][j - 1 - 1].direction[7] + s[i - 1][j - 1].direction[7];
-				source[i - 1][j - 1].direction[8] = source[i - 1][j - 1 - 1].direction[8] + s[i - 1][j - 1].direction[8];
-			}
-		}
-	}
-};
 
 int IsOverlap(rect *r, rect *t)
 {
@@ -193,12 +60,11 @@ int District(double value, double min, double max)
 	cout << "max:" << max << endl;
 	exit(0);
 	return -1;
+	
 }
 
 void Detection(
 	IplImage *img, IplImage *gray,
-	feature *classifier[], int numweak[],
-	integral **source, integral **s,
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor)
 {
@@ -220,42 +86,9 @@ void Detection(
 		{
 			for (int j = 0; j <= img->width - WIDTH*scale; j = j + (int)(slidestep*scale))
 			{
-				int flag = 1;
-				int stage = 0;
-				for (stage = 0; stage < TOTAL_STAGE; stage++)
-				{
-					double thre = 0;
-					for (int m = 0; m < numweak[stage]; m++)
-					{
-						
-						int ii = i + (int)(classifier[stage][m].h*scale) - 1;
-						int jj = j + (int)(classifier[stage][m].w*scale) - 1;
-						int scaleWW = (int)(classifier[stage][m].width*scale);
-						int scaleHH = (int)(classifier[stage][m].height*scale);
-
-						HoGFeature feature;
-						hogExtractor.Extract(scaleWW, scaleHH, ii, jj, &feature);
-						double *temValue = feature.hogs;
-
-						// normalize
-						double temp = 0;
-						for (int k = 0; k < 36; k++) temp += temValue[k];
-						if (fabs(temp) / scale < 100) flag = 0;
-						else for (int k = 0; k < 36; k++) temValue[k] /= temp;
-
-						// project
-						double projectValue = 0;
-						for (int k = 0; k < 36; k++)
-							projectValue += classifier[stage][m].projection[k] * temValue[k];
-						int vector_district = District(projectValue, classifier[stage][m].min, classifier[stage][m].max);
-						thre = thre + classifier[stage][m].histogram[vector_district]; // sum of each weak classifier
-					}
-
-					if (flag != 1 || thre < classifier[stage][numweak[stage] - 1].threshold) break;
-				}
-
+				bool is = classf.Classify(i, j, scale, hogExtractor);
 				// save current window
-				if (stage >= TOTAL_STAGE)
+				if (is)
 				{
 					rect store;
 					store.x1 = j;
@@ -376,102 +209,19 @@ void Detection(
 		if (flag == 0) cvRectangle(img, pt1, pt2, CV_RGB(0, 255, 0), 2, 8, 0);
 	}
 
-	//cvRectangle(img,cvPoint(0,0),cvPoint(img->width-1,img->height-1),CV_RGB(255,0,0),1,8,0);
-
 	cvReleaseMemStorage(&storage);
 	cvReleaseMemStorage(&storage1);
 }
 
 void Detection(
 	IplImage *img, IplImage *gray, CvRect roi_cur,
-	feature *classifier[], int numweak[],
-	integral **source, integral **s, CvSeq* &rect_seq,
+	CvSeq* &rect_seq,
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor)
 {
-	// initialize integral image
-	for (int i = 0; i < 1; i++)
-	{
-		for (int j = 0; j < img->width; j++)
-		{
-			for (int k = 0; k < 9; k++)
-			{
-				source[i][j].direction[k] = 0;
-				s[i][j].direction[k] = 0;
-			}
-		}
-	}
-
-	// calculate HOG
-	int height = gray->height;
-	int width = gray->width;
-	int step = gray->widthStep;
-	uchar *data = (uchar *)gray->imageData;
-
-	for (int i = 1; i < height - 1; i++)
-	{
-		for (int j = 1; j < width - 1; j++)
-		{
-			double tempX = (double)data[(i - 1)*step + (j + 1)] - (double)data[(i - 1)*step + (j - 1)]
-				+ 2 * (double)data[(i)*step + (j + 1)] - 2 * (double)data[(i)*step + (j - 1)]
-				+ (double)data[(i + 1)*step + (j + 1)] - (double)data[(i + 1)*step + (j - 1)];
-
-			double tempY = (double)data[(i + 1)*step + (j - 1)] - (double)data[(i - 1)*step + (j - 1)]
-				+ 2 * (double)data[(i + 1)*step + (j)] - 2 * (double)data[(i - 1)*step + (j)]
-				+ (double)data[(i + 1)*step + (j + 1)] - (double)data[(i - 1)*step + (j + 1)];
-
-			//double x = atan2(tempY, tempX);
-			int direction = Direct(tempX, tempY);
-			double temp = sqrt(tempX*tempX + tempY*tempY);
-
-			//if (x < 0) x += pi;
-			//else if (x > pi) x -= pi;
-
-			if (i == 1)
-			{
-				s[i - 1][j - 1].direction[direction] = temp;
-			}
-			else
-			{
-				s[i - 1][j - 1].direction[0] = s[i - 1 - 1][j - 1].direction[0];
-				s[i - 1][j - 1].direction[1] = s[i - 1 - 1][j - 1].direction[1];
-				s[i - 1][j - 1].direction[2] = s[i - 1 - 1][j - 1].direction[2];
-				s[i - 1][j - 1].direction[3] = s[i - 1 - 1][j - 1].direction[3];
-				s[i - 1][j - 1].direction[4] = s[i - 1 - 1][j - 1].direction[4];
-				s[i - 1][j - 1].direction[5] = s[i - 1 - 1][j - 1].direction[5];
-				s[i - 1][j - 1].direction[6] = s[i - 1 - 1][j - 1].direction[6];
-				s[i - 1][j - 1].direction[7] = s[i - 1 - 1][j - 1].direction[7];
-				s[i - 1][j - 1].direction[8] = s[i - 1 - 1][j - 1].direction[8];
-
-				s[i - 1][j - 1].direction[direction] = s[i - 1 - 1][j - 1].direction[direction] + temp;
-			}
-
-			if (j == 1)
-			{
-				source[i - 1][j - 1].direction[0] = s[i - 1][j - 1].direction[0];
-				source[i - 1][j - 1].direction[1] = s[i - 1][j - 1].direction[1];
-				source[i - 1][j - 1].direction[2] = s[i - 1][j - 1].direction[2];
-				source[i - 1][j - 1].direction[3] = s[i - 1][j - 1].direction[3];
-				source[i - 1][j - 1].direction[4] = s[i - 1][j - 1].direction[4];
-				source[i - 1][j - 1].direction[5] = s[i - 1][j - 1].direction[5];
-				source[i - 1][j - 1].direction[6] = s[i - 1][j - 1].direction[6];
-				source[i - 1][j - 1].direction[7] = s[i - 1][j - 1].direction[7];
-				source[i - 1][j - 1].direction[8] = s[i - 1][j - 1].direction[8];
-			}
-			else
-			{
-				source[i - 1][j - 1].direction[0] = source[i - 1][j - 1 - 1].direction[0] + s[i - 1][j - 1].direction[0];
-				source[i - 1][j - 1].direction[1] = source[i - 1][j - 1 - 1].direction[1] + s[i - 1][j - 1].direction[1];
-				source[i - 1][j - 1].direction[2] = source[i - 1][j - 1 - 1].direction[2] + s[i - 1][j - 1].direction[2];
-				source[i - 1][j - 1].direction[3] = source[i - 1][j - 1 - 1].direction[3] + s[i - 1][j - 1].direction[3];
-				source[i - 1][j - 1].direction[4] = source[i - 1][j - 1 - 1].direction[4] + s[i - 1][j - 1].direction[4];
-				source[i - 1][j - 1].direction[5] = source[i - 1][j - 1 - 1].direction[5] + s[i - 1][j - 1].direction[5];
-				source[i - 1][j - 1].direction[6] = source[i - 1][j - 1 - 1].direction[6] + s[i - 1][j - 1].direction[6];
-				source[i - 1][j - 1].direction[7] = source[i - 1][j - 1 - 1].direction[7] + s[i - 1][j - 1].direction[7];
-				source[i - 1][j - 1].direction[8] = source[i - 1][j - 1 - 1].direction[8] + s[i - 1][j - 1].direction[8];
-			}
-		}
-	}
+	// Initialize the FeatureExtractor.
+	HoGExtractor hogExtractor(gray->width, gray->height);
+	hogExtractor.Preprocess(cv::cvarrToMat(gray));
 
 	CvSeq *seq = 0;
 	CvMemStorage *storage = cvCreateMemStorage(0);
@@ -487,66 +237,9 @@ void Detection(
 		{
 			for (int j = 0; j <= img->width - WIDTH*scale; j = j + (int)(slidestep*scale))
 			{
-				int flag = 1;
-				int stage = 0;
-				for (stage = 0; stage < TOTAL_STAGE; stage++)
-				{
-					double thre = 0;
-					for (int m = 0; m < numweak[stage]; m++)
-					{
-						int ii = i + (int)(classifier[stage][m].h*scale) - 1;
-						int jj = j + (int)(classifier[stage][m].w*scale) - 1;
-						int scaleWW = (int)(classifier[stage][m].width*scale);
-						int scaleHH = (int)(classifier[stage][m].height*scale);
-
-						double temValue[36];
-						for (int k = 0; k < 9; k++)
-							temValue[k]
-							= (source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							+ source[ii - 1][jj - 1].direction[k]
-							- source[ii - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj - 1].direction[k]) / (scale*scale);
-
-						for (int k = 0; k < 9; k++)
-							temValue[9 + k]
-							= (source[ii + (int)(scaleHH / 2.0) - 1][jj + scaleWW - 1].direction[k]
-							+ source[ii - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii - 1][jj + scaleWW - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]) / (scale*scale);
-
-						for (int k = 0; k < 9; k++)
-							temValue[18 + k]
-							= (source[ii + scaleHH - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							+ source[ii + (int)(scaleHH / 2.0) - 1][jj - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii + scaleHH - 1][jj - 1].direction[k]) / (scale*scale);
-
-						for (int k = 0; k < 9; k++)
-							temValue[27 + k]
-							= (source[ii + scaleHH - 1][jj + scaleWW - 1].direction[k]
-							+ source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj + scaleWW - 1].direction[k]
-							- source[ii + scaleHH - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]) / (scale*scale);
-
-						// normalize
-						double temp = 0;
-						for (int k = 0; k < 36; k++) temp += temValue[k];
-						if (fabs(temp) / scale < 100) flag = 0;
-						else for (int k = 0; k < 36; k++) temValue[k] /= temp;
-
-						// project
-						double projectValue = 0;
-						for (int k = 0; k < 36; k++)
-							projectValue += classifier[stage][m].projection[k] * temValue[k];
-						int vector_district = District(projectValue, classifier[stage][m].min, classifier[stage][m].max);
-						thre = thre + classifier[stage][m].histogram[vector_district]; // sum of each weak classifier
-					}
-
-					if (flag != 1 || thre < classifier[stage][numweak[stage] - 1].threshold) break;
-				}
-
+				bool is = classf.Classify(i, j, scale, hogExtractor);
 				// save current window
-				if (stage >= TOTAL_STAGE)
+				if (is)
 				{
 					rect store;
 					store.x1 = j;
@@ -684,12 +377,12 @@ void Detection(
 
 void Detection2(
 	IplImage *img, IplImage *gray,
-	feature *classifier[], int numweak[],
-	integral **source, integral **s,
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, CvRect roi)
 {
-	//cal_HOG(height,width,data,source,s);
+	// Initialize the FeatureExtractor.
+	HoGExtractor hogExtractor(gray->width, gray->height);
+	hogExtractor.Preprocess(cv::cvarrToMat(gray));
 
 	CvSeq *seq = 0;
 	CvMemStorage *storage = cvCreateMemStorage(0);
@@ -705,66 +398,9 @@ void Detection2(
 		{
 			for (int j = 0; j <= img->width - WIDTH*scale; j = j + (int)(slidestep*scale))
 			{
-				int flag = 1;
-				int stage = 0;
-				for (stage = 0; stage < TOTAL_STAGE; stage++)
-				{
-					double thre = 0;
-					for (int m = 0; m < numweak[stage]; m++)
-					{
-						int ii = i + (int)(classifier[stage][m].h*scale) - 1 + roi.y;
-						int jj = j + (int)(classifier[stage][m].w*scale) - 1 + roi.x;
-						int scaleWW = (int)(classifier[stage][m].width*scale);
-						int scaleHH = (int)(classifier[stage][m].height*scale);
-
-						double temValue[36];
-						for (int k = 0; k < 9; k++)
-							temValue[k]
-							= (source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							+ source[ii - 1][jj - 1].direction[k]
-							- source[ii - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj - 1].direction[k]) / (scale*scale);
-
-						for (int k = 0; k < 9; k++)
-							temValue[9 + k]
-							= (source[ii + (int)(scaleHH / 2.0) - 1][jj + scaleWW - 1].direction[k]
-							+ source[ii - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii - 1][jj + scaleWW - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]) / (scale*scale);
-
-						for (int k = 0; k < 9; k++)
-							temValue[18 + k]
-							= (source[ii + scaleHH - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							+ source[ii + (int)(scaleHH / 2.0) - 1][jj - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii + scaleHH - 1][jj - 1].direction[k]) / (scale*scale);
-
-						for (int k = 0; k < 9; k++)
-							temValue[27 + k]
-							= (source[ii + scaleHH - 1][jj + scaleWW - 1].direction[k]
-							+ source[ii + (int)(scaleHH / 2.0) - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]
-							- source[ii + (int)(scaleHH / 2.0) - 1][jj + scaleWW - 1].direction[k]
-							- source[ii + scaleHH - 1][jj + (int)(scaleWW / 2.0) - 1].direction[k]) / (scale*scale);
-
-						// normalize
-						double temp = 0;
-						for (int k = 0; k < 36; k++) temp += temValue[k];
-						if (fabs(temp) / scale < 100) flag = 0;
-						else for (int k = 0; k < 36; k++) temValue[k] /= temp;
-
-						// project
-						double projectValue = 0;
-						for (int k = 0; k < 36; k++)
-							projectValue += classifier[stage][m].projection[k] * temValue[k];
-						int vector_district = District(projectValue, classifier[stage][m].min, classifier[stage][m].max);
-						thre = thre + classifier[stage][m].histogram[vector_district]; // sum of each weak classifier
-					}
-
-					if (flag != 1 || thre < classifier[stage][numweak[stage] - 1].threshold) break;
-				}
-
+				bool is = classf.Classify(i, j, scale, hogExtractor);
 				// save current window
-				if (stage >= TOTAL_STAGE)
+				if (is)
 				{
 					rect store;
 					store.x1 = j + roi.x;

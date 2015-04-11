@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <stdio.h>
 #include "HogDetection.h"
-#include "HogTracking.h"
 
 using namespace std;
 
@@ -67,11 +66,6 @@ void main(int argc, char *argv[])
 			if (argc > 10) neighbor = atoi(argv[10]);
 		}
 	}
-
-	// read classifier
-	feature *classifier[TOTAL_STAGE];
-	int numweak[TOTAL_STAGE];
-	ReadClassifier(classifier, numweak);
 
 	//get the time of running program
 	LARGE_INTEGER freq;
@@ -157,7 +151,7 @@ void main(int argc, char *argv[])
 
 		IplImage* background = cvLoadImage(argv[3], 0);
 		IplImage* frame = cvLoadImage(argv[2]);
-		frame = combo_DetectPicture(frame, classifier, numweak, smin, smax, scalestep, slidestep, neighbor, background);
+		frame = combo_DetectPicture(frame, smin, smax, scalestep, slidestep, neighbor, background);
 		QueryPerformanceCounter(&stop_t);
 
 		cvSaveImage(argv[4], frame);
@@ -169,7 +163,7 @@ void main(int argc, char *argv[])
 	{
 		QueryPerformanceCounter(&start_t);
 
-		DetectPicture(argv[2], argv[3], pPolygon, classifier, numweak, smin, smax, scalestep, slidestep, neighbor);
+		DetectPicture(argv[2], argv[3], pPolygon, smin, smax, scalestep, slidestep, neighbor);
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
 		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
@@ -180,22 +174,24 @@ void main(int argc, char *argv[])
 		QueryPerformanceCounter(&start_t);
 
 		double scale_v = 1.0;
-		DetectVideo(argv[2], argv[3], pPolygon, classifier, numweak, smin, smax, scale_v, scalestep, slidestep, neighbor);
+		DetectVideo(argv[2], argv[3], pPolygon, smin, smax, scale_v, scalestep, slidestep, neighbor);
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
 		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
 	}
 
+	/*
 	if (!strcmp(argv[1], "-t"))
 	{
 		QueryPerformanceCounter(&start_t);
 		double scale_v = 1.0;
 		IplImage* background = cvLoadImage(argv[5], 0);
-		combo_Video_Tracking(argv[2], argv[3], argv[4], false, classifier, numweak, smin, smax, scale_v, scalestep, slidestep, neighbor, background);
+		combo_Video_Tracking(argv[2], argv[3], argv[4], false, , smin, smax, scale_v, scalestep, slidestep, neighbor, background);
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
 		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
 	}
+	*/
 
 	if (!strcmp(argv[1], "-v"))
 	{
@@ -222,8 +218,6 @@ void main(int argc, char *argv[])
 			argv[3], 
 			isdraw, 
 			isdiff, 
-			classifier, 
-			numweak, 
 			smin, 
 			smax, 
 			scale_v, 
@@ -239,10 +233,6 @@ void main(int argc, char *argv[])
 
 		cvReleaseImage(&background);
 	}
-
-	// release classifier
-	for (int i = 0; i < TOTAL_STAGE; i++)
-		delete[] classifier[i];
 
 	//system("pause");
 

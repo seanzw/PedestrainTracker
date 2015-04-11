@@ -72,46 +72,6 @@ CvRect Createroi(int x, int y, int roi_h, int roi_w, int edge_width, int height,
 	return roi;
 }
 
-void ReadClassifier(feature *classifier[], int numweak[])
-{
-	printf("Read in classifiers' information...\n");
-	for (int i = 0; i < TOTAL_STAGE; i++)
-	{
-		TCHAR filename[256];
-		_stprintf_s(filename, TEXT("%s%d.txt"), HOG_CLASSIFIER_PATH, i + 1);
-		//cout<<filename<<endl;
-		ifstream wk(filename);
-		wk >> numweak[i];
-		classifier[i] = new feature[numweak[i]];
-
-		int j = 0;
-		while (j < numweak[i])
-		{
-			wk >> classifier[i][j].h;
-			wk >> classifier[i][j].w;
-			wk >> classifier[i][j].height;
-			wk >> classifier[i][j].width;
-			wk >> classifier[i][j].z;
-			wk >> classifier[i][j].min;
-			wk >> classifier[i][j].max;
-			for (int k = 0; k < 36; k++)
-			{
-				wk >> classifier[i][j].projection[k];
-			}
-			for (int k = 0; k < 100; k++)
-			{
-				wk >> classifier[i][j].histogram[k];
-			}
-			j++;
-			if (j == numweak[i])
-			{
-				wk >> classifier[i][j - 1].threshold;
-			}
-		}
-		wk.close();
-	}
-	printf("Reading process completed!\n");
-}
 
 bool judge_pedestrian(
 	IplImage* frame, IplImage* frame_pre,
@@ -215,7 +175,6 @@ CvRect ReadPolygon(const TCHAR *pPolygon)
 
 void DetectPicture(
 	const TCHAR *pIn, const TCHAR *pOut, const TCHAR *pPolygon,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor)
 {
@@ -229,32 +188,13 @@ void DetectPicture(
 	IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
 	IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
 
-	// integral image
-	integral **source = new integral *[roi.height];
-	for (int i = 0; i < roi.height; i++)
-		source[i] = new integral[roi.width];
-
-	// temporary integral image
-	integral **s = new integral *[roi.height];
-	for (int i = 0; i < roi.height; i++)
-		s[i] = new integral[roi.width];
-
 	cvSetImageROI(frame, roi);
 	cvCopy(frame, img);
 	cvCvtColor(img, gray, CV_RGB2GRAY);
-	Detection(img, gray, classifier, numweak, source, s, smin, smax, scalestep, slidestep, neighbor);
+	Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
 	cvCopy(img, frame);
 	cvResetImageROI(frame);
 	cvSaveImage(pOut, frame);
-
-	// release integral images
-	for (int i = 0; i < roi.height; i++)
-	{
-		delete[] source[i];
-		delete[] s[i];
-	}
-	delete[] source;
-	delete[] s;
 
 	// release data buffer
 	cvReleaseImage(&frame);
@@ -264,7 +204,6 @@ void DetectPicture(
 
 IplImage* combo_DetectPicture(
 	IplImage* frame,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1)
 {
@@ -316,34 +255,17 @@ IplImage* combo_DetectPicture(
 				IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
 				IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
 
-				integral **source = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					source[i] = new integral[roi.width];
-
-				integral **s = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					s[i] = new integral[roi.width];
-
 				cvSetImageROI(frame, roi);
 				cvCopy(frame, img);
 				cvCvtColor(img, gray, CV_RGB2GRAY);
 
-				Detection(img, gray, classifier, numweak, source, s, smin, smax, scalestep, slidestep, neighbor);
+				Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
 
 				cout << "Finish Detection Rect " << num_Polygon + 1 << "!" << endl;
 
 				cvCopy(img, frame);
 				cvResetImageROI(frame);
 				//cvSaveImage(pOut,frame);
-
-				// release integral images
-				for (int i = 0; i < roi.height; i++)
-				{
-					delete[] source[i];
-					delete[] s[i];
-				}
-				delete[] source;
-				delete[] s;
 
 				// release data buffer
 				cvReleaseImage(&img);
@@ -364,7 +286,6 @@ IplImage* combo_DetectPicture(
 
 IplImage* combo_DetectPicture(
 	IplImage* frame, IplImage* frame_pre, CvRect roi0,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1)
 {
@@ -421,34 +342,17 @@ IplImage* combo_DetectPicture(
 				IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
 				IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
 
-				integral **source = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					source[i] = new integral[roi.width];
-
-				integral **s = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					s[i] = new integral[roi.width];
-
 				cvSetImageROI(frame, roi);
 				cvCopy(frame, img);
 				cvCvtColor(img, gray, CV_RGB2GRAY);
 
-				Detection(img, gray, classifier, numweak, source, s, smin, smax, scalestep, slidestep, neighbor);
+				Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
 
 				cout << "Finish Detection Rect " << num_Polygon + 1 << "!" << endl;
 
 				cvCopy(img, frame);
 				cvResetImageROI(frame);
 				//cvSaveImage(pOut,frame);
-
-				// release integral images
-				for (int i = 0; i < roi.height; i++)
-				{
-					delete[] source[i];
-					delete[] s[i];
-				}
-				delete[] source;
-				delete[] s;
 
 				// release data buffer
 				cvReleaseImage(&img);
@@ -471,7 +375,6 @@ IplImage* combo_DetectPicture(
 
 void combo_DetectPicture(
 	const TCHAR *pIn, const TCHAR *pOut,
-	feature *classifier[], int numweak[],
 	double smin, double smax,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1)
 {
@@ -527,34 +430,17 @@ void combo_DetectPicture(
 				IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
 				IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
 
-				integral **source = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					source[i] = new integral[roi.width];
-
-				integral **s = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					s[i] = new integral[roi.width];
-
 				cvSetImageROI(frame, roi);
 				cvCopy(frame, img);
 				cvCvtColor(img, gray, CV_RGB2GRAY);
 
-				Detection(img, gray, classifier, numweak, source, s, smin, smax, scalestep, slidestep, neighbor);
+				Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
 
 				cout << "Finish Detection Rect " << num_Polygon + 1 << "!" << endl;
 
 				cvCopy(img, frame);
 				cvResetImageROI(frame);
 				cvSaveImage(pOut, frame);
-
-				// release integral images
-				for (int i = 0; i < roi.height; i++)
-				{
-					delete[] source[i];
-					delete[] s[i];
-				}
-				delete[] source;
-				delete[] s;
 
 				// release data buffer
 				cvReleaseImage(&img);
@@ -573,7 +459,6 @@ void combo_DetectPicture(
 
 IplImage* combo_DetectPicture_diff(
 	IplImage* frame, IplImage* frame_pre,
-	feature *classifier[], int numweak[],
 	double smin, double smax, double thres_binary_frame,
 	double scalestep, int slidestep, int neighbor)
 {
@@ -611,34 +496,17 @@ IplImage* combo_DetectPicture_diff(
 				IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
 				IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
 
-				integral **source = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					source[i] = new integral[roi.width];
-
-				integral **s = new integral *[roi.height];
-				for (int i = 0; i < roi.height; i++)
-					s[i] = new integral[roi.width];
-
 				cvSetImageROI(frame, roi);
 				cvCopy(frame, img);
 				cvCvtColor(img, gray, CV_RGB2GRAY);
 
-				Detection(img, gray, classifier, numweak, source, s, smin, smax, scalestep, slidestep, neighbor);
+				Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
 
 				cout << "Finish Detection Rect " << num_Polygon + 1 << "!" << endl;
 
 				cvCopy(img, frame);
 				cvResetImageROI(frame);
 				//cvSaveImage(pOut,frame);
-
-				// release integral images
-				for (int i = 0; i < roi.height; i++)
-				{
-					delete[] source[i];
-					delete[] s[i];
-				}
-				delete[] source;
-				delete[] s;
 
 				// release data buffer
 				cvReleaseImage(&img);
@@ -653,7 +521,6 @@ IplImage* combo_DetectPicture_diff(
 
 void DetectVideo(
 	const TCHAR *pIn, const TCHAR *pOut, const TCHAR *pPolygon,
-	feature *classifier[], int numweak[],
 	double smin, double smax, double scale,
 	double scalestep, int slidestep, int neighbor)
 {
@@ -672,16 +539,6 @@ void DetectVideo(
 	IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
 	IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
 
-	// integral image
-	integral **source = new integral *[roi.height];
-	for (int i = 0; i < roi.height; i++)
-		source[i] = new integral[roi.width];
-
-	// temporary integral image
-	integral **s = new integral *[roi.height];
-	for (int i = 0; i < roi.height; i++)
-		s[i] = new integral[roi.width];
-
 	int count = 0;
 	IplImage *frame = NULL;
 	while (frame = cvQueryFrame(capture))
@@ -698,7 +555,7 @@ void DetectVideo(
 		cvResize(frame, img);
 		cvCvtColor(img, gray, CV_RGB2GRAY);
 		cout << "Processing frame " << count << endl;
-		Detection(img, gray, classifier, numweak, source, s, smin, smax, scalestep, slidestep, neighbor);
+		Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
 
 		//cvNamedWindow("test");
 		//cvShowImage("test",img);
@@ -711,15 +568,6 @@ void DetectVideo(
 		printf("%d/%d\t%.1f%%\n", ++count, framecount, 100.0*count / framecount);
 	}
 
-	// release integral images
-	for (int i = 0; i < roi.height; i++)
-	{
-		delete[] source[i];
-		delete[] s[i];
-	}
-	delete[] source;
-	delete[] s;
-
 	// release data buffer
 	cvReleaseImage(&img);
 	cvReleaseImage(&gray);
@@ -730,8 +578,7 @@ void DetectVideo(
 };
 
 double combo_DetectVideo(
-	const TCHAR *pIn, const TCHAR *pOut, bool isdraw,
-	bool isdiff, feature *classifier[], int numweak[],
+	const TCHAR *pIn, const TCHAR *pOut, bool isdraw, bool isdiff,
 	double smin, double smax, double scale,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1)
 {
@@ -805,11 +652,11 @@ double combo_DetectVideo(
 		cvResize(frame, temp);
 		if (isdiff)
 		{
-			frame2 = combo_DetectPicture(temp, frame_pre, roi_draw, classifier, numweak, smin, smax, scalestep, slidestep, neighbor, bkg2);
+			frame2 = combo_DetectPicture(temp, frame_pre, roi_draw, smin, smax, scalestep, slidestep, neighbor, bkg2);
 		}
 		else
 		{
-			frame2 = combo_DetectPicture(temp, NULL, roi_draw, classifier, numweak, smin, smax, scalestep, slidestep, neighbor, bkg2);
+			frame2 = combo_DetectPicture(temp, NULL, roi_draw, smin, smax, scalestep, slidestep, neighbor, bkg2);
 		}
 		cvRectangle(frame2, cvPoint(roi_draw.x, roi_draw.y), cvPoint(roi_draw.x + roi_draw.width, roi_draw.y + roi_draw.height), CV_RGB(255, 0, 0), 1, 8, 0);
 		cvWriteFrame(writer, frame2);
@@ -833,7 +680,6 @@ double combo_DetectVideo(
 
 void combo_DetectVideo_framediff(
 	const TCHAR *pIn, const TCHAR *pOut,
-	feature *classifier[], int numweak[],
 	double smin, double smax, double thres_binary_frame,
 	double scalestep, int slidestep, int neighbor, IplImage* bkg1)
 {
@@ -865,7 +711,7 @@ void combo_DetectVideo_framediff(
 			//if(count >= 1000) {break;}
 
 
-			frame2 = combo_DetectPicture(temp, classifier, numweak, smin, smax, scalestep, slidestep, neighbor, bkg1);
+			frame2 = combo_DetectPicture(temp, smin, smax, scalestep, slidestep, neighbor, bkg1);
 
 			cvWriteFrame(writer, frame2);
 
@@ -883,7 +729,7 @@ void combo_DetectVideo_framediff(
 			//if(count >= 1000) {break;}
 
 
-			frame2 = combo_DetectPicture_diff(temp, frame_pre, classifier, numweak, smin, smax, thres_binary_frame, scalestep, slidestep, neighbor);
+			frame2 = combo_DetectPicture_diff(temp, frame_pre, smin, smax, thres_binary_frame, scalestep, slidestep, neighbor);
 
 			cvWriteFrame(writer, frame2);
 

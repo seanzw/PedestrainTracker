@@ -1,5 +1,6 @@
 /*************************************
- Feature base class.
+ Feature class.
+ Basically it's just a vector.
  Author: Zhengrong Wang
  *************************************/
 
@@ -7,28 +8,25 @@
 #define FEATURE_HEADER
 
 #include <string.h>
+#include "GlobalHeader.h"
 
 class Feature {
 };
 
+#define HOGDIMENSION 36
+
 class HoGFeature : public Feature {
 public:
 	HoGFeature() {
-		memset((void *)hogs, 0, 36 * sizeof(double));
+		memset((void *)hogs, 0, HOGDIMENSION * sizeof(feat));
 	}
 
-	HoGFeature(const double *src) {
-		memcpy((void *)hogs, (const void *)src, 36 * sizeof(double));
-	}
-
-	// Overwrite the virtual function.
-	void ToFloat(const double *dst) const {
-		if (dst)
-			memcpy((void *)dst, (const void *)hogs, 36 * sizeof(double));
+	HoGFeature(const feat *src) {
+		memcpy((void *)hogs, (const void *)src, HOGDIMENSION * sizeof(feat));
 	}
 
 	// Data
-	double hogs[36];
+	feat hogs[HOGDIMENSION];
 };
 
 #endif
