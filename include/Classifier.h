@@ -11,7 +11,7 @@
 
 class Classifier {
 public:
-	bool Classify(int x, int y, feat scale, FeatureExtractor &featureExt) const {
+	virtual bool Classify(int x, int y, feat scale, FeatureExtractor &featureExt) const {
 		return false;
 	}
 };

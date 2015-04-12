@@ -173,35 +173,6 @@ CvRect ReadPolygon(const TCHAR *pPolygon)
 	return cvRect(ding1.x, ding1.y, ding2.x - ding1.x, ding2.y - ding1.y);
 }
 
-void DetectPicture(
-	const TCHAR *pIn, const TCHAR *pOut, const TCHAR *pPolygon,
-	double smin, double smax,
-	double scalestep, int slidestep, int neighbor)
-{
-	// read image
-	IplImage *frame = cvLoadImage(pIn);
-
-	// read designated polygon
-	CvRect roi = pPolygon ? ReadPolygon(pPolygon) : cvRect(0, 0, frame->width, frame->height);
-
-	// prepare data buffer
-	IplImage *img = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 3);
-	IplImage *gray = cvCreateImage(cvSize(roi.width, roi.height), IPL_DEPTH_8U, 1);
-
-	cvSetImageROI(frame, roi);
-	cvCopy(frame, img);
-	cvCvtColor(img, gray, CV_RGB2GRAY);
-	Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
-	cvCopy(img, frame);
-	cvResetImageROI(frame);
-	cvSaveImage(pOut, frame);
-
-	// release data buffer
-	cvReleaseImage(&frame);
-	cvReleaseImage(&img);
-	cvReleaseImage(&gray);
-}
-
 IplImage* combo_DetectPicture(
 	IplImage* frame,
 	double smin, double smax,
@@ -391,8 +362,7 @@ void combo_DetectPicture(
 	CvMat* img_testMat = cvCreateMat(frame->height, frame->width, CV_32FC1);
 	cvConvert(img_test, img_testMat);
 	CvMat* img_diff1Mat = cvCreateMat(frame->height, frame->width, CV_32FC1);
-	//IplImage* img_bkg1 = cvCreateImage(cvGetSize(bkg1),IPL_DEPTH_8U,1);
-	//cvCvtColor(bkg1,img_bkg1,CV_RGB2GRAY);
+	
 	CvMat* img_bkg1Mat = cvCreateMat(bkg1->height, bkg1->width, CV_32FC1);
 	cvConvert(bkg1, img_bkg1Mat);
 	IplImage* img_binary1 = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 1);

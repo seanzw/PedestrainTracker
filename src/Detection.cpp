@@ -45,24 +45,6 @@ int IsOverlap(rect *r, rect *t)
 		return 0;
 }
 
-int District(double value, double min, double max)
-{
-	if (value <= min) return 0;
-	if (value >= max) return 99;
-
-	for (int i = 0; i < 100; i++)
-		if (value >= min + (max - min) / 100 * i - 0.000001 && value <= min + (max - min) / 100 * (i + 1) + 0.000001)
-			return i;
-
-	cout << "ERROR!" << endl;
-	cout << "value:" << value << endl;
-	cout << "min:" << min << endl;
-	cout << "max:" << max << endl;
-	exit(0);
-	return -1;
-	
-}
-
 void Detection(
 	IplImage *img, IplImage *gray,
 	double smin, double smax,

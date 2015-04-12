@@ -21,14 +21,12 @@
 #include "kmeans.h"
 #include "meanshift.h"
 
-#include "Classifier.h"
+#include "BKGCutDetector.h"
 using namespace std;
 
 #include "opencv\cv.h"
 #include "opencv\highgui.h"
 
-const double pi = 3.1416;
-const int TOTAL_STAGE = 20; // number of classifier stages
 const int HEIGHT = 64; // model height
 const int WIDTH = 32; // model width
 const int BKG_DETECTION_NUM_CLUSTER = 3;		// 背景提取时kmeans聚类步骤中设定的聚类数目
@@ -42,16 +40,6 @@ const double THRES_AREA_ROI_MIN = 0.001;		// 第一轮筛选时检测框面积下限阈值
 const double THRES_DIFF_FRAME_BINARY = 0.03 * 255;	// 帧差法获取连通域时设定的阈值
 const double THRES_JUD_RATIO = 0.75;				// 帧差法判定检测框中连通域与外围矩形的面积比阈值
 
-
-struct rect
-{
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-	int re;
-	int count;
-};
 
 struct drawbox
 {
@@ -118,11 +106,6 @@ void DetectVideo(
 	double smin, double smax, double scale,
 	double scalestep, int slidestep, int neighbor);
 
-// 单纯使用HOG分类器进行的行人检测(单幅图像)
-void DetectPicture(
-	const TCHAR *pIn, const TCHAR *pOut, const TCHAR *pPolygon,
-	double smin, double smax,
-	double scalestep, int slidestep, int neighbor);
 
 // 将图像数据转换为Kmeans算法执行时的数据结构
 void readin_tuples(

@@ -18,22 +18,6 @@ void main(int argc, char *argv[])
 	bool isdiff = false;
 	float scale_v = 1.0;
 
-	//if(argc<2)
-	//{
-	//	cout<<"Usage: HogDetection.exe -p|-v inFile outFile [polygonFile] [sMin sMax] [scaleStep] [sildeStep] [neighbor]"<<endl;
-	//	return;
-	//}
-	//else if(strcmp(argv[1],"-p") && strcmp(argv[1],"-v") && strcmp(argv[1],"-vhog") && strcmp(argv[1],"-phog"))
-	//{
-	//	cout<<"Usage: HogDetection.exe -p|-v inFile outFile [polygonFile] [sMin sMax] [scaleStep] [sildeStep] [neighbor]"<<endl;
-	//	return;
-	//}
-	//else if(argc<4)
-	//{
-	//	cout<<"Usage: HogDetection.exe -p|-v inFile outFile [polygonFile] [sMin sMax] [scaleStep] [sildeStep] [neighbor]"<<endl;
-	//	return;
-	//}
-
 	if (strcmp(argv[1], "-v") || strcmp(argv[1], "-t"))
 	{
 		if (argc > 4) pPolygon = argv[4];
@@ -66,6 +50,22 @@ void main(int argc, char *argv[])
 			if (argc > 10) neighbor = atoi(argv[10]);
 		}
 	}
+
+	Options opt;
+	opt.scaleMin = smin;
+	opt.scaleMax = smax;
+	opt.scaleStep = scalestep;
+	opt.slideStep = slidestep;
+	opt.evidence = neighbor;
+	opt.modelHeight = HEIGHT;
+	opt.modelWidth = WIDTH;
+	opt.binaryThre = 25.5;
+	opt.invPerimeterRatio = 0.05;
+	opt.maxAreaRatio = 0.05;
+	opt.minAreaRatio = 0.001;
+
+	AdaBoostClassifier classi("..\\HOGClassifier\\");
+
 
 	//get the time of running program
 	LARGE_INTEGER freq;
@@ -124,8 +124,6 @@ void main(int argc, char *argv[])
 	if (!strcmp(argv[1], "-b"))
 	{
 		QueryPerformanceCounter(&start_t);
-		//int num_cluster = 5;
-		//int pic_num_all = 100;
 		Tuple* means = NULL;
 
 		CvCapture *capture = cvCaptureFromAVI(argv[2]);
@@ -146,27 +144,73 @@ void main(int argc, char *argv[])
 
 	if (!strcmp(argv[1], "-p"))
 	{
-		cout << argv[3] << endl;
 		QueryPerformanceCounter(&start_t);
-
+		/*
 		IplImage* background = cvLoadImage(argv[3], 0);
 		IplImage* frame = cvLoadImage(argv[2]);
 		frame = combo_DetectPicture(frame, smin, smax, scalestep, slidestep, neighbor, background);
-		QueryPerformanceCounter(&stop_t);
-
 		cvSaveImage(argv[4], frame);
+		*/
+		
+		// read image
+		cv::Mat frame = cv::imread(argv[2]);
+		cv::Mat background = cv::imread(argv[3], CV_LOAD_IMAGE_GRAYSCALE);
+
+		// read designated polygon
+		cv::Rect roi(0, 0, frame.size().width, frame.size().height);
+
+		cv::Mat img = frame(roi);
+		cv::Mat gray(img.size(), CV_8UC1);
+		cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
+		
+		HoGExtractor hogExtractor(roi.width, roi.height);
+		BKGCutDetector detector(&hogExtractor, &classi, opt);
+
+		detector.Detect(gray, background, true);
+		detector.DrawDetection(img);
+
+		cv::imwrite(argv[4], frame);
+
+		// release data buffer
+		frame.release();
+		img.release();
+		gray.release();
+		
+
+		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
-		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
+		printf("The program executed time is %fs.\n", exe_time);
 	}
 
-	if (!strcmp(argv[1], "-phog"))
-	{
+	if (!strcmp(argv[1], "-phog")) {
 		QueryPerformanceCounter(&start_t);
+		
+		// read image
+		cv::Mat frame = cv::imread(argv[2]);
 
-		DetectPicture(argv[2], argv[3], pPolygon, smin, smax, scalestep, slidestep, neighbor);
+		// read designated polygon
+		cv::Rect roi(0, 0, frame.size().width, frame.size().height);
+
+		cv::Mat img = frame(roi);
+		cv::Mat gray(img.size(), CV_32FC1);
+		cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
+
+		HoGExtractor hogExtractor(roi.width, roi.height);
+		ImageDetector detector(&hogExtractor, &classi, opt);
+
+		detector.Detect(gray, cv::Point(0, 0), true);
+		detector.DrawDetection(img);
+
+		cv::imwrite(argv[3], frame);
+
+		// release data buffer
+		frame.release();
+		img.release();
+		gray.release();
+
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
-		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
+		printf("The program executed time is %fs.\n", exe_time);
 	}
 
 	if (!strcmp(argv[1], "-vhog"))
@@ -179,19 +223,6 @@ void main(int argc, char *argv[])
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
 		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
 	}
-
-	/*
-	if (!strcmp(argv[1], "-t"))
-	{
-		QueryPerformanceCounter(&start_t);
-		double scale_v = 1.0;
-		IplImage* background = cvLoadImage(argv[5], 0);
-		combo_Video_Tracking(argv[2], argv[3], argv[4], false, , smin, smax, scale_v, scalestep, slidestep, neighbor, background);
-		QueryPerformanceCounter(&stop_t);
-		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
-		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
-	}
-	*/
 
 	if (!strcmp(argv[1], "-v"))
 	{

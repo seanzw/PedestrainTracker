@@ -6,8 +6,6 @@
 #define FEATURE_EXTRACTOR_HEADER
 
 #include "Feature.hpp"
-#include "opencv\cv.h"
-#include <vector>
 
 typedef unsigned char uchar;
 
@@ -17,7 +15,7 @@ public:
 	virtual void Extract(int width, int height, int i, int j, Feature *feature) = 0;
 
 	// Some preprocess work, such as integral image.
-	void Preprocess(const cv::Mat& img) {}
+	virtual void Preprocess(const cv::Mat& img) {}
 };
 
 // Extract a HoG feature.

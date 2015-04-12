@@ -1,6 +1,5 @@
 #include "Classifier.h"
 
-
 AdaBoostClassifier::AdaBoostClassifier(const char *filepath) {
 	printf("Read in classifiers' information...\n");
 	char filename[256];
@@ -88,6 +87,10 @@ bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &fe
 			int yy = y + (int)(cur[W_OFFSET] * scale) - 1;
 			int scaleWW = (int)(cur[WIDTH_OFFSET] * scale);
 			int scaleHH = (int)(cur[HEIGHT_OFFSET] * scale);
+
+			if (y > 1000) {
+				printf("hellp");
+			}
 
 			featureExt.Extract(scaleWW, scaleHH, xx, yy, &feature);
 
