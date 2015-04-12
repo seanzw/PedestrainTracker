@@ -13,7 +13,7 @@
 #define BKGDEBUG(...)
 #define BKGWAIT
 
-#include "Detector.h"
+#include "ImageDetector.h"
 #include "ConnectedComponents.h"
 
 class BKGCutDetector : public ImageDetector {
@@ -22,6 +22,7 @@ public:
 	BKGCutDetector(FeatureExtractor *fe, Classifier *c, Options &op);
 
 	bool Detect(const cv::Mat &img, const cv::Mat &bkg, bool isMerge = false);
+
 
 protected:
 	// Some options.

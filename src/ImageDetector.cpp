@@ -1,4 +1,4 @@
-#include "Detector.h"
+#include "ImageDetector.h"
 
 ImageDetector::ImageDetector(FeatureExtractor *fe, Classifier *c, Options &op) {
 	featureExt = fe;

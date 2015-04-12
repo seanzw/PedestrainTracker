@@ -145,12 +145,6 @@ void main(int argc, char *argv[])
 	if (!strcmp(argv[1], "-p"))
 	{
 		QueryPerformanceCounter(&start_t);
-		/*
-		IplImage* background = cvLoadImage(argv[3], 0);
-		IplImage* frame = cvLoadImage(argv[2]);
-		frame = combo_DetectPicture(frame, smin, smax, scalestep, slidestep, neighbor, background);
-		cvSaveImage(argv[4], frame);
-		*/
 		
 		// read image
 		cv::Mat frame = cv::imread(argv[2]);

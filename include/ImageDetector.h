@@ -5,8 +5,8 @@
  VideoDetector: detects pedestrains in a video.
  ***********************************************/
 
-#ifndef DETECTOR_HEADER
-#define DETECTOR_HEADER
+#ifndef IMAGE_DETECTOR_HEADER
+#define IMAGE_DETECTOR_HEADER
 
 #include "FeatureExtractor.h"
 #include "Classifier.h"
