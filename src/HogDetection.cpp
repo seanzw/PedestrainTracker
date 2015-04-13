@@ -518,19 +518,10 @@ void DetectVideo(
 
 		if (count % 2) { ++count; continue; }
 
-		//for debugging
-		//if(count >= 1000) {break;}
-
-		//cvSetImageROI(frame,roi);
 		cvResize(frame, img);
 		cvCvtColor(img, gray, CV_RGB2GRAY);
 		cout << "Processing frame " << count << endl;
 		Detection(img, gray, smin, smax, scalestep, slidestep, neighbor);
-
-		//cvNamedWindow("test");
-		//cvShowImage("test",img);
-		//cvWaitKey(0);
-		//cvDestroyWindow("test");
 
 		cvCopy(img, frame);
 		cvWriteFrame(writer, frame);

@@ -21,7 +21,11 @@ public:
 	// Constructor.
 	BKGCutDetector(FeatureExtractor *fe, Classifier *c, Options &op);
 
-	bool Detect(const cv::Mat &img, const cv::Mat &bkg, bool isMerge = false);
+	bool Detect(const cv::Mat &img, 
+		const cv::Point &origin,
+		bool isMerge = true,
+		const cv::Mat &bkg = defaultBackground
+		);
 
 
 protected:

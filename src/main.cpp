@@ -142,8 +142,7 @@ void main(int argc, char *argv[])
 
 	}
 
-	if (!strcmp(argv[1], "-p"))
-	{
+	if (!strcmp(argv[1], "-p")) {
 		QueryPerformanceCounter(&start_t);
 		
 		// read image
@@ -160,7 +159,7 @@ void main(int argc, char *argv[])
 		HoGExtractor hogExtractor(roi.width, roi.height);
 		BKGCutDetector detector(&hogExtractor, &classi, opt);
 
-		detector.Detect(gray, background, true);
+		detector.Detect(gray, cv::Point(0, 0), true, background);
 		detector.DrawDetection(img);
 
 		cv::imwrite(argv[4], frame);
@@ -211,20 +210,44 @@ void main(int argc, char *argv[])
 	{
 		QueryPerformanceCounter(&start_t);
 
-		double scale_v = 1.0;
-		DetectVideo(argv[2], argv[3], pPolygon, smin, smax, scale_v, scalestep, slidestep, neighbor);
+		// Open the video.
+		cv::VideoCapture in(argv[2]);
+		if (!in.isOpened()) {
+			printf("Can't open video: %s\n", argv[2]);
+		}
+
+		// Get the basic inforamtion.
+		double fps = in.get(cv::CAP_PROP_FPS);
+		int width = in.get(cv::CAP_PROP_FRAME_WIDTH);
+		int height = in.get(cv::CAP_PROP_FRAME_HEIGHT);
+		
+		// Open the out video.
+		cv::VideoWriter out(argv[3], CV_FOURCC('X', 'V', 'I', 'D'), fps / 2.0f, cv::Size(width, height));
+
+		// Initialize the detector.
+		HoGExtractor hogExtractor(width, height);
+		ImageDetector imageDetector(&hogExtractor, &classi, opt);
+		VideoDetector videoDetector(&imageDetector, opt);
+
+		// Do the detection.
+		videoDetector.Detect(in, out);
+
+		// double scale_v = 1.0;
+		// DetectVideo(argv[2], argv[3], pPolygon, smin, smax, scale_v, scalestep, slidestep, neighbor);
+
+
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
-		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
+		printf("The program executed time is %fs.\n", exe_time);
 	}
 
 	if (!strcmp(argv[1], "-v"))
 	{
 
-		QueryPerformanceCounter(&start_t);
+		
 
-		IplImage* background = cvLoadImage(argv[4], 0);
-		cout << (int)background << endl;
+		//IplImage* background = cvLoadImage(argv[4], 0);
+		//cout << (int)background << endl;
 		double exe_time2;
 		char* res_draw;
 		char* res_diff;
@@ -239,6 +262,39 @@ void main(int argc, char *argv[])
 		cout << "smax = " << smax << endl;
 		system("pause");
 
+		QueryPerformanceCounter(&start_t);
+
+		// Read the background.
+		cv::Mat bkg = cv::imread(argv[4], CV_LOAD_IMAGE_GRAYSCALE);
+
+		// Open the video.
+		cv::VideoCapture in(argv[2]);
+		if (!in.isOpened()) {
+			printf("Can't open video: %s\n", argv[2]);
+		}
+
+		// Get the basic inforamtion.
+		double fps = in.get(cv::CAP_PROP_FPS);
+		int width = in.get(cv::CAP_PROP_FRAME_WIDTH);
+		int height = in.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+		// Open the out video.
+		cv::VideoWriter out(argv[3], CV_FOURCC('X', 'V', 'I', 'D'), fps / 2.0f, cv::Size(width, height));
+
+		// Initialize the detector.
+		HoGExtractor hogExtractor(width, height);
+		BKGCutDetector detector(&hogExtractor, &classi, opt);
+		VideoDetector videoDetector(&detector, opt);
+
+		// Do the detection.
+		videoDetector.Detect(in, out, bkg);
+
+		// double scale_v = 1.0;
+		// DetectVideo(argv[2], argv[3], pPolygon, smin, smax, scale_v, scalestep, slidestep, neighbor);
+
+
+
+		/*
 		exe_time2 = combo_DetectVideo(argv[2], 
 			argv[3], 
 			isdraw, 
@@ -251,12 +307,15 @@ void main(int argc, char *argv[])
 			neighbor, 
 			background
 			);
+
+			*/
+
+
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
 		cout << "===================" << endl;
-		fprintf(stdout, "The program executed time is %fs.\n", exe_time - exe_time2);
+		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
 
-		cvReleaseImage(&background);
 	}
 
 	//system("pause");

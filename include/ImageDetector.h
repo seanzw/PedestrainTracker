@@ -37,10 +37,15 @@ public:
 	 of the upper-left corner in the original image.
 	 @param img: the image we need to detect.
 	 @param origin: the coordinates of the img's upper-left corner in its parents (if any)
+	 @param bkg: unused here, for BKGCutDetector.
 	 @param isMerge: merge the detection with accumulated evidence.
 	 @return true if everything is fine.
 	***********************************************************************/
-	bool Detect(const cv::Mat &img, const cv::Point &origin = cv::Point(0, 0), bool isMerge = false);
+	virtual bool Detect(const cv::Mat &img, 
+		const cv::Point &origin = cv::Point(0, 0),
+		bool isMerge = true,
+		const cv::Mat &bkg = defaultBackground
+		);
 
 	void DrawDetection(cv::Mat &img);
 

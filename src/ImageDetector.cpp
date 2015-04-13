@@ -12,7 +12,11 @@ ImageDetector::ImageDetector(FeatureExtractor *fe, Classifier *c, Options &op) {
 	modelHeight = op.modelHeight;
 }
 
-bool ImageDetector::Detect(const cv::Mat &img, const cv::Point &origin, bool isMerge) {
+bool ImageDetector::Detect(const cv::Mat &img, 
+	const cv::Point &origin, 
+	bool isMerge,
+	const cv::Mat &bkg
+	) {
 	// Calculate the HoG integral image.
 	featureExt->Preprocess(img);
 

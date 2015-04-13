@@ -44,4 +44,7 @@ struct Options {
 	float maxAreaRatio;
 };
 
+// This is used as the default background reference.
+static cv::Mat defaultBackground;
+
 #endif

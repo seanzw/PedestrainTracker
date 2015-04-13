@@ -8,7 +8,11 @@ BKGCutDetector::BKGCutDetector(FeatureExtractor *fe, Classifier *c, Options &op)
 	maxAreaRatio = op.maxAreaRatio;
 }
 
-bool BKGCutDetector::Detect(const cv::Mat &img, const cv::Mat &bkg, bool isMerge) {
+bool BKGCutDetector::Detect(const cv::Mat &img,
+	const cv::Point &origin,
+	bool isMerge,
+	const cv::Mat &bkg
+	) {
 
 	cv::Mat imgBlur(img.size(), CV_8UC1);
 

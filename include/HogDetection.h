@@ -22,6 +22,7 @@
 #include "meanshift.h"
 
 #include "BKGCutDetector.h"
+#include "VideoDetector.h"
 using namespace std;
 
 #include "opencv\cv.h"
