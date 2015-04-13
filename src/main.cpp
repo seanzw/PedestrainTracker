@@ -1,7 +1,9 @@
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
-#include "HogDetection.h"
+//#include "HogDetection.h"
+
+#include "PedestrainCounting.h"
 
 using namespace std;
 
@@ -220,9 +222,10 @@ void main(int argc, char *argv[])
 		double fps = in.get(cv::CAP_PROP_FPS);
 		int width = in.get(cv::CAP_PROP_FRAME_WIDTH);
 		int height = in.get(cv::CAP_PROP_FRAME_HEIGHT);
+		int ex = in.get(cv::CAP_PROP_FOURCC);
 		
 		// Open the out video.
-		cv::VideoWriter out(argv[3], CV_FOURCC('X', 'V', 'I', 'D'), fps / 2.0f, cv::Size(width, height));
+		cv::VideoWriter out(argv[3], ex, fps / 2.0f, cv::Size(width, height));
 
 		// Initialize the detector.
 		HoGExtractor hogExtractor(width, height);
@@ -277,9 +280,10 @@ void main(int argc, char *argv[])
 		double fps = in.get(cv::CAP_PROP_FPS);
 		int width = in.get(cv::CAP_PROP_FRAME_WIDTH);
 		int height = in.get(cv::CAP_PROP_FRAME_HEIGHT);
+		int ex = in.get(cv::CAP_PROP_FOURCC);
 
 		// Open the out video.
-		cv::VideoWriter out(argv[3], CV_FOURCC('X', 'V', 'I', 'D'), fps / 2.0f, cv::Size(width, height));
+		cv::VideoWriter out(argv[3], ex, fps / 2.0f, cv::Size(width, height));
 
 		// Initialize the detector.
 		HoGExtractor hogExtractor(width, height);
@@ -289,27 +293,6 @@ void main(int argc, char *argv[])
 		// Do the detection.
 		videoDetector.Detect(in, out, bkg);
 
-		// double scale_v = 1.0;
-		// DetectVideo(argv[2], argv[3], pPolygon, smin, smax, scale_v, scalestep, slidestep, neighbor);
-
-
-
-		/*
-		exe_time2 = combo_DetectVideo(argv[2], 
-			argv[3], 
-			isdraw, 
-			isdiff, 
-			smin, 
-			smax, 
-			scale_v, 
-			scalestep, 
-			slidestep, 
-			neighbor, 
-			background
-			);
-
-			*/
-
 
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
@@ -317,8 +300,5 @@ void main(int argc, char *argv[])
 		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
 
 	}
-
-	//system("pause");
-
 
 }

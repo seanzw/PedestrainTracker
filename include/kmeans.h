@@ -9,18 +9,6 @@
 #include "opencv\highgui.h"
 #include "opencv\cv.h"
 
-/*
-#ifndef NDEBUG
-#pragma comment(lib, "..\\lib\\opencv_core300d.lib")
-#pragma comment(lib, "..\\lib\\opencv_highgui300d.lib")
-#pragma comment(lib, "..\\lib\\opencv_imgproc300d.lib")
-#else // NDEBUG
-#pragma comment(lib, "..\\OpenCV\\lib\\opencv_core231.lib")
-#pragma comment(lib, "..\\OpenCV\\lib\\opencv_highgui231.lib")
-#pragma comment(lib, "..\\OpenCV\\lib\\opencv_imgproc231.lib")
-#endif
-*/
-
 using namespace std;  
 
 /*kmeans算法实现（考虑元组多个属性的情况） 
