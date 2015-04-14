@@ -33,12 +33,14 @@ The main idea is from \cite{eth_biwi_00633}, in which there are mainly two new i
 \begin{itemize}
 
 \item Data Association Problem
+
 % Use the greedy algorithm
+The data association problem is solved by a greedy algorighm. A matching score is calculated for each pair of detection and pedestrain, then we selected the max matching score and delete the coresponding row and column of this pair. Last, only matching pairs that above some threshold is used to guide the particles of that pedestrain.
 
 \item Online Boosting
-% Select feature
 
-\item Observation
+% Select feature
+The online boosting classifier for each pedestrain is similar to that in \cite{Grabner:2006:OBV:1153170.1153451} and we will select some features to train it.
 
 \end{itemize}
 
