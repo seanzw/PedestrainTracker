@@ -30,6 +30,18 @@ Besides, while reconstructing the program, we rewrite some parts of the program 
 
 The main idea is from \cite{eth_biwi_00633}, in which there are mainly two new ideas. The first one is that instead of using one offline trained general classifier, they train one online classifier for each detected pedestrain and the classifier is only updated on non-overlapping detections. Secondly, the detections are used to guide the particles' propagation which is implemented to estimates the conditional likelihood of the new observation .
 
+\begin{itemize}
+
+\item Data Association Problem
+% Use the greedy algorithm
+
+\item Online Boosting
+% Select feature
+
+\item Observation
+
+\end{itemize}
+
 \item Optimization
 
 With multiple threads or even GPU programming, we may archieve the real time interactive result.
