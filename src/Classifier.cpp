@@ -35,6 +35,7 @@ AdaBoostClassifier::AdaBoostClassifier(const char *filepath) {
 		in.open(filename);
 		if (!in.is_open()) {
 			printf("Can't open file %s, exit!\n", filename);
+			exit(0);
 		}
 
 		int test;
@@ -87,10 +88,6 @@ bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &fe
 			int yy = y + (int)(cur[W_OFFSET] * scale) - 1;
 			int scaleWW = (int)(cur[WIDTH_OFFSET] * scale);
 			int scaleHH = (int)(cur[HEIGHT_OFFSET] * scale);
-
-			if (y > 1000) {
-				printf("hellp");
-			}
 
 			featureExt.Extract(scaleWW, scaleHH, xx, yy, &feature);
 
