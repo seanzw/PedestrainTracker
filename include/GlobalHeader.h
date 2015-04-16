@@ -11,6 +11,7 @@
 #include <math.h>
 #include <fstream>
 #include <string.h>
+#include <random>
 #include "opencv\cv.h"
 #include "opencv\highgui.h"
 #include "opencv2\opencv.hpp"
