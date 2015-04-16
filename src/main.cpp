@@ -235,35 +235,12 @@ void main(int argc, char *argv[])
 		// Do the detection.
 		videoDetector.Detect(in, out);
 
-		// double scale_v = 1.0;
-		// DetectVideo(argv[2], argv[3], pPolygon, smin, smax, scale_v, scalestep, slidestep, neighbor);
-
-
 		QueryPerformanceCounter(&stop_t);
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
 		printf("The program executed time is %fs.\n", exe_time);
 	}
 
-	if (!strcmp(argv[1], "-v"))
-	{
-
-		
-
-		//IplImage* background = cvLoadImage(argv[4], 0);
-		//cout << (int)background << endl;
-		double exe_time2;
-		char* res_draw;
-		char* res_diff;
-		if (isdraw){ res_draw = "true"; }
-		else{ res_draw = "false"; }
-		if (isdiff){ res_diff = "true"; }
-		else{ res_diff = "false"; }
-		cout << "isdraw = " << res_draw << endl;
-		cout << "isdiff = " << res_diff << endl;
-		cout << "scale_v = " << scale_v << endl;
-		cout << "smin = " << smin << endl;
-		cout << "smax = " << smax << endl;
-		system("pause");
+	if (!strcmp(argv[1], "-v")) {
 
 		QueryPerformanceCounter(&start_t);
 
@@ -293,11 +270,11 @@ void main(int argc, char *argv[])
 		// Do the detection.
 		videoDetector.Detect(in, out, bkg);
 
-
 		QueryPerformanceCounter(&stop_t);
+
 		exe_time = double(stop_t.QuadPart - start_t.QuadPart) / freq.QuadPart;
-		cout << "===================" << endl;
-		fprintf(stdout, "The program executed time is %fs.\n", exe_time);
+		printf("===================\n");
+		printf("The program executed time is %fs.\n", exe_time);
 
 	}
 
