@@ -33,9 +33,6 @@ public:
 	// Observe.
 	void Observe(const cv::Mat &img);
 
-	// Is the target still here?
-	bool IsHere();
-
 	// Draw the particles.
 	void DrawParticles(cv::Mat &img, const cv::Scalar &color) const;
 

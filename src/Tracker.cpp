@@ -33,10 +33,18 @@ Tracker::~Tracker() {
 
 void Tracker::Propagate() {
 	// TO DO:
+	// p_t = p_t-1 + gaussian;
+	int *curParticle = particles;
+	for (int i = 0; i < numParticles; i++) {
+		curParticle[0] += gaussian(generator);
+		curParticle[1] += gaussian(generator);
+		curParticle += sizeParticle;
+	}
 }
 
 void Tracker::Observe(const cv::Mat &img) {
 	// TO DO:
+
 }
 
 void Tracker::DrawParticles(cv::Mat &img, const cv::Scalar &color) const {
