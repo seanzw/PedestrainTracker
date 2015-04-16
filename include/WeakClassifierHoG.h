@@ -20,7 +20,6 @@ public:
 
 	// Reset distribution.
 	void ResetPosDist();
-	void InitPosDist();
 
 private:
 	// A 36 dimension classifier threshold.

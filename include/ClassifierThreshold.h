@@ -18,9 +18,12 @@ public:
 	~ClassifierThreshold();
 
 	void Update(float *feature, int target);
-	bool Eval(float *value) const;
+	bool Eval(float *feature) const;
+	float GetValue(float *feature) const;
 
-	void* GetDistribution(int target) const;
+	void Reset();
+
+	void *GetDistribution(int target) const;
 
 private:
 
