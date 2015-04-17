@@ -16,7 +16,8 @@
 
 class StrongClassifier {
 public:
-	StrongClassifier(int numSelector, int numWeakClassifier, int numBackup = 0);
+	StrongClassifier(int numSelector, int numWeakClassifier, 
+		bool useFeatureReplace = false, int numBackup = 0);
 	virtual ~StrongClassifier();
 
 	// Evaluate a region.
@@ -36,6 +37,9 @@ protected:
 
 	// The weight of each selector.
 	float *m_alpha;
+
+	// Whether we replace the weakest classifier in trainging.
+	bool m_useFeatureReplace;
 
 };
 

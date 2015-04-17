@@ -1,10 +1,11 @@
 #include "StrongClassifier.h"
 
 StrongClassifier::StrongClassifier(int numSelector, 
-	int numWeakClassifier, int numBackup) {
+	int numWeakClassifier, bool useFeatureReplace, int numBackup) {
 
 	// Set up the data.
 	m_numSelector = numSelector;
+	m_useFeatureReplace = useFeatureReplace;
 	m_totalWeakClassifiers = numWeakClassifier + numBackup;
 
 	m_alpha = new float[m_numSelector];

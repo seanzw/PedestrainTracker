@@ -76,7 +76,7 @@ float ClassifierSelector::GetValue(feat *feature, int index) const {
 	}
 }
 
-void ClassifierSelector::Train(feat *feature, bool target, float importance) {
+void ClassifierSelector::Train(feat *feature, bool target, float importance, bool *errMask) {
 
 	// Get the poisson value.
 	double A = 1;
@@ -93,6 +93,7 @@ void ClassifierSelector::Train(feat *feature, bool target, float importance) {
 		for (int j = 0; j < i; j++) {
 			m_weakClassifiers[curWeak]->Update(feature, target);
 		}
+		errMask[i] = m_weakClassifiers[curWeak]->Evaluate(feature) != target;
 	}
 }
 
@@ -144,6 +145,11 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *errors) {
 	assert(index > -1);
 	assert(index != m_selectedClassifier);
 
+	// Find the next backup.
+	m_nextBackup++;
+	if (m_nextBackup == m_numBackup + m_numWeakClassifer)
+		m_nextBackup = m_numWeakClassifer;
+
 	// Replace.
 	if (maxError > errors[m_nextBackup]) {
 		delete m_weakClassifiers[index];
@@ -155,16 +161,22 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *errors) {
 
 		m_weakClassifiers[m_nextBackup] = new WeakClassifierHoG();
 
-		// Find the next backup.
-		m_nextBackup++;
-		if (m_nextBackup == m_numBackup + m_numWeakClassifer)
-			m_nextBackup = m_numWeakClassifer;
-
 		return index;
 	}
 	else {
 		return -1;
 	}
+}
 
+int ClassifierSelector::ReplaceWeakestClassifierStatistic(int src, int dst) {
+	// Some tests.
+	assert(dst >= 0);
+	assert(dst != m_selectedClassifier);
+	assert(dst < m_numWeakClassifer);
 
+	m_wCorrect[dst] = m_wCorrect[src];
+	m_wWrong[dst] = m_wCorrect[dst];
+
+	m_wCorrect[src] = 1.0f;
+	m_wWrong[src] = 1.0f;
 }

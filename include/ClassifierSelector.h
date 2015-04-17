@@ -22,15 +22,16 @@ public:
 	// @param feature: the feature vector;
 	// @param target: 1 for pos, others for neg;
 	// @param importance: the weight of this sample.
-	void Train(feat *feature, bool target, float importance);
+	// @param out errMask: update the error mask array.
+	void Train(feat *feature, bool target, float importance, bool *errMask);
 
 	// Return the error rate of this seletor, or any specific classifier.
 	float GetErrors(int index = -1) const;
 
 	// Select the best classifier.
-	// @param importance: the weight of this sample.
-	// @param errors: a buffer contains the error rates of each classifier.
-	// @param errorMask: true if the classifer makes mistake on this sample.
+	// @param in  importance: the weight of this sample.
+	// @param out errors: a buffer contains the error rates of each classifier.
+	// @param in  errorMask: true if the classifer makes mistake on this sample.
 	// @return: new selected classifier.
 	virtual int SelectBestClassifer(float importance, float *errors, bool *errorMask);
 
@@ -38,6 +39,9 @@ public:
 	// @param errors: a buffer contains the error rate.
 	// @return: the index of the replaced classifier.
 	virtual int ReplaceWeakestClassifier(float *errors);
+
+	// Only replace the weight.
+	virtual int ReplaceWeakestClassifierStatistic(int src, int dst);
 
 	// Evaluate a feature.
 	// @return: 1 for pos, 0 for neg.
@@ -50,7 +54,9 @@ public:
 	WeakClassifier **GetClassifierPool() const;
 	void SetClassifierPool(WeakClassifier **weaks);
 
-	// 
+	// Get the index of the new classifier for replacement.
+	int GetNewBackup() { return m_nextBackup; }
+
 private:
 	// Data.
 	// Classifier pool.
