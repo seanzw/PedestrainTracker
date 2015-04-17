@@ -14,8 +14,8 @@ public:
 	WeakClassifierHoG();
 	~WeakClassifierHoG();
 
-	bool Update(feat *feature, int target);
-	bool Eval(feat *feature) const;
+	bool Update(feat *feature, bool target);
+	bool Evaluate(feat *feature) const;
 	feat GetValue(feat *feature) const;
 
 	// Reset distribution.
@@ -24,8 +24,6 @@ public:
 private:
 	// A 36 dimension classifier threshold.
 	ClassifierThreshold<36> classifier;
-
-
 };
 
 #endif

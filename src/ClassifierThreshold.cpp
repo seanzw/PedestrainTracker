@@ -12,8 +12,8 @@ template<int N> ClassifierThreshold<N>::~ClassifierThreshold() {
 	delete m_negSamples;
 }
 
-template<int N> void ClassifierThreshold<N>::Update(float *feature, int target) {
-	if (target == 1)
+template<int N> void ClassifierThreshold<N>::Update(float *feature, bool target) {
+	if (target)
 		m_posSamples->Update(feature);
 	else
 		m_negSamples->Update(feature);
@@ -25,8 +25,14 @@ template<int N> bool ClassifierThreshold<N>::Eval(float *feature) const {
 	return dPos < dNeg;
 }
 
-template<int N> void *ClassifierThreshold<N>::GetDistribution(int target) const {
-	if (target == 1)
+template<int N> float ClassifierThreshold<N>::GetValue(float *feature) const {
+	float dPos = SquareDistance(feature, m_posSamples->m_mean, N);
+	float dNeg = SquareDistance(feature, m_negSamples->m_mean, N);
+	return (dNeg) / (dNeg + dPos);
+}
+
+template<int N> void *ClassifierThreshold<N>::GetDistribution(bool target) const {
+	if (target)
 		return m_posSamples;
 	else
 		return m_negSamples;

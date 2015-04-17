@@ -17,13 +17,13 @@ public:
 	ClassifierThreshold();
 	~ClassifierThreshold();
 
-	void Update(float *feature, int target);
+	void Update(float *feature, bool target);
 	bool Eval(float *feature) const;
 	float GetValue(float *feature) const;
 
 	void Reset();
 
-	void *GetDistribution(int target) const;
+	void *GetDistribution(bool target) const;
 
 private:
 

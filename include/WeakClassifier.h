@@ -15,10 +15,12 @@ public:
 	virtual ~WeakClassifier();
 
 	// Update this weak classifer.
-	virtual bool Update(feat *feature, int target);
+	// Return true if after update, this weak classifer
+	// still can not classify this sample correctly.
+	virtual bool Update(feat *feature, bool target);
 
 	// Evaluate this feature.
-	virtual bool Eval(feat *feature) const;
+	virtual bool Evaluate(feat *feature) const;
 
 	// Get the score.
 	virtual feat GetValue(feat *feature) const;
