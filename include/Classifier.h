@@ -68,7 +68,7 @@ public:
 	// @param x: the x coordinate of upperleft corner.
 	// @param y: the y coordinate of upperleft corner.
 	// @param featureExt: the Feature Extractor.
-	bool Classify(int x, int y, feat scale, FeatureExtractor &featureExt) const;
+	bool Classify(int x, int y, feat scale, FeatureExtractor &featureExt);
 
 private:
 	// Data.
@@ -86,6 +86,9 @@ private:
 			if (value >= min + step * i - 0.000001 && value <= min + step * (i + 1) + 0.000001)
 				return i;		
 	}
+
+	// A Feature instance to store the feature.
+	Feature feature;
 };
 
 

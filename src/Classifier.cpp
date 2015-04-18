@@ -79,11 +79,10 @@ AdaBoostClassifier::~AdaBoostClassifier() {
 	delete[] data;
 }
 
-bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &featureExt) const {
+bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &featureExt) {
 
 	// The pointer to the current weak classifier.
 	feat *cur = data;
-	HoGFeature feature;
 	for (int stage = 0; stage < numStages; stage++) {
 		feat threshold = 0.0;
 		for (int weak = 0; weak < numWeaks[stage]; weak++) {
@@ -96,13 +95,13 @@ bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &fe
 
 			feat sum = 0.0;
 			for (int k = 0; k < 36; k++)
-				sum += feature.hogs[k];
+				sum += feature.data[k];
 
 			// Normalize the feature.
 			if (sum > 100.0 * scale) {
 				feat invSum = 1.0 / sum;
 				for (int k = 0; k < 36; k++)
-					feature.hogs[k] *= invSum;
+					feature.data[k] *= invSum;
 			} else {
 				return false;
 			}
@@ -110,7 +109,7 @@ bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &fe
 			// Projection.
 			feat projValue = 0.0;
 			for (int k = 0; k < NUM_PROJ; k++) {
-				projValue += cur[PROJ_OFFSET + k] * feature.hogs[k];
+				projValue += cur[PROJ_OFFSET + k] * feature.data[k];
 			}
 
 			// Judge the district.

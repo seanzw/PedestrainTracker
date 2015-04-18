@@ -11,7 +11,21 @@
 #include "GlobalHeader.h"
 
 class Feature {
+public:
+	Feature(int size = 0);
+	~Feature();
+
+	// Resize the feature.
+	// Feature extractor should resize first to make sure
+	// the feature instance is big enough.
+	void Resize(int newSize);
+
+	// Data is public.
+	feat *data;
+	int capacity;
 };
+
+/*
 
 #define HOGDIMENSION 36
 
@@ -28,5 +42,6 @@ public:
 	// Data
 	feat hogs[HOGDIMENSION];
 };
+*/
 
 #endif

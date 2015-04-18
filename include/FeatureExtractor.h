@@ -5,7 +5,7 @@
 #ifndef FEATURE_EXTRACTOR_HEADER
 #define FEATURE_EXTRACTOR_HEADER
 
-#include "Feature.hpp"
+#include "Feature.h"
 
 typedef unsigned char uchar;
 
@@ -28,7 +28,7 @@ public:
 
 	// Use the integral image to extract HoG.
 	// Must be called after Preprocess.
-	void Extract(int width, int height, int i, int j, Feature *f);
+	void Extract(int width, int height, int i, int j, Feature *feature);
 
 	~HoGExtractor();
 

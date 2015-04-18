@@ -74,8 +74,11 @@ void HoGExtractor::Preprocess(const cv::Mat& img) {
 	}
 }
 
-void HoGExtractor::Extract(int width, int height, int i, int j, Feature *f) {
-	HoGFeature *feature = (HoGFeature *)f;
+void HoGExtractor::Extract(int width, int height, int i, int j, Feature *feature) {
+
+	// Remeber to resize the feature vector.
+	feature->Resize(36);
+
 	int i0 = i - 1;
 	int j0 = (j - 1) * 9;
 	int i1 = i + height / 2 - 1;
@@ -86,10 +89,10 @@ void HoGExtractor::Extract(int width, int height, int i, int j, Feature *f) {
 		feat *row0 = integrals + i0 * widthStep;
 		feat *row1 = integrals + i1 * widthStep;
 		feat *row2 = integrals + i2 * widthStep;
-		feature->hogs[k] = row1[j1 + k] + row0[j0 + k] - row1[j0 + k] - row0[j1 + k];
-		feature->hogs[k + 9] = row1[j2 + k] + row0[j1 + k] - row1[j1 + k] - row0[j2 + k];
-		feature->hogs[k + 18] = row2[j1 + k] + row1[j0 + k] - row1[j1 + k] - row2[j0 + k];
-		feature->hogs[k + 27] = row2[j2 + k] + row1[j1 + k] - row1[j2 + k] - row2[j1 + k];
+		feature->data[k] = row1[j1 + k] + row0[j0 + k] - row1[j0 + k] - row0[j1 + k];
+		feature->data[k + 9] = row1[j2 + k] + row0[j1 + k] - row1[j1 + k] - row0[j2 + k];
+		feature->data[k + 18] = row2[j1 + k] + row1[j0 + k] - row1[j1 + k] - row2[j0 + k];
+		feature->data[k + 27] = row2[j2 + k] + row1[j1 + k] - row1[j2 + k] - row2[j1 + k];
 	}
 }
 
