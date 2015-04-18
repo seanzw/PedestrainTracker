@@ -32,6 +32,8 @@ void GrayScaleIntegralImage::CalculateInt() {
 	// Clear the integral image.
 	memset((void *)intImage, 0, sizeof(unsigned int) * width * height);
 
+	int step = m_img->step1();
+
 	// The temp sum for each row.
 	unsigned int sumRow;
 	unsigned int curIntPos, curImgPos;
@@ -45,7 +47,7 @@ void GrayScaleIntegralImage::CalculateInt() {
 
 		// Current row in integral image.
 		curIntPos = (row + 1) * (width) + 1;
-		curImgPos = row * m_img->step1;
+		curImgPos = row * step;
 
 		sumRow = 0;
 

@@ -16,15 +16,15 @@ public:
 	GrayScaleIntegralImage(cv::Mat *img);
 	~GrayScaleIntegralImage();
 
+	// Calculate the integral image.
+	// Should be called if the img changed.
+	void CalculateInt();
+
 	unsigned int GetSum(const cv::Rect &roi) const;
 
 private:
 	// The integral image data.
 	unsigned int *intImage;
-
-	// Calculate the integral image.
-	void CalculateInt();
-
 };
 
 
