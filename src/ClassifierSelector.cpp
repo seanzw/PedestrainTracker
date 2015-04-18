@@ -109,17 +109,22 @@ int ClassifierSelector::SelectBestClassifer(float importance, float *errors, boo
 	int newSelected = m_selectedClassifier;
 	int minError = FLT_MAX;
 
-	for (int i = 0; i < m_numWeakClassifer; i++) {
+	for (int i = 0; i < m_numWeakClassifer + m_numBackup; i++) {
 		if (errorMask[i]) {
 			m_wWrong[i] += importance;
 		}
 		else {
 			m_wCorrect[i] += importance;
 		}
+
+		// If this classifier has been selected by other selector.
+		if (errors[i] == FLT_MAX)
+			continue;
 		
 		errors[i] = m_wWrong[i] / (m_wCorrect[i] + m_wWrong[i]);
 
-		if (errors[i] < minError) {
+		// Update the minError.
+		if (i < m_numWeakClassifer && errors[i] < minError) {
 			minError = errors[i];
 			newSelected = i;
 		}
@@ -168,7 +173,7 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *errors) {
 	}
 }
 
-int ClassifierSelector::ReplaceWeakestClassifierStatistic(int src, int dst) {
+void ClassifierSelector::ReplaceWeakestClassifierStatistic(int src, int dst) {
 	// Some tests.
 	assert(dst >= 0);
 	assert(dst != m_selectedClassifier);

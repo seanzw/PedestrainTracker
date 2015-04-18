@@ -41,7 +41,7 @@ public:
 	virtual int ReplaceWeakestClassifier(float *errors);
 
 	// Only replace the weight.
-	virtual int ReplaceWeakestClassifierStatistic(int src, int dst);
+	virtual void ReplaceWeakestClassifierStatistic(int src, int dst);
 
 	// Evaluate a feature.
 	// @return: 1 for pos, 0 for neg.

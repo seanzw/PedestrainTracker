@@ -14,15 +14,17 @@
 #define TRACKER_CLASS
 
 #include "GlobalHeader.h"
-#include "OnlineBoostingClassifier.h"
+#include "StrongClassifierDirectSelect.h"
 
 class Tracker {
 public:
 	// Construct a tracker.
-	// @param img: the image.
-	// @param det: the detection of the target.
-	// @param n: number of particles.
-	Tracker(const cv::Mat &img, const cv::Rect &det, int n = 100);
+	// Initialize the particles randomly.
+	// @param featureExt: the feature extractor used here.
+	// @param classifier: the classifier used here to detect.
+	// @param n: the number of particles.
+	Tracker(FeatureExtractor *featureExt, StrongClassifier *classifier,
+		int n = 100);
 
 	// Destructor.
 	~Tracker();
@@ -57,6 +59,7 @@ private:
 	const static int sizeParticle;
 	int *particles;					// The particles.
 	const int numParticles;			// Number of particles.
+	float *confidence;				// The confidence map of particles.
 
 	// Random generator.
 	std::normal_distribution<float> gaussian;
@@ -65,7 +68,13 @@ private:
 	static std::default_random_engine generator;
 
 	// The online boosting classifier.
-	OnlineBoostingClassifer *classifier;
+	StrongClassifierDirectSelect *classifier;
+
+	// Feature extractor.
+	FeatureExtractor *featureExt;
+
+	// A feature instance to store the result from extractor.
+	Feature feature;
 
 	// Initialize the particles.
 	void InitParticles();

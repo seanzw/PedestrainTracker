@@ -6,7 +6,9 @@ std::default_random_engine generator;
 // The size of a particle should be 2;
 const int Tracker::sizeParticle = 2;
 
-Tracker::Tracker(const cv::Mat &img, const cv::Rect &det, int n)
+Tracker::Tracker(FeatureExtractor *featureExt, 
+	StrongClassifier *classifier,
+	int n = 100)
 	: numParticles(n), imgW(img.size().width), imgH(img.size().height) {
 
 	// Get the position of the detection.
