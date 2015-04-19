@@ -1,7 +1,7 @@
 #include "BKGCutDetector.h"
 
-BKGCutDetector::BKGCutDetector(FeatureExtractor *fe, Classifier *c, Options &op)
-	: ImageDetector(fe, c, op) {
+BKGCutDetector::BKGCutDetector(IntegralImage *i, Classifier *c, Options &op)
+	: ImageDetector(i, c, op) {
 	binaryThre = op.binaryThre;
 	invPerimeterThre = op.invPerimeterRatio;
 	minAreaRatio = op.minAreaRatio;

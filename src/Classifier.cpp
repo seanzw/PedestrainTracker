@@ -4,6 +4,7 @@ Classifier::Classifier() {}
 
 Classifier::~Classifier() {}
 
+/*
 AdaBoostClassifier::AdaBoostClassifier(const char *filepath) {
 	printf("Read in classifiers' information...\n");
 	char filename[256];
@@ -127,3 +128,5 @@ bool AdaBoostClassifier::Classify(int x, int y, feat scale, FeatureExtractor &fe
 	}
 	return true;
 }
+
+*/

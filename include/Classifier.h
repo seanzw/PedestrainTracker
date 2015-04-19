@@ -7,18 +7,27 @@
 #ifndef CLASSIFIER_HEADER
 #define CLASSIFIER_HEADER
 
-#include "FeatureExtractor.h"
+// #include "FeatureExtractor.h"
+#include "IntegralImage.h"
 
 class Classifier {
 public:
 	Classifier();
 	virtual ~Classifier();
 
-	virtual bool Classify(int x, int y, feat scale, FeatureExtractor &featureExt) const {
+	// All the feature will be extracted from integral image.
+
+	virtual bool Classify(const IntegralImage *intImage, const cv::Rect &roi, float scale = 1.0f) {
 		return false;
+	}
+
+	// Get the score of some region.
+	virtual float Evaluate(const IntegralImage *intImage, const cv::Rect &roi, float scale = 1.0f) {
+		return FLT_MIN;
 	}
 };
 
+/*
 // Define the structure of features.
 // Notice that the only the last weak classifier
 // in a stage use the threshold field.
@@ -57,6 +66,7 @@ feat histogram[100];
 
 ****************************************************/
 
+/*
 class AdaBoostClassifier : public Classifier {
 public:
 	// Build the AdaBoost Classifier from files.
@@ -91,5 +101,5 @@ private:
 	Feature feature;
 };
 
-
+*/
 #endif

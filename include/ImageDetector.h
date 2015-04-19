@@ -8,7 +8,7 @@
 #ifndef IMAGE_DETECTOR_HEADER
 #define IMAGE_DETECTOR_HEADER
 
-#include "FeatureExtractor.h"
+// #include "FeatureExtractor.h"
 #include "Classifier.h"
 #include "Pool.h"
 
@@ -28,7 +28,7 @@ struct rect
 // Apply this directly on the whole image.
 class ImageDetector {
 public:
-	ImageDetector(FeatureExtractor *fe, Classifier *c, Options &op);
+	ImageDetector(IntegralImage *i, Classifier *c, Options &op);
 	
 	/*********************************************************************
 	 Detect, return the resutl in a vector.
@@ -56,7 +56,7 @@ public:
 	Pool<rect> dets;
 
 protected:
-	FeatureExtractor *featureExt;
+	IntegralImage *intImage;
 	Classifier *classifier;
 	feat scaleMin;
 	feat scaleMax;
@@ -66,6 +66,7 @@ protected:
 	int modelHeight;
 	int modelWidth;
 
+	
 	// Temp pool used in merge.
 	Pool<rect> temp;
 
@@ -77,14 +78,5 @@ protected:
 
 void DrawDetection(cv::Mat &img, Pool<rect> &dets);
 
-/*
-class VideoDetector : public ImageDetector {
-public:
-
-
-
-};
-
-*/
 
 #endif

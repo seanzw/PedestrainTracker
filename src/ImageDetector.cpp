@@ -1,7 +1,8 @@
 #include "ImageDetector.h"
 
-ImageDetector::ImageDetector(FeatureExtractor *fe, Classifier *c, Options &op) {
-	featureExt = fe;
+ImageDetector::ImageDetector(IntegralImage *i, 
+	Classifier *c, Options &op) {
+	intImage = i;
 	classifier = c;
 	scaleMin = op.scaleMin;
 	scaleMax = op.scaleMax;
@@ -17,8 +18,8 @@ bool ImageDetector::Detect(const cv::Mat &img,
 	bool isMerge,
 	const cv::Mat &bkg
 	) {
-	// Calculate the HoG integral image.
-	featureExt->Preprocess(img);
+	// Calculate the integral image.
+	intImage->CalculateInt(img);
 
 	// Set the vector.
 	Pool<rect> &dst = isMerge ? (temp) : (dets);
@@ -26,17 +27,21 @@ bool ImageDetector::Detect(const cv::Mat &img,
 	// Clear.
 	temp.clear();
 
+
+	cv::Rect roi;
 	// Slide the window and detect.
 	for (feat scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
+		roi.width = scale * modelWidth;
+		roi.height = scale * modelHeight;
 		for (int i = 0; i <= img.size().height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
 			for (int j = 0; j <= img.size().width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
-
-				// If this is a pedestrain.
-				if (classifier->Classify(i, j, scale, *featureExt)) {
+				roi.x = i;
+				roi.y = j;
+				if (classifier->Classify(intImage, roi, scale)) {
 					dst.Push(rect(j + origin.x, 
 						i + origin.y, 
-						j + (int)(modelWidth * scale) + origin.x,
-						i + (int)(modelHeight * scale) + origin.y));
+						j + (int)(roi.width) + origin.x,
+						i + (int)(roi.height) + origin.y));
 				}
 			}
 		}

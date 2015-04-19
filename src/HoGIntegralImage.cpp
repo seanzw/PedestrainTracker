@@ -22,13 +22,18 @@
 const float HoGIntegralImage::xVector[9] = { COSPI1, COSPI2, COSPI3, COSPI4, COSPI5, COSPI6, COSPI7, COSPI8, COSPI9 };
 const float HoGIntegralImage::yVector[9] = { SINPI1, SINPI2, SINPI3, SINPI4, SINPI5, SINPI6, SINPI7, SINPI8, SINPI9 };
 
-HoGIntegralImage::HoGIntegralImage(cv::Mat *img) : IntegralImage(img) {
+HoGIntegralImage::HoGIntegralImage(const cv::Mat &img) : IntegralImage(img) {
 	// Initialize the integral image.
 	intImage = new float[width * height * NUM_HOG_BINS];
 
 	m_step = width * NUM_HOG_BINS;
+}
 
-	CalculateInt();
+HoGIntegralImage::HoGIntegralImage(int w, int h) : IntegralImage(w, h) {
+	intImage = new float[width * height * NUM_HOG_BINS];
+
+	m_step = width * NUM_HOG_BINS;
+
 }
 
 HoGIntegralImage::~HoGIntegralImage() {
@@ -37,18 +42,20 @@ HoGIntegralImage::~HoGIntegralImage() {
 	}
 }
 
-void HoGIntegralImage::CalculateInt() {
+void HoGIntegralImage::CalculateInt(const cv::Mat &img) {
 	// Clear the first row of integral image.
-	memset((void *)intImage, 0, sizeof(float) * m_step);
+	memset((void *)intImage, 0, sizeof(float) * m_step * height);
+
+	float sumRow[NUM_HOG_BINS];
 
 	// Get the pointer to image data.
-	uchar *imgData = m_img->data;
+	uchar *imgData = img.data;
 
-	int imgStep = m_img->step1();
+	int imgStep = img.step1();
 
 	unsigned int curIntPos, curImgPos;
 
-	for (int row = 1; row < height - 1; row++) {
+	for (int row = 1; row < img.size().height - 1; row++) {
 
 		curIntPos = row * m_step;
 		curImgPos = row * imgStep;
@@ -56,7 +63,10 @@ void HoGIntegralImage::CalculateInt() {
 		// Copy the last row here.
 		memcpy((void *)&intImage[curIntPos], (void *)&intImage[curIntPos - m_step], sizeof(float) * m_step);
 
-		for (int col = 1; col < width - 1; col++) {
+		// Clear the sum of the row.
+		memset((void *)sumRow, 0, sizeof(float) * NUM_HOG_BINS);
+
+		for (int col = 1; col < img.size().width - 1; col++) {
 
 			curIntPos += NUM_HOG_BINS;
 			curImgPos ++;
@@ -82,11 +92,11 @@ void HoGIntegralImage::CalculateInt() {
 			int direction = Direct(gradX, gradY);
 			float magnitude = sqrtf(gradX * gradX + gradY * gradY);
 
-			for (int bin = 0; bin < NUM_HOG_BINS; bin++) {
-				intImage[curIntPos + bin] += intImage[curIntPos - NUM_HOG_BINS + bin];
-			}
+			sumRow[direction] += magnitude;
 
-			intImage[curIntPos + direction] += magnitude;
+			for (int bin = 0; bin < NUM_HOG_BINS; bin++) {
+				intImage[curIntPos + bin] += sumRow[bin];
+			}
 		}
 	}
 }
@@ -94,17 +104,14 @@ void HoGIntegralImage::CalculateInt() {
 // Get the result.
 void HoGIntegralImage::GetSum(const cv::Rect &roi, float *result) const {
 
-	// Upper left origin.
-	int originX = roi.x;
-	int originY = roi.y;
+	float *originPtr = &intImage[roi.x * m_step + roi.y * NUM_HOG_BINS];
 
-	float *originPtr = &intImage[originY * m_step + originX * NUM_HOG_BINS];
+	int down = (roi.height - 1) * m_step;
+	int right = (roi.width - 1) * NUM_HOG_BINS;
 
-	int down = roi.height * m_step;
-
-	// Get the bins
+	// Get the bins.
 	for (int bin = 0; bin < NUM_HOG_BINS; bin++) {
-		result[bin] = originPtr[0] + originPtr[down + roi.width] - originPtr[down] - originPtr[roi.width];
+		result[bin] = originPtr[0] + originPtr[down + right] - originPtr[down] - originPtr[right];
 		originPtr++;
 	}
 }

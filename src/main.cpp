@@ -1,7 +1,6 @@
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
-//#include "HogDetection.h"
 
 #include "PedestrainCounting.h"
 
@@ -158,8 +157,8 @@ void main(int argc, char *argv[])
 		cv::Mat gray(img.size(), CV_8UC1);
 		cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
 		
-		HoGExtractor hogExtractor(roi.width, roi.height);
-		BKGCutDetector detector(&hogExtractor, &classi, opt);
+		HoGIntegralImage intImage(gray);
+		BKGCutDetector detector(&intImage, &classi, opt);
 
 		detector.Detect(gray, cv::Point(0, 0), true, background);
 		detector.DrawDetection(img);
@@ -187,11 +186,11 @@ void main(int argc, char *argv[])
 		cv::Rect roi(0, 0, frame.size().width, frame.size().height);
 
 		cv::Mat img = frame(roi);
-		cv::Mat gray(img.size(), CV_32FC1);
+		cv::Mat gray(img.size(), CV_8UC1);
 		cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
 
-		HoGExtractor hogExtractor(roi.width, roi.height);
-		ImageDetector detector(&hogExtractor, &classi, opt);
+		HoGIntegralImage intImage(gray);
+		ImageDetector detector(&intImage, &classi, opt);
 
 		detector.Detect(gray, cv::Point(0, 0), true);
 		detector.DrawDetection(img);
@@ -228,8 +227,8 @@ void main(int argc, char *argv[])
 		cv::VideoWriter out(argv[3], ex, fps / 2.0f, cv::Size(width, height));
 
 		// Initialize the detector.
-		HoGExtractor hogExtractor(width, height);
-		ImageDetector imageDetector(&hogExtractor, &classi, opt);
+		HoGIntegralImage intImage(width, height);
+		ImageDetector imageDetector(&intImage, &classi, opt);
 		VideoDetector videoDetector(&imageDetector, opt);
 
 		// Do the detection.
@@ -263,8 +262,8 @@ void main(int argc, char *argv[])
 		cv::VideoWriter out(argv[3], ex, fps / 2.0f, cv::Size(width, height));
 
 		// Initialize the detector.
-		HoGExtractor hogExtractor(width, height);
-		BKGCutDetector detector(&hogExtractor, &classi, opt);
+		HoGIntegralImage intImage(width, height);
+		BKGCutDetector detector(&intImage, &classi, opt);
 		VideoDetector videoDetector(&detector, opt);
 
 		// Do the detection.

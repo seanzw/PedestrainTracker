@@ -10,6 +10,8 @@
 
 #include "VideoDetector.h"
 #include "BKGCutDetector.h"
+#include "AdaBoostClassifier.h"
+#include "HoGIntegralImage.h"
 
 
 const int BKG_DETECTION_NUM_CLUSTER = 3;

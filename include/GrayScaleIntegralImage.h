@@ -13,12 +13,12 @@
 class GrayScaleIntegralImage : public IntegralImage {
 public:
 	// The img should be CV_8UC1
-	GrayScaleIntegralImage(cv::Mat *img);
+	GrayScaleIntegralImage(const cv::Mat &img);
 	~GrayScaleIntegralImage();
 
 	// Calculate the integral image.
 	// Should be called if the img changed.
-	void CalculateInt();
+	void CalculateInt(const cv::Mat &img);
 
 	unsigned int GetSum(const cv::Rect &roi) const;
 

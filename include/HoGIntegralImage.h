@@ -14,12 +14,13 @@
 class HoGIntegralImage : public IntegralImage {
 public:
 	// img should be CV_8UC1.
-	HoGIntegralImage(cv::Mat *img);
+	HoGIntegralImage(const cv::Mat &img);
+	HoGIntegralImage(int w, int h);
 	~HoGIntegralImage();
 
 	// Calculate the integral image.
 	// Should be called if the img changed.
-	void CalculateInt();
+	void CalculateInt(const cv::Mat &img);
 
 	void GetSum(const cv::Rect &roi, float *result) const;
 

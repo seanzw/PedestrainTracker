@@ -1,10 +1,8 @@
 #include "GrayScaleIntegralImage.h"
 
-GrayScaleIntegralImage::GrayScaleIntegralImage(cv::Mat *img) : IntegralImage(img) {
+GrayScaleIntegralImage::GrayScaleIntegralImage(const cv::Mat &img) : IntegralImage(img) {
 	// Initialize the integral image.
 	intImage = new unsigned int[width * height];
-
-	CalculateInt();
 }
 
 GrayScaleIntegralImage::~GrayScaleIntegralImage() {
@@ -28,11 +26,11 @@ unsigned int GrayScaleIntegralImage::GetSum(const cv::Rect &roi) const {
 
 
 
-void GrayScaleIntegralImage::CalculateInt() {
+void GrayScaleIntegralImage::CalculateInt(const cv::Mat &img) {
 	// Clear the integral image.
 	memset((void *)intImage, 0, sizeof(unsigned int) * width * height);
 
-	int step = m_img->step1();
+	int step = img.step1();
 
 	// The temp sum for each row.
 	unsigned int sumRow;
@@ -40,7 +38,7 @@ void GrayScaleIntegralImage::CalculateInt() {
 
 	// Get the first row.
 	for (int col = 0; col < width; col++) {
-		intImage[col] = m_img->data[col];
+		intImage[col] = img.data[col];
 	}
 
 	for (int row = 1; row < height; row++) {
@@ -52,7 +50,7 @@ void GrayScaleIntegralImage::CalculateInt() {
 		sumRow = 0;
 
 		for (int col = 0; col < width; col++) {
-			sumRow += m_img->data[curImgPos];
+			sumRow += img.data[curImgPos];
 
 			// Update the integral image.
 			intImage[curIntPos] = intImage[curIntPos - width] + sumRow;

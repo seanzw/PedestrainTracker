@@ -17,13 +17,8 @@ public:
 	// Update this weak classifer.
 	// Return true if after update, this weak classifer
 	// still can not classify this sample correctly.
-	virtual bool Update(feat *feature, bool target);
+	virtual bool Update(const IntegralImage *intImage, const cv::Rect &roi, bool target);
 
-	// Evaluate this feature.
-	virtual bool Evaluate(feat *feature) const;
-
-	// Get the score.
-	virtual feat GetValue(feat *feature) const;
 };
 
 #endif
