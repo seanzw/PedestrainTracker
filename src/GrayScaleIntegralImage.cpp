@@ -11,13 +11,9 @@ GrayScaleIntegralImage::~GrayScaleIntegralImage() {
 	}
 }
 
-unsigned int GrayScaleIntegralImage::GetSum(const cv::Rect &roi) const {
-	
-	// Upper left origin.
-	int originX = roi.x;
-	int originY = roi.y;
+unsigned int GrayScaleIntegralImage::GetSum(const Rect &roi) const {
 
-	unsigned int *originPtr = &intImage[originY * (width)+originX];
+	unsigned int *originPtr = &intImage[roi.upper * width + roi.left];
 
 	int down = roi.height * width;
 

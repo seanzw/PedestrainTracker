@@ -20,7 +20,7 @@ public:
 	// Should be called if the img changed.
 	void CalculateInt(const cv::Mat &img);
 
-	unsigned int GetSum(const cv::Rect &roi) const;
+	unsigned int GetSum(const Rect &roi) const;
 
 private:
 	// The integral image data.

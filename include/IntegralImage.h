@@ -7,6 +7,7 @@
 #define INTEGRAL_IMAGE_HEADER
 
 #include "GlobalHeader.h"
+#include "Geometry.h"
 
 class IntegralImage {
 public:
@@ -18,10 +19,10 @@ public:
 	// Should be called before GetSum.
 	virtual void CalculateInt(const cv::Mat &img) = 0;
 
-	virtual unsigned int GetSum(const cv::Rect &roi) const { return 0; }
+	virtual unsigned int GetSum(const Rect &roi) const { return 0; }
 
 	// Used in HoG integral image.
-	virtual void GetSum(const cv::Rect &roi, float *result) const {}
+	virtual void GetSum(const Rect &roi, float *result) const {}
 
 	int width, height;
 };

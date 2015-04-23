@@ -28,15 +28,15 @@ bool ImageDetector::Detect(const cv::Mat &img,
 	temp.clear();
 
 
-	cv::Rect roi;
+	Rect roi;
 	// Slide the window and detect.
 	for (feat scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
 		roi.width = scale * modelWidth;
 		roi.height = scale * modelHeight;
 		for (int i = 0; i <= img.size().height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
 			for (int j = 0; j <= img.size().width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
-				roi.x = i;
-				roi.y = j;
+				roi.upper = i;
+				roi.left = j;
 				if (classifier->Classify(intImage, roi, scale)) {
 					dst.Push(rect(j + origin.x, 
 						i + origin.y, 

@@ -25,7 +25,7 @@ WeakClassifierHoG::~WeakClassifierHoG() {
 	delete hogFeature;
 }
 
-float WeakClassifierHoG::Evaluate(const IntegralImage *intImage, const cv::Rect &roi, float scale) {
+float WeakClassifierHoG::Evaluate(const IntegralImage *intImage, const Rect &roi, float scale) {
 	
 	// Get the feature.
 	hogFeature->Extract(intImage, roi, &result, scale);
@@ -36,7 +36,7 @@ float WeakClassifierHoG::Evaluate(const IntegralImage *intImage, const cv::Rect 
 
 	// Normalize the result.
 	if (sum > 120.0) {
-		float invSum = 1.0 / sum;
+		float invSum = 1.0f / sum;
 		for (int k = 0; k < 36; k++)
 			result.data[k] *= invSum;
 	}
@@ -53,7 +53,7 @@ float WeakClassifierHoG::Evaluate(const IntegralImage *intImage, const cv::Rect 
 	return projValue;
 }
 
-float WeakClassifierHoG::EvaluateThre(const IntegralImage *intImage, const cv::Rect &roi, float scale) {
+float WeakClassifierHoG::EvaluateThre(const IntegralImage *intImage, const Rect &roi, float scale) {
 	float proj = Evaluate(intImage, roi, scale);
 
 	// Find the district.
@@ -61,6 +61,6 @@ float WeakClassifierHoG::EvaluateThre(const IntegralImage *intImage, const cv::R
 	return histogram[district];
 }
 
-bool WeakClassifierHoG::Update(const IntegralImage *intImage, const cv::Rect &roi, bool target) {
+bool WeakClassifierHoG::Update(const IntegralImage *intImage, const Rect &roi, bool target) {
 	return true;
 }

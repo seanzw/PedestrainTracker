@@ -17,12 +17,12 @@ public:
 
 	// All the feature will be extracted from integral image.
 
-	virtual bool Classify(const IntegralImage *intImage, const cv::Rect &roi, float scale = 1.0f) {
+	virtual bool Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f) {
 		return false;
 	}
 
 	// Get the score of some region.
-	virtual float Evaluate(const IntegralImage *intImage, const cv::Rect &roi, float scale = 1.0f) {
+	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f) {
 		return FLT_MIN;
 	}
 };

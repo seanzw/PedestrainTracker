@@ -102,9 +102,9 @@ void HoGIntegralImage::CalculateInt(const cv::Mat &img) {
 }
 
 // Get the result.
-void HoGIntegralImage::GetSum(const cv::Rect &roi, float *result) const {
+void HoGIntegralImage::GetSum(const Rect &roi, float *result) const {
 
-	float *originPtr = &intImage[roi.x * m_step + roi.y * NUM_HOG_BINS];
+	float *originPtr = &intImage[roi.upper * m_step + roi.left * NUM_HOG_BINS];
 
 	int down = (roi.height - 1) * m_step;
 	int right = (roi.width - 1) * NUM_HOG_BINS;

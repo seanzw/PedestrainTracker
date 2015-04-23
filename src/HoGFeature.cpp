@@ -8,13 +8,13 @@ HoGFeature::~HoGFeature() {
 }
 
 
-bool HoGFeature::Extract(const IntegralImage *intImage, const cv::Rect &roi, Feature *feature, float scale) const {
+bool HoGFeature::Extract(const IntegralImage *intImage, const Rect &roi, Feature *feature, float scale) const {
 	// Remeber to resize the feature vector.
 	feature->Resize(36);
 
-	cv::Rect subregion(
-		roi.x + (int)(m_offsetH * scale) - 1, 
-		roi.y + (int)(m_offsetW * scale) - 1, 
+	Rect subregion(
+		roi.upper + (int)(m_offsetH * scale) - 1, 
+		roi.left + (int)(m_offsetW * scale) - 1, 
 		(int)(m_width * scale) / 2, 
 		(int)(m_height * scale) / 2);
 
@@ -22,15 +22,15 @@ bool HoGFeature::Extract(const IntegralImage *intImage, const cv::Rect &roi, Fea
 	intImage->GetSum(subregion, feature->data);
 
 	// Upper right.
-	subregion.y += subregion.width;
+	subregion.left += subregion.width;
 	intImage->GetSum(subregion, feature->data + 9);
 
 	// Down right.
-	subregion.x += subregion.height;
+	subregion.upper += subregion.height;
 	intImage->GetSum(subregion, feature->data + 27);
 
 	// Down left.
-	subregion.y -= subregion.width;
+	subregion.left -= subregion.width;
 	intImage->GetSum(subregion, feature->data + 18);
 
 	return true;

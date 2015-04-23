@@ -15,7 +15,7 @@ public:
 	HoGFeature(int offsetW, int offsetH, int w, int h);
 	~HoGFeature();
 
-	bool Extract(const IntegralImage *intImage, const cv::Rect &roi, Feature *feature, float scale = 1.0f) const;
+	bool Extract(const IntegralImage *intImage, const Rect &roi, Feature *feature, float scale = 1.0f) const;
 
 private:
 	const int m_offsetW, m_offsetH;

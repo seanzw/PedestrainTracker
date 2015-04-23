@@ -22,7 +22,7 @@ public:
 	// Should be called if the img changed.
 	void CalculateInt(const cv::Mat &img);
 
-	void GetSum(const cv::Rect &roi, float *result) const;
+	void GetSum(const Rect &roi, float *result) const;
 
 private:
 	// Data.

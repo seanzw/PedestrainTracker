@@ -16,7 +16,7 @@ public:
 
 	~AdaBoostClassifier();
 
-	bool Classify(const IntegralImage *intImage, const cv::Rect &roi, float scale);
+	bool Classify(const IntegralImage *intImage, const Rect &roi, float scale);
 
 private:
 	// Data.

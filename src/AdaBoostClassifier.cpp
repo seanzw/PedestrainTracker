@@ -99,7 +99,7 @@ AdaBoostClassifier::~AdaBoostClassifier() {
 	delete[] threshold;
 }
 
-bool AdaBoostClassifier::Classify(const IntegralImage *intImage, const cv::Rect &roi, float scale) {
+bool AdaBoostClassifier::Classify(const IntegralImage *intImage, const Rect &roi, float scale) {
 	int cur = 0;
 	for (int stage = 0; stage < numStages; stage++) {
 		float thre = 0.0f;

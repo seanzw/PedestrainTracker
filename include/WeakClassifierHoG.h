@@ -24,14 +24,14 @@ public:
 		float *histogram);
 	~WeakClassifierHoG();
 
-	bool Update(const IntegralImage *intImage, const cv::Rect &roi, bool target);
+	bool Update(const IntegralImage *intImage, const Rect &roi, bool target);
 
 	// Return the dot product between the reference and result.
-	float Evaluate(const IntegralImage *intImage, const cv::Rect &roi, float scale = 1.0f);
+	float Evaluate(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 
 	// Return the increament in threshold.
 	// Used in AdaBoosting classifier.
-	float EvaluateThre(const IntegralImage *intImage, const cv::Rect &roi, float scale = 1.0f);
+	float EvaluateThre(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 
 private:
 	// A HoG feature.
@@ -51,11 +51,15 @@ private:
 		if (value <= min) return 0;
 		if (value >= max) return 99;
 
-		float step = (max - min) * 0.01;
+		float step = (max - min) * 0.01f;
 
 		for (int i = 0; i < 100; i++)
 			if (value >= min + step * i - 0.000001 && value <= min + step * (i + 1) + 0.000001)
 				return i;
+
+		printf("We can't find the district: min = %f, max = %f, value = %f\n", min, max, value);
+		exit(0);
+		return -1;
 	}
 
 

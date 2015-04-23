@@ -17,7 +17,7 @@ public:
 	// Update this weak classifer.
 	// Return true if after update, this weak classifer
 	// still can not classify this sample correctly.
-	virtual bool Update(const IntegralImage *intImage, const cv::Rect &roi, bool target);
+	virtual bool Update(const IntegralImage *intImage, const Rect &roi, bool target);
 
 };
 
