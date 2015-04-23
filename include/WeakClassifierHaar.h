@@ -14,21 +14,21 @@
 
 class WeakClassifierHaar : public WeakClassifier {
 public:
-	WeakClassifierHaar(Size patchSize);
+	WeakClassifierHaar(const Size &patchSize);
 	virtual ~WeakClassifierHaar();
 
 	bool Update(const IntegralImage *intImage, const Rect &roi, int target);
-	bool Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
+	int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 
 
 	// Reset the distribution.
 	void ResetPosDist();
-	void InitPosDist();
-
 
 private:
-	ClassifierThreshold<1> thresholder;
+	ClassifierThreshold<1> *thresholder;
 	HaarFeature *haarFeature;
+	// A feature container used to communicator 
+	Feature feature;
 
 	void GenerateRandomClassifier();
 };

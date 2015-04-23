@@ -1,82 +1,70 @@
 #include "ClassifierSelector.h"
 
-ClassifierSelector::ClassifierSelector(int numWeakClassifiers, int numBackup) {
+ClassifierSelector::ClassifierSelector(int numW, const Size &patchSize, int numB = 2)
+	: numWeakClassifer(numW), numBackup(numB) {
 
 	// Set the data.
-	m_numWeakClassifer = numWeakClassifiers;
-	m_numBackup = numBackup;
-	m_weakClassifiers = new WeakClassifier*[m_numWeakClassifer + m_numBackup];
-	m_selectedClassifier = 0;
-	m_nextBackup = m_numWeakClassifer;
-	m_wCorrect = new float[m_numWeakClassifer + m_numBackup];
-	m_wWrong = new float[m_numWeakClassifer + m_numBackup];
-	memset((void *)m_wCorrect, 0, sizeof(float) * (m_numWeakClassifer + m_numBackup));
-	memset((void *)m_wWrong, 0, sizeof(float) * (m_numWeakClassifer + m_numBackup));
+	weakClassifiers = new WeakClassifier*[numWeakClassifer + numBackup];
+	selectedClassifier = 0;
+	nextBackup = numWeakClassifer;
+	wCorrect = new float[numWeakClassifer + numBackup];
+	wWrong = new float[numWeakClassifer + numBackup];
+	memset((void *)wCorrect, 0, sizeof(float) * (numWeakClassifer + numBackup));
+	memset((void *)wWrong, 0, sizeof(float) * (numWeakClassifer + numBackup));
 
 	// Initialize the weak classifiers.
-	for (int i = 0; i < m_numWeakClassifer + m_numBackup; i++) {
-		m_weakClassifiers[i] = new WeakClassifierHoG();
+	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+		weakClassifiers[i] = new WeakClassifierHaar(patchSize);
 	}
 
 	// We newed the weak classifiers.
-	m_isReferenced = false;
+	isReferenced = false;
 
 	// Initialize the data.
 	// This makes the error rate 0.5.
-	for (int i = 0; i < m_numWeakClassifer + m_numBackup; i++) {
-		m_wWrong[i] = m_wCorrect[i] = 1;
+	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+		wWrong[i] = wCorrect[i] = 1;
 	}
-
 }
 
-ClassifierSelector::ClassifierSelector(int numWeakClassifiers, 
-	WeakClassifier **weaks, int numBackup) {
+ClassifierSelector::ClassifierSelector(int numW, WeakClassifier **weaks, int numB)
+	: numWeakClassifer(numW), numBackup(numB) {
 	// Set the data.
-	m_numWeakClassifer = numWeakClassifiers;
-	m_numBackup = numBackup;
-	m_weakClassifiers = weaks;
-	m_selectedClassifier = 0;
-	m_nextBackup = m_numWeakClassifer;
-	m_wCorrect = new float[m_numWeakClassifer + m_numBackup];
-	m_wWrong = new float[m_numWeakClassifer + m_numBackup];
-	memset((void *)m_wCorrect, 0, sizeof(float) * (m_numWeakClassifer + m_numBackup));
-	memset((void *)m_wWrong, 0, sizeof(float) * (m_numWeakClassifer + m_numBackup));
+	weakClassifiers = weaks;
+	selectedClassifier = 0;
+	nextBackup = numWeakClassifer;
+	wCorrect = new float[numWeakClassifer + numBackup];
+	wWrong = new float[numWeakClassifer + numBackup];
+	memset((void *)wCorrect, 0, sizeof(float) * (numWeakClassifer + numBackup));
+	memset((void *)wWrong, 0, sizeof(float) * (numWeakClassifer + numBackup));
 
 	// We use weak classifiers from outside.
-	m_isReferenced = true;
+	isReferenced = true;
 
 	// Initialize the data.
 	// This makes the error rate 0.5.
-	for (int i = 0; i < m_numWeakClassifer + m_numBackup; i++) {
-		m_wWrong[i] = m_wCorrect[i] = 1;
+	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+		wWrong[i] = wCorrect[i] = 1;
 	}
 }
 
 ClassifierSelector::~ClassifierSelector() {
-	if (!m_isReferenced) {
-		for (int i = 0; i < m_numWeakClassifer + m_numBackup; i++) {
-			delete m_weakClassifiers[i];
+	if (!isReferenced) {
+		for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+			delete weakClassifiers[i];
 		}
-		delete[] m_weakClassifiers;
+		delete[] weakClassifiers;
 	}
-	delete[] m_wCorrect;
-	delete[] m_wWrong;
+	delete[] wCorrect;
+	delete[] wWrong;
 }
 
-bool ClassifierSelector::Evaluate(feat *feature) const {
-	return m_weakClassifiers[m_selectedClassifier]->Evaluate(feature);
+int ClassifierSelector::Classify(const IntegralImage *intImage, const Rect &roi) {
+	return weakClassifiers[selectedClassifier]->Classify(intImage, roi);
 }
 
-float ClassifierSelector::GetValue(feat *feature, int index) const {
-	if (index < 0 || index >= m_numWeakClassifer) {
-		return m_weakClassifiers[m_selectedClassifier]->GetValue(feature);
-	}
-	else {
-		return m_weakClassifiers[index]->GetValue(feature);
-	}
-}
-
-void ClassifierSelector::Train(feat *feature, bool target, float importance, bool *errMask) {
+void ClassifierSelector::Train(const IntegralImage *intImage, 
+	const Rect &roi, int target, float importance, bool *errMask) {
 
 	// Get the poisson value.
 	double A = 1;
@@ -89,57 +77,57 @@ void ClassifierSelector::Train(feat *feature, bool target, float importance, boo
 	}
 
 	// Train all the classifiers for i times.
-	for (int curWeak = 0; curWeak < m_numWeakClassifer + m_numBackup; curWeak++) {
+	for (int curWeak = 0; curWeak < numWeakClassifer + numBackup; curWeak++) {
 		for (int j = 0; j < i; j++) {
-			m_weakClassifiers[curWeak]->Update(feature, target);
+			weakClassifiers[curWeak]->Update(intImage, roi, target);
 		}
-		errMask[i] = m_weakClassifiers[curWeak]->Evaluate(feature) != target;
+		errMask[i] = weakClassifiers[curWeak]->Classify(intImage, roi) != target;
 	}
 }
 
-float ClassifierSelector::GetErrors(int index) const {
+float ClassifierSelector::GetError(int index) const {
 
-	if (index < 0 || index >= m_numWeakClassifer)
-		index = m_selectedClassifier;
+	if (index < 0 || index >= numWeakClassifer)
+		index = selectedClassifier;
 
-	return m_wWrong[index] / (m_wCorrect[index] + m_wWrong[index]);
+	return wWrong[index] / (wCorrect[index] + wWrong[index]);
 }
 
-int ClassifierSelector::SelectBestClassifer(float importance, float *errors, bool *errorMask) {
-	int newSelected = m_selectedClassifier;
+int ClassifierSelector::SelectBestClassifer(float importance, const bool *errorMask, float *errors) {
+	int newSelected = selectedClassifier;
 	int minError = FLT_MAX;
 
-	for (int i = 0; i < m_numWeakClassifer + m_numBackup; i++) {
+	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
 		if (errorMask[i]) {
-			m_wWrong[i] += importance;
+			wWrong[i] += importance;
 		}
 		else {
-			m_wCorrect[i] += importance;
+			wCorrect[i] += importance;
 		}
 
 		// If this classifier has been selected by other selector.
 		if (errors[i] == FLT_MAX)
 			continue;
 		
-		errors[i] = m_wWrong[i] / (m_wCorrect[i] + m_wWrong[i]);
+		errors[i] = wWrong[i] / (wCorrect[i] + wWrong[i]);
 
 		// Update the minError.
-		if (i < m_numWeakClassifer && errors[i] < minError) {
+		if (i < numWeakClassifer && errors[i] < minError) {
 			minError = errors[i];
 			newSelected = i;
 		}
 	}
 
-	m_selectedClassifier = newSelected;
-	return m_selectedClassifier;
+	selectedClassifier = newSelected;
+	return selectedClassifier;
 }
 
-int ClassifierSelector::ReplaceWeakestClassifier(float *errors) {
+int ClassifierSelector::ReplaceWeakestClassifier(float *errors, const Size &patchSize) {
 	float maxError = 0.0f;
 	int index = -1;
 
 	// Find the classifier with the largest error.
-	for (int i = 0; i < m_numWeakClassifer; i++) {
+	for (int i = 0; i < numWeakClassifer; i++) {
 		if (errors[i] > maxError) {
 			maxError = errors[i];
 			index = i;
@@ -148,23 +136,23 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *errors) {
 
 	// Some tests.
 	assert(index > -1);
-	assert(index != m_selectedClassifier);
+	assert(index != selectedClassifier);
 
 	// Find the next backup.
-	m_nextBackup++;
-	if (m_nextBackup == m_numBackup + m_numWeakClassifer)
-		m_nextBackup = m_numWeakClassifer;
+	nextBackup++;
+	if (nextBackup == numBackup + numWeakClassifer)
+		nextBackup = numWeakClassifer;
 
 	// Replace.
-	if (maxError > errors[m_nextBackup]) {
-		delete m_weakClassifiers[index];
-		m_weakClassifiers[index] = m_weakClassifiers[m_nextBackup];
-		m_wWrong[index] = m_wWrong[m_nextBackup];
-		m_wWrong[m_nextBackup] = 1;
-		m_wCorrect[index] = m_wCorrect[m_nextBackup];
-		m_wCorrect[m_nextBackup] = 1;
+	if (maxError > errors[nextBackup]) {
+		delete weakClassifiers[index];
+		weakClassifiers[index] = weakClassifiers[nextBackup];
+		wWrong[index] = wWrong[nextBackup];
+		wWrong[nextBackup] = 1;
+		wCorrect[index] = wCorrect[nextBackup];
+		wCorrect[nextBackup] = 1;
 
-		m_weakClassifiers[m_nextBackup] = new WeakClassifierHoG();
+		weakClassifiers[nextBackup] = new WeakClassifierHaar(patchSize);
 
 		return index;
 	}
@@ -176,12 +164,12 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *errors) {
 void ClassifierSelector::ReplaceWeakestClassifierStatistic(int src, int dst) {
 	// Some tests.
 	assert(dst >= 0);
-	assert(dst != m_selectedClassifier);
-	assert(dst < m_numWeakClassifer);
+	assert(dst != selectedClassifier);
+	assert(dst < numWeakClassifer);
 
-	m_wCorrect[dst] = m_wCorrect[src];
-	m_wWrong[dst] = m_wCorrect[dst];
+	wCorrect[dst] = wCorrect[src];
+	wWrong[dst] = wCorrect[dst];
 
-	m_wCorrect[src] = 1.0f;
-	m_wWrong[src] = 1.0f;
+	wCorrect[src] = 1.0f;
+	wWrong[src] = 1.0f;
 }

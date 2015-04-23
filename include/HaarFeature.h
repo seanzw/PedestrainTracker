@@ -16,9 +16,10 @@ public:
 	HaarFeature(const Size &patchSize);
 	virtual ~HaarFeature();
 
-	// void getInitialDistribution(EstimatedGaussianDistribution * distribution);
+	// Get the initial distribution of the feature.
+	void GetInitialDistribution(EstimatedGaussianDistribution<1> *distribution) const;
 
-	bool Extract(IntegralImage *intImage, const Rect &roi, Feature *feature);
+	bool Extract(const IntegralImage *intImage, const Rect &roi, Feature *feature);
 
 	float GetResponse() { return response; }
 

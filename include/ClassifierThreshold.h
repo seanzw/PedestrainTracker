@@ -28,7 +28,7 @@ public:
 	// Use the simple Euclidean distance to pos and neg cluster.
 	// @param feature: the feature extracted, should be N dimension.
 	// @return int: 1 for positive, -1 for negative.
-	int Evaluate(const Feature &feature) const;
+	int Classify(const Feature &feature) const;
 
 	void Reset();
 

@@ -17,8 +17,8 @@ public:
 
 	// All the feature will be extracted from integral image.
 
-	virtual bool Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f) {
-		return false;
+	virtual int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f) {
+		return -1;
 	}
 
 	// Get the score of some region.

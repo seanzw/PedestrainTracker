@@ -19,7 +19,7 @@ template<int N> void ClassifierThreshold<N>::Update(const Feature &feature, int 
 		negSamples->Update(feature.data);
 }
 
-template<int N> int ClassifierThreshold<N>::Evaluate(const Feature &feature) const {
+template<int N> int ClassifierThreshold<N>::Classify(const Feature &feature) const {
 	float dPos = SquareDistance(feature.data, posSamples->mean, N);
 	float dNeg = SquareDistance(feature.data, negSamples->mean, N);
 	return dPos < dNeg ? 1 : -1;

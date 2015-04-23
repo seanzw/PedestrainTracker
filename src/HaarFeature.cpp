@@ -235,7 +235,11 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 	}
 }
 
-bool HaarFeature::Extract(IntegralImage *intImage, const Rect &roi, Feature *feature) {
+void HaarFeature::GetInitialDistribution(EstimatedGaussianDistribution<1> *distribution) const {
+	distribution->SetValues(&initMean, &initSigma);
+}
+
+bool HaarFeature::Extract(const IntegralImage *intImage, const Rect &roi, Feature *feature) {
 	feature->Resize(1);
 	feature->data[0] = 0.0f;
 
