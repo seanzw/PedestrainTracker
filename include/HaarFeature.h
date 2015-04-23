@@ -10,7 +10,6 @@
 #include "EstimatedGaussianDistribution.h"
 #include "IntegralImage.h"
 #include "Feature.h"
-#include "Geometry.h"
 
 class HaarFeature {
 public:
