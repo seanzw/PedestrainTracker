@@ -17,7 +17,7 @@ public:
 	WeakClassifierHaar(Size patchSize);
 	virtual ~WeakClassifierHaar();
 
-	bool Update(IntegralImage *intImage, const Rect &roi, int target);
+	bool Update(const IntegralImage *intImage, const Rect &roi, int target);
 	bool Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 
 

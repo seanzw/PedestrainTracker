@@ -10,23 +10,19 @@
 
 template<int N> class EstimatedGaussianDistribution {
 public:
-	EstimatedGaussianDistribution();
-	EstimatedGaussianDistribution(float pMean, float pSigma, float rMean, float rSigma);
+	EstimatedGaussianDistribution(float pm = 1000.0f, float ps = 1000.0f, float rm = 0.01f, float rs = 0.01f);
 
 	~EstimatedGaussianDistribution();
 
 	// Use Kalman filter to update the Gaussian distribution.
-	void Update(float *value);
+	void Update(const float *value);
 
-	// Get and set the data.
-	float GetMean() const { return m_mean; }
-	float GetSigma() const { return m_sigma; }
-	void SetValues(float *mean, float *sigma);
+	void SetValues(const float *m, const float *s);
 
 private:
-	float m_mean[N], m_sigma[N];
-	float m_pMean, m_pSigma;
-	float m_rMean, m_rSigma;
+	float mean[N], sigma[N];
+	float pMean, pSigma;
+	float rMean, rSigma;
 
 };
 

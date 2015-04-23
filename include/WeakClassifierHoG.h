@@ -24,8 +24,6 @@ public:
 		float *histogram);
 	~WeakClassifierHoG();
 
-	bool Update(const IntegralImage *intImage, const Rect &roi, bool target);
-
 	// Return the dot product between the reference and result.
 	float Evaluate(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 
@@ -62,9 +60,6 @@ private:
 		return -1;
 	}
 
-
-	// A 36 dimension classifier threshold.
-	// ClassifierThreshold<36> classifier;
 };
 
 #endif

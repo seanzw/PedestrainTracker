@@ -1,40 +1,34 @@
 #include "ClassifierThreshold.h"
 
 template<int N> ClassifierThreshold<N>::ClassifierThreshold() {
-	m_posSamples = new EstimatedGaussianDistribution<N>();
-	m_negSamples = new EstimatedGaussianDistribution<N>();
-	m_threshold = 0.0f;
-	m_parity = 0;
+	posSamples = new EstimatedGaussianDistribution<N>();
+	negSamples = new EstimatedGaussianDistribution<N>();
 }
 
 template<int N> ClassifierThreshold<N>::~ClassifierThreshold() {
-	delete m_posSamples;
-	delete m_negSamples;
+	if (posSamples != NULL) 
+		delete posSamples;
+	if (negSamples != NULL)
+		delete negSamples;
 }
 
-template<int N> void ClassifierThreshold<N>::Update(float *feature, bool target) {
-	if (target)
-		m_posSamples->Update(feature);
+template<int N> void ClassifierThreshold<N>::Update(const Feature &feature, int target) {
+	if (target > 0)
+		posSamples->Update(feature.data);
 	else
-		m_negSamples->Update(feature);
+		negSamples->Update(feature.data);
 }
 
-template<int N> bool ClassifierThreshold<N>::Eval(float *feature) const {
-	float dPos = SquareDistance(feature, m_posSamples->m_mean, N);
-	float dNeg = SquareDistance(feature, m_negSamples->m_mean, N);
-	return dPos < dNeg;
+template<int N> int ClassifierThreshold<N>::Evaluate(const Feature &feature) const {
+	float dPos = SquareDistance(feature.data, posSamples->mean, N);
+	float dNeg = SquareDistance(feature.data, negSamples->mean, N);
+	return dPos < dNeg ? 1 : -1;
 }
 
-template<int N> float ClassifierThreshold<N>::GetValue(float *feature) const {
-	float dPos = SquareDistance(feature, m_posSamples->m_mean, N);
-	float dNeg = SquareDistance(feature, m_negSamples->m_mean, N);
-	return (dNeg) / (dNeg + dPos);
-}
-
-template<int N> void *ClassifierThreshold<N>::GetDistribution(bool target) const {
-	if (target)
-		return m_posSamples;
+template<int N> void *ClassifierThreshold<N>::GetDistribution(int target) const {
+	if (target > 0)
+		return posSamples;
 	else
-		return m_negSamples;
+		return negSamples;
 }
 

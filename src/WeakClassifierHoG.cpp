@@ -60,7 +60,3 @@ float WeakClassifierHoG::EvaluateThre(const IntegralImage *intImage, const Rect 
 	int district = District(proj, min, max);
 	return histogram[district];
 }
-
-bool WeakClassifierHoG::Update(const IntegralImage *intImage, const Rect &roi, bool target) {
-	return true;
-}
