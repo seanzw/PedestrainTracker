@@ -173,3 +173,10 @@ void ClassifierSelector::ReplaceWeakestClassifierStatistic(int src, int dst) {
 	wCorrect[src] = 1.0f;
 	wWrong[src] = 1.0f;
 }
+
+float ClassifierSelector::Evaluate(const IntegralImage *intImage, const Rect &roi, int indexWeak) {
+	if (indexWeak < 0 || indexWeak >= numWeakClassifer) {
+		return weakClassifiers[selectedClassifier]->Evaluate(intImage, roi);
+	}
+	return weakClassifiers[indexWeak]->Evaluate(intImage, roi);
+}

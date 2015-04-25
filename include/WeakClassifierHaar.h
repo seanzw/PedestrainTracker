@@ -19,7 +19,7 @@ public:
 
 	bool Update(const IntegralImage *intImage, const Rect &roi, int target);
 	int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
-
+	float Evaluate(const IntegralImage *intImage, const Rect &roi);
 
 	// Reset the distribution.
 	void ResetPosDist();

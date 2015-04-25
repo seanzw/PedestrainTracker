@@ -19,6 +19,8 @@ public:
 	// still can not classify this sample correctly.
 	virtual bool Update(const IntegralImage *intImage, const Rect &roi, int target);
 
+	// Get the score for the roi.
+	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi);
 };
 
 #endif

@@ -44,3 +44,10 @@ int WeakClassifierHaar::Classify(const IntegralImage *intImage, const Rect &roi,
 	return thresholder->Classify(feature);
 }
 
+float WeakClassifierHaar::Evaluate(const IntegralImage *intImage, const Rect &roi) {
+	bool valid = haarFeature->Extract(intImage, roi, &feature);
+	if (!valid) {
+		return 0.0f;
+	}
+	return feature.data[0];
+}

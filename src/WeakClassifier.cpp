@@ -7,3 +7,7 @@ WeakClassifier::~WeakClassifier() {}
 bool WeakClassifier::Update(const IntegralImage *intImage, const Rect &roi, int target) {
 	return true;
 }
+
+float WeakClassifier::Evaluate(const IntegralImage *intImage, const Rect &roi) {
+	return 0.0f;
+}

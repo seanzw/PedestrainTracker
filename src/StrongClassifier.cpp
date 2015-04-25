@@ -1,34 +1,34 @@
 #include "StrongClassifier.h"
 
-StrongClassifier::StrongClassifier(int numSelector, 
-	int numWeakClassifier, bool useFeatureReplace, int numBackup) {
+StrongClassifier::StrongClassifier(int numSelector, int numWeakClassifier, 
+	const Size &patchSize, bool useFeatureReplace, int numBackup) {
 
 	// Set up the data.
-	m_numSelector = numSelector;
-	m_useFeatureReplace = useFeatureReplace;
-	m_totalWeakClassifiers = numWeakClassifier + numBackup;
+	this->numSelector = numSelector;
+	this->useFeatureReplace = useFeatureReplace;
+	this->totalWeakClassifiers = numWeakClassifier + numBackup;
+	this->patchSize = patchSize;
 
-	m_alpha = new float[m_numSelector];
-	memset((void *)m_alpha, 0, sizeof(float) * m_numSelector);
-
+	this->alpha = new float[this->numSelector];
+	memset((void *)this->alpha, 0, sizeof(float) * this->numSelector);
 }
 
 StrongClassifier::~StrongClassifier() {
-	delete[] m_alpha;
+	delete[] this->alpha;
 }
 
-float StrongClassifier::Evaluate(feat *feature) const {
+float StrongClassifier::Evaluate(const IntegralImage *intImage, const Rect &roi) const {
 	float value = 0.0f;
 
-	for (int i = 0; i < m_numSelector; i++) {
-		value += m_selectors[i]->GetValue(feature) * m_alpha[i];
+	for (int i = 0; i < this->numSelector; i++) {
+		value += this->selectors[i]->Evaluate(intImage, roi) * this->alpha[i];
 	}
 
 	return value;
 }
 
-bool StrongClassifier::Update(feat *feature, bool target,
+bool StrongClassifier::Update(const IntegralImage *intImage, const Rect &roi, int target,
 	float importance) {
-	return true;
+	return false;
 }
 

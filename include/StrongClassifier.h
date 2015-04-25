@@ -17,29 +17,31 @@
 class StrongClassifier {
 public:
 	StrongClassifier(int numSelector, int numWeakClassifier, 
-		bool useFeatureReplace = false, int numBackup = 0);
+		const Size &patchSize, bool useFeatureReplace = false, int numBackup = 0);
 	virtual ~StrongClassifier();
 
 	// Evaluate a region.
-	virtual float Evaluate(feat *feature) const;
+	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi) const;
 
 	// Update the strong classifier.
-	virtual bool Update(feat *feature, 
-		bool target, float importance = 1.0f);
+	virtual bool Update(const IntegralImage *intImage, const Rect &roi, 
+		int target, float importance = 1.0f);
 
 	// 
 
 protected:
-	int m_numSelector;
-	int m_totalWeakClassifiers;
+	int numSelector;
+	int totalWeakClassifiers;
 
-	ClassifierSelector **m_selectors;
+	ClassifierSelector **selectors;
+
+	Size patchSize;
 
 	// The weight of each selector.
-	float *m_alpha;
+	float *alpha;
 
 	// Whether we replace the weakest classifier in trainging.
-	bool m_useFeatureReplace;
+	bool useFeatureReplace;
 
 };
 

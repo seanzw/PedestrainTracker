@@ -4,93 +4,94 @@ StrongClassifierDirectSelect::StrongClassifierDirectSelect(int numSelectors,
 	int numWeakClassifiers, int numBackups)
 	: StrongClassifier(numSelectors, numWeakClassifiers, numBackups) {
 
-	m_selectors = new ClassifierSelector*[m_numSelector];
+	this->selectors = new ClassifierSelector*[this->numSelector];
 
 	// Initialize the first selector.
-	m_selectors[0] = new ClassifierSelector(numWeakClassifiers, numBackups);
+	this->selectors[0] = new ClassifierSelector(numWeakClassifiers, numBackups);
 
-	for (int i = 1; i < m_numSelector; i++) {
-		m_selectors[i] = new ClassifierSelector(numWeakClassifiers, m_selectors[0]->GetClassifierPool(), numBackups);
+	for (int i = 1; i < this->numSelector; i++) {
+		this->selectors[i] = new ClassifierSelector(numWeakClassifiers, this->selectors[0]->GetClassifierPool(), numBackups);
 	}
 
-	m_errMask = new bool[m_totalWeakClassifiers];
-	m_errors = new float[m_totalWeakClassifiers];
-	m_sumErrors = new float[m_totalWeakClassifiers];
+	this->errMask = new bool[this->totalWeakClassifiers];
+	this->errors = new float[this->totalWeakClassifiers];
+	this->sumErrors = new float[this->totalWeakClassifiers];
 
 }
 
 StrongClassifierDirectSelect::~StrongClassifierDirectSelect() {
-	delete[] m_errMask;
-	delete[] m_errors;
-	delete[] m_sumErrors;
+	delete[] this->errMask;
+	delete[] this->errors;
+	delete[] this->sumErrors;
 
-	for (int i = 0; i < m_numSelector; i++) {
-		delete m_selectors[i];
+	for (int i = 0; i < this->numSelector; i++) {
+		delete this->selectors[i];
 	}
 
-	delete[] m_selectors;
+	delete[] this->selectors;
 }
 
-bool StrongClassifierDirectSelect::Update(feat *feature, 
-	bool target,
+bool StrongClassifierDirectSelect::Update(const IntegralImage *intImage,
+	const Rect &roi,
+	int target,
 	float importance) {
 
 	// Initialize the buffer.
-	memset((void *)m_errMask, 0, sizeof(bool) * m_totalWeakClassifiers);
-	memset((void *)m_errors, 0, sizeof(float) * m_totalWeakClassifiers);
-	memset((void*)m_sumErrors, 0, sizeof(float) * m_totalWeakClassifiers);
+	memset((void *)this->errMask, 0, sizeof(bool) * this->totalWeakClassifiers);
+	memset((void *)this->errors, 0, sizeof(float) * this->totalWeakClassifiers);
+	memset((void*)this->sumErrors, 0, sizeof(float) * this->totalWeakClassifiers);
 
 	// Train all the weak classifiers.
 	// And get the errMask
-	m_selectors[0]->Train(feature, target, importance, m_errMask);
+	this->selectors[0]->Train(intImage, roi, target, importance, this->errMask);
 
 	// Select the best weak classifier for each selector.
-	for (int i = 0; i < m_numSelector; i++) {
+	for (int i = 0; i < this->numSelector; i++) {
 
 		// Select the best weak classifiers and get the error rate.
-		int selected = m_selectors[i]->SelectBestClassifer(importance, m_errors, m_errMask);
+		int selected = this->selectors[i]->SelectBestClassifer(importance, this->errMask, this->errors);
 
-		if (m_errors[selected] > 0.5) {
+		if (this->errors[selected] > 0.5) {
 			// If the error rate is greater than 0.5,
 			// we won't use it.
-			m_alpha[i] = 0.0f;
+			this->alpha[i] = 0.0f;
 		}
 		else {
 			// Calculate the alpha.
-			m_alpha[i] = logf((1.0f - m_errors[selected]) / m_errors[selected]);
+			this->alpha[i] = logf((1.0f - this->errors[selected]) / this->errors[selected]);
 		}
 
 		// Update the importance;
-		if (m_errMask[selected]) {
-			importance *= sqrtf((1.0f - m_errors[selected]) / m_errors[selected]);
+		if (this->errMask[selected]) {
+			importance *= sqrtf((1.0f - this->errors[selected]) / this->errors[selected]);
 		}
 		else {
-			importance *= sqrtf(m_errors[selected] / (1.0f - m_errors[selected]));
+			importance *= sqrtf(this->errors[selected] / (1.0f - this->errors[selected]));
 		}
 
 		// Sum up the errors.
-		for (int j = 0; j < m_totalWeakClassifiers; i++) {
-			if (m_errors[j] != FLT_MAX && m_sumErrors[i] > 0.0f) {
-				m_sumErrors[j] += m_errors[j];
+		for (int j = 0; j < this->totalWeakClassifiers; i++) {
+			if (this->errors[j] != FLT_MAX && this->sumErrors[i] > 0.0f) {
+				this->sumErrors[j] += this->errors[j];
 			}
 		}
 
 
 		// Mark this weak classifier as used.
-		m_sumErrors[selected] = -1;
-		m_errors[selected] = FLT_MAX;
+		this->sumErrors[selected] = -1;
+		this->errors[selected] = FLT_MAX;
 
 	}
 
 	// If we are gonna replace the weakest classifier...
-	if (m_useFeatureReplace) {
-		int replaced = m_selectors[0]->ReplaceWeakestClassifier(m_sumErrors);
+	if (this->useFeatureReplace) {
+		int replaced = this->selectors[0]->ReplaceWeakestClassifier(this->sumErrors, this->patchSize);
 
 		if (replaced > 0) {
 			// We have successfully replaced a classifier.
 			// We have to clear the weight in other selectors.
-			for (int i = 1; i < m_numSelector; i++) {
-				m_selectors[i]->ReplaceWeakestClassifierStatistic(m_selectors[0]->GetNewBackup(), replaced);
+			for (int i = 1; i < this->numSelector; i++) {
+				this->selectors[i]->ReplaceWeakestClassifierStatistic(this->selectors[0]->GetNewBackup(), replaced);
 			}
 		}
 	}

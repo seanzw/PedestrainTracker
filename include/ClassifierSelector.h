@@ -57,6 +57,9 @@ public:
 	// @return: 1 for pos, -1 for neg.
 	int Classify(const IntegralImage *intImage, const Rect &roi);
 
+	// Get the score for this roi.
+	float Evaluate(const IntegralImage *intImage, const Rect &roi, int indexWeak = -1);
+
 	// Get or set the classifier pool.
 	WeakClassifier **GetClassifierPool() const;
 	void SetClassifierPool(WeakClassifier **weaks);

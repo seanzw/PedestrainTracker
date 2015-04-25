@@ -16,13 +16,13 @@ public:
 
 	virtual ~StrongClassifierDirectSelect();
 
-	bool Update(feat *feature, bool target, float importance = 1.0f);
+	bool Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
 
 private:
 	// Some buffer used in selectors.
-	bool *m_errMask;
-	float *m_errors;
-	float *m_sumErrors;
+	bool *errMask;
+	float *errors;
+	float *sumErrors;
 
 };
 
