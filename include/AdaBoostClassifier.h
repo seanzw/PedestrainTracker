@@ -16,7 +16,7 @@ public:
 
 	~AdaBoostClassifier();
 
-	bool Classify(const IntegralImage *intImage, const Rect &roi, float scale);
+	int Classify(const IntegralImage *intImage, const Rect &roi, float scale);
 
 private:
 	// Data.

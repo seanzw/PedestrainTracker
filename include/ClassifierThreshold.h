@@ -28,7 +28,7 @@ public:
 	// Use the simple Euclidean distance to pos and neg cluster.
 	// @param feature: the feature extracted, should be N dimension.
 	// @return int: 1 for positive, -1 for negative.
-	int Classify(const Feature &feature) const;
+	int Classify(const Feature &feature);
 
 	void Reset();
 
@@ -48,5 +48,37 @@ private:
 		return d;
 	}
 };
+
+template<int N> ClassifierThreshold<N>::ClassifierThreshold() {
+	posSamples = new EstimatedGaussianDistribution<N>();
+	negSamples = new EstimatedGaussianDistribution<N>();
+}
+
+template<int N> ClassifierThreshold<N>::~ClassifierThreshold() {
+	if (posSamples != NULL)
+		delete posSamples;
+	if (negSamples != NULL)
+		delete negSamples;
+}
+
+template<int N> void ClassifierThreshold<N>::Update(const Feature &feature, int target) {
+	if (target > 0)
+		posSamples->Update(feature.data);
+	else
+		negSamples->Update(feature.data);
+}
+
+template<int N> int ClassifierThreshold<N>::Classify(const Feature &feature) {
+	float dPos = SquareDistance(feature.data, posSamples->mean, N);
+	float dNeg = SquareDistance(feature.data, negSamples->mean, N);
+	return dPos < dNeg ? 1 : -1;
+}
+
+template<int N> void *ClassifierThreshold<N>::GetDistribution(int target) const {
+	if (target > 0)
+		return posSamples;
+	else
+		return negSamples;
+}
 
 #endif

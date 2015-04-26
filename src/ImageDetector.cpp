@@ -27,21 +27,20 @@ bool ImageDetector::Detect(const cv::Mat &img,
 	// Clear.
 	temp.clear();
 
-
 	Rect roi;
 	// Slide the window and detect.
 	for (feat scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
-		roi.width = scale * modelWidth;
-		roi.height = scale * modelHeight;
+		roi.width = (int)scale * modelWidth;
+		roi.height = (int)scale * modelHeight;
 		for (int i = 0; i <= img.size().height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
 			for (int j = 0; j <= img.size().width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
 				roi.upper = i;
 				roi.left = j;
-				if (classifier->Classify(intImage, roi, scale)) {
+				if (classifier->Classify(intImage, roi, scale) > 0) {
 					dst.Push(rect(j + origin.x, 
 						i + origin.y, 
-						j + (int)(roi.width) + origin.x,
-						i + (int)(roi.height) + origin.y));
+						j + roi.width + origin.x,
+						i + roi.height + origin.y));
 				}
 			}
 		}

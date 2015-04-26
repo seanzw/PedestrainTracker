@@ -27,8 +27,6 @@ public:
 	virtual bool Update(const IntegralImage *intImage, const Rect &roi, 
 		int target, float importance = 1.0f);
 
-	// 
-
 protected:
 	int numSelector;
 	int totalWeakClassifiers;

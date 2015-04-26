@@ -61,7 +61,7 @@ public:
 	float Evaluate(const IntegralImage *intImage, const Rect &roi, int indexWeak = -1);
 
 	// Get or set the classifier pool.
-	WeakClassifier **GetClassifierPool() const;
+	WeakClassifier **GetClassifierPool() const { return weakClassifiers; }
 	void SetClassifierPool(WeakClassifier **weaks);
 
 	// Get the index of the new classifier for replacement.
@@ -72,7 +72,7 @@ private:
 	// Classifier pool.
 	WeakClassifier **weakClassifiers;
 
-	int numWeakClassifer;				// Number of classifiers.
+	int numWeakClassifer;			// Number of classifiers.
 	int numBackup;					// Number of backup classifiers.
 	int selectedClassifier;			// Index of the selected classifier.
 	int nextBackup;					// Index of the next backup classifier.

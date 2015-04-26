@@ -1,6 +1,6 @@
 #include "ClassifierSelector.h"
 
-ClassifierSelector::ClassifierSelector(int numW, const Size &patchSize, int numB = 2)
+ClassifierSelector::ClassifierSelector(int numW, const Size &patchSize, int numB)
 	: numWeakClassifer(numW), numBackup(numB) {
 
 	// Set the data.
