@@ -17,6 +17,9 @@
 #include "StrongClassifier.h"
 #include "ParticleFilter.h"
 
+#define PTPRINTF(...) printf(__VA_ARGS__)
+// #define PTPRINTF(...)
+
 class ParticleFilterTracker : public Tracker {
 public:
 	// Construct a tracker.

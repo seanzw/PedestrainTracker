@@ -44,7 +44,7 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 		upperLeftCorner.col = rand() % imageSize.width;
 
 		baseDim.width = (int)((1 - sqrtf(1 - (float)rand() / RAND_MAX)) * imageSize.width);
-		baseDim.width = (int)((1 - sqrtf(1 - (float)rand() / RAND_MAX)) * imageSize.height);
+		baseDim.height = (int)((1 - sqrtf(1 - (float)rand() / RAND_MAX)) * imageSize.height);
 
 		// Use the CDF to select the type.
 		float prob = (float)rand() / RAND_MAX;

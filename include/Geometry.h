@@ -6,6 +6,8 @@
 #ifndef GEOMETRY_HEADER
 #define GEOMETRY_HEADER
 
+#include "GlobalHeader.h"
+
 class Rect;
 class Point2D;
 
@@ -35,6 +37,9 @@ public:
 
 	// Shift this rectangle by an offset.
 	Rect operator+(const Point2D &offset) const;
+
+	// Explicit conversion.
+	explicit operator cv::Rect() const;
 };
 
 class Point2D {

@@ -9,8 +9,8 @@
 #include "ImageDetector.h"
 
 // Switch this to turn on/off debug out put.
-#define VDPRINTF(...) printf(__VA_ARGS__)
-// #define VDPRINTF(...) 
+// #define VDPRINTF(...) printf(__VA_ARGS__)
+#define VDPRINTF(...) 
 
 class VideoDetector {
 public:

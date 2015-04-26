@@ -12,7 +12,7 @@
 class StrongClassifierDirectSelect : public StrongClassifier {
 public:
 	StrongClassifierDirectSelect(int numSelectors,
-		int numWeakClassifiers, int numBackups = 0);
+		int numWeakClassifiers, const Size &patchSize, int numBackups = 0);
 
 	virtual ~StrongClassifierDirectSelect();
 

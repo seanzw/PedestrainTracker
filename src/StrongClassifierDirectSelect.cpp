@@ -1,13 +1,13 @@
 #include "StrongClassifierDirectSelect.h"
 
 StrongClassifierDirectSelect::StrongClassifierDirectSelect(int numSelectors,
-	int numWeakClassifiers, int numBackups)
-	: StrongClassifier(numSelectors, numWeakClassifiers, numBackups) {
+	int numWeakClassifiers, const Size &patchSize, int numBackups)
+	: StrongClassifier(numSelectors, numWeakClassifiers, patchSize, numBackups) {
 
 	this->selectors = new ClassifierSelector*[this->numSelector];
 
 	// Initialize the first selector.
-	this->selectors[0] = new ClassifierSelector(numWeakClassifiers, numBackups);
+	this->selectors[0] = new ClassifierSelector(numWeakClassifiers, patchSize, numBackups);
 
 	for (int i = 1; i < this->numSelector; i++) {
 		this->selectors[i] = new ClassifierSelector(numWeakClassifiers, this->selectors[0]->GetClassifierPool(), numBackups);

@@ -14,6 +14,7 @@ class GrayScaleIntegralImage : public IntegralImage {
 public:
 	// The img should be CV_8UC1
 	GrayScaleIntegralImage(const cv::Mat &img);
+	GrayScaleIntegralImage(int w, int h);
 	~GrayScaleIntegralImage();
 
 	// Calculate the integral image.

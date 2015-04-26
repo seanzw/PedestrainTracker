@@ -5,7 +5,7 @@ const int ParticleFilter::sizeParticle = 2;
 std::default_random_engine ParticleFilter::generator;
 
 ParticleFilter::ParticleFilter(StrongClassifier *c, IntegralImage *i,
-	const Rect &target, int n) : numParticles(n), classifier(c), intImage(i) {
+	const Rect &t, int n) : numParticles(n), classifier(c), intImage(i), target(t) {
 	InitParticles();
 
 	confidence = new float[numParticles];
@@ -96,14 +96,12 @@ void ParticleFilter::Observe() {
 void ParticleFilter::DrawParticles(cv::Mat &img, const cv::Scalar &color) const {
 	// Draw the particles.
 	int *curParticle = particles;
-	for (int i = 0; i < numParticles; i++) {
+	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
 		int x = curParticle[0];
 		int y = curParticle[1];
 		// Draw a cross.
 		cv::line(img, cv::Point(x - 1, y), cv::Point(x + 1, y), color, 2);
 		cv::line(img, cv::Point(x, y - 1), cv::Point(x, y + 1), color, 2);
-		// Move the curParticle.
-		curParticle += sizeParticle;
 	}
 }
 

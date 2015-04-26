@@ -5,6 +5,10 @@ GrayScaleIntegralImage::GrayScaleIntegralImage(const cv::Mat &img) : IntegralIma
 	intImage = new unsigned int[width * height];
 }
 
+GrayScaleIntegralImage::GrayScaleIntegralImage(int w, int h) : IntegralImage(w, h) {
+	intImage = new unsigned int[width * height];
+}
+
 GrayScaleIntegralImage::~GrayScaleIntegralImage() {
 	if (intImage != NULL) {
 		delete[] intImage;
@@ -33,14 +37,15 @@ void GrayScaleIntegralImage::CalculateInt(const cv::Mat &img) {
 	unsigned int curIntPos, curImgPos;
 
 	// Get the first row.
-	for (int col = 0; col < width; col++) {
-		intImage[col] = img.data[col];
+	intImage[0] = (unsigned int)img.data[0];
+	for (int col = 1; col < width; col++) {
+		intImage[col] = img.data[col] + intImage[col - 1];
 	}
 
 	for (int row = 1; row < height; row++) {
 
 		// Current row in integral image.
-		curIntPos = (row + 1) * (width) + 1;
+		curIntPos = row * width;
 		curImgPos = row * step;
 
 		sumRow = 0;

@@ -24,6 +24,10 @@ Rect Rect::operator+(const Point2D &offset) const {
 	return ret;
 }
 
+Rect::operator cv::Rect() const {
+	return cv::Rect(left, upper, width, height);
+}
+
 
 Point2D::Point2D(int r, int c) : row(r), col(c) {}
 

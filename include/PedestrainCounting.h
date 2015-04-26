@@ -12,7 +12,9 @@
 #include "BKGCutDetector.h"
 #include "AdaBoostClassifier.h"
 #include "HoGIntegralImage.h"
-
+#include "GrayScaleIntegralImage.h"
+#include "StrongClassifierDirectSelect.h"
+#include "ParticleFilterTracker.h"
 
 const int BKG_DETECTION_NUM_CLUSTER = 3;
 const int BKG_VIDEO_PIC_NUM_ALL = 50;
