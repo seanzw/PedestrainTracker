@@ -27,13 +27,12 @@ public:
 class Rect {
 public:
 	Rect(int u = 0, int l = 0, int w = 0, int h = 0)
-		: upper(u), left(l), width(w), height(h), area(height * width) {}
+		: upper(u), left(l), width(w), height(h) {}
 
 	int upper;
 	int left;
 	int height; 
 	int width;
-	int area;
 
 	// Shift this rectangle by an offset.
 	Rect operator+(const Point2D &offset) const;

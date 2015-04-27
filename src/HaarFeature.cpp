@@ -231,7 +231,7 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 
 	for (int i = 0; i < numAreas; i++) {
 		scaledAreas[i] = areas[i];
-		scaledWeights[i] = (float)weights[i] / (float)(areas[i].area);
+		scaledWeights[i] = (float)weights[i] / (float)(areas[i].width * areas[i].height);
 	}
 }
 
@@ -266,7 +266,7 @@ bool HaarFeature::Extract(const IntegralImage *intImage, const Rect &roi, Featur
 				scaledAreas[i].left = floor((float)areas[i].left * scaledWidth + 0.5);
 				scaledAreas[i].upper = floor((float)areas[i].upper * scaledHeight + 0.5);
 
-				scaledWeights[i] = (float)weights[i] / (float)(scaledAreas[i].area);
+				scaledWeights[i] = (float)weights[i] / (float)(scaledAreas[i].width * scaledAreas[i].height);
 			}
 		}
 		else {
@@ -274,7 +274,7 @@ bool HaarFeature::Extract(const IntegralImage *intImage, const Rect &roi, Featur
 			scaledWidth = scaledHeight = 1.0f;
 			for (int i = 0; i < numAreas; i++) {
 				scaledAreas[i] = areas[i];
-				scaledWeights[i] = (float)weights[i] / (float)(areas[i].area);
+				scaledWeights[i] = (float)weights[i] / (float)(areas[i].width * areas[i].height);
 			}
 		}
 	}

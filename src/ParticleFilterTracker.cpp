@@ -44,15 +44,15 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 		particleFilter->Propagate();
 
 		// Draw the particles for debugging.
-		particleFilter->DrawParticles(frame, cv::Scalar(0.0f, 0.0f, 1.0f, 1.0f));
-		cv::imshow("particles", frame);
-		cv::waitKey();
+		particleFilter->DrawParticles(frame, cv::Scalar(255.0f));
+		//cv::imshow("particles", frame);
+		//cv::waitKey();
 
 
 		// Make the observation.
 		particleFilter->Observe();
 
-		// Draw the target backinto frame.
+		// Draw the target back into frame.
 		particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 1.0f, 0.0f, 1.0f));
 
 		// Write back the result into video.

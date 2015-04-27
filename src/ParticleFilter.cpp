@@ -97,8 +97,8 @@ void ParticleFilter::DrawParticles(cv::Mat &img, const cv::Scalar &color) const 
 	// Draw the particles.
 	int *curParticle = particles;
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
-		int x = curParticle[0];
-		int y = curParticle[1];
+		int y = curParticle[0];
+		int x = curParticle[1];
 		// Draw a cross.
 		cv::line(img, cv::Point(x - 1, y), cv::Point(x + 1, y), color, 2);
 		cv::line(img, cv::Point(x, y - 1), cv::Point(x, y + 1), color, 2);

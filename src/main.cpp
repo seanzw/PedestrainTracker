@@ -295,7 +295,7 @@ int main(int argc, char *argv[]) {
 		cv::imshow("First Frame", first);
 		cv::setMouseCallback("First Frame", GetTarget, (void *)&target);
 		cv::waitKey(0);
-		cv::rectangle(first, (cv::Rect)target, cv::Scalar(0.0f, 0.0f, 1.0f, 1.0f), 2);
+		cv::rectangle(first, (cv::Rect)target, cv::Scalar(255.0f), 2);
 		cv::imshow("First Frame", first);
 		cv::waitKey(0);
 		in.set(cv::CAP_PROP_POS_FRAMES, 0);
