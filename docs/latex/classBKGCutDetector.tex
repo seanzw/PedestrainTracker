@@ -1,0 +1,105 @@
+\hypertarget{classBKGCutDetector}{}\section{B\+K\+G\+Cut\+Detector Class Reference}
+\label{classBKGCutDetector}\index{B\+K\+G\+Cut\+Detector@{B\+K\+G\+Cut\+Detector}}
+Inheritance diagram for B\+K\+G\+Cut\+Detector\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classBKGCutDetector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBKGCutDetector_ae2e7fe9cbafab49107aa9e28f05f4822}{}{\bfseries B\+K\+G\+Cut\+Detector} (\hyperlink{classIntegralImage}{Integral\+Image} $\ast$i, \hyperlink{classClassifier}{Classifier} $\ast$c, \hyperlink{structOptions}{Options} \&op)\label{classBKGCutDetector_ae2e7fe9cbafab49107aa9e28f05f4822}
+
+\item 
+bool \hyperlink{classBKGCutDetector_ab1e2f37a3436e58197f1429085677b8f}{Detect} (const cv\+::\+Mat \&img, const cv\+::\+Point \&origin, bool is\+Merge=true, const cv\+::\+Mat \&bkg=default\+Background)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structrect}{rect} \hyperlink{classBKGCutDetector_a2d0179ff253ad09c1549c8437e07736f}{Create\+R\+O\+I} (int x, int y, int roi\+\_\+h, int roi\+\_\+w, int edge\+\_\+width, int height, int width)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBKGCutDetector_ad1f1988badcfe3f8b6341e0ad7d40e9c}{}feat {\bfseries binary\+Thre}\label{classBKGCutDetector_ad1f1988badcfe3f8b6341e0ad7d40e9c}
+
+\item 
+\hypertarget{classBKGCutDetector_a51de970ae40887927077e27092b3d2f4}{}double {\bfseries inv\+Perimeter\+Thre}\label{classBKGCutDetector_a51de970ae40887927077e27092b3d2f4}
+
+\item 
+\hypertarget{classBKGCutDetector_a2184787ed50fbe8f30d1a8ef88cb3cc3}{}float {\bfseries min\+Area\+Ratio}\label{classBKGCutDetector_a2184787ed50fbe8f30d1a8ef88cb3cc3}
+
+\item 
+\hypertarget{classBKGCutDetector_aea66427f38ba877edf1cac44a242c797}{}float {\bfseries max\+Area\+Ratio}\label{classBKGCutDetector_aea66427f38ba877edf1cac44a242c797}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classBKGCutDetector_a2d0179ff253ad09c1549c8437e07736f}{}\index{B\+K\+G\+Cut\+Detector@{B\+K\+G\+Cut\+Detector}!Create\+R\+O\+I@{Create\+R\+O\+I}}
+\index{Create\+R\+O\+I@{Create\+R\+O\+I}!B\+K\+G\+Cut\+Detector@{B\+K\+G\+Cut\+Detector}}
+\subsubsection[{Create\+R\+O\+I(int x, int y, int roi\+\_\+h, int roi\+\_\+w, int edge\+\_\+width, int height, int width)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf rect} B\+K\+G\+Cut\+Detector\+::\+Create\+R\+O\+I (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{roi\+\_\+h, }
+\item[{int}]{roi\+\_\+w, }
+\item[{int}]{edge\+\_\+width, }
+\item[{int}]{height, }
+\item[{int}]{width}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classBKGCutDetector_a2d0179ff253ad09c1549c8437e07736f}
+Given a rectangle and the size of the original image, expand the rectangle by edge\+\_\+width. 
+\begin{DoxyParams}{Parameters}
+{\em x} & the x coordinates of the upper-\/left corner. \\
+\hline
+{\em y} & the y coordinates of the upper-\/left corner. \\
+\hline
+{\em roi\+\_\+h} & the height of the rectangle. \\
+\hline
+{\em roi\+\_\+w} & the width of the rectangle. \\
+\hline
+{\em edge\+\_\+width} & how many pixels you want to expand? \\
+\hline
+{\em height,width} & the size of the original image. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a structure rect. 
+\end{DoxyReturn}
+\hypertarget{classBKGCutDetector_ab1e2f37a3436e58197f1429085677b8f}{}\index{B\+K\+G\+Cut\+Detector@{B\+K\+G\+Cut\+Detector}!Detect@{Detect}}
+\index{Detect@{Detect}!B\+K\+G\+Cut\+Detector@{B\+K\+G\+Cut\+Detector}}
+\subsubsection[{Detect(const cv\+::\+Mat \&img, const cv\+::\+Point \&origin, bool is\+Merge=true, const cv\+::\+Mat \&bkg=default\+Background)}]{\setlength{\rightskip}{0pt plus 5cm}bool B\+K\+G\+Cut\+Detector\+::\+Detect (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Mat \&}]{img, }
+\item[{const cv\+::\+Point \&}]{origin, }
+\item[{bool}]{is\+Merge = {\ttfamily true}, }
+\item[{const cv\+::\+Mat \&}]{bkg = {\ttfamily defaultBackground}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classBKGCutDetector_ab1e2f37a3436e58197f1429085677b8f}
+Detect, return the resutl in a vector. Notice that sometimes we only want to detect in a subregion of the original image, in such case we have to give the origin parameter, which is the coordinates of the upper-\/left corner in the original image. 
+\begin{DoxyParams}{Parameters}
+{\em img} & the image we need to detect. \\
+\hline
+{\em origin} & the coordinates of the img\textquotesingle{}s upper-\/left corner in its parents (if any) \\
+\hline
+{\em bkg} & unused here, for \hyperlink{classBKGCutDetector}{B\+K\+G\+Cut\+Detector}. \\
+\hline
+{\em is\+Merge} & merge the detection with accumulated evidence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if everything is fine. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{Image\+Detector}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/B\+K\+G\+Cut\+Detector.\+h\item 
+src/B\+K\+G\+Cut\+Detector.\+cpp\end{DoxyCompactItemize}

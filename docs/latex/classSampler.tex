@@ -1,0 +1,38 @@
+\hypertarget{classSampler}{}\section{Sampler Class Reference}
+\label{classSampler}\index{Sampler@{Sampler}}
+
+
+{\ttfamily \#include $<$Sampler.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSampler_a0727b36ff20644682b62f045b19c01f1}{}{\bfseries Sampler} (int num)\label{classSampler_a0727b36ff20644682b62f045b19c01f1}
+
+\item 
+\hypertarget{classSampler_a2852a91585490fa3d2898d6e7009e220}{}const \hyperlink{classRect}{Rect} \& {\bfseries Get\+Neg\+Sample} (int index) const \label{classSampler_a2852a91585490fa3d2898d6e7009e220}
+
+\item 
+\hypertarget{classSampler_ad7ce26173f71f996dc5049ce29d459b5}{}virtual void {\bfseries Sample} (const \hyperlink{classRect}{Rect} \&pos, const \hyperlink{classSize}{Size} \&img\+Size)\label{classSampler_ad7ce26173f71f996dc5049ce29d459b5}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSampler_ab8d285d18bbc01dac8b645552d8b7a8b}{}int {\bfseries num\+Neg\+Samples}\label{classSampler_ab8d285d18bbc01dac8b645552d8b7a8b}
+
+\item 
+\hypertarget{classSampler_ac86c718e801891189286793cd8a6757f}{}\hyperlink{classRect}{Rect} $\ast$ {\bfseries neg\+Samples}\label{classSampler_ac86c718e801891189286793cd8a6757f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classSampler}{Sampler} class. This is used to sample neg and pos examples. Given a positive sample, it samples num\+Neg\+Samples negative samples around it. \begin{DoxyAuthor}{Author}
+Zhengrong Wang, Hsienyu Meng. 
+\end{DoxyAuthor}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Sampler.\+h\end{DoxyCompactItemize}

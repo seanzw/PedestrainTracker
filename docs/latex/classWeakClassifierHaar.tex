@@ -1,0 +1,57 @@
+\hypertarget{classWeakClassifierHaar}{}\section{Weak\+Classifier\+Haar Class Reference}
+\label{classWeakClassifierHaar}\index{Weak\+Classifier\+Haar@{Weak\+Classifier\+Haar}}
+
+
+{\ttfamily \#include $<$Weak\+Classifier\+Haar.\+h$>$}
+
+Inheritance diagram for Weak\+Classifier\+Haar\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classWeakClassifierHaar}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classWeakClassifierHaar_a5897c0e554cb8e3dd0cb001bb76a3c93}{}{\bfseries Weak\+Classifier\+Haar} (const \hyperlink{classSize}{Size} \&patch\+Size)\label{classWeakClassifierHaar_a5897c0e554cb8e3dd0cb001bb76a3c93}
+
+\item 
+bool \hyperlink{classWeakClassifierHaar_aa8dc6734dc435c246d9605aceea2c9a7}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target)
+\item 
+\hypertarget{classWeakClassifierHaar_a2b7ad8b6691f6739ebe75c5301fa252b}{}int {\bfseries Classify} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, float scale=1.\+0f)\label{classWeakClassifierHaar_a2b7ad8b6691f6739ebe75c5301fa252b}
+
+\item 
+\hypertarget{classWeakClassifierHaar_a5880dbf4a75a29e61e32903faef1dae6}{}float {\bfseries Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi)\label{classWeakClassifierHaar_a5880dbf4a75a29e61e32903faef1dae6}
+
+\item 
+\hypertarget{classWeakClassifierHaar_ac577e6b2c75eb48bc93068966c522f3f}{}void {\bfseries Reset\+Pos\+Dist} ()\label{classWeakClassifierHaar_ac577e6b2c75eb48bc93068966c522f3f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Using Haar \hyperlink{classFeature}{Feature} to construct a weak classifier. Also estimate the positive and negative cluster with Kalman filter. \begin{DoxyAuthor}{Author}
+Zhengrong Wang. 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classWeakClassifierHaar_aa8dc6734dc435c246d9605aceea2c9a7}{}\index{Weak\+Classifier\+Haar@{Weak\+Classifier\+Haar}!Update@{Update}}
+\index{Update@{Update}!Weak\+Classifier\+Haar@{Weak\+Classifier\+Haar}}
+\subsubsection[{Update(const Integral\+Image $\ast$int\+Image, const Rect \&roi, int target)}]{\setlength{\rightskip}{0pt plus 5cm}bool Weak\+Classifier\+Haar\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi, }
+\item[{int}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classWeakClassifierHaar_aa8dc6734dc435c246d9605aceea2c9a7}
+Update this weak classifer. Return true if after update, this weak classifer still can not classify this sample correctly. 
+
+Reimplemented from \hyperlink{classWeakClassifier_ad4c967e2f0d186a841722f8fea9dbd9c}{Weak\+Classifier}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Weak\+Classifier\+Haar.\+h\item 
+src/Weak\+Classifier\+Haar.\+cpp\end{DoxyCompactItemize}
