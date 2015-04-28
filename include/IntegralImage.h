@@ -1,7 +1,6 @@
-/**********************************************
- IntegralImage interface.
- Author: Zhengrong Wang.
- **********************************************/
+/**
+ * @author Zhengrong Wang
+ */
 
 #ifndef INTEGRAL_IMAGE_HEADER
 #define INTEGRAL_IMAGE_HEADER

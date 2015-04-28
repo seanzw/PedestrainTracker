@@ -1,8 +1,7 @@
-/**********************************************
- StrongClassifierDirectSelect class.
- This strong classifier directly select the best
- weak classifier and replace the worst one.
- **********************************************/
+/**
+ * This strong classifier directly select the best
+ * weak classifier and replace the worst one.
+ */
 
 #ifndef STRONG_CLASSIFIER_DIRECT_HEADER
 #define STRONG_CLASSIFIER_DIRECT_HEADER
@@ -19,7 +18,9 @@ public:
 	bool Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
 
 private:
-	// Some buffer used in selectors.
+	/**
+	 * Some buffer used in selectors.
+	 */
 	bool *errMask;
 	float *errors;
 	float *sumErrors;

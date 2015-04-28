@@ -1,7 +1,7 @@
-/****************************************************
- This is the global header for pedestrain counting.
- Define some global constants.
- ****************************************************/
+/**
+ * This is the global header for pedestrain counting.
+ * Define some global constants.
+ */
 
 #ifndef GLOBAL_HEADER
 #define GLOBAL_HEADER

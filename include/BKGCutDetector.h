@@ -1,8 +1,7 @@
-/******************************************
- BKGCutDetector class.
- Use background cutting to detect pedestrain,
- Author: Zhengrong Wang.
- *********************************************/
+/**
+ * Use background cutting to detect pedestrain,
+ * @author Zhengrong Wang.
+ */
 
 #ifndef BKGCUTDETECTOR_HEADER
 #define BKGCUTDETECTOR_HEADER
@@ -35,15 +34,17 @@ protected:
 	float minAreaRatio;
 	float maxAreaRatio;
 
-	// Given a rectangle and the size of the original image,
-	// expand the rectangle by edge_width.
-	// @param x: the x coordinates of the upper-left corner.
-	// @param y: the y coordinates of the upper-left corner.
-	// @param roi_h: the height of the rectangle.
-	// @param roi_w: the width of the rectangle.
-	// @param edge_width: how many pixels you want to expand?
-	// @param height, width: the size of the original image.
-	// @return a structure rect.
+	/**
+	 * Given a rectangle and the size of the original image,
+	 * expand the rectangle by edge_width.
+	 * @param x: the x coordinates of the upper-left corner.
+	 * @param y: the y coordinates of the upper-left corner.
+	 * @param roi_h: the height of the rectangle.
+	 * @param roi_w: the width of the rectangle.
+	 * @param edge_width: how many pixels you want to expand?
+	 * @param height, width: the size of the original image.
+	 * @return a structure rect.
+	 */
 	rect CreateROI(int x, int y, int roi_h, int roi_w, int edge_width, int height, int width);
 };
 

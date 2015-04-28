@@ -1,9 +1,8 @@
-/**********************************************
- GrayScaleIntegralImage class.
- The basic integral image. Integral the grayscale
- intensity. This can be used in Haar like feature.
- Author: Zhengrong Wang.
- **********************************************/
+/**
+ * The basic integral image. Integral the grayscale
+ * intensity. This can be used in Haar like feature.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef GRAY_SCALE_INTEGRAL_IMAGE_HEADER
 #define GRAY_SCALE_INTEGRAL_IMAGE_HEADER

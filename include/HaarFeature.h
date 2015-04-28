@@ -1,8 +1,8 @@
-/********************************************
- Haar Feature class.
- Extract a Haar like feature from the image.
- Author: Zhengrong Wang
- ********************************************/
+/**
+ * Haar Feature class.
+ * Extract a Haar like feature from the image.
+ * @author Zhengrong Wang
+ */
 
 #ifndef HAAR_FEATURE_HEADER
 #define HAAR_FEATURE_HEADER

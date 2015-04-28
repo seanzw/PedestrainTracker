@@ -1,8 +1,7 @@
-/***********************************************
- HoG Integral Image class.
- The HoG integral image, use 9 bins.
- Author: Zhengrong Wang.
- ***********************************************/
+/**
+ * The HoG integral image, use 9 bins.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef HOG_INTEGRAL_IMAGE_HEADER
 #define HOG_INTEGRAL_IMAGE_HEADER

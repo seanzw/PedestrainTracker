@@ -1,8 +1,7 @@
-/**********************************************
- Classifier class.
- This is a binary classifier.
- Author: Zhengrong Wang.
- **********************************************/
+/**
+ * This is a binary classifier.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef CLASSIFIER_HEADER
 #define CLASSIFIER_HEADER
@@ -15,13 +14,10 @@ public:
 	Classifier();
 	virtual ~Classifier();
 
-	// All the feature will be extracted from integral image.
-
 	virtual int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f) {
 		return -1;
 	}
 
-	// Get the score of some region.
 	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f) {
 		return FLT_MIN;
 	}

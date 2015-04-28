@@ -1,8 +1,7 @@
-/*************************************
- Feature class.
- Basically it's just a vector.
- Author: Zhengrong Wang
- *************************************/
+/**
+ * Basically it's just a vector.
+ * @author Zhengrong Wang
+ */
 
 #ifndef FEATURE_HEADER
 #define FEATURE_HEADER

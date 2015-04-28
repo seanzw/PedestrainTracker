@@ -1,8 +1,7 @@
-/************************************************
- HoGFeature class.
- Extract the HoG of subregion in the roi.
- Author: Zhengrong Wang.
- ************************************************/
+/**
+ * Extract the HoG of subregion in the roi.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef HOGFEATURE_HEADER
 #define HOGFEATURE_HEADER

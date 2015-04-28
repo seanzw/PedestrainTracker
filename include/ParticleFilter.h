@@ -1,11 +1,10 @@
-/******************************************************
- ParticleFilter class.
- A basic particle filter.
- It just propagates the particles and observe using
- the strong classifier's evaluate function. We leave
- the training to upper class.
- Author: Zhengrong Wang.
- ******************************************************/
+/**
+ * A basic particle filter.
+ * It just propagates the particles and observe using
+ * the strong classifier's evaluate function. We leave
+ * the training to upper class.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef PARTICLEFILTER_HEADER
 #define PARTICLEFILTER_HEADER

@@ -1,7 +1,6 @@
-/*************************************************
- Video Detector class.
- Author: Zhengrong Wong.
- *************************************************/
+/**
+ * @author Zhengrong Wong.
+ */
 
 #ifndef VIDEO_DETECTOR_HEADER
 #define VIDEO_DETECTOR_HEADER

@@ -1,11 +1,10 @@
-/*************************************************
- ClassifierThreshold class.
- This class use N-D Gaussian distribution for pos 
- and neg data set.
- Given a feature, it returns whether it's positive 
- or negative.
- Author: Zhengrong Wang.
- ************************************************/
+/**
+ * This class use N-D Gaussian distribution for pos 
+ * and neg data set.
+ * Given a feature, it returns whether it's positive 
+ * or negative.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef CLASSIFIER_THRESHOLD_HEADER
 #define CLASSIFIER_THRESHOLD_HEADER
@@ -18,21 +17,23 @@ public:
 	ClassifierThreshold();
 	~ClassifierThreshold();
 
-	// Use Kalman filter to update the pos and neg cluster.
-	// @param feature: the feature extracted, should be N dimension.
-	// @param target: positive > 0, negative <= 0.
-	// @return void.
+	/**
+	 * Use Kalman filter to update the pos and neg cluster.
+	 * @param feature: the feature extracted, should be N dimension.
+	 * @param target: positive > 0, negative <= 0.
+	 */
 	void Update(const Feature &feature, int target);
 
-	// Evaluate the feature.
-	// Use the simple Euclidean distance to pos and neg cluster.
-	// @param feature: the feature extracted, should be N dimension.
-	// @return int: 1 for positive, -1 for negative.
+	/**
+	 * Evaluate the feature.
+	 * Use the simple Euclidean distance to pos and neg cluster.
+	 * @param feature: the feature extracted, should be N dimension.
+	 * @return int: 1 for positive, -1 for negative.
+	 */
 	int Classify(const Feature &feature);
 
 	void Reset();
 
-	// Get a pointer to the distribution.
 	void *GetDistribution(int target) const;
 
 private:

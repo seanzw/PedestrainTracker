@@ -1,6 +1,6 @@
-/*****************************************
- Connected Components.
- *****************************************/
+/**
+ * Connected Components.
+ */
 
 #ifndef CONNECTED_COMPONENTS_HEADER
 #define CONNECTED_COMPONENTS_HEADER

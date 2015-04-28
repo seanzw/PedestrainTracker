@@ -1,8 +1,6 @@
-/********************************************
- Geometry file.
- Define some useful geometric class.
- Author: Zhengrong Wang.
- ********************************************/
+/**
+ * @author Zhengrong Wang.
+ */
 #ifndef GEOMETRY_HEADER
 #define GEOMETRY_HEADER
 

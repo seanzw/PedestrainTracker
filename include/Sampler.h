@@ -1,9 +1,9 @@
-/***********************************************************************************
- Sampler class.
- This is used to sample neg and pos examples.
- Given a positive sample, it samples numNegSamples negative samples around it.
- Author: Zhengrong Wang, Hsienyu Meng.
- ***********************************************************************************/
+/**
+ * Sampler class.
+ * This is used to sample neg and pos examples.
+ * Given a positive sample, it samples numNegSamples negative samples around it.
+ * @author Zhengrong Wang, Hsienyu Meng.
+ */
 
 #ifndef SAMPLER_HEADER
 #define SAMPLER_HEADER

@@ -1,8 +1,7 @@
-/*************************************************************
- Pool template.
- Use std::vector as the container, however it never shrinks.
- Author: Zhengrong Wang.
- *************************************************************/
+/**
+ * Use std::vector as the container, however it never shrinks.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef POOL_HEADER
 #define POOL_HEADER

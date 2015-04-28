@@ -1,8 +1,7 @@
-/***********************************************
- WeakClassifier class.
+/**
  This is an interface.
- Author: Zhengrong Wang.
- ***********************************************/
+ * @author Zhengrong Wang.
+ */
 
 #ifndef WEAKCLASSIFIER_HEADER
 #define WEAKCLASSIFIER_HEADER
@@ -14,12 +13,13 @@ public:
 	WeakClassifier();
 	virtual ~WeakClassifier();
 
-	// Update this weak classifer.
-	// Return true if after update, this weak classifer
-	// still can not classify this sample correctly.
+	/**
+	 * Update this weak classifer.
+	 * Return true if after update, this weak classifer
+	 * still can not classify this sample correctly.
+	 */
 	virtual bool Update(const IntegralImage *intImage, const Rect &roi, int target);
 
-	// Get the score for the roi.
 	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi);
 };
 

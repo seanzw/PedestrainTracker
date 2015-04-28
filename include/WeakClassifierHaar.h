@@ -1,9 +1,8 @@
-/************************************************************
- WeakClassifierHaar class.
- Using Haar Feature to construct a weak classifier.
- Also estimate the positive and negative cluster with Kalman filter.
- Author: Zhengrong Wang.
- ************************************************************/
+/**
+ * Using Haar Feature to construct a weak classifier.
+ * Also estimate the positive and negative cluster with Kalman filter.
+ * @author Zhengrong Wang.
+ */
 
 #ifndef WEAKCLASSIFIER_HAAR_HEADER
 #define WEAKCLASSIFIER_HAAR_HEADER
@@ -21,13 +20,12 @@ public:
 	int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 	float Evaluate(const IntegralImage *intImage, const Rect &roi);
 
-	// Reset the distribution.
 	void ResetPosDist();
 
 private:
 	ClassifierThreshold<1> *thresholder;
 	HaarFeature *haarFeature;
-	// A feature container used to communicator 
+
 	Feature feature;
 
 	void GenerateRandomClassifier();

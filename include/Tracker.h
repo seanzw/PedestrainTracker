@@ -1,7 +1,6 @@
-/***************************************************
- Tracker interface.
- Author: Zhengrong Wang.
- ***************************************************/
+/**
+ * @author Zhengrong Wang.
+ */
 
 #ifndef TRACKER_HEADER
 #define TRACKER_HEADER

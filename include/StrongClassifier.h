@@ -1,13 +1,11 @@
-/********************************************************
- StrongClassifier class.
- Use ClassSelector to build a strong classifier.
- Author: Zhengrong Wang.
+/**
+ * Use ClassSelector to build a strong classifier.
+ * @author Zhengrong Wang
 
- Notice: The feature extractor should be prepared
- (if there are any preprocess procedure), the caller
- of strong classifier should do that.
-
- ********************************************************/
+ * Notice: The feature extractor should be prepared
+ * (if there are any preprocess procedure), the caller
+ * of strong classifier should do that.
+ */
 
 #ifndef STRONG_CLASSIFIER_HEADER
 #define STRONG_CLASSIFIER_HEADER
@@ -20,10 +18,8 @@ public:
 		const Size &patchSize, bool useFeatureReplace = false, int numBackup = 0);
 	virtual ~StrongClassifier();
 
-	// Evaluate a region.
 	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi) const;
 
-	// Update the strong classifier.
 	virtual bool Update(const IntegralImage *intImage, const Rect &roi, 
 		int target, float importance = 1.0f);
 

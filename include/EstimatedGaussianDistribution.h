@@ -1,7 +1,6 @@
-/********************************************
- EstimatedGaussianDistribution class.
- Estimate a N dimension Gaussian distribution with Kalman filter.
- ********************************************/
+/**
+ * Estimate a N dimension Gaussian distribution with Kalman filter.
+ */
 
 #ifndef ESTIMATED_GAUSSIAN_HEADER
 #define ESTIMATED_GAUSSIAN_HEADER
@@ -14,7 +13,9 @@ public:
 
 	~EstimatedGaussianDistribution();
 
-	// Use Kalman filter to update the Gaussian distribution.
+	/**
+	 * Use Kalman filter to update the Gaussian distribution.
+	 */
 	void Update(const float *value);
 
 	void SetValues(const float *m, const float *s);
