@@ -1,0 +1,84 @@
+\hypertarget{classWeakClassifierHoG}{}\section{Weak\+Classifier\+Ho\+G Class Reference}
+\label{classWeakClassifierHoG}\index{Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}}
+
+
+{\ttfamily \#include $<$Weak\+Classifier\+Ho\+G.\+h$>$}
+
+Inheritance diagram for Weak\+Classifier\+Ho\+G\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classWeakClassifierHoG}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classWeakClassifierHoG_a1355cfb6af523b56b52ff27b88eb066c}{Weak\+Classifier\+Ho\+G} (const \hyperlink{classFeature}{Feature} \&reference, float min, float max, int offset\+W, int offset\+H, int w, int h, float $\ast$histogram)
+\item 
+float \hyperlink{classWeakClassifierHoG_aef5482b7842e91410c9186c242ee0d6b}{Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, float scale=1.\+0f)
+\item 
+float \hyperlink{classWeakClassifierHoG_a5b0ecb768ced4b91d1bb0ddf214f4ac6}{Evaluate\+Thre} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, float scale=1.\+0f)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Given a roi in an image, finds the Ho\+G in some subregion and project it to get some value. \begin{DoxyAuthor}{Author}
+\+: Zhengrong Wang. 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classWeakClassifierHoG_a1355cfb6af523b56b52ff27b88eb066c}{}\index{Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}!Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}}
+\index{Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}!Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}}
+\subsubsection[{Weak\+Classifier\+Ho\+G(const Feature \&reference, float min, float max, int offset\+W, int offset\+H, int w, int h, float $\ast$histogram)}]{\setlength{\rightskip}{0pt plus 5cm}Weak\+Classifier\+Ho\+G\+::\+Weak\+Classifier\+Ho\+G (
+\begin{DoxyParamCaption}
+\item[{const {\bf Feature} \&}]{reference, }
+\item[{float}]{min, }
+\item[{float}]{max, }
+\item[{int}]{offset\+W, }
+\item[{int}]{offset\+H, }
+\item[{int}]{w, }
+\item[{int}]{h, }
+\item[{float $\ast$}]{histogram}
+\end{DoxyParamCaption}
+)}\label{classWeakClassifierHoG_a1355cfb6af523b56b52ff27b88eb066c}
+Construct a weak classifier. 
+\begin{DoxyParams}{Parameters}
+{\em reference} & the reference for this weak classifier. \\
+\hline
+{\em min,max} & used to find the histogram.  histogram\+: histogram. \\
+\hline
+{\em others} & for the \hyperlink{classHoGFeature}{Ho\+G\+Feature}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classWeakClassifierHoG_aef5482b7842e91410c9186c242ee0d6b}{}\index{Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}}
+\subsubsection[{Evaluate(const Integral\+Image $\ast$int\+Image, const Rect \&roi, float scale=1.\+0f)}]{\setlength{\rightskip}{0pt plus 5cm}float Weak\+Classifier\+Ho\+G\+::\+Evaluate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi, }
+\item[{float}]{scale = {\ttfamily 1.0f}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classWeakClassifierHoG_aef5482b7842e91410c9186c242ee0d6b}
+Return the dot product between the reference and result. 
+
+Reimplemented from \hyperlink{classClassifier}{Classifier}.
+
+\hypertarget{classWeakClassifierHoG_a5b0ecb768ced4b91d1bb0ddf214f4ac6}{}\index{Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}!Evaluate\+Thre@{Evaluate\+Thre}}
+\index{Evaluate\+Thre@{Evaluate\+Thre}!Weak\+Classifier\+Ho\+G@{Weak\+Classifier\+Ho\+G}}
+\subsubsection[{Evaluate\+Thre(const Integral\+Image $\ast$int\+Image, const Rect \&roi, float scale=1.\+0f)}]{\setlength{\rightskip}{0pt plus 5cm}float Weak\+Classifier\+Ho\+G\+::\+Evaluate\+Thre (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi, }
+\item[{float}]{scale = {\ttfamily 1.0f}}
+\end{DoxyParamCaption}
+)}\label{classWeakClassifierHoG_a5b0ecb768ced4b91d1bb0ddf214f4ac6}
+Return the increament in threshold. Used in Ada\+Boosting classifier. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Weak\+Classifier\+Ho\+G.\+h\item 
+src/Weak\+Classifier\+Ho\+G.\+cpp\end{DoxyCompactItemize}
