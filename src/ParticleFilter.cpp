@@ -74,6 +74,10 @@ void ParticleFilter::Observe() {
 	// Resample.
 	resampler = std::uniform_real_distribution<float>(0.0f, confidence[numParticles - 1]);
 	curParticle = resampleBuffer;
+
+	int sumUpper = 0;
+	int sumLeft = 0;
+
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
 
 		// Generate the random number.
@@ -85,12 +89,21 @@ void ParticleFilter::Observe() {
 		// Get this particle into resample buffer.
 		curParticle[0] = particles[particle];
 		curParticle[1] = particles[particle + 1];
+
+		// Add it to the sum so that we can get the target later.
+		sumUpper += curParticle[0];
+		sumLeft += curParticle[1];
+
 	}
 
 	// Swap the particles and resample buffer.
 	int *temp = particles;
 	particles = resampleBuffer;
 	resampleBuffer = temp;
+
+	// Get the new target.
+	target.upper = (int)(sumUpper / numParticles);
+	target.left = (int)(sumLeft / numParticles);
 }
 
 void ParticleFilter::DrawParticles(cv::Mat &img, const cv::Scalar &color) const {
