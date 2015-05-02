@@ -1,0 +1,65 @@
+\hypertarget{classClassifierThreshold}{}\section{Classifier\+Threshold$<$ N $>$ Class Template Reference}
+\label{classClassifierThreshold}\index{Classifier\+Threshold$<$ N $>$@{Classifier\+Threshold$<$ N $>$}}
+
+
+{\ttfamily \#include $<$Classifier\+Threshold.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{Update} (const \hyperlink{classFeature}{Feature} \&feature, int target)
+\item 
+int \hyperlink{classClassifierThreshold_a74dff1a82e6d201d6bceedd198e1f105}{Classify} (const \hyperlink{classFeature}{Feature} \&feature)
+\item 
+\hypertarget{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}{}void {\bfseries Reset} ()\label{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}
+
+\item 
+\hypertarget{classClassifierThreshold_ac5ea1576c2b8f51dc2643c7f6dbe7724}{}void $\ast$ {\bfseries Get\+Distribution} (int target) const \label{classClassifierThreshold_ac5ea1576c2b8f51dc2643c7f6dbe7724}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$int N$>$class Classifier\+Threshold$<$ N $>$}
+
+This class use N-\/\+D Gaussian distribution for pos and neg data set. Given a feature, it returns whether it\textquotesingle{}s positive or negative. \begin{DoxyAuthor}{Author}
+Zhengrong Wang. 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classClassifierThreshold_a74dff1a82e6d201d6bceedd198e1f105}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Classify@{Classify}}
+\index{Classify@{Classify}!Classifier\+Threshold@{Classifier\+Threshold}}
+\subsubsection[{Classify(const Feature \&feature)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ int {\bf Classifier\+Threshold}$<$ N $>$\+::Classify (
+\begin{DoxyParamCaption}
+\item[{const {\bf Feature} \&}]{feature}
+\end{DoxyParamCaption}
+)}\label{classClassifierThreshold_a74dff1a82e6d201d6bceedd198e1f105}
+Evaluate the feature. Use the simple Euclidean distance to pos and neg cluster. 
+\begin{DoxyParams}{Parameters}
+{\em feature} & the feature extracted, should be N dimension. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int\+: 1 for positive, -\/1 for negative. 
+\end{DoxyReturn}
+\hypertarget{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Update@{Update}}
+\index{Update@{Update}!Classifier\+Threshold@{Classifier\+Threshold}}
+\subsubsection[{Update(const Feature \&feature, int target)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ void {\bf Classifier\+Threshold}$<$ N $>$\+::Update (
+\begin{DoxyParamCaption}
+\item[{const {\bf Feature} \&}]{feature, }
+\item[{int}]{target}
+\end{DoxyParamCaption}
+)}\label{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}
+Use Kalman filter to update the pos and neg cluster. 
+\begin{DoxyParams}{Parameters}
+{\em feature} & the feature extracted, should be N dimension. \\
+\hline
+{\em target} & positive $>$ 0, negative $<$= 0. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Classifier\+Threshold.\+h\end{DoxyCompactItemize}

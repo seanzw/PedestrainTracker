@@ -1,0 +1,58 @@
+\hypertarget{classEstimatedGaussianDistribution}{}\section{Estimated\+Gaussian\+Distribution$<$ N $>$ Class Template Reference}
+\label{classEstimatedGaussianDistribution}\index{Estimated\+Gaussian\+Distribution$<$ N $>$@{Estimated\+Gaussian\+Distribution$<$ N $>$}}
+
+
+{\ttfamily \#include $<$Estimated\+Gaussian\+Distribution.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classEstimatedGaussianDistribution_afe5b507d908e2669fe8ea708a87e7c3b}{}{\bfseries Estimated\+Gaussian\+Distribution} (float pm=1000.\+0f, float ps=1000.\+0f, float rm=0.\+01f, float rs=0.\+01f)\label{classEstimatedGaussianDistribution_afe5b507d908e2669fe8ea708a87e7c3b}
+
+\item 
+void \hyperlink{classEstimatedGaussianDistribution_a340e3a01f89d62ddab06a0dbc8e9fe3c}{Update} (const float $\ast$value)
+\item 
+\hypertarget{classEstimatedGaussianDistribution_a7d2ccd30d2252f59c37a810a986e78a0}{}void {\bfseries Set\+Values} (const float $\ast$m, const float $\ast$s)\label{classEstimatedGaussianDistribution_a7d2ccd30d2252f59c37a810a986e78a0}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classEstimatedGaussianDistribution_a0ce3513e3ecbe1882a3a1d6aa4aeb10f}{}float {\bfseries mean} \mbox{[}N\mbox{]}\label{classEstimatedGaussianDistribution_a0ce3513e3ecbe1882a3a1d6aa4aeb10f}
+
+\item 
+\hypertarget{classEstimatedGaussianDistribution_af8e85818690b3d1dc18ef467cb5fcc01}{}float {\bfseries sigma} \mbox{[}N\mbox{]}\label{classEstimatedGaussianDistribution_af8e85818690b3d1dc18ef467cb5fcc01}
+
+\item 
+\hypertarget{classEstimatedGaussianDistribution_a5240d7947f5f386125209bf9b4a04712}{}float {\bfseries p\+Mean}\label{classEstimatedGaussianDistribution_a5240d7947f5f386125209bf9b4a04712}
+
+\item 
+\hypertarget{classEstimatedGaussianDistribution_a5f59468f2b623f2072977cdfc91c86a5}{}float {\bfseries p\+Sigma}\label{classEstimatedGaussianDistribution_a5f59468f2b623f2072977cdfc91c86a5}
+
+\item 
+\hypertarget{classEstimatedGaussianDistribution_ae2cdb30a07eced903acd22fd8cf93ca5}{}float {\bfseries r\+Mean}\label{classEstimatedGaussianDistribution_ae2cdb30a07eced903acd22fd8cf93ca5}
+
+\item 
+\hypertarget{classEstimatedGaussianDistribution_af8400eefcec90df5ce67f95c9c3f25fd}{}float {\bfseries r\+Sigma}\label{classEstimatedGaussianDistribution_af8400eefcec90df5ce67f95c9c3f25fd}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$int N$>$class Estimated\+Gaussian\+Distribution$<$ N $>$}
+
+Estimate a N dimension Gaussian distribution with Kalman filter. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classEstimatedGaussianDistribution_a340e3a01f89d62ddab06a0dbc8e9fe3c}{}\index{Estimated\+Gaussian\+Distribution@{Estimated\+Gaussian\+Distribution}!Update@{Update}}
+\index{Update@{Update}!Estimated\+Gaussian\+Distribution@{Estimated\+Gaussian\+Distribution}}
+\subsubsection[{Update(const float $\ast$value)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ void {\bf Estimated\+Gaussian\+Distribution}$<$ N $>$\+::Update (
+\begin{DoxyParamCaption}
+\item[{const float $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{classEstimatedGaussianDistribution_a340e3a01f89d62ddab06a0dbc8e9fe3c}
+Use Kalman filter to update the Gaussian distribution. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Estimated\+Gaussian\+Distribution.\+h\end{DoxyCompactItemize}

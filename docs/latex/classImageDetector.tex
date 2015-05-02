@@ -1,0 +1,107 @@
+\hypertarget{classImageDetector}{}\section{Image\+Detector Class Reference}
+\label{classImageDetector}\index{Image\+Detector@{Image\+Detector}}
+Inheritance diagram for Image\+Detector\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classImageDetector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImageDetector_ae661e19aa8fce824ff3e159efae1dd71}{}{\bfseries Image\+Detector} (\hyperlink{classIntegralImage}{Integral\+Image} $\ast$i, \hyperlink{classClassifier}{Classifier} $\ast$c, \hyperlink{structOptions}{Options} \&op)\label{classImageDetector_ae661e19aa8fce824ff3e159efae1dd71}
+
+\item 
+virtual bool \hyperlink{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{Detect} (const cv\+::\+Mat \&img, const cv\+::\+Point \&origin=cv\+::\+Point(0, 0), bool is\+Merge=true, const cv\+::\+Mat \&bkg=default\+Background)
+\item 
+\hypertarget{classImageDetector_a866cc9f2e6b109ea8a897e96c4b106a1}{}void {\bfseries Draw\+Detection} (cv\+::\+Mat \&img)\label{classImageDetector_a866cc9f2e6b109ea8a897e96c4b106a1}
+
+\item 
+\hypertarget{classImageDetector_a2293f8558975b3404dae1ed077d47580}{}void {\bfseries Clear} ()\label{classImageDetector_a2293f8558975b3404dae1ed077d47580}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImageDetector_a38b4eb45a8506399546219cc17886f7c}{}\hyperlink{classPool}{Pool}$<$ \hyperlink{structrect}{rect} $>$ {\bfseries dets}\label{classImageDetector_a38b4eb45a8506399546219cc17886f7c}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImageDetector_ab8ae540f23e94c8acdb0cc0893bffe6d}{}bool {\bfseries Is\+Equal} (const \hyperlink{structrect}{rect} \&r1, const \hyperlink{structrect}{rect} \&r2) const \label{classImageDetector_ab8ae540f23e94c8acdb0cc0893bffe6d}
+
+\item 
+\hypertarget{classImageDetector_a52d903953d90efcde6e727910254f77d}{}bool {\bfseries Is\+Overlap} (const \hyperlink{structrect}{rect} \&r, const \hyperlink{structrect}{rect} \&t) const \label{classImageDetector_a52d903953d90efcde6e727910254f77d}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImageDetector_a604ac20e008c67fe067fc01bfcf16c2b}{}\hyperlink{classIntegralImage}{Integral\+Image} $\ast$ {\bfseries int\+Image}\label{classImageDetector_a604ac20e008c67fe067fc01bfcf16c2b}
+
+\item 
+\hypertarget{classImageDetector_a85a290b68f969c9fab97926b38e256a1}{}\hyperlink{classClassifier}{Classifier} $\ast$ {\bfseries classifier}\label{classImageDetector_a85a290b68f969c9fab97926b38e256a1}
+
+\item 
+\hypertarget{classImageDetector_a34ef14c4268fdd84bff58c8484a489e3}{}feat {\bfseries scale\+Min}\label{classImageDetector_a34ef14c4268fdd84bff58c8484a489e3}
+
+\item 
+\hypertarget{classImageDetector_ad5a391221072002a5700e37114acf430}{}feat {\bfseries scale\+Max}\label{classImageDetector_ad5a391221072002a5700e37114acf430}
+
+\item 
+\hypertarget{classImageDetector_a865fd99867e339649be938525d09a30b}{}feat {\bfseries scale\+Step}\label{classImageDetector_a865fd99867e339649be938525d09a30b}
+
+\item 
+\hypertarget{classImageDetector_a0e67a6d3973d15482ce58f10550c2645}{}int {\bfseries slide\+Step}\label{classImageDetector_a0e67a6d3973d15482ce58f10550c2645}
+
+\item 
+\hypertarget{classImageDetector_a5b18257894ec3cc6ff90488a15db70cd}{}int {\bfseries evidence}\label{classImageDetector_a5b18257894ec3cc6ff90488a15db70cd}
+
+\item 
+\hypertarget{classImageDetector_a912db87e0677e3315e433b6603abaeab}{}int {\bfseries model\+Height}\label{classImageDetector_a912db87e0677e3315e433b6603abaeab}
+
+\item 
+\hypertarget{classImageDetector_ac20bd858ca20dbfec53c7c2d66bdbf39}{}int {\bfseries model\+Width}\label{classImageDetector_ac20bd858ca20dbfec53c7c2d66bdbf39}
+
+\item 
+\hypertarget{classImageDetector_a75b3168312f048818022f8c4973dfcdb}{}\hyperlink{classPool}{Pool}$<$ \hyperlink{structrect}{rect} $>$ {\bfseries temp}\label{classImageDetector_a75b3168312f048818022f8c4973dfcdb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{}\index{Image\+Detector@{Image\+Detector}!Detect@{Detect}}
+\index{Detect@{Detect}!Image\+Detector@{Image\+Detector}}
+\subsubsection[{Detect(const cv\+::\+Mat \&img, const cv\+::\+Point \&origin=cv\+::\+Point(0, 0), bool is\+Merge=true, const cv\+::\+Mat \&bkg=default\+Background)}]{\setlength{\rightskip}{0pt plus 5cm}bool Image\+Detector\+::\+Detect (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Mat \&}]{img, }
+\item[{const cv\+::\+Point \&}]{origin = {\ttfamily cv\+:\+:Point(0,~0)}, }
+\item[{bool}]{is\+Merge = {\ttfamily true}, }
+\item[{const cv\+::\+Mat \&}]{bkg = {\ttfamily defaultBackground}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}
+Detect, return the resutl in a vector. Notice that sometimes we only want to detect in a subregion of the original image, in such case we have to give the origin parameter, which is the coordinates of the upper-\/left corner in the original image. 
+\begin{DoxyParams}{Parameters}
+{\em img} & the image we need to detect. \\
+\hline
+{\em origin} & the coordinates of the img\textquotesingle{}s upper-\/left corner in its parents (if any) \\
+\hline
+{\em bkg} & unused here, for \hyperlink{classBKGCutDetector}{B\+K\+G\+Cut\+Detector}. \\
+\hline
+{\em is\+Merge} & merge the detection with accumulated evidence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if everything is fine. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classBKGCutDetector_ab1e2f37a3436e58197f1429085677b8f}{B\+K\+G\+Cut\+Detector}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Image\+Detector.\+h\item 
+src/Image\+Detector.\+cpp\end{DoxyCompactItemize}
