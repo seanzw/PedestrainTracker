@@ -17,6 +17,14 @@ bool Size::operator==(const Size &other) const {
 	return width == other.width && height == other.height;
 }
 
+bool Size::IsIn(const Rect &rect) const {
+	if (rect.upper < 0 || rect.upper + rect.height > height)
+		return false;
+	if (rect.left < 0 || rect.left + rect.width > width)
+		return false;
+	return true;
+}
+
 Rect Rect::operator+(const Point2D &offset) const {
 	Rect ret = *this;
 	ret.upper += offset.row;

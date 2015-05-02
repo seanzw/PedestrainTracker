@@ -29,6 +29,8 @@ public:
 	// Draw the target;
 	void DrawTarget(cv::Mat &img, const cv::Scalar &color) const;
 
+	const Rect &GetTarget() const;
+
 protected:
 
 	// The sizeof particles. Here it should be 2. Its structure like:

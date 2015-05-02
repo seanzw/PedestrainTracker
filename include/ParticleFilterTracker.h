@@ -15,30 +15,29 @@
 #include "Tracker.h"
 #include "StrongClassifier.h"
 #include "ParticleFilter.h"
+#include "SingleSampler.h"
 
 #define PTPRINTF(...) printf(__VA_ARGS__)
 // #define PTPRINTF(...)
 
 class ParticleFilterTracker : public Tracker {
 public:
-	// Construct a tracker.
-	// Initialize the particles randomly.
-	// @param classifier: the strong classifier used in observation.
-	// @param intImage: the integral image.
-	// @param particleFilter: the particle filter.
+	/**
+	 * Construct a tracker.
+	 * Initialize the particles randomly.
+	 */
 	ParticleFilterTracker(StrongClassifier *classifier, IntegralImage *intImage,
-		ParticleFilter *particleFilter);
+		ParticleFilter *particleFilter, SingleSampler *sampler);
 
-	// Destructor.
 	~ParticleFilterTracker();
 
-	// Track.
 	virtual void Track(cv::VideoCapture &in, cv::VideoWriter &out);
 
 protected:
 	StrongClassifier *classifier;
 	IntegralImage *intImage;
 	ParticleFilter *particleFilter;
+	SingleSampler *sampler;
 };
 
 #endif

@@ -1,12 +1,11 @@
 #include "ParticleFilterTracker.h"
 
-ParticleFilterTracker::ParticleFilterTracker(StrongClassifier *c, IntegralImage *i, ParticleFilter *p)
-	: classifier(c), intImage(i), particleFilter(p) {
-
+ParticleFilterTracker::ParticleFilterTracker(StrongClassifier *c, 
+	IntegralImage *i, ParticleFilter *p, SingleSampler *s)
+	: classifier(c), intImage(i), particleFilter(p), sampler(s) {
 }
 
 ParticleFilterTracker::~ParticleFilterTracker() {
-
 }
 
 void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
@@ -16,6 +15,8 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 	// Get the total number of images.
 	int totalFrames = in.get(cv::CAP_PROP_FRAME_COUNT);
 	int count = -1;
+
+	const Size imgSize(width, height);
 
 	// Create the data buffer.
 	cv::Mat frame(cv::Size(width, height), CV_8UC3);
@@ -54,6 +55,18 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 
 		// Draw the target back into frame.
 		particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 1.0f, 0.0f, 1.0f));
+
+		// Use the new target to sample.
+		sampler->Sample(particleFilter->GetTarget(), imgSize);
+
+		// Train the online boosting classifier.
+		for (int i = 0; i < sampler->GetNumPos(); i++) {
+			classifier->Update(intImage, sampler->GetPosSample(i), 1);
+		}
+
+		for (int i = 0; i < sampler->GetNumNeg(); i++) {
+			classifier->Update(intImage, sampler->GetNegSample(i), -1);
+		}
 
 		// Write back the result into video.
 		out.write(frame);

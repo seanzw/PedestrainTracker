@@ -1,5 +1,6 @@
 /**
  * Connected Components.
+ * @author Zhengrong Wang
  */
 
 #ifndef CONNECTED_COMPONENTS_HEADER

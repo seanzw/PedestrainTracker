@@ -111,3 +111,7 @@ void ParticleFilter::DrawTarget(cv::Mat &img, const cv::Scalar &color) const {
 		cv::Point(target.upper + target.height - 1, target.left + target.width - 1),
 		color, 2);
 }
+
+const Rect &ParticleFilter::GetTarget() const {
+	return target;
+}

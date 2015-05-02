@@ -20,6 +20,8 @@ public:
 	Size operator=(const Rect &r);
 	Size operator*(float f);
 	bool operator==(const Size &other) const;
+
+	bool IsIn(const Rect &rect) const;
 };
 
 class Rect {
