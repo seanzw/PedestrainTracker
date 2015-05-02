@@ -70,8 +70,8 @@ bool StrongClassifierDirectSelect::Update(const IntegralImage *intImage,
 		}
 
 		// Sum up the errors.
-		for (int j = 0; j < this->totalWeakClassifiers; i++) {
-			if (this->errors[j] != FLT_MAX && this->sumErrors[i] > 0.0f) {
+		for (int j = 0; j < this->totalWeakClassifiers; j++) {
+			if (this->errors[j] != FLT_MAX && this->sumErrors[j] > 0.0f) {
 				this->sumErrors[j] += this->errors[j];
 			}
 		}
