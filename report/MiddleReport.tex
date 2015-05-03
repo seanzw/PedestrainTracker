@@ -144,13 +144,13 @@ Besides, while reconstructing the program, we rewrite some parts of the program 
 Here are some results from our reconstruction: Figure~\ref{fig:detector}. We can see that with background cut we have less false positive.
 \begin{figure}[htb]
     \begin{center}
-        \subfigure[ImageDetector]{\label{fig:fft:a}
+        \subfigure[ImageDetector]{\label{fig:sub:ImageDetector}
             \begin{minipage}[c]{0.5\textwidth}
             \centering
             \includegraphics[width = \textwidth]{images/ImageDetector.jpg}
             \end{minipage}%
         }%
-        \subfigure[BKGCutDetector]{\label{fig:fft:a}
+        \subfigure[BKGCutDetector]{\label{fig:sub:BKGCutDetector}
             \begin{minipage}[c]{0.5\textwidth}
             \centering
             \includegraphics[width = \textwidth]{images/BKGCutDetector.jpg}
@@ -198,6 +198,37 @@ It uses the Haar-like feature above and the \lstinline{ClassifierThreshold} to b
 
 Given a pool of weak classifiers, the \lstinline{ClassifierSelector} selects the best one with lowest error rate.
 
+\begin{itemize}
+
+\item Training
+
+Each training feature $f(\mathbf{x})$ has an importance $\lambda$, and we use the idea from \cite{Oza01onlinebagging} to draw a random variable $k\sim Poisson(\lambda)$ and this feature is trained for $k$ times.
+
+\item Selecting
+
+For each weak classifier, we maintain two vaiables $\lambda_{correct}$ and $\lambda_{wrong}$:
+
+\begin{subequations}
+\begin{align}
+\lambda_{correct}&=\sum_{i_{correct}}\lambda_{i}\\
+\lambda_{wrong}&=\sum_{i_{wrong}}\lambda_{i}
+\end{align}
+\end{subequations}
+
+And the error rate is estimated by:
+
+\begin{equation}
+err=\frac{\lambda_{wrong}}{\lambda_{correct}+\lambda_{wrong}}
+\end{equation}
+
+Then we choose the best weak classifier with lowest error rate.
+
+\item Replacing
+
+To improve the performance, each time we not only choose the best weak classifier but also replace the worst one with a randomly generated new weak classifier.
+
+\end{itemize}
+
 \item \lstinline{StrongClassifier}
 
 The \lstinline{StrongClassifier} has $N$ \lstinline{ClassifierSelector}s, each with a voting weight $\alpha_i$. The final hypothesis is:
@@ -205,6 +236,21 @@ The \lstinline{StrongClassifier} has $N$ \lstinline{ClassifierSelector}s, each w
 \begin{equation}
 h^{strong}(\mathbf{x})=\mathrm{sign}(\sum_{i=1}^{N}\alpha_{i}\cdot h^{selector}_{i}(\mathbf{x}))
 \end{equation} 
+
+Suppose $err_i$ is the error rate of the $i^{th}$ selector, and then the voting weight is:
+
+\begin{equation}
+\alpha_i=\frac{1}{2}\cdot\ln(\frac{1-err_i}{err_i})
+\end{equation}
+
+And the importance of this sample is updated with:
+
+\begin{subequations}
+\begin{align}
+\lambda_{i+1}&=\lambda_i\cdot\frac{1}{2\cdot(1-err_i)}, &if~h^{selector}_{i}~correct\\
+\lambda_{i+1}&=\lambda_i\cdot\frac{1}{2\cdot err_i}, &if~h^{selector}_{i}~wrong
+\end{align}
+\end{subequations}
 \end{itemize}
 
 \item Particle Filter

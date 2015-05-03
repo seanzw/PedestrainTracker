@@ -15,6 +15,12 @@ Helmut Grabner and Horst Bischof.
   Computer Vision and Pattern Recognition - Volume 1}, CVPR '06, pages
   260--267, Washington, DC, USA, 2006. IEEE Computer Society.
 
+\bibitem{Oza01onlinebagging}
+Nikunj~C. Oza and Stuart Russell.
+\newblock Online bagging and boosting.
+\newblock In {\em In Artificial Intelligence and Statistics 2001}, pages
+  105--112. Morgan Kaufmann, 2001.
+
 \bibitem{Welch:1995:IKF:897831}
 Greg Welch and Gary Bishop.
 \newblock An introduction to the kalman filter.
