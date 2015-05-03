@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.25)  3 MAY 2015 13:54
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.25)  3 MAY 2015 15:41
 entering extended mode
 **C:/Users/SeanGeek/Documents/Visual*Studio*2013/Projects/PedestrainDetection/P
 edestrainDetection/PedestrainCounting/report/MiddleReport.tex
@@ -187,25 +187,83 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
+(C:\CTEX\MiKTeX\tex\latex\ams\math\amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(C:\CTEX\MiKTeX\tex\latex\ams\math\amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(C:\CTEX\MiKTeX\tex\latex\ams\math\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen116
+))
+(C:\CTEX\MiKTeX\tex\latex\ams\math\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen117
+)
+(C:\CTEX\MiKTeX\tex\latex\ams\math\amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count101
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count102
+\leftroot@=\count103
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count104
+\DOTSCASE@=\count105
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen118
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count106
+\c@MaxMatrixCols=\count107
+\dotsspace@=\muskip11
+\c@parentequation=\count108
+\dspbrk@lvl=\count109
+\tag@help=\toks17
+\row@=\count110
+\column@=\count111
+\maxfields@=\count112
+\andhelp@=\toks18
+\eqnshift@=\dimen119
+\alignsep@=\dimen120
+\tagshift@=\dimen121
+\tagwidth@=\dimen122
+\totwidth@=\dimen123
+\lineht@=\dimen124
+\@envbody=\toks19
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
 (C:\CTEX\MiKTeX\tex\latex\listings\listings.sty
-\lst@mode=\count101
-\lst@gtempboxa=\box26
-\lst@token=\toks16
-\lst@length=\count102
-\lst@currlwidth=\dimen116
-\lst@column=\count103
-\lst@pos=\count104
-\lst@lostspace=\dimen117
-\lst@width=\dimen118
-\lst@newlines=\count105
-\lst@lineno=\count106
-\lst@maxwidth=\dimen119
+\lst@mode=\count113
+\lst@gtempboxa=\box28
+\lst@token=\toks21
+\lst@length=\count114
+\lst@currlwidth=\dimen125
+\lst@column=\count115
+\lst@pos=\count116
+\lst@lostspace=\dimen126
+\lst@width=\dimen127
+\lst@newlines=\count117
+\lst@lineno=\count118
+\lst@maxwidth=\dimen128
 
 (C:\CTEX\MiKTeX\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count107
-\lst@skipnumbers=\count108
-\lst@framebox=\box27
+\c@lstnumber=\count119
+\lst@skipnumbers=\count120
+\lst@framebox=\box29
 )
 (C:\CTEX\MiKTeX\tex\latex\listings\listings.cfg
 File: listings.cfg 2007/02/22 1.4 listings configuration
@@ -231,23 +289,23 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
 (C:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.sty
 Package: subfigure 2002/07/30 v2.1.4 subfigure package
-\subfigtopskip=\skip44
-\subfigcapskip=\skip45
-\subfigcaptopadj=\dimen120
-\subfigbottomskip=\skip46
-\subfigcapmargin=\dimen121
-\subfiglabelskip=\skip47
-\c@subfigure=\count109
-\c@lofdepth=\count110
-\c@subtable=\count111
-\c@lotdepth=\count112
+\subfigtopskip=\skip47
+\subfigcapskip=\skip48
+\subfigcaptopadj=\dimen129
+\subfigbottomskip=\skip49
+\subfigcapmargin=\dimen130
+\subfiglabelskip=\skip50
+\c@subfigure=\count121
+\c@lofdepth=\count122
+\c@subtable=\count123
+\c@lotdepth=\count124
 
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 (C:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.cfg)
-\subfig@top=\skip48
-\subfig@bottom=\skip49
+\subfig@top=\skip51
+\subfig@bottom=\skip52
 )
 (C:\CTEX\MiKTeX\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
@@ -267,33 +325,33 @@ LaTeX Warning: Label `fig:fft:a' multiply defined.
 LaTeX Warning: Label `sub@fig:fft:a' multiply defined.
 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
  (C:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count113
-\scratchdimen=\dimen122
-\scratchbox=\box28
-\nofMPsegments=\count114
-\nofMParguments=\count115
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count116
-\MPscratchDim=\dimen123
-\MPnumerator=\count117
-\makeMPintoPDFobject=\count118
-\everyMPtoPDFconversion=\toks18
+\scratchcounter=\count125
+\scratchdimen=\dimen131
+\scratchbox=\box30
+\nofMPsegments=\count126
+\nofMParguments=\count127
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count128
+\MPscratchDim=\dimen132
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
+\everyMPtoPDFconversion=\toks23
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -329,43 +387,33 @@ LaTeX Font Info:    ... okay on input line 22.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring ON on input line 22.
+\AtBeginShipoutBox=\box31
+Package hyperref Info: Link coloring ON on input line 23.
 (C:\CTEX\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
 (C:\CTEX\MiKTeX\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count119
+\c@section@level=\count131
 )
-LaTeX Info: Redefining \ref on input line 22.
-LaTeX Info: Redefining \pageref on input line 22.
-LaTeX Info: Redefining \nameref on input line 22.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
 
 ("C:\Users\SeanGeek\Documents\Visual Studio 2013\Projects\PedestrainDetection\P
 edestrainDetection\PedestrainCounting\report\MiddleReport.out")
 ("C:\Users\SeanGeek\Documents\Visual Studio 2013\Projects\PedestrainDetection\P
 edestrainDetection\PedestrainCounting\report\MiddleReport.out")
 \@outlinefile=\write3
-\c@lstlisting=\count120
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 24.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 24.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 24.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 40.
+\c@lstlisting=\count132
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 41.
 
 (C:\CTEX\MiKTeX\tex\latex\base\omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 51.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 51.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
  [1
 
 {C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}]
@@ -373,36 +421,77 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 File: images/ImageDetector.jpg Graphic file (type jpg)
 
 <use images/ImageDetector.jpg>
-Package pdftex.def Info: images/ImageDetector.jpg used on input line 151.
+Package pdftex.def Info: images/ImageDetector.jpg used on input line 152.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
 <images/BKGCutDetector.jpg, id=28, 770.88pt x 578.16pt>
 File: images/BKGCutDetector.jpg Graphic file (type jpg)
 
 <use images/BKGCutDetector.jpg>
-Package pdftex.def Info: images/BKGCutDetector.jpg used on input line 157.
+Package pdftex.def Info: images/BKGCutDetector.jpg used on input line 158.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 151--158
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 152--159
  [][][] 
  []
 
-[2] [3 <C:/Users/SeanGeek/Documents/Visual Studio 2013/Projects/PedestrainDetec
-tion/PedestrainDetection/PedestrainCounting/report/images/ImageDetector.jpg> <C
-:/Users/SeanGeek/Documents/Visual Studio 2013/Projects/PedestrainDetection/Pede
-strainDetection/PedestrainCounting/report/images/BKGCutDetector.jpg>]
+[2]
+Overfull \hbox (25.94405pt too wide) in paragraph at lines 195--196
+\OT1/cmr/m/n/10 er. For clas-si-fy, it us-es [][][] to ex-trac-t the fea-ture a
+nd send-s it to [][][]
+ []
+
+[3pdfTeX warning (ext4): destination with the same identifier (name{equation.0.
+1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.212 A
+       fter we have the online boosting strong classifier. We try to combine...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.0.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.212 A
+       fter we have the online boosting strong classifier. We try to combine...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.0.3}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.212 A
+       fter we have the online boosting strong classifier. We try to combine...
+ <C:/Users/SeanGeek/Documents/Visual Studio 2013/Projects/PedestrainDetection/P
+edestrainDetection/PedestrainCounting/report/images/ImageDetector.jpg> <C:/User
+s/SeanGeek/Documents/Visual Studio 2013/Projects/PedestrainDetection/Pedestrain
+Detection/PedestrainCounting/report/images/BKGCutDetector.jpg>]
+<images/SingleSampler.jpg, id=63, 770.88pt x 578.16pt>
+File: images/SingleSampler.jpg Graphic file (type jpg)
+
+<use images/SingleSampler.jpg>
+Package pdftex.def Info: images/SingleSampler.jpg used on input line 229.
+(pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
+pdfTeX warning (ext4): destination with the same identifier (name{equation.0.4}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.239 \begin{equation}
+                       [4 <C:/Users/SeanGeek/Documents/Visual Studio 2013/Proje
+cts/PedestrainDetection/PedestrainDetection/PedestrainCounting/report/images/Si
+ngleSampler.jpg>]
 ("C:\Users\SeanGeek\Documents\Visual Studio 2013\Projects\PedestrainDetection\P
 edestrainDetection\PedestrainCounting\report\MiddleReport.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
- [4
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 264.
+ [5
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 264.
 
 ("C:\Users\SeanGeek\Documents\Visual Studio 2013\Projects\PedestrainDetection\P
 edestrainDetection\PedestrainCounting\report\MiddleReport.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 264.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 264.
 Package rerunfilecheck Info: File `MiddleReport.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -411,25 +500,27 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7299 strings out of 495354
- 106320 string characters out of 3183859
- 242010 words of memory out of 3000000
- 10384 multiletter control sequences out of 15000+200000
- 8102 words of font info for 29 fonts, out of 3000000 for 9000
+ 7897 strings out of 495354
+ 113029 string characters out of 3183859
+ 252271 words of memory out of 3000000
+ 10953 multiletter control sequences out of 15000+200000
+ 9849 words of font info for 36 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,10n,58p,608b,1183s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,10n,58p,608b,1191s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/CTEX/MiKTeX/fon
 ts/type1/public/amsfonts/cm/cmbx12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/
-CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
-><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on MiddleReport.pdf (4 pages, 386958 bytes).
+nts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:
+/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/CTEX/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+<C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmti10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmtt10.pfb>
+Output written on MiddleReport.pdf (5 pages, 522246 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 129 PDF objects out of 1000 (max. 8388607)
+ 34 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

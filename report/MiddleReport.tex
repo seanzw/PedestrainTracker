@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \usepackage[colorlinks, linkcolor=]{hyperref}
+\usepackage{amsmath}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{subfigure}
@@ -103,7 +104,7 @@ In this part we implement three classes: \lstinline{Feature}, \lstinline{HaarFea
 
 \lstinline{Feature} is bascially just a container for the feature we extraced using the other two classes.
 
-\lstinline{HaarFeature} extracts a haar-like feature given an integral image and roi. When being constructed, it randomly chooses from the five types haar-like features.
+\lstinline{HaarFeature} extracts a haar-like feature given an integral image and roi. When being constructed, it randomly chooses from the five haar-like features.
 
 \lstinline{HoGFeature} extracts a HoG feature given an \lstinline{HoGIntegralImage} and roi.
 
@@ -140,7 +141,7 @@ With the AdaBoost classifier above we are able to build the detectors now.
 
 Besides, while reconstructing the program, we rewrite some parts of the program in a more memory friendly way, which leads to quite tremendous improvement. The original video detector on the first training video takes 212s, while our reconstructed program takes 66s with one main thread. After optimizing some parameters it reduces to 27s without deteriorating its precision.
 
-Here are some results from our reconstruction: Figure~\ref{fig:figure1}. We can see that with background cut we have less false positive.
+Here are some results from our reconstruction: Figure~\ref{fig:detector}. We can see that with background cut we have less false positive.
 \begin{figure}[htb]
     \begin{center}
         \subfigure[ImageDetector]{\label{fig:fft:a}
@@ -157,7 +158,7 @@ Here are some results from our reconstruction: Figure~\ref{fig:figure1}. We can 
         }%
     \end{center}
     \caption{Detection Results}
-    \label{fig:figure1}
+    \label{fig:detector}
 \end{figure}
 
 \item Online Boosting
@@ -168,14 +169,42 @@ After the reconstruction, we start to work on the online boosting algorithm to t
 
 \item \lstinline{EstimatedGaussianDistribution}
 
+Given a feature $f(\mathbf{x})$, the probability of $P(1|f(\mathbf{x}))$ and $P(-1|f(\mathbf{x}))$ is estimated as Gaussian distribution\cite{Grabner:2006:OBV:1153170.1153451}. This Gaussian distribution is estimated with Kalman filter\cite{Welch:1995:IKF:897831}. We use the following update equations for adaptive estimation from \cite{Grabner:2006:OBV:1153170.1153451}:
+
+\begin{subequations}
+\begin{align}
+K_{t}&=\frac{P_{t-1}}{P_{t-1}+R}\\
+\mathbf{\mu}_{t}&=K_{t}f(\mathbf{x})+(1-K_{t})\mathbf{\mu}_{t-1}\\
+\mathbf{\sigma}_{t}^{2}&=K_{t}(f(\mathbf{x})-\mathbf{\mu}_{t})^{2}+(1-K_{t})\mathbf{\sigma}_{t-1}^{2}\\
+P_{t}&=(1-K_{t})P_{t-1}
+\end{align}
+\end{subequations}
+
 \item \lstinline{ClassifierThreshold}
+
+It estimates the Gaussian distribution for both positive features $N(\mathbf{\mu_{+}}, \mathbf{\sigma_{+}})$ and negative features $N(\mathbf{\mu_{-}}, \mathbf{\sigma_{-}})$. Then it uses a simple distance threshold to a new feature to whether positive or negative: $h(\mathbf{x})$ for "hypothesis"
+
+\begin{equation}
+h(\mathbf{x})=\min_{+, -}(D(f(\mathbf{x}), \mu_{+}), D(f(\mathbf{x}, \mu_{-}))
+\end{equation}
+
+where $D(f(\mathbf{x}), \mu)$ is just the Euclidean distance in feature space.
 
 \item \lstinline{WeakClassifierHaar}
 
+It uses the Haar-like feature above and the \lstinline{ClassifierThreshold} to build a weak classifier. For classify, it uses \lstinline{HaarFeature} to extract the feature and sends it to \lstinline{ClassifierThreshold} to classify. For training, it uses the Kalman filter in \lstinline{EstimatedGaussianDistribution}.
+
 \item \lstinline{ClassifierSelector}
+
+Given a pool of weak classifiers, the \lstinline{ClassifierSelector} selects the best one with lowest error rate.
 
 \item \lstinline{StrongClassifier}
 
+The \lstinline{StrongClassifier} has $N$ \lstinline{ClassifierSelector}s, each with a voting weight $\alpha_i$. The final hypothesis is:
+
+\begin{equation}
+h^{strong}(\mathbf{x})=\mathrm{sign}(\sum_{i=1}^{N}\alpha_{i}\cdot h^{selector}_{i}(\mathbf{x}))
+\end{equation} 
 \end{itemize}
 
 \item Particle Filter
@@ -186,9 +215,38 @@ After we have the online boosting strong classifier. We try to combine it with p
 
 \item \lstinline{SingleSampler}
 
+Given a target, it samples around it the positive and negative samples using Gaussian noise. Here is the samples: Figure~\ref{fig:singlesampler}, red for negative samples and blue for positive ones.
+
+This is used in training the classifier.
+
+\begin{figure}[htb]
+    \begin{center}
+        \subfigure[SingleSampler]{\label{fig:sub:singlesampler}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/SingleSampler.jpg}
+            \end{minipage}%
+        }%
+    \end{center}
+    \caption{Detection Results}
+    \label{fig:singlesampler}
+\end{figure}
+
 \item \lstinline{ParticleFilter}
 
+This is a basic particle filter. The state space is just the position $[upper, left]$. The motion model is also very simple:
+
+\begin{equation}
+p_{t}=p_{t-1}+N(0, \sigma)
+\end{equation}
+
+where $N(0, \sigma)$ is a Gaussian random variable with variance proportional to the size of the target.
+
+As for observation, it just use the scores given by strong classifier as the weight of the particles and resample it. We may improve the motion model later.
+
 \item \lstinline{ParticleFilterTracker}
+
+This class just combines everything together, use particle filter and strong classifier to track a target.
 
 \end{itemize}
 

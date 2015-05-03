@@ -15,4 +15,9 @@ Helmut Grabner and Horst Bischof.
   Computer Vision and Pattern Recognition - Volume 1}, CVPR '06, pages
   260--267, Washington, DC, USA, 2006. IEEE Computer Society.
 
+\bibitem{Welch:1995:IKF:897831}
+Greg Welch and Gary Bishop.
+\newblock An introduction to the kalman filter.
+\newblock Technical report, Chapel Hill, NC, USA, 1995.
+
 \end{thebibliography}
