@@ -26,6 +26,16 @@ public:
 
 	void DrawSamples(cv::Mat &img, const cv::Scalar &posColor, const cv::Scalar &negColor) const;
 
+	/**
+	 * Draw a specific sample.
+	 *
+	 * @param img		the image to draw
+	 * @param color		color we will use
+	 * @param index		the index of the sample
+	 * @param target	positive or negative samples
+	 */
+	void DrawSample(cv::Mat &img, const cv::Scalar &color, int index = 0, int target = 1) const;
+
 protected:
 	int numNegSamples;
 	int numPosSamples;

@@ -42,19 +42,28 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 		intImage->CalculateInt(gray);
 
 		// Propagate the particles.
-		particleFilter->Propagate();
-
-		// Draw the particles for debugging.
-		particleFilter->DrawParticles(frame, cv::Scalar(255.0f));
-		//cv::imshow("particles", frame);
-		//cv::waitKey();
-
+		particleFilter->Propagate(imgSize);
 
 		// Make the observation.
 		particleFilter->Observe();
 
+		// Draw the particles for debugging.
+		//particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
+		//cv::imshow("particles", frame);
+		//cv::imwrite("ParticlesConfidence.jpg", frame);
+		//cv::waitKey();
+
+		particleFilter->Resample();
+
+		// Draw the particles for debugging.
+		//particleFilter->DrawParticles(frame, cv::Scalar(0.0f, 0.0f, 255.0f));
+		//cv::imshow("particles", frame);
+		//cv::waitKey();
+
 		// Draw the target back into frame.
-		particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 1.0f, 0.0f, 1.0f));
+		particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 255.0f, 0.0f));
+		//cv::imshow("target", frame);
+		//cv::waitKey();
 
 		// Use the new target to sample.
 		sampler->Sample(particleFilter->GetTarget(), imgSize);
@@ -67,7 +76,7 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 		for (int i = 0; i < sampler->GetNumNeg(); i++) {
 			classifier->Update(intImage, sampler->GetNegSample(i), -1);
 		}
-
+	
 		// Write back the result into video.
 		out.write(frame);
 	}

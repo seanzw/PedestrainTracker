@@ -302,8 +302,18 @@ int main(int argc, char *argv[]) {
 
 		GrayScaleIntegralImage grayIntImage(width, height);
 		StrongClassifierDirectSelect classifier(50, 250, Size(target.width, target.height), 2);
-		ParticleFilter particleFilter(&classifier, &grayIntImage, target, 100);
+		ParticleFilter particleFilter(&classifier, &grayIntImage, target, 500);
 		SingleSampler sampler(5, 10);
+
+		// Sample.
+		sampler.Sample(target, Size(width, height));
+
+		//
+		// Prepare the integral image.
+		//
+		cv::Mat grayFirst(width, height, CV_8UC1);
+		cv::cvtColor(first, grayFirst, cv::COLOR_RGB2GRAY);
+		grayIntImage.CalculateInt(grayFirst);
 
 		// The first training.
 		for (int i = 0; i < sampler.GetNumPos(); i++) {
@@ -313,10 +323,28 @@ int main(int argc, char *argv[]) {
 			classifier.Update(&grayIntImage, sampler.GetNegSample(i), -1);
 		}
 
-		// Draw the samples for debugging.
-		sampler.DrawSamples(first, cv::Scalar(255.0f), cv::Scalar(0.0f, 0.0f, 255.0f));
-		cv::imshow("First Frame", first);
-		cv::waitKey(0);
+		//
+		// Let's see how is the training goes on.
+		// Test all the positive samples.
+		//
+		for (int i = 0; i < sampler.GetNumPos(); i++) {
+			float score = classifier.Evaluate(&grayIntImage, sampler.GetPosSample(i));
+			printf("Positive Sample %d: %f\n", i, score);
+			sampler.DrawSample(first, cv::Scalar(255.0f), i, 1);
+			cv::imshow("First Frame", first);
+			cv::waitKey(0);
+		}
+
+		//
+		// Test all the negative samples.
+		//
+		for (int i = 0; i < sampler.GetNumNeg(); i++) {
+			float score = classifier.Evaluate(&grayIntImage, sampler.GetNegSample(i));
+			printf("Negative Sample %d: %f\n", i, score);
+			sampler.DrawSample(first, cv::Scalar(0.0f, 0.0f, 255.0f), i, -1);
+			cv::imshow("First Frame", first);
+			cv::waitKey(0);
+		}
 
 		ParticleFilterTracker pfTracker(&classifier, &grayIntImage, &particleFilter, &sampler);
 

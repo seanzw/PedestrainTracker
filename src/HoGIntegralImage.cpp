@@ -106,8 +106,8 @@ void HoGIntegralImage::GetSum(const Rect &roi, float *result) const {
 
 	float *originPtr = &intImage[roi.upper * m_step + roi.left * NUM_HOG_BINS];
 
-	int down = (roi.height - 1) * m_step;
-	int right = (roi.width - 1) * NUM_HOG_BINS;
+	int down = roi.height * m_step;
+	int right = roi.width * NUM_HOG_BINS;
 
 	// Get the bins.
 	for (int bin = 0; bin < NUM_HOG_BINS; bin++) {

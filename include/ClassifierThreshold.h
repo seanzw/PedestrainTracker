@@ -25,12 +25,13 @@ public:
 	void Update(const Feature &feature, int target);
 
 	/**
-	 * Evaluate the feature.
+	 * Classify the feature.
 	 * Use the simple Euclidean distance to pos and neg cluster.
-	 * @param feature: the feature extracted, should be N dimension.
-	 * @return int: 1 for positive, -1 for negative.
+	 *
+	 * @param feature	the feature extracted, should be N dimension
+	 * @return			1 for positive, -1 for negative
 	 */
-	int Classify(const Feature &feature);
+	int Classify(const Feature &feature) const;
 
 	void Reset();
 
@@ -38,10 +39,10 @@ public:
 
 private:
 
-	EstimatedGaussianDistribution<N>* posSamples;
-	EstimatedGaussianDistribution<N>* negSamples;
+	EstimatedGaussianDistribution<N> *posSamples;
+	EstimatedGaussianDistribution<N> *negSamples;
 
-	inline float SquareDistance(const float *a, const float *b, int N) {
+	inline float SquareDistance(const float *a, const float *b, int N) const {
 		float d = 0.0f;
 		for (int i = 0; i < N; i++) {
 			d += (a[i] - b[i]) * (a[i] - b[i]);
@@ -69,9 +70,12 @@ template<int N> void ClassifierThreshold<N>::Update(const Feature &feature, int 
 		negSamples->Update(feature.data);
 }
 
-template<int N> int ClassifierThreshold<N>::Classify(const Feature &feature) {
+template<int N> int ClassifierThreshold<N>::Classify(const Feature &feature) const {
 	float dPos = SquareDistance(feature.data, posSamples->mean, N);
 	float dNeg = SquareDistance(feature.data, negSamples->mean, N);
+	if (dPos == 0.0f && dNeg == 0.0f) {
+		return -1;
+	}
 	return dPos < dNeg ? 1 : -1;
 }
 

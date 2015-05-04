@@ -22,6 +22,7 @@ public:
 	bool operator==(const Size &other) const;
 
 	bool IsIn(const Rect &rect) const;
+	bool IsIn(int upper, int left, int width, int height) const;
 };
 
 class Rect {

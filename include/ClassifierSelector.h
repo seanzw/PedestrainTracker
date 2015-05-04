@@ -14,9 +14,10 @@ class ClassifierSelector {
 public:
 	/**
 	 * Build a classifier selector with some WeakClassifierHaars.
-	 * @param numW: # weak classifiers.
-	 * @param patchSize: the patch size used in weak classifiers.
-	 * @param numB: # weak classifiers for subsititution.
+	 *
+	 * @param numW		# weak classifiers
+	 * @param patchSize	the patch size used in weak classifiers
+	 * @param numB		# weak classifiers for subsititution
 	 */
 	ClassifierSelector(int numW, const Size &patchSize, int numB = 2);
 
@@ -30,11 +31,12 @@ public:
 
 	/**
 	 * Train the weak classifiers.
-	 * @param intImage: the integral image.
-	 * @param roi: the region of the target.
-	 * @param target: 1 for pos, -1 for neg.
-	 * @param importance: the weight of this sample.
-	 * @param out errMask: update the error mask array.
+	 *
+	 * @param intImage		the integral image
+	 * @param roi			the region of the target
+	 * @param target		1 for pos, -1 for neg
+	 * @param importance	the weight of this sample
+	 * @param out errMask	update the error mask array
 	 */
 	void Train(const IntegralImage *intImage, const Rect &roi, int target, float importance, bool *errMask);
 
@@ -45,19 +47,21 @@ public:
 
 	/** 
 	 * Select the best classifier.
-	 * @param in  importance: the weight of this sample.
-	 * @param in  errorMask: true if the classifer makes mistake on this sample.
-	 * @param out errors: a buffer contains the error rates of each classifier.
-	 * @return index of new selected classifier.
+	 *
+	 * @param in  importance	the weight of this sample
+	 * @param in  errorMask		true if the classifer makes mistake on this sample
+	 * @param out errors		a buffer contains the error rates of each classifier
+	 * @return					index of new selected classifier
 	 */
 	virtual int SelectBestClassifer(float importance, const bool *errorMask, float *errors);
 
 	/** 
 	 * Replace the weakest classifier.
-	 * @param errors: a buffer contains the error rate.
-	 * @return: the index of the replaced classifier.
+	 *
+	 * @param sumErrors	a buffer contains the sum of error rate. The biggest weak classifier will be replaced
+	 * @return			the index of the replaced classifier
 	 */
-	virtual int ReplaceWeakestClassifier(float *errors, const Size &patchSize);
+	virtual int ReplaceWeakestClassifier(float *sumErrors, const Size &patchSize);
 
 	/**
 	 * Only replace the weight.
@@ -67,7 +71,8 @@ public:
 
 	/**
 	 * Evaluate a feature.
-	 * @return 1 for pos, -1 for neg.
+	 *
+	 * @return	1 for pos, -1 for neg
 	 */
 	int Classify(const IntegralImage *intImage, const Rect &roi);
 

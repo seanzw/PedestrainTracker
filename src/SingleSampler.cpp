@@ -28,8 +28,8 @@ int SingleSampler::GetNumNeg() const {
 }
 
 void SingleSampler::Sample(const Rect &pos, const Size &imgSize) {
-	gaussianWidth = std::normal_distribution<float>(pos.width / 4.0f, pos.width / 4.0f);
-	gaussianHeight = std::normal_distribution<float>(pos.height / 4.0f, pos.height / 4.0f);
+	gaussianWidth = std::normal_distribution<float>(pos.width / 8.0f, pos.width / 8.0f);
+	gaussianHeight = std::normal_distribution<float>(pos.height / 8.0f, pos.height / 8.0f);
 	
 	// Get the first pos sample.
 	posSamples[0] = pos;
@@ -49,8 +49,8 @@ void SingleSampler::Sample(const Rect &pos, const Size &imgSize) {
 		}
 	}
 
-	gaussianWidth = std::normal_distribution<float>(pos.width, pos.width / 4.0f);
-	gaussianHeight = std::normal_distribution<float>(pos.height, pos.height / 4.0f);
+	gaussianWidth = std::normal_distribution<float>(pos.width * 0.5f, pos.width * 0.25f);
+	gaussianHeight = std::normal_distribution<float>(pos.height * 0.5f, pos.height * 0.25f);
 
 	// Sampler negative samples.
 	for (int i = 0; i < numNegSamples; i++) {
@@ -74,5 +74,14 @@ void SingleSampler::DrawSamples(cv::Mat &img, const cv::Scalar &posColor, const 
 	}
 	for (int i = 0; i < numNegSamples; i++) {
 		cv::rectangle(img, (cv::Rect)negSamples[i], negColor, 2);
+	}
+}
+
+void SingleSampler::DrawSample(cv::Mat &img, const cv::Scalar &color, int index, int target) const {
+	if (target == 1) {
+		cv::rectangle(img, (cv::Rect)posSamples[index], color, 2);
+	}
+	else {
+		cv::rectangle(img, (cv::Rect)negSamples[index], color, 2);
 	}
 }

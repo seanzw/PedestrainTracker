@@ -69,10 +69,11 @@ void ClassifierSelector::Train(const IntegralImage *intImage,
 	// Get the poisson value.
 	double A = 1;
 	int i;
+	double thre = exp(-importance);
 	for (i = 0; i < 11; i++) {
 		double U_K = (double)rand() / RAND_MAX;
 		A *= U_K;
-		if (A < exp(-importance))
+		if (A < thre)
 			break;
 	}
 
@@ -95,7 +96,7 @@ float ClassifierSelector::GetError(int index) const {
 
 int ClassifierSelector::SelectBestClassifer(float importance, const bool *errorMask, float *errors) {
 	int newSelected = selectedClassifier;
-	int minError = FLT_MAX;
+	float minError = FLT_MAX;
 
 	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
 		if (errorMask[i]) {
@@ -122,14 +123,14 @@ int ClassifierSelector::SelectBestClassifer(float importance, const bool *errorM
 	return selectedClassifier;
 }
 
-int ClassifierSelector::ReplaceWeakestClassifier(float *errors, const Size &patchSize) {
+int ClassifierSelector::ReplaceWeakestClassifier(float *sumErrors, const Size &patchSize) {
 	float maxError = 0.0f;
 	int index = -1;
 
 	// Find the classifier with the largest error.
 	for (int i = 0; i < numWeakClassifer; i++) {
-		if (errors[i] > maxError) {
-			maxError = errors[i];
+		if (sumErrors[i] > maxError) {
+			maxError = sumErrors[i];
 			index = i;
 		}
 	}
@@ -144,7 +145,7 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *errors, const Size &patc
 		nextBackup = numWeakClassifer;
 
 	// Replace.
-	if (maxError > errors[nextBackup]) {
+	if (maxError > sumErrors[nextBackup]) {
 		delete weakClassifiers[index];
 		weakClassifiers[index] = weakClassifiers[nextBackup];
 		wWrong[index] = wWrong[nextBackup];

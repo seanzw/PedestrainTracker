@@ -19,9 +19,9 @@ unsigned int GrayScaleIntegralImage::GetSum(const Rect &roi) const {
 
 	unsigned int *originPtr = &intImage[roi.upper * width + roi.left];
 
-	int down = roi.height * width;
+	int down = (roi.height - 1) * width;
 
-	return originPtr[0] + originPtr[down + roi.width] - originPtr[down] - originPtr[roi.width];
+	return originPtr[0] + originPtr[down + roi.width - 1] - originPtr[down] - originPtr[roi.width - 1];
 }
 
 

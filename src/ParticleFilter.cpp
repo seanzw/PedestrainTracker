@@ -6,6 +6,7 @@ std::default_random_engine ParticleFilter::generator;
 
 ParticleFilter::ParticleFilter(StrongClassifier *c, IntegralImage *i,
 	const Rect &t, int n) : numParticles(n), classifier(c), intImage(i), target(t) {
+	particles = new int[numParticles * sizeParticle];
 	InitParticles();
 
 	confidence = new float[numParticles];
@@ -14,13 +15,12 @@ ParticleFilter::ParticleFilter(StrongClassifier *c, IntegralImage *i,
 }
 
 void ParticleFilter::InitParticles() {
-	particles = new int[numParticles * sizeParticle];
 	int *curPartice = particles;
 	int upper = target.upper;
 	int left = target.left;
 
 	// Initialize the gaussian distribution according to the size.
-	gaussian = std::normal_distribution<float>(0.0f, 5.0f);
+	gaussian = std::normal_distribution<float>(0.0f, target.width * 0.25f);
 
 	for (int i = 0; i < numParticles; i++, curPartice += sizeParticle) {
 		curPartice[0] = upper + (int)gaussian(generator);
@@ -34,11 +34,16 @@ ParticleFilter::~ParticleFilter() {
 	delete[] confidence;
 }
 
-void ParticleFilter::Propagate() {
+void ParticleFilter::Propagate(const Size &imgSize) {
 	int *curParticle = particles;
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
-		curParticle[0] += (int)gaussian(generator);
-		curParticle[1] += (int)gaussian(generator);
+		while (true) {
+			curParticle[0] += (int)gaussian(generator);
+			curParticle[1] += (int)gaussian(generator);
+			if (imgSize.IsIn(curParticle[0], curParticle[1], target.width, target.height)) {
+				break;
+			}
+		}
 	}
 }
 
@@ -57,23 +62,37 @@ void ParticleFilter::Observe() {
 
 		// Evaluate the particle.
 		confidence[i] = classifier->Evaluate(intImage, roi);
-		if (confidence[i] < minimumConf)
-			minimumConf = confidence[i];
+	}
+	
+	// Normalize the confidence.
+	NormalizeConfidence();
+}
+
+void ParticleFilter::Resample() {
+
+	// We want to cheat...
+	float maxConf = 0.0f;
+	int maxParticle = 0;
+	for (int i = 0; i < numParticles; i++) {
+		if (confidence[i] > maxConf) {
+			maxConf = confidence[i];
+			maxParticle = i;
+		}
 	}
 
-	// The first confidence.
-	confidence[0] -= minimumConf;
+	target.upper = particles[maxParticle * sizeParticle];
+	target.left = particles[maxParticle * sizeParticle + 1];
+	InitParticles();
 
-	// Add the minimum confidence to make it nonnegative and 
-	// accumulate the probability to get cdf.
+
+	/*
+	// Add up all the confidence to get the cdf.
 	for (int i = 1; i < numParticles; i++) {
-		confidence[i] -= minimumConf;
 		confidence[i] += confidence[i - 1];
 	}
 
-	// Resample.
-	resampler = std::uniform_real_distribution<float>(0.0f, confidence[numParticles - 1]);
-	curParticle = resampleBuffer;
+	resampler = std::uniform_real_distribution<float>(0.0f, 1.0f);
+	int *curParticle = resampleBuffer;
 
 	int sumUpper = 0;
 	int sumLeft = 0;
@@ -85,7 +104,7 @@ void ParticleFilter::Observe() {
 
 		// Binary search to find the particle.
 		int particle = BinarSearch(prob) * sizeParticle;
-		
+
 		// Get this particle into resample buffer.
 		curParticle[0] = particles[particle];
 		curParticle[1] = particles[particle + 1];
@@ -104,6 +123,8 @@ void ParticleFilter::Observe() {
 	// Get the new target.
 	target.upper = (int)(sumUpper / numParticles);
 	target.left = (int)(sumLeft / numParticles);
+
+	*/
 }
 
 void ParticleFilter::DrawParticles(cv::Mat &img, const cv::Scalar &color) const {
@@ -118,10 +139,27 @@ void ParticleFilter::DrawParticles(cv::Mat &img, const cv::Scalar &color) const 
 	}
 }
 
+void ParticleFilter::DrawParticlesWithConfidence(cv::Mat &img, const cv::Scalar &color) const {
+	float maxConf = 0.0f;
+	for (int i = 0; i < numParticles; i++) {
+		if (confidence[i] > maxConf) {
+			maxConf = confidence[i];
+		}
+	}
+
+	int *curParticle = particles;
+	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
+		int y = curParticle[0];
+		int x = curParticle[1];
+		cv::line(img, cv::Point(x - 1, y), cv::Point(x + 1, y), color * confidence[i] / maxConf, 2);
+		cv::line(img, cv::Point(x, y - 1), cv::Point(x, y + 1), color * confidence[i] / maxConf, 2);
+	}
+}
+
 void ParticleFilter::DrawTarget(cv::Mat &img, const cv::Scalar &color) const {
 	cv::rectangle(img,
-		cv::Point(target.upper, target.left),
-		cv::Point(target.upper + target.height - 1, target.left + target.width - 1),
+		cv::Point(target.left, target.upper),
+		cv::Point(target.left + target.width - 1, target.upper + target.height - 1),
 		color, 2);
 }
 

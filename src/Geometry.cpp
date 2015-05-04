@@ -25,6 +25,14 @@ bool Size::IsIn(const Rect &rect) const {
 	return true;
 }
 
+bool Size::IsIn(int upper, int left, int width, int height) const {
+	if (upper < 0 || upper + height > this->height)
+		return false;
+	if (left < 0 || left + width > this->width)
+		return false;
+	return true;
+}
+
 Rect Rect::operator+(const Point2D &offset) const {
 	Rect ret = *this;
 	ret.upper += offset.row;

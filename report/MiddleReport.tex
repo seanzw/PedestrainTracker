@@ -240,15 +240,15 @@ h^{strong}(\mathbf{x})=\mathrm{sign}(\sum_{i=1}^{N}\alpha_{i}\cdot h^{selector}_
 Suppose $err_i$ is the error rate of the $i^{th}$ selector, and then the voting weight is:
 
 \begin{equation}
-\alpha_i=\frac{1}{2}\cdot\ln(\frac{1-err_i}{err_i})
+\alpha_i=\ln(\frac{1-err_i}{err_i})
 \end{equation}
 
 And the importance of this sample is updated with:
 
 \begin{subequations}
 \begin{align}
-\lambda_{i+1}&=\lambda_i\cdot\frac{1}{2\cdot(1-err_i)}, &if~h^{selector}_{i}~correct\\
-\lambda_{i+1}&=\lambda_i\cdot\frac{1}{2\cdot err_i}, &if~h^{selector}_{i}~wrong
+\lambda_{i+1}&=\lambda_i\cdot\sqrt{\frac{err_i}{1-err_i}}, &if~h^{selector}_{i}~correct\\
+\lambda_{i+1}&=\lambda_i\cdot\sqrt{\frac{1-err_i}{err_i}}, &if~h^{selector}_{i}~wrong
 \end{align}
 \end{subequations}
 \end{itemize}
@@ -296,10 +296,72 @@ This class just combines everything together, use particle filter and strong cla
 
 \end{itemize}
 
+\item Result
+
+With the following configuration we tested our single tracker on a small video clip. The result can be found \href{https://zerowong.github.io/PedestrainCounting/results/singleTrackerTest01.avi}{here}.
+
+\begin{itemize}
+
+\item The online boosting classifier is built with grayscale haar-like feature.
+\item The particle filter just selects the best particle as the target and resamples around it.
+\item 500 particles.
+\item User initializes the target bounding box.
+
+We can see that the classifier works quite good in Figure~\ref{fig:particlesConfidence}. After observation, the particles are drawn with their confidence. The brighter the particle is, the more confidence it has. Notice that the particle is at the upper-left corner of the target.
+
+\begin{figure}[htb]
+    \begin{center}
+        \subfigure[]{\label{fig:sub:particlesConfidence}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/ParticlesConfidence.jpg}
+            \end{minipage}%
+        }%
+    \end{center}
+    \caption{Particles Confidence}
+    \label{fig:particlesConfidence}
+\end{figure}
+
+\end{itemize}
+
 \end{itemize}
 
 \item \textbf{Further Plan}
 
+\begin{itemize}
+
+\item RGI feature
+
+From Figure~\ref{fig:singleTrackerGrayExchange} we can see that the current classifier can still not distinguish different pedestrains. We think this is due to the grayscale haar-like feature doesn't contain enough information. \cite{eth_biwi_00633} reports that with RGI (Red, Green, Intensity) histogram feature, 3 bins for each channel the results are quite good. So our next plan is first to implement the RGI histogram integral image and use this to build a classifier.
+
+\begin{figure}[htb]
+    \begin{center}
+        \subfigure[Original target]{\label{fig:sub:singleGray01}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/SingleTrackerGrayExchange01.jpg}
+            \end{minipage}%
+        }%
+        \subfigure[Drift to another target]{\label{fig:sub:singleGray01}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/SingleTrackerGrayExchange02.jpg}
+            \end{minipage}%
+        }%
+    \end{center}
+    \caption{With grayscale haar-like feature, the tracker lost its target.}
+    \label{fig:singleTrackerGrayExchange}
+\end{figure}
+
+\item Mean-shift to find the target
+
+Now the particle filter just selects the best particle as the target, and resamples arount it. However this loses almost every advantage of particle filter. So our next plan is to use mean-shift to find the target from all these particles.
+
+\item Multi-target Tracker
+
+This is our final object. The main problem is data association. We are not sure we will be able to finish this. But we will see.
+
+\end{itemize}
 
 \end{enumerate}
 

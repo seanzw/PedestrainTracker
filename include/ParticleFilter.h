@@ -19,12 +19,20 @@ public:
 
 	virtual ~ParticleFilter();
 
-	// Core of particle filter.
-	virtual void Propagate();
+	/**
+	 * Propagate the particles.
+	 * 
+	 * @param imgSize	Is the particle still inside the image?
+	 */
+	virtual void Propagate(const Size &imgSize);
+
 	virtual void Observe();
+
+	void Resample();
 
 	// Draw the particles.
 	void DrawParticles(cv::Mat &img, const cv::Scalar &color) const;
+	void DrawParticlesWithConfidence(cv::Mat &img, const cv::Scalar &color) const;
 
 	// Draw the target;
 	void DrawTarget(cv::Mat &img, const cv::Scalar &color) const;
@@ -85,6 +93,27 @@ protected:
 			mid = (start + end) / 2;
 		}
 		return end;
+	}
+
+	/**
+	 * Normalize the confidence to [0, 1].
+	 */
+	inline void NormalizeConfidence() {
+		float minimumConf = FLT_MAX;
+		float sumConf = 0.0f;
+		for (int i = 0; i < numParticles; i++) {
+			if (confidence[i] < minimumConf) {
+				minimumConf = confidence[i];
+			}
+			sumConf += confidence[i];
+		}
+
+		sumConf -= numParticles * minimumConf;
+		float invSum = 1.0f / sumConf;
+		for (int i = 0; i < numParticles; i++) {
+			confidence[i] -= minimumConf;
+			confidence[i] *= invSum;
+		}
 	}
 
 };
