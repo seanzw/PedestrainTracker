@@ -185,7 +185,7 @@ P_{t}&=(1-K_{t})P_{t-1}
 It estimates the Gaussian distribution for both positive features $N(\mathbf{\mu_{+}}, \mathbf{\sigma_{+}})$ and negative features $N(\mathbf{\mu_{-}}, \mathbf{\sigma_{-}})$. Then it uses a simple distance threshold to a new feature to whether positive or negative: $h(\mathbf{x})$ for "hypothesis"
 
 \begin{equation}
-h(\mathbf{x})=\min_{+, -}(D(f(\mathbf{x}), \mu_{+}), D(f(\mathbf{x}, \mu_{-}))
+h(\mathbf{x})=\min_{+, -}(D(f(\mathbf{x}), \mu_{+}), D(f(\mathbf{x}), \mu_{-}))
 \end{equation}
 
 where $D(f(\mathbf{x}), \mu)$ is just the Euclidean distance in feature space.
