@@ -25,15 +25,12 @@ const float HoGIntegralImage::yVector[9] = { SINPI1, SINPI2, SINPI3, SINPI4, SIN
 HoGIntegralImage::HoGIntegralImage(const cv::Mat &img) : IntegralImage(img) {
 	// Initialize the integral image.
 	intImage = new float[width * height * NUM_HOG_BINS];
-
 	m_step = width * NUM_HOG_BINS;
 }
 
 HoGIntegralImage::HoGIntegralImage(int w, int h) : IntegralImage(w, h) {
 	intImage = new float[width * height * NUM_HOG_BINS];
-
 	m_step = width * NUM_HOG_BINS;
-
 }
 
 HoGIntegralImage::~HoGIntegralImage() {
@@ -43,7 +40,7 @@ HoGIntegralImage::~HoGIntegralImage() {
 }
 
 void HoGIntegralImage::CalculateInt(const cv::Mat &img) {
-	// Clear the first row of integral image.
+	// Clear the integral image.
 	memset((void *)intImage, 0, sizeof(float) * m_step * height);
 
 	float sumRow[NUM_HOG_BINS];
