@@ -324,15 +324,13 @@ We can see that the classifier works quite good in Figure~\ref{fig:particlesConf
 
 \end{itemize}
 
-\end{itemize}
-
-\item \textbf{Further Plan}
-
-\begin{itemize}
-
 \item RGI feature
 
-From Figure~\ref{fig:singleTrackerGrayExchange} we can see that the current classifier can still not distinguish different pedestrains. We think this is due to the grayscale haar-like feature doesn't contain enough information. \cite{eth_biwi_00633} reports that with RGI (Red, Green, Intensity) histogram feature, 3 bins for each channel the results are quite good. So our next plan is first to implement the RGI histogram integral image and use this to build a classifier.
+From Figure~\ref{fig:singleTrackerGrayExchange} we can see that the current classifier can still not distinguish different pedestrains. We think this is due to the grayscale haar-like feature doesn't contain enough information. \cite{eth_biwi_00633} reports that with RGI (Red, Green, Intensity) histogram feature, 3 bins for each channel the results are quite good. 
+
+Hence we implement \lstinline{RGIIntegralImage}, \lstinline{RGIFeature} and \lstinline{WeakClassifierRGI}. These classes use RGI feature to construct the weak classifier. The resulting video can be found \href{https://zerowong.github.io/PedestrainCounting/results/singleTrackerTestRGI01.avi}{here}. From this video and Figure~\ref{fig:singleTrackerRGIExchange} we can see that the classifier is more robustic and can handle some situation as two people crossing each other. However in Figure~\ref{fig:sub:singleRGI02} the classifier still goes for wrong pedestrain! Well they wear the same jeans I guess...
+
+Well we need more code to solve this data association problem.
 
 \begin{figure}[htb]
     \begin{center}
@@ -342,16 +340,41 @@ From Figure~\ref{fig:singleTrackerGrayExchange} we can see that the current clas
             \includegraphics[width = \textwidth]{images/SingleTrackerGrayExchange01.jpg}
             \end{minipage}%
         }%
-        \subfigure[Drift to another target]{\label{fig:sub:singleGray01}
+        \subfigure[Drift to another target]{\label{fig:sub:singleGray02}
             \begin{minipage}[c]{0.5\textwidth}
             \centering
             \includegraphics[width = \textwidth]{images/SingleTrackerGrayExchange02.jpg}
             \end{minipage}%
         }%
     \end{center}
-    \caption{With grayscale haar-like feature, the tracker lost its target.}
+    \caption{With grayscale haar-like feature, the tracker lost its target.(Black for original target)}
     \label{fig:singleTrackerGrayExchange}
 \end{figure}
+
+\begin{figure}[htb]
+    \begin{center}
+        \subfigure[Original target]{\label{fig:sub:singleRGI01}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/SingleTrackerRGIExchange01.jpg}
+            \end{minipage}%
+        }%
+        \subfigure[Drift to another target]{\label{fig:sub:singleRGI02}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/SingleTrackerRGIExchange02.jpg}
+            \end{minipage}%
+        }%
+    \end{center}
+    \caption{With RGI feature, the tracker is more robustic, but still lost its target finally. (Black for original target)}
+    \label{fig:singleTrackerRGIExchange}
+\end{figure}
+
+\end{itemize}
+
+\item \textbf{Further Plan}
+
+\begin{itemize}
 
 \item Mean-shift to find the target
 

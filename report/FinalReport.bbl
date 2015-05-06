@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{eth_biwi_00633}
+Michael~D. Breitenstein, Fabian Reichlin, Bastian Leibe, Esther Koller-Meier,
+  and Luc~Van Gool.
+\newblock Robust tracking-by-detection using a detector confidence particle
+  filter.
+\newblock In {\em IEEE International Conference on Computer Vision}, October
+  2009.
+
+\bibitem{Grabner:2006:OBV:1153170.1153451}
+Helmut Grabner and Horst Bischof.
+\newblock On-line boosting and vision.
+\newblock In {\em Proceedings of the 2006 IEEE Computer Society Conference on
+  Computer Vision and Pattern Recognition - Volume 1}, CVPR '06, pages
+  260--267, Washington, DC, USA, 2006. IEEE Computer Society.
+
+\bibitem{Oza01onlinebagging}
+Nikunj~C. Oza and Stuart Russell.
+\newblock Online bagging and boosting.
+\newblock In {\em In Artificial Intelligence and Statistics 2001}, pages
+  105--112. Morgan Kaufmann, 2001.
+
+\bibitem{Welch:1995:IKF:897831}
+Greg Welch and Gary Bishop.
+\newblock An introduction to the kalman filter.
+\newblock Technical report, Chapel Hill, NC, USA, 1995.
+
+\end{thebibliography}
