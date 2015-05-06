@@ -115,7 +115,7 @@ void RGIIntegralImage::GetSum(const Rect &roi, float *result) const {
 
 	// Get the bins.
 	for (int bin = 0; bin < NUM_RGI_BINS; bin++) {
-		result[bin] = originPtr[0] + originPtr[down + right] - originPtr[down] - originPtr[right];
+		result[bin] = (float)(originPtr[0] + originPtr[down + right] - originPtr[down] - originPtr[right]);
 		originPtr++;
 	}
 }

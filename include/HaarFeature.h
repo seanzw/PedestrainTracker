@@ -61,7 +61,7 @@ private:
 	// The result feature from last extraction.
 	float response;
 
-	// A CDF for six types.
+	// A CDF for five types.
 	static const float cdf[5];
 
 	// Minimum size.
