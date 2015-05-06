@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\title{First Report of Pedestrain Counting}
+\author{Wang Zhengrong, Hsienyu Meng, Liuyang Zhan}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item \textbf{Introduction}
+
+Pedestrain detection and counting has been heavily researched in the last few years and people have made great improvement. Dalal's HoG (Histogram of Gradients) operator has been widely used in pedestrain detection with SVM, AdaBoost or other machine learning algorithms, which we use as the basic detector in our project.
+
+However, detection is not enough to count the pedestrains in the ROI, therefore we have to track each person. Our basic idea is to use particle filter to track each specific person.
+
+Particle filter is an approximation of Bayes inference and is widely used in tracking. Compared with Karman filter, it can simulate any probability distribution. However it's main drawback is the high complexity of computation. Which we will try to optimize with multiple threads.
+
+\item \textbf{Basic Plan}
+
+Here is our basic plan for this project.
+
+\begin{itemize}
+\item Code Reconstruction
+
+The code offered by the teacher is not object-oriented, and is very difficult to modify and extend. Hence our first goal is to reconstruct the program so that we can easily build our particle filter on it.
+
+Besides, while reconstructing the program, we rewrite some parts of the program in a more memory friendly way, which leads to quite tremendous improment. The original video detector on the first training video takes 212s, while our reconstructed program takes 66s with one main thread. After optimizing some parameters it reduces to 27s without deteriorating its precision.
+
+\item Merge Paritcle Filter
+
+The main idea is from \cite{eth_biwi_00633}, in which there are mainly two new ideas. The first one is that instead of using one offline trained general classifier, they train one online classifier for each detected pedestrain and the classifier is only updated on non-overlapping detections. Secondly, the detections are used to guide the particles' propagation which is implemented to estimates the conditional likelihood of the new observation .
+
+\begin{itemize}
+
+\item Data Association Problem
+Use the greedy algorithm to find the $pair(t_r,d)$ with maximum score in the matching score matrix and delete the columns and rows belonging to tracker $t_r^*$ and $d$ 
+
+\item Online Boosting
+
+% Select feature
+The online boosting classifier for each pedestrain is similar to that in \cite{Grabner:2006:OBV:1153170.1153451} and we will select some features to train it.
+
+\end{itemize}
+
+\item Optimization
+
+With multiple threads or even GPU programming, we may archieve the real time interactive result.
+
+
+\end{itemize}
+
+\end{enumerate}
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{Ref}
+
+\end{document}
