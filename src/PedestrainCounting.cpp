@@ -16,12 +16,12 @@ IplImage* video_bkg_detect(
 	int countH = 0; int countW = 0;
 	while (h > H_thres)
 	{
-		h = floor(h / 2);
+		h = (int)floor(h / 2);
 		countH++;
 	}
 	while (w > W_thres)
 	{
-		w = floor(w / 2);
+		w = (int)floor(w / 2);
 		countW++;
 	}
 
@@ -143,7 +143,7 @@ void create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_
 	int frameall_temp = framecount > 3600 ? 3600 : framecount;
 
 	int pic_num = 1; int count = 0;
-	int pic_interval = floor(frameall_temp / pic_num_all);
+	int pic_interval = (int)floor(frameall_temp / pic_num_all);
 	pic_interval = pic_interval > 35 ? 35 : pic_interval;
 
 	IplImage* img_meanshift = cvCreateImage(cvSize(frameW, frameH), IPL_DEPTH_8U, 1);

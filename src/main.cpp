@@ -300,27 +300,34 @@ int main(int argc, char *argv[]) {
 		cv::waitKey(0);
 		in.set(cv::CAP_PROP_POS_FRAMES, 0);
 
-		GrayScaleIntegralImage grayIntImage(width, height);
-		StrongClassifierDirectSelect classifier(50, 250, Size(target.width, target.height), 2);
-		ParticleFilter particleFilter(&classifier, &grayIntImage, target, 500);
-		SingleSampler sampler(5, 10);
-
-		// Sample.
-		sampler.Sample(target, Size(width, height));
-
+#ifdef USE_RGI_FEATURE
+		RGIIntegralImage intImage(width, height);
+		intImage.CalculateInt(first);
+#else
+		GrayScaleIntegralImage intImage(width, height);
 		//
 		// Prepare the integral image.
 		//
 		cv::Mat grayFirst(width, height, CV_8UC1);
 		cv::cvtColor(first, grayFirst, cv::COLOR_RGB2GRAY);
-		grayIntImage.CalculateInt(grayFirst);
+		intImage.CalculateInt(grayFirst);
+#endif
+		
+		StrongClassifierDirectSelect classifier(50, 250, Size(target.width, target.height), 2);
+		ParticleFilter particleFilter(&classifier, &intImage, target, 500);
+		SingleSampler sampler(5, 10);
+
+		// Sample.
+		sampler.Sample(target, Size(width, height));
+
+		
 
 		// The first training.
 		for (int i = 0; i < sampler.GetNumPos(); i++) {
-			classifier.Update(&grayIntImage, sampler.GetPosSample(i), 1);
+			classifier.Update(&intImage, sampler.GetPosSample(i), 1);
 		}
 		for (int i = 0; i < sampler.GetNumNeg(); i++) {
-			classifier.Update(&grayIntImage, sampler.GetNegSample(i), -1);
+			classifier.Update(&intImage, sampler.GetNegSample(i), -1);
 		}
 
 		//
@@ -328,7 +335,7 @@ int main(int argc, char *argv[]) {
 		// Test all the positive samples.
 		//
 		for (int i = 0; i < sampler.GetNumPos(); i++) {
-			float score = classifier.Evaluate(&grayIntImage, sampler.GetPosSample(i));
+			float score = classifier.Evaluate(&intImage, sampler.GetPosSample(i));
 			printf("Positive Sample %d: %f\n", i, score);
 			sampler.DrawSample(first, cv::Scalar(255.0f), i, 1);
 			cv::imshow("First Frame", first);
@@ -339,14 +346,14 @@ int main(int argc, char *argv[]) {
 		// Test all the negative samples.
 		//
 		for (int i = 0; i < sampler.GetNumNeg(); i++) {
-			float score = classifier.Evaluate(&grayIntImage, sampler.GetNegSample(i));
+			float score = classifier.Evaluate(&intImage, sampler.GetNegSample(i));
 			printf("Negative Sample %d: %f\n", i, score);
 			sampler.DrawSample(first, cv::Scalar(0.0f, 0.0f, 255.0f), i, -1);
 			cv::imshow("First Frame", first);
 			cv::waitKey(0);
 		}
 
-		ParticleFilterTracker pfTracker(&classifier, &grayIntImage, &particleFilter, &sampler);
+		ParticleFilterTracker pfTracker(&classifier, &intImage, &particleFilter, &sampler);
 
 		QueryPerformanceCounter(&start_t);
 

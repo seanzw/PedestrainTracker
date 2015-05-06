@@ -9,6 +9,7 @@
 #define CLASSIFIER_SELECTOR_CLASS
 
 #include "WeakClassifierHaar.h"
+#include "WeakClassifierRGI.h"
 
 class ClassifierSelector {
 public:

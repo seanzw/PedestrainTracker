@@ -6,6 +6,9 @@
 #ifndef GLOBAL_HEADER
 #define GLOBAL_HEADER
 
+// Switch this to use rgi or gray haar feature.
+#define USE_RGI_FEATURE
+// #define USE_GRAY_FEATURE
 
 #include <cstdio>
 #include <math.h>

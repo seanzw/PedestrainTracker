@@ -14,7 +14,11 @@ ClassifierSelector::ClassifierSelector(int numW, const Size &patchSize, int numB
 
 	// Initialize the weak classifiers.
 	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+#ifdef USE_RGI_FEATURE
+		weakClassifiers[i] = new WeakClassifierRGI(patchSize);
+#else
 		weakClassifiers[i] = new WeakClassifierHaar(patchSize);
+#endif
 	}
 
 	// We newed the weak classifiers.
@@ -82,7 +86,7 @@ void ClassifierSelector::Train(const IntegralImage *intImage,
 		for (int j = 0; j < i; j++) {
 			weakClassifiers[curWeak]->Update(intImage, roi, target);
 		}
-		errMask[i] = weakClassifiers[curWeak]->Classify(intImage, roi) != target;
+		errMask[curWeak] = weakClassifiers[curWeak]->Classify(intImage, roi) != target;
 	}
 }
 
@@ -153,7 +157,11 @@ int ClassifierSelector::ReplaceWeakestClassifier(float *sumErrors, const Size &p
 		wCorrect[index] = wCorrect[nextBackup];
 		wCorrect[nextBackup] = 1;
 
+#ifdef USE_RGI_FEATURE
+		weakClassifiers[nextBackup] = new WeakClassifierRGI(patchSize);
+#else
 		weakClassifiers[nextBackup] = new WeakClassifierHaar(patchSize);
+#endif
 
 		return index;
 	}

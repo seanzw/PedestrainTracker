@@ -14,6 +14,13 @@
 
 class ParticleFilter {
 public:
+
+	/**
+	 * This constructor doesn't initialize particles.
+	 * Used for child class such as ParticleFitlerConstVelocity.
+	 */
+	ParticleFilter(int n = 100);
+
 	ParticleFilter(StrongClassifier *classifier, IntegralImage *intImage, 
 		const Rect &target, int n = 100);
 
@@ -54,6 +61,9 @@ protected:
 
 	Rect target;
 
+	// Seed.
+	static std::default_random_engine generator;
+
 	// Gaussian random generator.
 	std::normal_distribution<float> gaussian;
 
@@ -62,9 +72,6 @@ protected:
 
 	// A buffer used in resampling.
 	int *resampleBuffer;
-
-	// Seed.
-	static std::default_random_engine generator;
 
 	// The online boosting classifier.
 	StrongClassifier *classifier;

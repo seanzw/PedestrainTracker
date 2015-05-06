@@ -4,13 +4,20 @@ const int ParticleFilter::sizeParticle = 2;
 
 std::default_random_engine ParticleFilter::generator;
 
+ParticleFilter::ParticleFilter(int n) : numParticles(n) {
+	classifier = NULL;
+	intImage = NULL;
+	particles = NULL;
+	resampleBuffer = NULL;
+	confidence = NULL;
+}
+
 ParticleFilter::ParticleFilter(StrongClassifier *c, IntegralImage *i,
 	const Rect &t, int n) : numParticles(n), classifier(c), intImage(i), target(t) {
+
 	particles = new int[numParticles * sizeParticle];
 	InitParticles();
-
 	confidence = new float[numParticles];
-
 	resampleBuffer = new int[numParticles * sizeParticle];
 }
 
@@ -29,9 +36,12 @@ void ParticleFilter::InitParticles() {
 }
 
 ParticleFilter::~ParticleFilter() {
-	delete[] particles;
-	delete[] resampleBuffer;
-	delete[] confidence;
+	if (particles != NULL)
+		delete[] particles;
+	if (resampleBuffer != NULL)
+		delete[] resampleBuffer;
+	if (confidence != NULL)
+		delete[] confidence;
 }
 
 void ParticleFilter::Propagate(const Size &imgSize) {
@@ -83,8 +93,7 @@ void ParticleFilter::Resample() {
 	target.upper = particles[maxParticle * sizeParticle];
 	target.left = particles[maxParticle * sizeParticle + 1];
 	InitParticles();
-
-
+	
 	/*
 	// Add up all the confidence to get the cdf.
 	for (int i = 1; i < numParticles; i++) {

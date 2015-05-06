@@ -80,8 +80,8 @@ bool RGIFeature::Extract(const IntegralImage *intImage, const Rect &roi, Feature
 			scaledWidth = (float)curSize.width / initSize.width;
 			scaledHeight = (float)curSize.height / initSize.height;
 
-			scaledPatch.width = floorf((float)patch.width * scaledWidth + 0.5f);
-			scaledPatch.height = floorf((float)patch.height * scaledHeight + 0.5f);
+			scaledPatch.width = (int)floorf((float)patch.width * scaledWidth + 0.5f);
+			scaledPatch.height = (int)floorf((float)patch.height * scaledHeight + 0.5f);
 
 			if (scaledPatch.height < minimumSize.height || scaledPatch.width < minimumSize.width) {
 				// After rescaling, the patch is too small, the feature is invalid.
@@ -89,8 +89,8 @@ bool RGIFeature::Extract(const IntegralImage *intImage, const Rect &roi, Feature
 				return false;
 			}
 
-			scaledPatch.left = floorf((float)patch.left * scaledWidth + 0.5f);
-			scaledPatch.upper = floorf((float)patch.upper * scaledHeight + 0.5f);
+			scaledPatch.left = (int)floorf((float)patch.left * scaledWidth + 0.5f);
+			scaledPatch.upper = (int)floorf((float)patch.upper * scaledHeight + 0.5f);
 		}
 		else {
 			// The new patch is the same size as the original one.

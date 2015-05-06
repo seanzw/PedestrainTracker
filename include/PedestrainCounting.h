@@ -12,6 +12,7 @@
 #include "BKGCutDetector.h"
 #include "AdaBoostClassifier.h"
 #include "HoGIntegralImage.h"
+#include "RGIIntegralImage.h"
 #include "GrayScaleIntegralImage.h"
 #include "StrongClassifierDirectSelect.h"
 #include "ParticleFilterTracker.h"
