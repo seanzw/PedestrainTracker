@@ -44,6 +44,10 @@ Rect::operator cv::Rect() const {
 	return cv::Rect(left, upper, width, height);
 }
 
+Rect::operator Size() const {
+	return Size(width, height);
+}
+
 
 Point2D::Point2D(int r, int c) : row(r), col(c) {}
 

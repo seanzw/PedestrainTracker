@@ -19,10 +19,9 @@ public:
 	 * This constructor doesn't initialize particles.
 	 * Used for child class such as ParticleFitlerConstVelocity.
 	 */
-	ParticleFilter(int n = 100);
+	ParticleFilter(int n = 100, int szParticle = 2);
 
-	ParticleFilter(StrongClassifier *classifier, IntegralImage *intImage, 
-		const Rect &target, int n = 100);
+	ParticleFilter(const Rect &target, int n = 100, int szParticle = 2);
 
 	virtual ~ParticleFilter();
 
@@ -33,9 +32,18 @@ public:
 	 */
 	virtual void Propagate(const Size &imgSize);
 
-	virtual void Observe();
+	virtual void Observe(StrongClassifier *classifier, const IntegralImage *intImage);
 
-	void Resample();
+	/**
+	 * Resample directly around the best particle.
+	 */
+	void ResampleWithBest();
+	
+	/**
+	 * Resample with the confidence.
+	 */
+	void ResampleWithConfidence();
+
 
 	// Draw the particles.
 	void DrawParticles(cv::Mat &img, const cv::Scalar &color) const;
@@ -46,6 +54,9 @@ public:
 
 	const Rect &GetTarget() const;
 
+	// Initialize the particles.
+	virtual void InitParticles();
+
 protected:
 
 	// The sizeof particles. Here it should be 2. Its structure like:
@@ -55,14 +66,14 @@ protected:
 	// }
 	const int numParticles;
 	int *particles;
-	static const int sizeParticle;
+	const int sizeParticle;
 	
 	float *confidence;
 
 	Rect target;
 
 	// Seed.
-	static std::default_random_engine generator;
+	std::default_random_engine generator;
 
 	// Gaussian random generator.
 	std::normal_distribution<float> gaussian;
@@ -72,15 +83,6 @@ protected:
 
 	// A buffer used in resampling.
 	int *resampleBuffer;
-
-	// The online boosting classifier.
-	StrongClassifier *classifier;
-
-	// Feature extractor.
-	IntegralImage *intImage;
-
-	// Initialize the particles.
-	void InitParticles();
 
 	// Binary search, used in resample.
 	inline int BinarSearch(float prob) const {

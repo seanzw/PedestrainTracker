@@ -48,7 +48,7 @@ void HoGIntegralImage::CalculateInt(const cv::Mat &img) {
 	// Get the pointer to image data.
 	uchar *imgData = img.data;
 
-	int imgStep = img.step1();
+	int imgStep = img.step[0];
 
 	unsigned int curIntPos, curImgPos;
 

@@ -53,7 +53,7 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 		particleFilter->Propagate(imgSize);
 
 		// Make the observation.
-		particleFilter->Observe();
+		particleFilter->Observe(classifier, intImage);
 
 		// Draw the particles for debugging.
 		particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
@@ -61,7 +61,7 @@ void ParticleFilterTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 		cv::imwrite("ParticlesConfidence.jpg", frame);
 		cv::waitKey();
 
-		particleFilter->Resample();
+		particleFilter->ResampleWithBest();
 
 		// Draw the particles for debugging.
 		particleFilter->DrawParticles(frame, cv::Scalar(0.0f, 0.0f, 255.0f));

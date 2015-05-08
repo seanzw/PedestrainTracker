@@ -314,7 +314,7 @@ int main(int argc, char *argv[]) {
 #endif
 		
 		StrongClassifierDirectSelect classifier(50, 250, Size(target.width, target.height), 2);
-		ParticleFilter particleFilter(&classifier, &intImage, target, 500);
+		ParticleFilter particleFilter(target, 500);
 		SingleSampler sampler(5, 10);
 
 		// Sample.

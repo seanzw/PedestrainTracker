@@ -33,8 +33,8 @@ void RGIIntegralImage::CalculateInt(const cv::Mat &img) {
 	uchar *imgData = img.data;
 	uchar *grayData = img.data;
 
-	int imgStep = img.step1();
-	int grayStep = gray.step1();
+	int imgStep = img.step[0];
+	int grayStep = gray.step[0];
 
 	unsigned int curIntPos = 0, curImgPos = 0, curGrayPos = 0;
 	int bin;

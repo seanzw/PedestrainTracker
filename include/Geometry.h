@@ -40,6 +40,8 @@ public:
 
 	// Explicit conversion.
 	explicit operator cv::Rect() const;
+
+	explicit operator Size() const;
 };
 
 class Point2D {

@@ -1,19 +1,12 @@
 #include "ParticleFilter.h"
 
-const int ParticleFilter::sizeParticle = 2;
-
-std::default_random_engine ParticleFilter::generator;
-
-ParticleFilter::ParticleFilter(int n) : numParticles(n) {
-	classifier = NULL;
-	intImage = NULL;
+ParticleFilter::ParticleFilter(int n, int szParticle) : numParticles(n), sizeParticle(szParticle) {
 	particles = NULL;
 	resampleBuffer = NULL;
 	confidence = NULL;
 }
 
-ParticleFilter::ParticleFilter(StrongClassifier *c, IntegralImage *i,
-	const Rect &t, int n) : numParticles(n), classifier(c), intImage(i), target(t) {
+ParticleFilter::ParticleFilter(const Rect &t, int n, int szParticle) : numParticles(n), target(t), sizeParticle(szParticle) {
 
 	particles = new int[numParticles * sizeParticle];
 	InitParticles();
@@ -57,7 +50,7 @@ void ParticleFilter::Propagate(const Size &imgSize) {
 	}
 }
 
-void ParticleFilter::Observe() {
+void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *intImage) {
 	int *curParticle = particles;
 	Rect roi(0, 0, target.width, target.height);
 
@@ -78,7 +71,7 @@ void ParticleFilter::Observe() {
 	NormalizeConfidence();
 }
 
-void ParticleFilter::Resample() {
+void ParticleFilter::ResampleWithBest() {
 
 	// We want to cheat...
 	float maxConf = 0.0f;
@@ -94,7 +87,9 @@ void ParticleFilter::Resample() {
 	target.left = particles[maxParticle * sizeParticle + 1];
 	InitParticles();
 	
-	/*
+}
+
+void ParticleFilter::ResampleWithConfidence() {
 	// Add up all the confidence to get the cdf.
 	for (int i = 1; i < numParticles; i++) {
 		confidence[i] += confidence[i - 1];
@@ -132,8 +127,6 @@ void ParticleFilter::Resample() {
 	// Get the new target.
 	target.upper = (int)(sumUpper / numParticles);
 	target.left = (int)(sumLeft / numParticles);
-
-	*/
 }
 
 void ParticleFilter::DrawParticles(cv::Mat &img, const cv::Scalar &color) const {

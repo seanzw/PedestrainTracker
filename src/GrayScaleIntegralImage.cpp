@@ -30,7 +30,7 @@ void GrayScaleIntegralImage::CalculateInt(const cv::Mat &img) {
 	// Clear the integral image.
 	memset((void *)intImage, 0, sizeof(unsigned int) * width * height);
 
-	int step = img.step1();
+	int step = img.step[0];
 
 	// The temp sum for each row.
 	unsigned int sumRow;
