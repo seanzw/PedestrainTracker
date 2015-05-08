@@ -62,3 +62,45 @@ void GrayScaleIntegralImage::CalculateInt(const cv::Mat &img) {
 		}
 	}
 }
+
+void GrayScaleIntegralImage::CalculateTiltInt(const cv::Mat &img){
+	//clear the integral image
+	memset((unsigned int *)intImage, 0, sizeof(unsigned int) * (width+1)  * (height+2));
+	
+	//size_t step = 1;
+	//calculate the numbers of bytes each channel occupies 
+	int step = img.step1();
+
+	//initialize the boundary
+	for (int col = 0; col != (width + 1); ++col){
+		//RSAT(x,-2) = 0
+		intImage[col] = 0;
+		//RSAT(x,-1) = 0
+		intImage[(width + 1) + col] = 0;
+	}
+
+	
+	for (size_t row = 0; row != (height + 2); ++row){
+		//RSAT(-1,y) = 0
+		intImage[(width + 1)*row] = 0;
+	}
+
+	for (size_t row = 2; row!= (height+2); ++row){
+
+		int curIntPos = row*(width+1);
+		int curImgPos = row*step;
+
+		for (size_t col = 1; col != (width+1); ++col){
+
+			intImage[curIntPos + col] = intImage[curIntPos - (width + 1) + (col - 1)] +
+				intImage[curIntPos - (width + 1) + (col + 1)] -
+				intImage[curIntPos - 2 * (width + 1) + col] +
+				img.data[curImgPos + col] +
+				img.data[curImgPos - (width + 1) + col];
+		}
+
+	}
+
+	
+
+}
