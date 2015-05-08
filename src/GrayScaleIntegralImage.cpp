@@ -3,6 +3,7 @@
 GrayScaleIntegralImage::GrayScaleIntegralImage(const cv::Mat &img) : IntegralImage(img) {
 	// Initialize the integral image.
 	intImage = new unsigned int[width * height];
+	tiltIntImage = new unsigned int[(width + 1) * (height + 2)];
 }
 
 GrayScaleIntegralImage::GrayScaleIntegralImage(int w, int h) : IntegralImage(w, h) {
@@ -12,6 +13,7 @@ GrayScaleIntegralImage::GrayScaleIntegralImage(int w, int h) : IntegralImage(w, 
 GrayScaleIntegralImage::~GrayScaleIntegralImage() {
 	if (intImage != NULL) {
 		delete[] intImage;
+		delete[] tiltIntImage;
 	}
 }
 
