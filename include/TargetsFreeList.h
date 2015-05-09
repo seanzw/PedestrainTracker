@@ -14,13 +14,15 @@ struct TargetFreeListNode {
 	TargetFreeListNode *nextFree;
 	bool isFree;
 
-	TargetFreeListNode();
+	TargetFreeListNode(int numParticles, 
+		int numSelectors, int numWeakClassifiers, int numBackups);
 	~TargetFreeListNode();
 };
 
 class TargetFreeList {
 public:
-	TargetFreeList(int capacity, IntegralImage *intImage);
+	TargetFreeList(int capacity, int numParticles,
+		int numSelectors, int numWeakClassifiers, int numBackups);
 	~TargetFreeList();
 
 	/**
@@ -28,14 +30,16 @@ public:
 	 */
 	void ResetOneTarget(int index);
 
-	int InitializeTarget();
+	int InitializeTarget(const Rect &target, const Point2D &initVelocity);
 	
 	void Update(int index, const IntegralImage *intImage, );
 
+	// The array of nodes.
+	std::vector<TargetFreeListNode> listNodes;
+	int capacity;
+
 private:
 
-	// The array of nodes.
-	TargetFreeListNode *listNodes;
 	TargetFreeListNode *freeNodes;
 
 };
