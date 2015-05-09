@@ -4,6 +4,8 @@
 #ifndef GEOMETRY_HEADER
 #define GEOMETRY_HEADER
 
+#define ONEOVERSQRT2PI 0.39894228
+
 #include "GlobalHeader.h"
 
 class Rect;
@@ -50,7 +52,20 @@ public:
 
 	Point2D &operator=(const Rect &r);
 
+	inline float SquaredDistance(const Point2D &other) const {
+		return (row - other.row) * (row - other.row) + (col - other.col) * (col - other.col);
+	}
+
+	inline float Distance(const Point2D &other) const {
+		return sqrtf(SquaredDistance(other));
+	}
+
 	int row, col;
 };
+
+inline float GetGaussianProb(float mean, float sigma, float value) {
+	float invSimga = 1.0f / sigma;
+	return ONEOVERSQRT2PI * invSimga * expf(-0.5 * powf((value - mean) * invSimga, 2.0));
+}
 
 #endif

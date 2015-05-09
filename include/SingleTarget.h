@@ -41,10 +41,14 @@ public:
 
 	/**
 	 * Observe the particles.
+	 * weight_particle = detectionWeight * P(particle, detection) + classifierWeight * Conf(particle)
 	 *
-	 * @param detection	The associate detection, if any.
+	 * @param detection			The associate detection, if any.
+	 * @param detectionWeight	weight for detection term
+	 * @param classifierWeight	weight for classifier term
 	 */
-	void Observe(const IntegralImage *intImage, const Rect *detection = NULL);
+	void Observe(const IntegralImage *intImage, const Rect *detection,
+		float detectionWeight, float classifierWeight);
 
 	/**
 	 * Update the classifier.
@@ -52,6 +56,15 @@ public:
 	 * and we are damn sure this is the correct one.
 	 */
 	void Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
+
+	/**
+	 * Update the detection sequence.
+	 */
+	inline void UpdateSeq(bool isDetected) {
+		detectionSeq >>= 1;
+		if (isDetected)
+			detectionSeq |= 0x08;
+	}
 
 	inline void ResampleWithBest() {
 		particleFilter->ResampleWithBest();
@@ -66,6 +79,20 @@ private:
 	StrongClassifierDirectSelect *classifier;
 	ParticleFilterConstVelocity *particleFilter;
 
+	/**
+	 * This variable records the detections in the last 4 frames.
+	 * It is set to one if in that frame this target is detected.
+	 * The current frame is MSB.
+	 *
+	 *				[current]  [current - 4]
+	 *					|			|
+	 *	0	0	0	0	0	0	0	0
+	 *
+	 * The sigma for velocity is set as:
+	 * v_sigma = 1.0f / (float)detectionSeq
+	 *
+	 */
+	uchar detectionSeq;
 };
 
 #endif

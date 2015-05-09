@@ -32,7 +32,16 @@ public:
 	 */
 	virtual void Propagate(const Size &imgSize);
 
+	/**
+	 * Observe with classifier output confidence.
+	 */
 	virtual void Observe(StrongClassifier *classifier, const IntegralImage *intImage);
+
+	/**
+	 * Observe with classifier output confidence and associated detection.
+	 */
+	virtual void Observe(StrongClassifier *classifier, const IntegralImage *intImage,
+		const Rect &detection, float detectionWeight, float classifierWeight);
 
 	/**
 	 * Resample directly around the best particle.
@@ -102,27 +111,6 @@ protected:
 			mid = (start + end) / 2;
 		}
 		return end;
-	}
-
-	/**
-	 * Normalize the confidence to [0, 1].
-	 */
-	inline void NormalizeConfidence() {
-		float minimumConf = FLT_MAX;
-		float sumConf = 0.0f;
-		for (int i = 0; i < numParticles; i++) {
-			if (confidence[i] < minimumConf) {
-				minimumConf = confidence[i];
-			}
-			sumConf += confidence[i];
-		}
-
-		sumConf -= numParticles * minimumConf;
-		float invSum = 1.0f / sumConf;
-		for (int i = 0; i < numParticles; i++) {
-			confidence[i] -= minimumConf;
-			confidence[i] *= invSum;
-		}
 	}
 
 };

@@ -83,6 +83,9 @@ bool StrongClassifierDirectSelect::Update(const IntegralImage *intImage,
 
 	}
 
+	// Normalize the alpha.
+	NormalizeAlpha();
+
 	// If we are gonna replace the weakest classifier...
 	if (this->useFeatureReplace) {
 		int replaced = this->selectors[0]->ReplaceWeakestClassifier(this->sumErrors, this->patchSize);

@@ -37,6 +37,17 @@ protected:
 	// Whether we replace the weakest classifier in trainging.
 	bool useFeatureReplace;
 
+	inline void NormalizeAlpha() {
+		float sum = 0.0f;
+		for (int i = 0; i < numSelector; i++) {
+			sum += alpha[i];
+		}
+		float invSum = 1.0f / sum;
+		for (int i = 0; i < numSelector; i++) {
+			alpha[i] *= invSum;
+		}
+	}
+
 };
 
 

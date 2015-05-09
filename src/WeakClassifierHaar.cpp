@@ -49,5 +49,5 @@ float WeakClassifierHaar::Evaluate(const IntegralImage *intImage, const Rect &ro
 	if (!valid) {
 		return 0.0f;
 	}
-	return thresholder->Classify(feature);
+	return thresholder->Classify(feature) == 1 ? 1.0f : 0.0f;
 }

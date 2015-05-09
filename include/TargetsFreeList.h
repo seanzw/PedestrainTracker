@@ -12,6 +12,7 @@
 struct TargetFreeListNode {
 	SingleTarget *target;
 	TargetFreeListNode *nextFree;
+	bool isFree;
 
 	TargetFreeListNode();
 	~TargetFreeListNode();
@@ -27,14 +28,15 @@ public:
 	 */
 	void ResetOneTarget(int index);
 
-	int InitializeTarget(IntegralImage *intImage);
+	int InitializeTarget();
 	
-	void Update(int index, const IntegralImage *intImage, )
+	void Update(int index, const IntegralImage *intImage, );
 
 private:
 
 	// The array of nodes.
 	TargetFreeListNode *listNodes;
+	TargetFreeListNode *freeNodes;
 
 };
 

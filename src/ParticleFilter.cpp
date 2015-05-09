@@ -54,10 +54,6 @@ void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *
 	int *curParticle = particles;
 	Rect roi(0, 0, target.width, target.height);
 
-	// Minimum confidence... I think we can do it better...
-	// Maybe normalize the confidence in the lower classifier level...
-	float minimumConf = FLT_MAX;
-
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
 		// Set the roi.
 		roi.upper = curParticle[0];
@@ -66,9 +62,31 @@ void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *
 		// Evaluate the particle.
 		confidence[i] = classifier->Evaluate(intImage, roi);
 	}
-	
-	// Normalize the confidence.
-	NormalizeConfidence();
+}
+
+void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *intImage,
+	const Rect &detection, float detectionWeight, float classifierWeight) {
+
+	int *curParticle = particles;
+	Rect roi(0, 0, target.width, target.height);
+
+	Point2D detectionPoint(detection.upper, detection.left);
+
+	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
+		// Set the roi.
+		roi.upper = curParticle[0];
+		roi.left = curParticle[1];
+
+		Point2D particlePoint(curParticle[0], curParticle[1]);
+
+		// Evaluate the particle.
+		confidence[i] = classifierWeight * classifier->Evaluate(intImage, roi);
+
+		// Add the detection term.
+		confidence[i] += detectionWeight * GetGaussianProb(0.0f, 
+			detection.width * 0.125f, 
+			detectionPoint.Distance(particlePoint));
+	}
 }
 
 void ParticleFilter::ResampleWithBest() {
@@ -95,7 +113,7 @@ void ParticleFilter::ResampleWithConfidence() {
 		confidence[i] += confidence[i - 1];
 	}
 
-	resampler = std::uniform_real_distribution<float>(0.0f, 1.0f);
+	resampler = std::uniform_real_distribution<float>(0.0f, confidence[numParticles - 1]);
 	int *curParticle = resampleBuffer;
 
 	int sumUpper = 0;
