@@ -31,12 +31,14 @@ public:
 	void ResetOneTarget(int index);
 
 	int InitializeTarget(const Rect &target, const Point2D &initVelocity);
-	
-	void Update(int index, const IntegralImage *intImage, );
+
+	void Propagate(const Size &imgSize);
+
+	// void Update(int index, const IntegralImage *intImage, );
 
 	// The array of nodes.
 	std::vector<TargetFreeListNode> listNodes;
-	int capacity;
+	const int capacity;
 
 private:
 

@@ -1,7 +1,7 @@
 #include "ImageDetector.h"
 
 ImageDetector::ImageDetector(IntegralImage *i, 
-	Classifier *c, Options &op) {
+	Classifier *c, const Options &op) {
 	intImage = i;
 	classifier = c;
 	scaleMin = op.scaleMin;

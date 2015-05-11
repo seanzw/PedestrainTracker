@@ -27,7 +27,7 @@ struct rect
 // Apply this directly on the whole image.
 class ImageDetector {
 public:
-	ImageDetector(IntegralImage *i, Classifier *c, Options &op);
+	ImageDetector(IntegralImage *i, Classifier *c, const Options &op);
 	
 	/**
 	 * Detect, return the resutl in a vector.

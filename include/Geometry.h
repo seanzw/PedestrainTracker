@@ -23,6 +23,10 @@ public:
 	Size operator*(float f);
 	bool operator==(const Size &other) const;
 
+	inline explicit operator cv::Size() const {
+		return cv::Size(width, height);
+	}
+
 	bool IsIn(const Rect &rect) const;
 	bool IsIn(int upper, int left, int width, int height) const;
 };

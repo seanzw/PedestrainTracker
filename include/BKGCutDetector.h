@@ -18,7 +18,7 @@
 class BKGCutDetector : public ImageDetector {
 public:
 	// Constructor.
-	BKGCutDetector(IntegralImage *i, Classifier *c, Options &op);
+	BKGCutDetector(IntegralImage *i, Classifier *c, const Options &op);
 
 	bool Detect(const cv::Mat &img, 
 		const cv::Point &origin,
