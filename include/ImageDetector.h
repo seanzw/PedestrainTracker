@@ -10,6 +10,7 @@
 // #include "FeatureExtractor.h"
 #include "Classifier.h"
 #include "Pool.h"
+#include "UnionFind.h"
 
 struct rect
 {
@@ -27,22 +28,21 @@ struct rect
 // Apply this directly on the whole image.
 class ImageDetector {
 public:
-	ImageDetector(IntegralImage *i, Classifier *c, const Options &op);
+	ImageDetector(Classifier *c, const Options &op);
 	
 	/**
 	 * Detect, return the resutl in a vector.
 	 * Notice that sometimes we only want to detect in a subregion of the original
 	 * image, in such case we have to give the origin parameter, which is the coordinates
 	 * of the upper-left corner in the original image.
-	 * @param img: the image we need to detect.
+	 * @param img: unused here, only for virtual fucntion.
+	 * @param intImage: the integral image.
 	 * @param origin: the coordinates of the img's upper-left corner in its parents (if any)
 	 * @param bkg: unused here, for BKGCutDetector.
-	 * @param isMerge: merge the detection with accumulated evidence.
 	 * @return true if everything is fine.
 	 */
-	virtual bool Detect(const cv::Mat &img, 
-		const cv::Point &origin = cv::Point(0, 0),
-		bool isMerge = true,
+	virtual bool Detect(const cv::Mat &img, const IntegralImage *intImage,
+		const Rect &subRegion,
 		const cv::Mat &bkg = defaultBackground
 		);
 
@@ -55,7 +55,6 @@ public:
 	Pool<rect> dets;
 
 protected:
-	IntegralImage *intImage;
 	Classifier *classifier;
 	feat scaleMin;
 	feat scaleMax;
@@ -68,6 +67,11 @@ protected:
 	
 	// Temp pool used in merge.
 	Pool<rect> temp;
+
+	// This is used in union-find.
+	Pool<int> roots;
+
+	UnionFind *unionFind;
 
 	// Some helper functions.
 	// Is these two detection the same one?

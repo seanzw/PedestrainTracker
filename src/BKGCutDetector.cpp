@@ -1,16 +1,15 @@
 #include "BKGCutDetector.h"
 
-BKGCutDetector::BKGCutDetector(IntegralImage *i, Classifier *c, const Options &op)
-	: ImageDetector(i, c, op) {
+BKGCutDetector::BKGCutDetector(Classifier *c, const Options &op)
+	: ImageDetector(c, op) {
 	binaryThre = op.binaryThre;
 	invPerimeterThre = op.invPerimeterRatio;
 	minAreaRatio = op.minAreaRatio;
 	maxAreaRatio = op.maxAreaRatio;
 }
 
-bool BKGCutDetector::Detect(const cv::Mat &img,
-	const cv::Point &origin,
-	bool isMerge,
+bool BKGCutDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
+	const Rect &subRegion,
 	const cv::Mat &bkg
 	) {
 
@@ -61,7 +60,8 @@ bool BKGCutDetector::Detect(const cv::Mat &img,
 			BKGDEBUG("block", block);
 			BKGWAIT;
 
-			ImageDetector::Detect(block, cv::Point(det.x1, det.y1), isMerge);
+			Rect subRegion(det.x1, det.y1, det.x2 - det.x1, det.y2 - det.y1);
+			ImageDetector::Detect(block, intImage, subRegion);
 		}
 	}
 

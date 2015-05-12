@@ -18,11 +18,10 @@
 class BKGCutDetector : public ImageDetector {
 public:
 	// Constructor.
-	BKGCutDetector(IntegralImage *i, Classifier *c, const Options &op);
+	BKGCutDetector(Classifier *c, const Options &op);
 
-	bool Detect(const cv::Mat &img, 
-		const cv::Point &origin,
-		bool isMerge = true,
+	virtual bool Detect(const cv::Mat &img, const IntegralImage *intImage,
+		const Rect &subRegion,
 		const cv::Mat &bkg = defaultBackground
 		);
 

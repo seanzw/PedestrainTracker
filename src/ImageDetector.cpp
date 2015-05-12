@@ -1,8 +1,6 @@
 #include "ImageDetector.h"
 
-ImageDetector::ImageDetector(IntegralImage *i, 
-	Classifier *c, const Options &op) {
-	intImage = i;
+ImageDetector::ImageDetector(Classifier *c, const Options &op) {
 	classifier = c;
 	scaleMin = op.scaleMin;
 	scaleMax = op.scaleMax;
@@ -13,16 +11,10 @@ ImageDetector::ImageDetector(IntegralImage *i,
 	modelHeight = op.modelHeight;
 }
 
-bool ImageDetector::Detect(const cv::Mat &img, 
-	const cv::Point &origin, 
-	bool isMerge,
+bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
+	const Rect &subRegion,
 	const cv::Mat &bkg
 	) {
-	// Calculate the integral image.
-	intImage->CalculateInt(img);
-
-	// Set the vector.
-	Pool<rect> &dst = isMerge ? (temp) : (dets);
 
 	// Clear.
 	temp.clear();
@@ -32,89 +24,144 @@ bool ImageDetector::Detect(const cv::Mat &img,
 	for (feat scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
 		roi.width = (int)scale * modelWidth;
 		roi.height = (int)scale * modelHeight;
-		for (int i = 0; i <= img.size().height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
-			for (int j = 0; j <= img.size().width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
+		for (int i = subRegion.upper; i <= subRegion.height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
+			for (int j = subRegion.left; j <= subRegion.width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
 				roi.upper = i;
 				roi.left = j;
 				if (classifier->Classify(intImage, roi, scale) > 0) {
-					dst.Push(rect(j + origin.x, 
-						i + origin.y, 
-						j + roi.width + origin.x,
-						i + roi.height + origin.y));
+					temp.Push(rect(j + subRegion.left,
+						i + subRegion.upper, 
+						j + roi.width + subRegion.left,
+						i + roi.height + subRegion.upper));
 				}
 			}
 		}
 	}
 
-	// Merge the detections.
-	if (isMerge) {
-		if (evidence > 1) {
-
-			// Union.
-			for (int i = 0; i < dst.size; i++) {
-				for (int j = i; j < dst.size; j++) {
-					if (IsEqual(dst[i], dst[j])) {
-						if (dst[i].re == -1) {
-							dst[i].re = dst[j].re = i;
-						} else {
-							dst[j].re = dst[i].re;
-						}
-					}
-				}
-			}
-
-			// Count.
-			for (int i = 0; i < dst.size; i++) {
-				int count = 0;
-				for (int j = i; j < dst.size; j++) {
-					if (dst[i].re == i && dst[j].re == i) 
-						count++;
-				}
-
-				if (dst[i].re == i) 
-					dst[i].count = count;
-
-				for (int j = i; j < dst.size; j++) {
-					if (dst[i].re == i && dst[j].re == i)
-						dst[j].count = count;
-				}
-			}
-		}
-
-		// Merge them...
-		for (int i = 0; i < dst.size; i++)
-		{
-			// This one has no friends...
-			if (dst[i].re == -1) 
-				continue;
-
-			if (dst[i].re >= 0 && dst[i].count >= evidence) {
-				rect t(0, 0, 0, 0);
-
-				for (int j = i; j < dst.size; j++) {
-					if (dst[j].re != dst[i].re) 
-						continue;
-
-					t.x1 += dst[j].x1;
-					t.y1 += dst[j].y1;
-					t.x2 += dst[j].x2;
-					t.y2 += dst[j].y2;
-					t.count = dst[j].count;
-					dst[j].count = -1;
-				}
-
-				t.x1 = t.x1 / t.count;
-				t.y1 = t.y1 / t.count;
-				t.x2 = t.x2 / t.count;
-				t.y2 = t.y2 / t.count;
-
-				dets.Push(t);
-
-				if (t.count <= 1) 
-					printf("ERROR: COUNT WRONG!");
+	unionFind = new UnionFind(temp.size);
+	for (int i = 0; i < temp.size; i++) {
+		for (int j = 0; j < temp.size; j++) {
+			if (IsEqual(temp[i], temp[j])) {
+				// Union.
+				unionFind->Union(i, j);
 			}
 		}
 	}
+
+	// Merge them to get the new detection.
+	dets.clear();
+	roots.clear();
+
+	for (int i = 0; i < temp.size; i++) {
+		int root = unionFind->Find(i);
+		int size = unionFind->GetSize(root);
+		/*std::cout << size << std::endl;*/
+
+		// This component is big enough.
+		if (size >= evidence) {
+
+			// Which components is it in?
+			int index;
+
+			for (index = 0; index < roots.size; index++) {
+				if (roots[index] == root) {
+					break;
+				}
+			}
+
+			if (index == roots.size) {
+				// We have met a new component.
+				roots.Push(root);
+				dets.Push(temp[i]);
+			}
+			else {
+				// Add temp[i] to the component.
+				dets[index].x1 += temp[i].x1;
+				dets[index].y1 += temp[i].y1;
+				dets[index].x2 += temp[i].x2;
+				dets[index].y2 += temp[i].y2;
+			}
+		}
+	}
+
+	// Normalize the detections.
+	for (int i = 0; i < dets.size; i++) {
+		int size = unionFind->GetSize(roots[i]);
+		dets[i].x1 /= size;
+		dets[i].y1 /= size;
+		dets[i].x2 /= size;
+		dets[i].y2 /= size;
+	}
+
+
+	//// Merge the detections.
+	//if (evidence > 1) {
+
+	//	// Union.
+	//	for (int i = 0; i < temp.size; i++) {
+	//		for (int j = i; j < temp.size; j++) {
+	//			if (IsEqual(temp[i], temp[j])) {
+	//				if (temp[i].re == -1) {
+	//					temp[i].re = temp[j].re = i;
+	//				} else {
+	//					temp[j].re = temp[i].re;
+	//				}
+	//			}
+	//		}
+	//	}
+
+	//	// Count.
+	//	for (int i = 0; i < temp.size; i++) {
+	//		int count = 0;
+	//		for (int j = i; j < temp.size; j++) {
+	//			if (temp[i].re == i && temp[j].re == i) 
+	//				count++;
+	//		}
+
+	//		if (temp[i].re == i) 
+	//			temp[i].count = count;
+
+	//		for (int j = i; j < temp.size; j++) {
+	//			if (temp[i].re == i && temp[j].re == i)
+	//				temp[j].count = count;
+	//		}
+	//	}
+	//}
+
+	//// Merge them...
+	//for (int i = 0; i < temp.size; i++)
+	//{
+	//	// This one has no friends...
+	//	if (temp[i].re == -1) 
+	//		continue;
+
+	//	if (temp[i].re >= 0 && temp[i].count >= evidence) {
+	//		rect t(0, 0, 0, 0);
+
+	//		for (int j = i; j < temp.size; j++) {
+	//			if (temp[j].re != temp[i].re) 
+	//				continue;
+
+	//			t.x1 += temp[j].x1;
+	//			t.y1 += temp[j].y1;
+	//			t.x2 += temp[j].x2;
+	//			t.y2 += temp[j].y2;
+	//			t.count = temp[j].count;
+	//			temp[j].count = -1;
+	//		}
+
+	//		t.x1 = t.x1 / t.count;
+	//		t.y1 = t.y1 / t.count;
+	//		t.x2 = t.x2 / t.count;
+	//		t.y2 = t.y2 / t.count;
+
+	//		dets.Push(t);
+
+	//		if (t.count <= 1) 
+	//			printf("ERROR: COUNT WRONG!");
+	//	}
+	//}
+	
 
 	return true;
 }

@@ -1,7 +1,7 @@
 #include "VideoDetector.h"
 
-VideoDetector::VideoDetector(ImageDetector *id, const Options &op)
-	: imgDetector(id) {
+VideoDetector::VideoDetector(IntegralImage *i, ImageDetector *id, const Options &op)
+	: imgDetector(id), intImage(i) {
 
 }
 
@@ -19,8 +19,8 @@ void VideoDetector::Detect(cv::VideoCapture &in,
 	cv::Mat frame(cv::Size(width, height), CV_8UC3);
 	cv::Mat gray(cv::Size(width, height), CV_8UC1);
 
-	// Create the origin.
-	cv::Point origin(0, 0);
+	// Set the sub-region the whole image.
+	Rect subRegion(0, 0, width, height);
 
 	// Read all the frames.
 	while (in.read(frame)) {
@@ -41,8 +41,11 @@ void VideoDetector::Detect(cv::VideoCapture &in,
 		// Remember to clear the detection first.
 		imgDetector->Clear();
 
+		// Calculate the integral image.
+		intImage->CalculateInt(gray);
+
 		// To the detection.
-		imgDetector->Detect(gray, origin, true, bkg);
+		imgDetector->Detect(gray, intImage, subRegion, bkg);
 
 		// Draw the results back into frame.
 		imgDetector->DrawDetection(frame); 

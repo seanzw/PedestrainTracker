@@ -4,7 +4,7 @@
 #ifndef GEOMETRY_HEADER
 #define GEOMETRY_HEADER
 
-#define ONEOVERSQRT2PI 0.39894228
+#define ONEOVERSQRT2PI 0.39894228f
 
 #include "GlobalHeader.h"
 

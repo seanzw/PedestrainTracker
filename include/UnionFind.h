@@ -16,6 +16,12 @@ public:
 	 * @return the number of components (between 1 and N)
 	 */
 	int GetCount() const { return this->count; }
+
+	/**
+	 * Returns the size of this components.
+	 * @return the size of this components (between 1 and N)
+	 */
+	int GetSize(int root) { return size[root]; }
 	
 	/**
      * Returns the component identifier for the component containing site <tt>p</tt>.

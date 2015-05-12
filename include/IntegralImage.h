@@ -18,6 +18,8 @@ public:
 	// Should be called before GetSum.
 	virtual void CalculateInt(const cv::Mat &img) = 0;
 
+	virtual void Dump(const char *filename) const { return; }
+
 	virtual unsigned int GetSum(const Rect &roi) const { return 0; }
 
 	// Used in HoG integral image.

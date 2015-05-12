@@ -113,3 +113,19 @@ void HoGIntegralImage::GetSum(const Rect &roi, float *result) const {
 	}
 }
 
+void HoGIntegralImage::Dump(const char *filename) const {
+	std::ofstream dump(filename, std::ios::out);
+
+	dump << std::fixed << std::setprecision(4);
+
+	for (int row = 0; row < height; row++) {
+		for (int col = 0; col < width; col++) {
+			float *originPtr = &intImage[row * m_step + col * NUM_HOG_BINS];
+			for (int i = 0; i < NUM_HOG_BINS; i++) {
+				dump << originPtr[i] << ' ';
+			}
+			dump << std::endl;
+		}
+		dump << std::endl;
+	}
+}

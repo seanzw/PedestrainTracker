@@ -14,7 +14,7 @@
 class VideoDetector {
 public:
 	// Constructor.
-	VideoDetector(ImageDetector *id, const Options &opt);
+	VideoDetector(IntegralImage *i, ImageDetector *id, const Options &opt);
 
 	// Detects.
 	void Detect(cv::VideoCapture &in, cv::VideoWriter &out,
@@ -22,7 +22,7 @@ public:
 
 protected:
 	ImageDetector *imgDetector;
-
+	IntegralImage *intImage;
 };
 
 #endif

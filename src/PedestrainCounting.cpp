@@ -243,3 +243,266 @@ void readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int
 	cvReleaseMat(&Matdata);
 
 };
+
+void PrintHelp() {
+	cout << "Extract background image from video" << endl;
+	cout << "HogDetection.exe -b inFile tempFile outFile" << endl;
+	cout << "  inFile: The path of video waiting to be detected" << endl;
+	cout << "  tempFile: The directory of saving temp pictures during extracting(default = E:\\Human_detection\\result\\temp_meanshift\\)" << endl;
+	cout << "  outFile: The path of result to be saved" << endl << endl;
+
+	cout << "Detect Pedestrians in single picture using background cut." << endl;
+	cout << "Please FIRST extract the background images from video before detect pedestrians using new method" << endl;
+	cout << "HogDetection.exe -p inFile bkg outFile" << endl;
+	cout << "  inFile: The path of video waiting to be detected" << endl;
+	cout << "  outFile: The path of result to be saved" << endl;
+	cout << "  bkg: The path of background picture extracted from video" << endl << endl;
+
+	cout << "Detect Pedestrians in video using new method:" << endl;
+	cout << "Please FIRST extract the background images from video before detect pedestrians using new method" << endl;
+	cout << "HogDetection.exe -v inFile bkg outFile isdraw isdiff scaleVideo smin smax scalestep slidestep neighbor" << endl;
+	cout << "  inFile: The path of video waiting to be detected" << endl;
+	cout << "  outFile: The path of result to be saved" << endl;
+	cout << "  bkg: The path of background picture extracted from video" << endl;
+	cout << "  isdraw: Whether to draw ROI in video (full screen scan by default)" << endl;
+	cout << "  scaleVideo: The scale of video size (default = 1.0)" << endl;
+	cout << "  isdiff: Whether to apply difference between frames analysis during detection (false by default)" << endl;
+	cout << "  smin: Minimum scale of picture scale during detection process (default = 1.5)" << endl;
+	cout << "  smax: Maximum scale of picture scale during detection process (default = 2.5)" << endl;
+	cout << "  scalestep: The step of scale increment (default = 1.07)" << endl;
+	cout << "  slidestep: The step of detection window (default = 2)" << endl;
+	cout << "  neighbor: Minimum scan times of detection (default = 8)" << endl << endl;
+
+	cout << "Detect Pedestrians in picture/video using old method" << endl;
+	cout << "HogDetection.exe -vhog|-phog inFile outFile [polygonFile [sMin sMax [scaleStep [sildeStep [neighbor]]]]]" << endl;
+	cout << "  inFile: The path of video waiting to be detected" << endl;
+	cout << "  outFile: The path of result to be saved" << endl;
+	cout << "  PolygonFile: The path of file saving polygon's information" << endl;
+	cout << "  smin: Minimum scale of picture scale during detection process (default = 1.5)" << endl;
+	cout << "  smax: Maximum scale of picture scale during detection process (default = 2.5)" << endl;
+	cout << "  scalestep: The step of scale increment (default = 1.07)" << endl;
+	cout << "  slidestep: The step of detection window (default = 2)" << endl;
+	cout << "  neighbor: Minimum scan times of detection (default = 8)" << endl;
+}
+
+void DetectSinglePictureHOG(const char *in, const char *out, 
+	const char *adaboost, const Options &opt) {
+	// Read in the AdaBoost classifier.
+	AdaBoostClassifier classifier(adaboost);
+
+	// read image
+	cv::Mat img = cv::imread(in);
+
+	cv::Mat gray(img.size(), CV_8UC1);
+	cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
+
+	HoGIntegralImage intImage(gray);
+
+	// Dump for testing!!
+	intImage.CalculateInt(gray);
+	// intImage.Dump("new_integral.txt");
+
+	ImageDetector detector(&classifier, opt);
+
+	// Set the subRegion as the whole image.
+	Rect subRegion(0, 0, img.size().width, img.size().height);
+
+	detector.Detect(gray, &intImage, subRegion);
+	detector.DrawDetection(img);
+
+	cv::imwrite(out, img);
+
+	// release data buffer
+	img.release();
+	gray.release();
+}
+
+void DetectSinglePictureBKG(const char *in, const char *bkg, const char *out,
+	const char *adaboost, const Options &opt) {
+	// Read in the AdaBoost classifier.
+	AdaBoostClassifier classifier(adaboost);
+
+	// Read image.
+	cv::Mat img = cv::imread(in);
+	cv::Mat background = cv::imread(bkg, CV_LOAD_IMAGE_GRAYSCALE);
+
+	cv::Mat gray(img.size(), CV_8UC1);
+	cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
+
+	HoGIntegralImage intImage(gray);
+	BKGCutDetector detector(&classifier, opt);
+
+	// Set the subRegion as the whole image.
+	Rect subRegion(0, 0, img.size().width, img.size().height);
+
+	// Calculate the integral image.
+	intImage.CalculateInt(gray);
+
+	detector.Detect(gray, &intImage, subRegion, background);
+	detector.DrawDetection(img);
+
+	cv::imwrite(out, img);
+
+	// release data buffer
+	img.release();
+	gray.release();
+
+}
+
+void DetectVideoHOG(const char *infile, const char *outfile, const char *adaboost, const Options &opt) {
+
+	AdaBoostClassifier classifier(adaboost);
+
+	// Open the video.
+	cv::VideoCapture in(infile);
+	if (!in.isOpened()) {
+		printf("Can't open video: %s\n", infile);
+	}
+
+	// Get the basic inforamtion.
+	double fps = in.get(cv::CAP_PROP_FPS);
+	int width = (int)in.get(cv::CAP_PROP_FRAME_WIDTH);
+	int height = (int)in.get(cv::CAP_PROP_FRAME_HEIGHT);
+	int ex = (int)in.get(cv::CAP_PROP_FOURCC);
+
+	// Open the out video.
+	cv::VideoWriter out(outfile, ex, fps / 2.0f, cv::Size(width, height));
+
+	// Initialize the detector.
+	HoGIntegralImage intImage(width, height);
+	ImageDetector imageDetector(&classifier, opt);
+	VideoDetector videoDetector(&intImage, &imageDetector, opt);
+
+	// Do the detection.
+	videoDetector.Detect(in, out);
+}
+
+void DetectVideoBKG(const char *infile, const char *bkgfile, const char *outfile,
+	const char *adaboost, const Options &opt) {
+
+	AdaBoostClassifier classifier(adaboost);
+
+	// Read the background.
+	cv::Mat bkg = cv::imread(bkgfile, CV_LOAD_IMAGE_GRAYSCALE);
+
+	// Open the video.
+	cv::VideoCapture in(infile);
+	if (!in.isOpened()) {
+		printf("Can't open video: %s\n", infile);
+	}
+
+	// Get the basic inforamtion.
+	double fps = in.get(cv::CAP_PROP_FPS);
+	int width = (int)in.get(cv::CAP_PROP_FRAME_WIDTH);
+	int height = (int)in.get(cv::CAP_PROP_FRAME_HEIGHT);
+	int ex = (int)in.get(cv::CAP_PROP_FOURCC);
+
+	// Open the out video.
+	cv::VideoWriter out(outfile, ex, fps / 2.0f, cv::Size(width, height));
+
+	// Initialize the detector.
+	HoGIntegralImage intImage(width, height);
+	BKGCutDetector detector(&classifier, opt);
+	VideoDetector videoDetector(&intImage, &detector, opt);
+
+	// Do the detection.
+	videoDetector.Detect(in, out, bkg);
+}
+
+void TrackVideoSingle(const char *infile, const char *outfile) {
+	cv::VideoCapture in(infile);
+	if (!in.isOpened()) {
+		printf("Can't open video: %s\n", infile);
+	}
+
+	// Get the basic inforamtion.
+	double fps = in.get(cv::CAP_PROP_FPS);
+	int width = (int)in.get(cv::CAP_PROP_FRAME_WIDTH);
+	int height = (int)in.get(cv::CAP_PROP_FRAME_HEIGHT);
+	int ex = (int)in.get(cv::CAP_PROP_FOURCC);
+
+	// Open the out video.
+	cv::VideoWriter out(outfile, ex, fps / 2.0f, cv::Size(width, height));
+
+	// Show the first frame and get the roi.
+	Rect target;
+	cv::Mat first(width, height, CV_8UC3);
+	in.read(first);
+	cv::imshow("First Frame", first);
+	cv::setMouseCallback("First Frame", GetTarget, (void *)&target);
+	cv::waitKey(0);
+	cv::rectangle(first, (cv::Rect)target, cv::Scalar(255.0f), 2);
+	cv::imshow("First Frame", first);
+	cv::waitKey(0);
+	in.set(cv::CAP_PROP_POS_FRAMES, 0);
+
+#ifdef USE_RGI_FEATURE
+	RGIIntegralImage intImage(width, height);
+	intImage.CalculateInt(first);
+#else
+	GrayScaleIntegralImage intImage(width, height);
+	//
+	// Prepare the integral image.
+	//
+	cv::Mat grayFirst(width, height, CV_8UC1);
+	cv::cvtColor(first, grayFirst, cv::COLOR_RGB2GRAY);
+	intImage.CalculateInt(grayFirst);
+#endif
+
+	StrongClassifierDirectSelect classifier(50, 250, Size(target.width, target.height), 2);
+	ParticleFilter particleFilter(target, 500);
+	SingleSampler sampler(5, 10);
+
+	// Sample.
+	sampler.Sample(target, Size(width, height));
+
+
+
+	// The first training.
+	for (int i = 0; i < sampler.GetNumPos(); i++) {
+		classifier.Update(&intImage, sampler.GetPosSample(i), 1);
+	}
+	for (int i = 0; i < sampler.GetNumNeg(); i++) {
+		classifier.Update(&intImage, sampler.GetNegSample(i), -1);
+	}
+
+	//
+	// Let's see how is the training goes on.
+	// Test all the positive samples.
+	//
+	for (int i = 0; i < sampler.GetNumPos(); i++) {
+		float score = classifier.Evaluate(&intImage, sampler.GetPosSample(i));
+		printf("Positive Sample %d: %f\n", i, score);
+		sampler.DrawSample(first, cv::Scalar(255.0f), i, 1);
+		cv::imshow("First Frame", first);
+		cv::waitKey(0);
+	}
+
+	//
+	// Test all the negative samples.
+	//
+	for (int i = 0; i < sampler.GetNumNeg(); i++) {
+		float score = classifier.Evaluate(&intImage, sampler.GetNegSample(i));
+		printf("Negative Sample %d: %f\n", i, score);
+		sampler.DrawSample(first, cv::Scalar(0.0f, 0.0f, 255.0f), i, -1);
+		cv::imshow("First Frame", first);
+		cv::waitKey(0);
+	}
+
+	ParticleFilterTracker pfTracker(&classifier, &intImage, &particleFilter, &sampler);
+
+	pfTracker.Track(in, out);
+}
+
+void GetTarget(int event, int x, int y, int flags, void *userParam) {
+	if (event == CV_EVENT_LBUTTONDOWN) {
+		Rect *roi = (Rect *)userParam;
+		roi->upper = y;
+		roi->left = x;
+	}
+	if (event == CV_EVENT_LBUTTONUP) {
+		Rect *roi = (Rect *)userParam;
+		roi->width = x - roi->left;
+		roi->height = y - roi->upper;
+	}
+}

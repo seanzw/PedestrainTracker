@@ -19,9 +19,11 @@ public:
 
 	// Calculate the integral image.
 	// Should be called if the img changed.
-	void CalculateInt(const cv::Mat &img);
+	virtual void CalculateInt(const cv::Mat &img);
 
-	void GetSum(const Rect &roi, float *result) const;
+	virtual void Dump(const char *filename) const;
+
+	virtual void GetSum(const Rect &roi, float *result) const;
 
 private:
 	// Data.
@@ -37,6 +39,10 @@ private:
 	inline int Direct(float x, float y) {
 		float max = 0.0;
 		int ret = 0;
+
+		// Try to avoid float problem.
+		if (y == 0.0f)
+			y = 0.01f;
 		for (int i = 0; i < 9; i++) {
 			float proj = fabsf(x * xVector[i] + y * yVector[i]);
 			if (proj > max) {
