@@ -35,10 +35,10 @@ public:
 	 * Notice that sometimes we only want to detect in a subregion of the original
 	 * image, in such case we have to give the origin parameter, which is the coordinates
 	 * of the upper-left corner in the original image.
-	 * @param img: unused here, only for virtual fucntion.
-	 * @param intImage: the integral image.
-	 * @param origin: the coordinates of the img's upper-left corner in its parents (if any)
-	 * @param bkg: unused here, for BKGCutDetector.
+	 * @param img		the image
+	 * @param intImage	the integral image
+	 * @param subRegion	the subRegion we want to detect
+	 * @param bkg		background
 	 * @return true if everything is fine.
 	 */
 	virtual bool Detect(const cv::Mat &img, const IntegralImage *intImage,

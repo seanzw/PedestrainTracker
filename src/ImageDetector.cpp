@@ -22,8 +22,8 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 	Rect roi;
 	// Slide the window and detect.
 	for (float scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
-		roi.width = (int)scale * modelWidth;
-		roi.height = (int)scale * modelHeight;
+		roi.width = (int)(scale * modelWidth);
+		roi.height = (int)(scale * modelHeight);
 		for (int i = 0; i <= subRegion.height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
 			for (int j = 0; j <= subRegion.width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
 				roi.upper = i + subRegion.upper;
@@ -38,131 +38,131 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 		}
 	}
 
-	unionFind = new UnionFind(temp.size);
-	for (int i = 0; i < temp.size; i++) {
-		for (int j = i + 1; j < temp.size; j++) {
-			if (IsEqual(temp[i], temp[j])) {
-				// Union.
-				unionFind->Union(i, j);
-			}
-		}
-	}
+	//unionFind = new UnionFind(temp.size);
+	//for (int i = 0; i < temp.size; i++) {
+	//	for (int j = i + 1; j < temp.size; j++) {
+	//		if (IsEqual(temp[i], temp[j])) {
+	//			// Union.
+	//			unionFind->Union(i, j);
+	//		}
+	//	}
+	//}
 
-	// Merge them to get the new detection.
-	roots.clear();
+	//// Merge them to get the new detection.
+	//roots.clear();
 
-	// Store the original number of detections.
-	int originalDetections = dets.size;
+	//// Store the original number of detections.
+	//int originalDetections = dets.size;
 
-	for (int i = 0; i < temp.size; i++) {
-		int root = unionFind->Find(i);
-		int size = unionFind->GetSize(root);
-		/*std::cout << size << std::endl;*/
+	//for (int i = 0; i < temp.size; i++) {
+	//	int root = unionFind->Find(i);
+	//	int size = unionFind->GetSize(root);
+	//	/*std::cout << size << std::endl;*/
 
-		// This component is big enough.
-		if (size >= evidence) {
+	//	// This component is big enough.
+	//	if (size >= evidence) {
 
-			// Which components is it in?
-			int index;
+	//		// Which components is it in?
+	//		int index;
 
-			for (index = 0; index < roots.size; index++) {
-				if (roots[index] == root) {
-					break;
-				}
-			}
-
-			if (index == roots.size) {
-				// We have met a new component.
-				roots.Push(root);
-				dets.Push(temp[i]);
-			}
-			else {
-				// Add temp[i] to the component.
-				dets[index].x1 += temp[i].x1;
-				dets[index].y1 += temp[i].y1;
-				dets[index].x2 += temp[i].x2;
-				dets[index].y2 += temp[i].y2;
-			}
-		}
-	}
-
-	// Normalize the detections.
-	for (int i = originalDetections; i < dets.size; i++) {
-		int size = unionFind->GetSize(roots[i]);
-		dets[i].x1 /= size;
-		dets[i].y1 /= size;
-		dets[i].x2 /= size;
-		dets[i].y2 /= size;
-	}
-
-
-	//// Merge the detections.
-	//if (evidence > 1) {
-
-	//	// Union.
-	//	for (int i = 0; i < temp.size; i++) {
-	//		for (int j = i; j < temp.size; j++) {
-	//			if (IsEqual(temp[i], temp[j])) {
-	//				if (temp[i].re == -1) {
-	//					temp[i].re = temp[j].re = i;
-	//				} else {
-	//					temp[j].re = temp[i].re;
-	//				}
+	//		for (index = 0; index < roots.size; index++) {
+	//			if (roots[index] == root) {
+	//				break;
 	//			}
 	//		}
-	//	}
 
-	//	// Count.
-	//	for (int i = 0; i < temp.size; i++) {
-	//		int count = 0;
-	//		for (int j = i; j < temp.size; j++) {
-	//			if (temp[i].re == i && temp[j].re == i) 
-	//				count++;
+	//		if (index == roots.size) {
+	//			// We have met a new component.
+	//			roots.Push(root);
+	//			dets.Push(temp[i]);
 	//		}
-
-	//		if (temp[i].re == i) 
-	//			temp[i].count = count;
-
-	//		for (int j = i; j < temp.size; j++) {
-	//			if (temp[i].re == i && temp[j].re == i)
-	//				temp[j].count = count;
+	//		else {
+	//			// Add temp[i] to the component.
+	//			dets[index].x1 += temp[i].x1;
+	//			dets[index].y1 += temp[i].y1;
+	//			dets[index].x2 += temp[i].x2;
+	//			dets[index].y2 += temp[i].y2;
 	//		}
 	//	}
 	//}
 
-	//// Merge them...
-	//for (int i = 0; i < temp.size; i++)
-	//{
-	//	// This one has no friends...
-	//	if (temp[i].re == -1) 
-	//		continue;
-
-	//	if (temp[i].re >= 0 && temp[i].count >= evidence) {
-	//		rect t(0, 0, 0, 0);
-
-	//		for (int j = i; j < temp.size; j++) {
-	//			if (temp[j].re != temp[i].re) 
-	//				continue;
-
-	//			t.x1 += temp[j].x1;
-	//			t.y1 += temp[j].y1;
-	//			t.x2 += temp[j].x2;
-	//			t.y2 += temp[j].y2;
-	//			t.count = temp[j].count;
-	//			temp[j].count = -1;
-	//		}
-
-	//		t.x1 = t.x1 / t.count;
-	//		t.y1 = t.y1 / t.count;
-	//		t.x2 = t.x2 / t.count;
-	//		t.y2 = t.y2 / t.count;
-
-	//		dets.Push(t);
-
-	//		if (t.count <= 1) 
-	//			printf("ERROR: COUNT WRONG!");
-	//	}
+	//// Normalize the detections.
+	//for (int i = originalDetections; i < dets.size; i++) {
+	//	int size = unionFind->GetSize(roots[i]);
+	//	dets[i].x1 /= size;
+	//	dets[i].y1 /= size;
+	//	dets[i].x2 /= size;
+	//	dets[i].y2 /= size;
 	//}
+
+
+	// Merge the detections.
+	if (evidence > 1) {
+
+		// Union.
+		for (int i = 0; i < temp.size; i++) {
+			for (int j = i; j < temp.size; j++) {
+				if (IsEqual(temp[i], temp[j])) {
+					if (temp[i].re == -1) {
+						temp[i].re = temp[j].re = i;
+					} else {
+						temp[j].re = temp[i].re;
+					}
+				}
+			}
+		}
+
+		// Count.
+		for (int i = 0; i < temp.size; i++) {
+			int count = 0;
+			for (int j = i; j < temp.size; j++) {
+				if (temp[i].re == i && temp[j].re == i) 
+					count++;
+			}
+
+			if (temp[i].re == i) 
+				temp[i].count = count;
+
+			for (int j = i; j < temp.size; j++) {
+				if (temp[i].re == i && temp[j].re == i)
+					temp[j].count = count;
+			}
+		}
+	}
+
+	// Merge them...
+	for (int i = 0; i < temp.size; i++)
+	{
+		// This one has no friends...
+		if (temp[i].re == -1) 
+			continue;
+
+		if (temp[i].re >= 0 && temp[i].count >= evidence) {
+			rect t(0, 0, 0, 0);
+
+			for (int j = i; j < temp.size; j++) {
+				if (temp[j].re != temp[i].re) 
+					continue;
+
+				t.x1 += temp[j].x1;
+				t.y1 += temp[j].y1;
+				t.x2 += temp[j].x2;
+				t.y2 += temp[j].y2;
+				t.count = temp[j].count;
+				temp[j].count = -1;
+			}
+
+			t.x1 = t.x1 / t.count;
+			t.y1 = t.y1 / t.count;
+			t.x2 = t.x2 / t.count;
+			t.y2 = t.y2 / t.count;
+
+			dets.Push(t);
+
+			if (t.count <= 1) 
+				printf("ERROR: COUNT WRONG!");
+		}
+	}
 	
 
 	return true;

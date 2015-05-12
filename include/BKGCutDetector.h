@@ -20,6 +20,17 @@ public:
 	// Constructor.
 	BKGCutDetector(Classifier *c, const Options &op);
 
+	/**
+	* Detect, return the resutl in a vector.
+	* Notice that sometimes we only want to detect in a subregion of the original
+	* image, in such case we have to give the origin parameter, which is the coordinates
+	* of the upper-left corner in the original image.
+	* @param img		the image
+	* @param intImage	the integral image
+	* @param subRegion	the subRegion we want to detect
+	* @param bkg		background
+	* @return true if everything is fine.
+	*/
 	virtual bool Detect(const cv::Mat &img, const IntegralImage *intImage,
 		const Rect &subRegion,
 		const cv::Mat &bkg = defaultBackground
@@ -36,13 +47,13 @@ protected:
 	/**
 	 * Given a rectangle and the size of the original image,
 	 * expand the rectangle by edge_width.
-	 * @param x: the x coordinates of the upper-left corner.
-	 * @param y: the y coordinates of the upper-left corner.
-	 * @param roi_h: the height of the rectangle.
-	 * @param roi_w: the width of the rectangle.
-	 * @param edge_width: how many pixels you want to expand?
-	 * @param height, width: the size of the original image.
-	 * @return a structure rect.
+	 * @param x				the x coordinates of the upper-left corner.
+	 * @param y				the y coordinates of the upper-left corner.
+	 * @param roi_h			the height of the rectangle.
+	 * @param roi_w			the width of the rectangle.
+	 * @param edge_width	how many pixels you want to expand?
+	 * @param height, width	the size of the original image.
+	 * @return rect.
 	 */
 	rect CreateROI(int x, int y, int roi_h, int roi_w, int edge_width, int height, int width);
 };
