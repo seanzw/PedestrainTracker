@@ -21,18 +21,18 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 
 	Rect roi;
 	// Slide the window and detect.
-	for (feat scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
+	for (float scale = scaleMin; scale < scaleMax; scale *= scaleStep) {
 		roi.width = (int)scale * modelWidth;
 		roi.height = (int)scale * modelHeight;
-		for (int i = subRegion.upper; i <= subRegion.height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
-			for (int j = subRegion.left; j <= subRegion.width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
-				roi.upper = i;
-				roi.left = j;
+		for (int i = 0; i <= subRegion.height - modelHeight * scale; i = i + (int)(slideStep * scale)) {
+			for (int j = 0; j <= subRegion.width - modelWidth * scale; j = j + (int)(slideStep * scale)) {
+				roi.upper = i + subRegion.upper;
+				roi.left = j + subRegion.left;
 				if (classifier->Classify(intImage, roi, scale) > 0) {
-					temp.Push(rect(j + subRegion.left,
-						i + subRegion.upper, 
-						j + roi.width + subRegion.left,
-						i + roi.height + subRegion.upper));
+					temp.Push(rect(roi.left,
+						roi.upper, 
+						roi.left + roi.width,
+						roi.upper + roi.height));
 				}
 			}
 		}
@@ -40,7 +40,7 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 
 	unionFind = new UnionFind(temp.size);
 	for (int i = 0; i < temp.size; i++) {
-		for (int j = 0; j < temp.size; j++) {
+		for (int j = i + 1; j < temp.size; j++) {
 			if (IsEqual(temp[i], temp[j])) {
 				// Union.
 				unionFind->Union(i, j);
@@ -49,8 +49,10 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 	}
 
 	// Merge them to get the new detection.
-	dets.clear();
 	roots.clear();
+
+	// Store the original number of detections.
+	int originalDetections = dets.size;
 
 	for (int i = 0; i < temp.size; i++) {
 		int root = unionFind->Find(i);
@@ -85,7 +87,7 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 	}
 
 	// Normalize the detections.
-	for (int i = 0; i < dets.size; i++) {
+	for (int i = originalDetections; i < dets.size; i++) {
 		int size = unionFind->GetSize(roots[i]);
 		dets[i].x1 /= size;
 		dets[i].y1 /= size;

@@ -91,12 +91,12 @@ int main(int argc, char *argv[]) {
 		cvSaveImage(argv[4], background);
 	}
 
-	if (!strcmp(argv[1], "-p")) {
-		DetectSinglePictureBKG(argv[2], argv[3], argv[4], adaboostFile, opt);
-	}
-
 	if (!strcmp(argv[1], "-phog")) {
 		DetectSinglePictureHOG(argv[2], argv[3], adaboostFile, opt);
+	}
+
+	if (!strcmp(argv[1], "-p")) {
+		DetectSinglePictureBKG(argv[2], argv[3], argv[4], adaboostFile, opt);
 	}
 
 	if (!strcmp(argv[1], "-vhog")) {
