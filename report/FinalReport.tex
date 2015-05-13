@@ -386,6 +386,86 @@ This is our final object. The main problem is data association. We are not sure 
 
 \end{itemize}
 
+
+\item \textbf{Experiment}
+
+All the experiment is executed on Dell Inspiron 14R SE with the following configuration.
+All the experiment result can be found \href{https://zerowong.github.io/PedestrainCounting/results/}{here}.
+
+\begin{itemize}
+
+\item Intel Core i7-3612QM 2.10GHz
+\item 8.00GB RAM
+\item System: Windows 8.1 x64
+\item OpenCV: 3.00
+
+\end{itemize}
+
+For video we have three clips: \href{https://zerowong.github.io/PedestrainCounting/results/test/1.avi}{1.avi}, \href{https://zerowong.github.io/PedestrainCounting/results/test/2.avi}{2.avi}, \href{https://zerowong.github.io/PedestrainCounting/results/test/3.avi}{3.avi}.
+
+For single image detection we only use \href{https://zerowong.github.io/PedestrainCounting/results/test/test.jpg}{test.jpg}, which is from \href{https://zerowong.github.io/PedestrainCounting/results/test/1.avi}{1.avi}.
+
+The original baseline program is tested with all default settings.
+
+\begin{itemize}
+
+\item HoG Detector.
+
+We first use the simple HoG detector to detect a single picture.
+\begin{center}
+\begin{tabular}{l | c | c | r}
+\hline
+                & Time  & Accuracy  & False Positive \\
+Original        & 3.43s & 5 / 6     & 3              \\
+Reconstructed   & 3.20s & 5 / 6     & 2              \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Background Cut Detector.
+
+We use the simple Background cut detector to detect pedestrain in a single picture.
+
+\begin{center}
+\begin{tabular}{l | c | c | r}
+\hline
+                & Time  & Accuracy  & False Positive \\
+Original        & 1.76s & 6 / 6     & 0              \\
+Reconstructed   & 1.27s & 5 / 6     & 0              \\
+\hline
+\end{tabular}
+\end{center}
+
+\item HoG Detector for Video.
+
+We use the simple HoG detector to detect pedestrain in a video.
+
+\begin{center}
+\begin{tabular}{l | c | c | r}
+\hline
+                & Time  & Accuracy  & False Positive \\
+Original        & 1051s  &           &                \\
+Reconstructed   & 900s &           &                \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Background Cut Detector for Video.
+
+We use the simple Background Cut detector to detect pedestrain in a video.
+
+\begin{center}
+\begin{tabular}{l | c | c | r}
+\hline
+                & Time  & Accuracy  & False Positive \\
+Original        & 207.36s  &           &                \\
+Reconstructed   & 159.14s  &           &                \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{itemize}
+
 \end{enumerate}
 
 \clearpage
