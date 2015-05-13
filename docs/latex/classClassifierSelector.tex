@@ -17,7 +17,7 @@ float \hyperlink{classClassifierSelector_ac7f854deb91854b56f24660b77e702ed}{Get\
 \item 
 virtual int \hyperlink{classClassifierSelector_aa146f727c4d0d212935885bec3c63ed8}{Select\+Best\+Classifer} (float importance, const bool $\ast$error\+Mask, float $\ast$errors)
 \item 
-virtual int \hyperlink{classClassifierSelector_ac01dd0dfee31bfbfbbc6b5c28f36a021}{Replace\+Weakest\+Classifier} (float $\ast$errors, const \hyperlink{classSize}{Size} \&patch\+Size)
+virtual int \hyperlink{classClassifierSelector_a027e9055c2ed7b27493e208d2ddd5cc9}{Replace\+Weakest\+Classifier} (float $\ast$sum\+Errors, const \hyperlink{classSize}{Size} \&patch\+Size)
 \item 
 virtual void \hyperlink{classClassifierSelector_a07a0717148abf071a4bc3785b72bb3d3}{Replace\+Weakest\+Classifier\+Statistic} (int src, int dst)
 \item 
@@ -53,13 +53,15 @@ Zhengrong Wang.
 \item[{int}]{num\+B = {\ttfamily 2}}
 \end{DoxyParamCaption}
 )}\label{classClassifierSelector_a21eb14f2ad33c62dd94fdfced0d8d9e6}
-Build a classifier selector with some Weak\+Classifier\+Haars. 
+Build a classifier selector with some Weak\+Classifier\+Haars.
+
+
 \begin{DoxyParams}{Parameters}
-{\em num\+W} & \# weak classifiers. \\
+{\em num\+W} & \# weak classifiers \\
 \hline
-{\em patch\+Size} & the patch size used in weak classifiers. \\
+{\em patch\+Size} & the patch size used in weak classifiers \\
 \hline
-{\em num\+B} & \# weak classifiers for subsititution. \\
+{\em num\+B} & \# weak classifiers for subsititution \\
 \hline
 \end{DoxyParams}
 \hypertarget{classClassifierSelector_a6bf8094c2c8afde715ab75e729efa4af}{}\index{Classifier\+Selector@{Classifier\+Selector}!Classifier\+Selector@{Classifier\+Selector}}
@@ -87,8 +89,10 @@ Build a classifier selector from some outside weakclassifier array.
 \item[{const {\bf Rect} \&}]{roi}
 \end{DoxyParamCaption}
 )}\label{classClassifierSelector_acaca168ce5bb47624157c7559cc56108}
-Evaluate a feature. \begin{DoxyReturn}{Returns}
-1 for pos, -\/1 for neg. 
+Evaluate a feature.
+
+\begin{DoxyReturn}{Returns}
+1 for pos, -\/1 for neg 
 \end{DoxyReturn}
 \hypertarget{classClassifierSelector_ac7f854deb91854b56f24660b77e702ed}{}\index{Classifier\+Selector@{Classifier\+Selector}!Get\+Error@{Get\+Error}}
 \index{Get\+Error@{Get\+Error}!Classifier\+Selector@{Classifier\+Selector}}
@@ -100,21 +104,23 @@ Evaluate a feature. \begin{DoxyReturn}{Returns}
 \begin{DoxyReturn}{Returns}
 the error rate of this seletor, or any specific classifier. 
 \end{DoxyReturn}
-\hypertarget{classClassifierSelector_ac01dd0dfee31bfbfbbc6b5c28f36a021}{}\index{Classifier\+Selector@{Classifier\+Selector}!Replace\+Weakest\+Classifier@{Replace\+Weakest\+Classifier}}
+\hypertarget{classClassifierSelector_a027e9055c2ed7b27493e208d2ddd5cc9}{}\index{Classifier\+Selector@{Classifier\+Selector}!Replace\+Weakest\+Classifier@{Replace\+Weakest\+Classifier}}
 \index{Replace\+Weakest\+Classifier@{Replace\+Weakest\+Classifier}!Classifier\+Selector@{Classifier\+Selector}}
-\subsubsection[{Replace\+Weakest\+Classifier(float $\ast$errors, const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}int Classifier\+Selector\+::\+Replace\+Weakest\+Classifier (
+\subsubsection[{Replace\+Weakest\+Classifier(float $\ast$sum\+Errors, const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}int Classifier\+Selector\+::\+Replace\+Weakest\+Classifier (
 \begin{DoxyParamCaption}
-\item[{float $\ast$}]{errors, }
+\item[{float $\ast$}]{sum\+Errors, }
 \item[{const {\bf Size} \&}]{patch\+Size}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classClassifierSelector_ac01dd0dfee31bfbfbbc6b5c28f36a021}
-Replace the weakest classifier. 
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classClassifierSelector_a027e9055c2ed7b27493e208d2ddd5cc9}
+Replace the weakest classifier.
+
+
 \begin{DoxyParams}{Parameters}
-{\em errors} & a buffer contains the error rate. \\
+{\em sum\+Errors} & a buffer contains the sum of error rate. The biggest weak classifier will be replaced \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\+: the index of the replaced classifier. 
+the index of the replaced classifier 
 \end{DoxyReturn}
 \hypertarget{classClassifierSelector_a07a0717148abf071a4bc3785b72bb3d3}{}\index{Classifier\+Selector@{Classifier\+Selector}!Replace\+Weakest\+Classifier\+Statistic@{Replace\+Weakest\+Classifier\+Statistic}}
 \index{Replace\+Weakest\+Classifier\+Statistic@{Replace\+Weakest\+Classifier\+Statistic}!Classifier\+Selector@{Classifier\+Selector}}
@@ -133,17 +139,19 @@ Only replace the weight. Used when the weak classifier is from outside. \hyperta
 \item[{float $\ast$}]{errors}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{classClassifierSelector_aa146f727c4d0d212935885bec3c63ed8}
-Select the best classifier. 
+Select the best classifier.
+
+
 \begin{DoxyParams}{Parameters}
-{\em in} & importance\+: the weight of this sample. \\
+{\em in} & importance the weight of this sample \\
 \hline
-{\em in} & error\+Mask\+: true if the classifer makes mistake on this sample. \\
+{\em in} & error\+Mask true if the classifer makes mistake on this sample \\
 \hline
-{\em out} & errors\+: a buffer contains the error rates of each classifier. \\
+{\em out} & errors a buffer contains the error rates of each classifier \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-index of new selected classifier. 
+index of new selected classifier 
 \end{DoxyReturn}
 \hypertarget{classClassifierSelector_afd948f69609ddac9d1effb6b899c4d08}{}\index{Classifier\+Selector@{Classifier\+Selector}!Train@{Train}}
 \index{Train@{Train}!Classifier\+Selector@{Classifier\+Selector}}
@@ -156,17 +164,19 @@ index of new selected classifier.
 \item[{bool $\ast$}]{err\+Mask}
 \end{DoxyParamCaption}
 )}\label{classClassifierSelector_afd948f69609ddac9d1effb6b899c4d08}
-Train the weak classifiers. 
+Train the weak classifiers.
+
+
 \begin{DoxyParams}{Parameters}
-{\em int\+Image} & the integral image. \\
+{\em int\+Image} & the integral image \\
 \hline
-{\em roi} & the region of the target. \\
+{\em roi} & the region of the target \\
 \hline
-{\em target} & 1 for pos, -\/1 for neg. \\
+{\em target} & 1 for pos, -\/1 for neg \\
 \hline
-{\em importance} & the weight of this sample. \\
+{\em importance} & the weight of this sample \\
 \hline
-{\em out} & err\+Mask\+: update the error mask array. \\
+{\em out} & err\+Mask update the error mask array \\
 \hline
 \end{DoxyParams}
 

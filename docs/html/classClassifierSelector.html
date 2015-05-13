@@ -104,8 +104,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac7f854deb91854b56f24660b77e702ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa146f727c4d0d212935885bec3c63ed8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#aa146f727c4d0d212935885bec3c63ed8">SelectBestClassifer</a> (float importance, const bool *errorMask, float *errors)</td></tr>
 <tr class="separator:aa146f727c4d0d212935885bec3c63ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac01dd0dfee31bfbfbbc6b5c28f36a021"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#ac01dd0dfee31bfbfbbc6b5c28f36a021">ReplaceWeakestClassifier</a> (float *errors, const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
-<tr class="separator:ac01dd0dfee31bfbfbbc6b5c28f36a021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027e9055c2ed7b27493e208d2ddd5cc9"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#a027e9055c2ed7b27493e208d2ddd5cc9">ReplaceWeakestClassifier</a> (float *sumErrors, const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
+<tr class="separator:a027e9055c2ed7b27493e208d2ddd5cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07a0717148abf071a4bc3785b72bb3d3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#a07a0717148abf071a4bc3785b72bb3d3">ReplaceWeakestClassifierStatistic</a> (int src, int dst)</td></tr>
 <tr class="separator:a07a0717148abf071a4bc3785b72bb3d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaca168ce5bb47624157c7559cc56108"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#acaca168ce5bb47624157c7559cc56108">Classify</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi)</td></tr>
@@ -155,11 +155,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Build a classifier selector with some WeakClassifierHaars. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Build a classifier selector with some WeakClassifierHaars.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">numW</td><td># weak classifiers. </td></tr>
-    <tr><td class="paramname">patchSize</td><td>the patch size used in weak classifiers. </td></tr>
-    <tr><td class="paramname">numB</td><td># weak classifiers for subsititution. </td></tr>
+    <tr><td class="paramname">numW</td><td># weak classifiers </td></tr>
+    <tr><td class="paramname">patchSize</td><td>the patch size used in weak classifiers </td></tr>
+    <tr><td class="paramname">numB</td><td># weak classifiers for subsititution </td></tr>
   </table>
   </dd>
 </dl>
@@ -228,7 +229,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Evaluate a feature. </p><dl class="section return"><dt>Returns</dt><dd>1 for pos, -1 for neg. </dd></dl>
+<p>Evaluate a feature.</p>
+<dl class="section return"><dt>Returns</dt><dd>1 for pos, -1 for neg </dd></dl>
 
 </div>
 </div>
@@ -249,7 +251,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
 
 </div>
 </div>
-<a class="anchor" id="ac01dd0dfee31bfbfbbc6b5c28f36a021"></a>
+<a class="anchor" id="a027e9055c2ed7b27493e208d2ddd5cc9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -260,7 +262,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
           <td class="memname">int ClassifierSelector::ReplaceWeakestClassifier </td>
           <td>(</td>
           <td class="paramtype">float *&#160;</td>
-          <td class="paramname"><em>errors</em>, </td>
+          <td class="paramname"><em>sumErrors</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -280,13 +282,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Replace the weakest classifier. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Replace the weakest classifier.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">errors</td><td>a buffer contains the error rate. </td></tr>
+    <tr><td class="paramname">sumErrors</td><td>a buffer contains the sum of error rate. The biggest weak classifier will be replaced </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>: the index of the replaced classifier. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the index of the replaced classifier </dd></dl>
 
 </div>
 </div>
@@ -362,15 +365,16 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Select the best classifier. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Select the best classifier.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">in</td><td>importance: the weight of this sample. </td></tr>
-    <tr><td class="paramname">in</td><td>errorMask: true if the classifer makes mistake on this sample. </td></tr>
-    <tr><td class="paramname">out</td><td>errors: a buffer contains the error rates of each classifier. </td></tr>
+    <tr><td class="paramname">in</td><td>importance the weight of this sample </td></tr>
+    <tr><td class="paramname">in</td><td>errorMask true if the classifer makes mistake on this sample </td></tr>
+    <tr><td class="paramname">out</td><td>errors a buffer contains the error rates of each classifier </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>index of new selected classifier. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>index of new selected classifier </dd></dl>
 
 </div>
 </div>
@@ -415,13 +419,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Train the weak classifiers. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Train the weak classifiers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">intImage</td><td>the integral image. </td></tr>
-    <tr><td class="paramname">roi</td><td>the region of the target. </td></tr>
-    <tr><td class="paramname">target</td><td>1 for pos, -1 for neg. </td></tr>
-    <tr><td class="paramname">importance</td><td>the weight of this sample. </td></tr>
-    <tr><td class="paramname">out</td><td>errMask: update the error mask array. </td></tr>
+    <tr><td class="paramname">intImage</td><td>the integral image </td></tr>
+    <tr><td class="paramname">roi</td><td>the region of the target </td></tr>
+    <tr><td class="paramname">target</td><td>1 for pos, -1 for neg </td></tr>
+    <tr><td class="paramname">importance</td><td>the weight of this sample </td></tr>
+    <tr><td class="paramname">out</td><td>errMask update the error mask array </td></tr>
   </table>
   </dd>
 </dl>

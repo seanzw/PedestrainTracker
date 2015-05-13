@@ -1,0 +1,71 @@
+\hypertarget{classParticleFilterConstVelocity}{}\section{Particle\+Filter\+Const\+Velocity Class Reference}
+\label{classParticleFilterConstVelocity}\index{Particle\+Filter\+Const\+Velocity@{Particle\+Filter\+Const\+Velocity}}
+
+
+{\ttfamily \#include $<$Particle\+Filter\+Const\+Velocity.\+h$>$}
+
+Inheritance diagram for Particle\+Filter\+Const\+Velocity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classParticleFilterConstVelocity}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classParticleFilterConstVelocity_a705e639dc7d5fd70a8b332e888a4281c}{}{\bfseries Particle\+Filter\+Const\+Velocity} (const \hyperlink{classRect}{Rect} \&target, const \hyperlink{classPoint2D}{Point2\+D} \&init\+Velocity=\hyperlink{classPoint2D}{Point2\+D}(10, 0), int n=100)\label{classParticleFilterConstVelocity_a705e639dc7d5fd70a8b332e888a4281c}
+
+\item 
+virtual void \hyperlink{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
+\item 
+\hypertarget{classParticleFilterConstVelocity_a91f6d8afede8039cd3ed08acbcb67b47}{}void {\bfseries Set\+Velocity\+Sigma} (float sigma)\label{classParticleFilterConstVelocity_a91f6d8afede8039cd3ed08acbcb67b47}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a219193c3bdc2ed042c5473257227c3fb}{}virtual void {\bfseries Init\+Particles} ()\label{classParticleFilterConstVelocity_a219193c3bdc2ed042c5473257227c3fb}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classParticleFilterConstVelocity_af3179b0f6fc3387f0ed0ecdf857c7295}{}\hyperlink{classPoint2D}{Point2\+D} {\bfseries init\+Velocity}\label{classParticleFilterConstVelocity_af3179b0f6fc3387f0ed0ecdf857c7295}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a4ebdf630669691c8d00fa1f94022921a}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Velocity}\label{classParticleFilterConstVelocity_a4ebdf630669691c8d00fa1f94022921a}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classParticleFilter}{Particle\+Filter} with constant velocity.
+
+\begin{DoxyAuthor}{Author}
+Zhengrong Wang. 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{}\index{Particle\+Filter\+Const\+Velocity@{Particle\+Filter\+Const\+Velocity}!Propagate@{Propagate}}
+\index{Propagate@{Propagate}!Particle\+Filter\+Const\+Velocity@{Particle\+Filter\+Const\+Velocity}}
+\subsubsection[{Propagate(const Size \&img\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+Const\+Velocity\+::\+Propagate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{img\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}
+Propagate the particles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\+Size} & Is the particle still inside the image? \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Particle\+Filter}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Particle\+Filter\+Const\+Velocity.\+h\item 
+src/Particle\+Filter\+Const\+Velocity.\+cpp\end{DoxyCompactItemize}

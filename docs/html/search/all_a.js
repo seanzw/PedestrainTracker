@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['particlefilter',['ParticleFilter',['../classParticleFilter.html',1,'']]],
-  ['particlefiltertracker',['ParticleFilterTracker',['../classParticleFilterTracker.html',1,'']]],
-  ['point2d',['Point2D',['../classPoint2D.html',1,'']]],
-  ['pool',['Pool',['../classPool.html',1,'']]],
-  ['pool_3c_20rect_20_3e',['Pool&lt; rect &gt;',['../classPool.html',1,'']]]
+  ['observe',['Observe',['../classParticleFilter.html#ac564ef678bef8d6ff2fc70258cc7e822',1,'ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *intImage)'],['../classParticleFilter.html#a7dc0bf5137e9e7d8f59961618dbd9215',1,'ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *intImage, const Rect &amp;detection, float detectionWeight, float classifierWeight)'],['../classSingleTarget.html#a7ad134f1c4d53e45bcbc636b9fc6a943',1,'SingleTarget::Observe()']]],
+  ['options',['Options',['../structOptions.html',1,'']]]
 ];

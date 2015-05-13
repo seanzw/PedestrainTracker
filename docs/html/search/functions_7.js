@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update',['Update',['../classClassifierThreshold.html#ae9bae753884c08a274b2204af8e97340',1,'ClassifierThreshold::Update()'],['../classEstimatedGaussianDistribution.html#a340e3a01f89d62ddab06a0dbc8e9fe3c',1,'EstimatedGaussianDistribution::Update()'],['../classWeakClassifier.html#ad4c967e2f0d186a841722f8fea9dbd9c',1,'WeakClassifier::Update()'],['../classWeakClassifierHaar.html#aa8dc6734dc435c246d9605aceea2c9a7',1,'WeakClassifierHaar::Update()']]]
+  ['particlefilter',['ParticleFilter',['../classParticleFilter.html#ad05d7aeddc103fc32b6de3a751c37471',1,'ParticleFilter']]],
+  ['propagate',['Propagate',['../classParticleFilter.html#a166db9f33feabf14126df2de541a593d',1,'ParticleFilter::Propagate()'],['../classParticleFilterConstVelocity.html#a72868ab78e4c4f49ce756e986839f993',1,'ParticleFilterConstVelocity::Propagate()'],['../classSingleTarget.html#a2036d90f89d1a65966523c559aee3d38',1,'SingleTarget::Propagate()']]]
 ];

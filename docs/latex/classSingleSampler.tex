@@ -1,0 +1,103 @@
+\hypertarget{classSingleSampler}{}\section{Single\+Sampler Class Reference}
+\label{classSingleSampler}\index{Single\+Sampler@{Single\+Sampler}}
+
+
+{\ttfamily \#include $<$Single\+Sampler.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSingleSampler_ac8afcdb74dfa26de9e686879eb2062fd}{}{\bfseries Single\+Sampler} (int num\+Pos, int num\+Neg)\label{classSingleSampler_ac8afcdb74dfa26de9e686879eb2062fd}
+
+\item 
+\hypertarget{classSingleSampler_aea28b8157e66fff3bf2d919638d6bf8f}{}int {\bfseries Get\+Num\+Pos} () const \label{classSingleSampler_aea28b8157e66fff3bf2d919638d6bf8f}
+
+\item 
+\hypertarget{classSingleSampler_a2c615500fb49179a6a7ab606e19d5438}{}int {\bfseries Get\+Num\+Neg} () const \label{classSingleSampler_a2c615500fb49179a6a7ab606e19d5438}
+
+\item 
+\hypertarget{classSingleSampler_a5cd8387d318cfa166763efa601c6a016}{}const \hyperlink{classRect}{Rect} \& {\bfseries Get\+Pos\+Sample} (int index) const \label{classSingleSampler_a5cd8387d318cfa166763efa601c6a016}
+
+\item 
+\hypertarget{classSingleSampler_a5b07ba58d23e251a745752185d474995}{}const \hyperlink{classRect}{Rect} \& {\bfseries Get\+Neg\+Sample} (int index) const \label{classSingleSampler_a5b07ba58d23e251a745752185d474995}
+
+\item 
+\hypertarget{classSingleSampler_a0211ef10f190b5b9e56a7103e8437b19}{}virtual void {\bfseries Sample} (const \hyperlink{classRect}{Rect} \&pos, const \hyperlink{classSize}{Size} \&img\+Size)\label{classSingleSampler_a0211ef10f190b5b9e56a7103e8437b19}
+
+\item 
+\hypertarget{classSingleSampler_a38a0df4f2d8d190708921df130c6fbb1}{}void {\bfseries Draw\+Samples} (cv\+::\+Mat \&img, const cv\+::\+Scalar \&pos\+Color, const cv\+::\+Scalar \&neg\+Color) const \label{classSingleSampler_a38a0df4f2d8d190708921df130c6fbb1}
+
+\item 
+void \hyperlink{classSingleSampler_a8be19d5fe2cba8f042835df152e2e4d4}{Draw\+Sample} (cv\+::\+Mat \&img, const cv\+::\+Scalar \&color, int index=0, int target=1) const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSingleSampler_aae910dbaf3271e79601e9e4c786eaad1}{}int {\bfseries num\+Neg\+Samples}\label{classSingleSampler_aae910dbaf3271e79601e9e4c786eaad1}
+
+\item 
+\hypertarget{classSingleSampler_a9a624f9a0519802d38fa760578e43ce2}{}int {\bfseries num\+Pos\+Samples}\label{classSingleSampler_a9a624f9a0519802d38fa760578e43ce2}
+
+\item 
+\hypertarget{classSingleSampler_add879b72a8fb9bc537b2c73def6b4ab4}{}\hyperlink{classRect}{Rect} $\ast$ {\bfseries neg\+Samples}\label{classSingleSampler_add879b72a8fb9bc537b2c73def6b4ab4}
+
+\item 
+\hypertarget{classSingleSampler_a66244f71e586f614b1f505cfa74034bf}{}\hyperlink{classRect}{Rect} $\ast$ {\bfseries pos\+Samples}\label{classSingleSampler_a66244f71e586f614b1f505cfa74034bf}
+
+\item 
+\hypertarget{classSingleSampler_a584faf8d63d5985a64f7eb1f560b501c}{}int {\bfseries cur\+Pos\+Sample}\label{classSingleSampler_a584faf8d63d5985a64f7eb1f560b501c}
+
+\item 
+\hypertarget{classSingleSampler_a9ed280c3389a16c34a7e7ba97150d2c1}{}int {\bfseries cur\+Neg\+Sample}\label{classSingleSampler_a9ed280c3389a16c34a7e7ba97150d2c1}
+
+\item 
+\hypertarget{classSingleSampler_af5aa1a24a704f7b553b40c846d7425fd}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Width}\label{classSingleSampler_af5aa1a24a704f7b553b40c846d7425fd}
+
+\item 
+\hypertarget{classSingleSampler_ae8dc991f539b05c59884da2107b2cedb}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Height}\label{classSingleSampler_ae8dc991f539b05c59884da2107b2cedb}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSingleSampler_a54b9846441e263f759935b621a89cadc}{}static std\+::default\+\_\+random\+\_\+engine {\bfseries generator}\label{classSingleSampler_a54b9846441e263f759935b621a89cadc}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Sampler interface. This is used to sample neg and pos examples. Given a positive sample, it samples num\+Neg\+Samples negative samples around it. \begin{DoxyAuthor}{Author}
+Zhengrong Wang, Hsienyu Meng. 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSingleSampler_a8be19d5fe2cba8f042835df152e2e4d4}{}\index{Single\+Sampler@{Single\+Sampler}!Draw\+Sample@{Draw\+Sample}}
+\index{Draw\+Sample@{Draw\+Sample}!Single\+Sampler@{Single\+Sampler}}
+\subsubsection[{Draw\+Sample(cv\+::\+Mat \&img, const cv\+::\+Scalar \&color, int index=0, int target=1) const }]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Sampler\+::\+Draw\+Sample (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat \&}]{img, }
+\item[{const cv\+::\+Scalar \&}]{color, }
+\item[{int}]{index = {\ttfamily 0}, }
+\item[{int}]{target = {\ttfamily 1}}
+\end{DoxyParamCaption}
+) const}\label{classSingleSampler_a8be19d5fe2cba8f042835df152e2e4d4}
+Draw a specific sample.
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & the image to draw \\
+\hline
+{\em color} & color we will use \\
+\hline
+{\em index} & the index of the sample \\
+\hline
+{\em target} & positive or negative samples \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Single\+Sampler.\+h\item 
+src/Single\+Sampler.\+cpp\end{DoxyCompactItemize}

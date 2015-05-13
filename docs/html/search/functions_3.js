@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['geterror',['GetError',['../classClassifierSelector.html#ac7f854deb91854b56f24660b77e702ed',1,'ClassifierSelector']]]
+  ['find',['Find',['../classUnionFind.html#a4b831f0ca552a8ba0690c8b6c6012fa6',1,'UnionFind']]]
 ];

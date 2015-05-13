@@ -1,0 +1,120 @@
+\hypertarget{classUnionFind}{}\section{Union\+Find Class Reference}
+\label{classUnionFind}\index{Union\+Find@{Union\+Find}}
+
+
+{\ttfamily \#include $<$Union\+Find.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classUnionFind_a686b5bff420abaf11f11e20e692b50e0}{}{\bfseries Union\+Find} (int N)\label{classUnionFind_a686b5bff420abaf11f11e20e692b50e0}
+
+\item 
+int \hyperlink{classUnionFind_ab948169c25b587de74e50095120dca88}{Get\+Count} () const 
+\item 
+int \hyperlink{classUnionFind_a4cd75bd3849d69fbdb186250a3e20ac6}{Get\+Size} (int root)
+\item 
+int \hyperlink{classUnionFind_a4b831f0ca552a8ba0690c8b6c6012fa6}{Find} (int p) const 
+\item 
+bool \hyperlink{classUnionFind_a8e5ab36a1cafc1969340cd6102c88c37}{Connected} (int p, int q) const 
+\item 
+void \hyperlink{classUnionFind_aa999e333a6da859acb9261de757d42f7}{Union} (int p, int q)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A weighted union find with path compression. \begin{DoxyAuthor}{Author}
+Zhengrong Wang 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classUnionFind_a8e5ab36a1cafc1969340cd6102c88c37}{}\index{Union\+Find@{Union\+Find}!Connected@{Connected}}
+\index{Connected@{Connected}!Union\+Find@{Union\+Find}}
+\subsubsection[{Connected(int p, int q) const }]{\setlength{\rightskip}{0pt plus 5cm}bool Union\+Find\+::\+Connected (
+\begin{DoxyParamCaption}
+\item[{int}]{p, }
+\item[{int}]{q}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classUnionFind_a8e5ab36a1cafc1969340cd6102c88c37}
+Are the two sites {\ttfamily p} and {\ttfamily q} in the same component? 
+\begin{DoxyParams}{Parameters}
+{\em p} & the integer representing one site \\
+\hline
+{\em q} & the integer representing the other site \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the two sites {\ttfamily p} and {\ttfamily q} are in the same component, and {\ttfamily false} otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+lang.\+Index\+Out\+Of\+Bounds\+Exception} & unless both 0 $<$= p $<$ N and 0 $<$= q $<$ N \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classUnionFind_a4b831f0ca552a8ba0690c8b6c6012fa6}{}\index{Union\+Find@{Union\+Find}!Find@{Find}}
+\index{Find@{Find}!Union\+Find@{Union\+Find}}
+\subsubsection[{Find(int p) const }]{\setlength{\rightskip}{0pt plus 5cm}int Union\+Find\+::\+Find (
+\begin{DoxyParamCaption}
+\item[{int}]{p}
+\end{DoxyParamCaption}
+) const}\label{classUnionFind_a4b831f0ca552a8ba0690c8b6c6012fa6}
+Returns the component identifier for the component containing site {\ttfamily p}. 
+\begin{DoxyParams}{Parameters}
+{\em p} & the integer representing one site \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the component identifier for the component containing site {\ttfamily p} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+lang.\+Index\+Out\+Of\+Bounds\+Exception} & unless 0 $<$= p $<$ N \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classUnionFind_ab948169c25b587de74e50095120dca88}{}\index{Union\+Find@{Union\+Find}!Get\+Count@{Get\+Count}}
+\index{Get\+Count@{Get\+Count}!Union\+Find@{Union\+Find}}
+\subsubsection[{Get\+Count() const }]{\setlength{\rightskip}{0pt plus 5cm}int Union\+Find\+::\+Get\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classUnionFind_ab948169c25b587de74e50095120dca88}
+Returns the number of components. \begin{DoxyReturn}{Returns}
+the number of components (between 1 and N) 
+\end{DoxyReturn}
+\hypertarget{classUnionFind_a4cd75bd3849d69fbdb186250a3e20ac6}{}\index{Union\+Find@{Union\+Find}!Get\+Size@{Get\+Size}}
+\index{Get\+Size@{Get\+Size}!Union\+Find@{Union\+Find}}
+\subsubsection[{Get\+Size(int root)}]{\setlength{\rightskip}{0pt plus 5cm}int Union\+Find\+::\+Get\+Size (
+\begin{DoxyParamCaption}
+\item[{int}]{root}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classUnionFind_a4cd75bd3849d69fbdb186250a3e20ac6}
+Returns the size of this components. \begin{DoxyReturn}{Returns}
+the size of this components (between 1 and N) 
+\end{DoxyReturn}
+\hypertarget{classUnionFind_aa999e333a6da859acb9261de757d42f7}{}\index{Union\+Find@{Union\+Find}!Union@{Union}}
+\index{Union@{Union}!Union\+Find@{Union\+Find}}
+\subsubsection[{Union(int p, int q)}]{\setlength{\rightskip}{0pt plus 5cm}void Union\+Find\+::\+Union (
+\begin{DoxyParamCaption}
+\item[{int}]{p, }
+\item[{int}]{q}
+\end{DoxyParamCaption}
+)}\label{classUnionFind_aa999e333a6da859acb9261de757d42f7}
+Merges the component containing site{\ttfamily p} with the component containing site {\ttfamily q}. 
+\begin{DoxyParams}{Parameters}
+{\em p} & the integer representing one site \\
+\hline
+{\em q} & the integer representing the other site \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+lang.\+Index\+Out\+Of\+Bounds\+Exception} & unless both 0 $<$= p $<$ N and 0 $<$= q $<$ N \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Union\+Find.\+h\item 
+src/Union\+Find.\+cpp\end{DoxyCompactItemize}

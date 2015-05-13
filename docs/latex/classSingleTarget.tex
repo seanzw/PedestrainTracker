@@ -1,0 +1,125 @@
+\hypertarget{classSingleTarget}{}\section{Single\+Target Class Reference}
+\label{classSingleTarget}\index{Single\+Target@{Single\+Target}}
+
+
+{\ttfamily \#include $<$Single\+Target.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSingleTarget_a9abf9f637e1378b1490cb76dbeadc6be}{Single\+Target} (int n\+Particles, const \hyperlink{classRect}{Rect} \&target, const \hyperlink{classPoint2D}{Point2\+D} \&init\+Velocity, int num\+Selectors, int num\+Weak\+Classifiers, int num\+Backups=0)
+\item 
+\hypertarget{classSingleTarget_afa791ad34c84b8a9d9d2e60398e5db2e}{}void {\bfseries Initialize\+Target} (const \hyperlink{classRect}{Rect} \&target, const \hyperlink{classPoint2D}{Point2\+D} \&init\+Velocity)\label{classSingleTarget_afa791ad34c84b8a9d9d2e60398e5db2e}
+
+\item 
+\hypertarget{classSingleTarget_a6e8ac2254143bba06f46ee55c957d4ec}{}void {\bfseries Reset\+Target} ()\label{classSingleTarget_a6e8ac2254143bba06f46ee55c957d4ec}
+
+\item 
+void \hyperlink{classSingleTarget_a2036d90f89d1a65966523c559aee3d38}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
+\item 
+void \hyperlink{classSingleTarget_a7ad134f1c4d53e45bcbc636b9fc6a943}{Observe} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} $\ast$detection, float detection\+Weight, float classifier\+Weight)
+\item 
+void \hyperlink{classSingleTarget_a5b2d2b9313f7d3bd8d96af68f840bff4}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target, float importance=1.\+0f)
+\item 
+void \hyperlink{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}{Update\+Seq} (bool is\+Detected)
+\item 
+\hypertarget{classSingleTarget_a4b77b8dbe78d051ab5f190eef5b9a51a}{}void {\bfseries Resample\+With\+Best} ()\label{classSingleTarget_a4b77b8dbe78d051ab5f190eef5b9a51a}
+
+\item 
+\hypertarget{classSingleTarget_a8ba04565921bcbcce7a04c1c76daa4ca}{}void {\bfseries Resample\+With\+Confidence} ()\label{classSingleTarget_a8ba04565921bcbcce7a04c1c76daa4ca}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A single target used in multiple tracker. It\textquotesingle{}s very similar to \hyperlink{classParticleFilterTracker}{Particle\+Filter\+Tracker}. It includes a target specific strong classifier, a particle filter.
+
+\begin{DoxyAuthor}{Author}
+Zhengrong Wang. 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSingleTarget_a9abf9f637e1378b1490cb76dbeadc6be}{}\index{Single\+Target@{Single\+Target}!Single\+Target@{Single\+Target}}
+\index{Single\+Target@{Single\+Target}!Single\+Target@{Single\+Target}}
+\subsubsection[{Single\+Target(int n\+Particles, const Rect \&target, const Point2\+D \&init\+Velocity, int num\+Selectors, int num\+Weak\+Classifiers, int num\+Backups=0)}]{\setlength{\rightskip}{0pt plus 5cm}Single\+Target\+::\+Single\+Target (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+Particles, }
+\item[{const {\bf Rect} \&}]{target, }
+\item[{const {\bf Point2\+D} \&}]{init\+Velocity, }
+\item[{int}]{num\+Selectors, }
+\item[{int}]{num\+Weak\+Classifiers, }
+\item[{int}]{num\+Backups = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{classSingleTarget_a9abf9f637e1378b1490cb76dbeadc6be}
+Construct an empty target.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Particles} & \# particles \\
+\hline
+{\em target} & the target region \\
+\hline
+{\em init\+Velocity} & the initial velocity \\
+\hline
+{\em num\+Selectors} & \# selectors in strong classifier \\
+\hline
+{\em num\+Weak\+Classifiers} & \# weak classifiers \\
+\hline
+{\em num\+Backups} & \# backup weak classifiers \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSingleTarget_a7ad134f1c4d53e45bcbc636b9fc6a943}{}\index{Single\+Target@{Single\+Target}!Observe@{Observe}}
+\index{Observe@{Observe}!Single\+Target@{Single\+Target}}
+\subsubsection[{Observe(const Integral\+Image $\ast$int\+Image, const Rect $\ast$detection, float detection\+Weight, float classifier\+Weight)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Observe (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} $\ast$}]{detection, }
+\item[{float}]{detection\+Weight, }
+\item[{float}]{classifier\+Weight}
+\end{DoxyParamCaption}
+)}\label{classSingleTarget_a7ad134f1c4d53e45bcbc636b9fc6a943}
+Observe the particles. weight\+\_\+particle = detection\+Weight $\ast$ P(particle, detection) + classifier\+Weight $\ast$ Conf(particle)
+
+
+\begin{DoxyParams}{Parameters}
+{\em detection} & The associate detection, if any. \\
+\hline
+{\em detection\+Weight} & weight for detection term \\
+\hline
+{\em classifier\+Weight} & weight for classifier term \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSingleTarget_a2036d90f89d1a65966523c559aee3d38}{}\index{Single\+Target@{Single\+Target}!Propagate@{Propagate}}
+\index{Propagate@{Propagate}!Single\+Target@{Single\+Target}}
+\subsubsection[{Propagate(const Size \&img\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Propagate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{img\+Size}
+\end{DoxyParamCaption}
+)}\label{classSingleTarget_a2036d90f89d1a65966523c559aee3d38}
+Propagate the particles. It sets the sigma for velocity and then call \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Particle\+Filter\+::\+Propagate}. \hypertarget{classSingleTarget_a5b2d2b9313f7d3bd8d96af68f840bff4}{}\index{Single\+Target@{Single\+Target}!Update@{Update}}
+\index{Update@{Update}!Single\+Target@{Single\+Target}}
+\subsubsection[{Update(const Integral\+Image $\ast$int\+Image, const Rect \&roi, int target, float importance=1.\+0f)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi, }
+\item[{int}]{target, }
+\item[{float}]{importance = {\ttfamily 1.0f}}
+\end{DoxyParamCaption}
+)}\label{classSingleTarget_a5b2d2b9313f7d3bd8d96af68f840bff4}
+Update the classifier. Only used when there are no overlapping detection and we are damn sure this is the correct one. \hypertarget{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}{}\index{Single\+Target@{Single\+Target}!Update\+Seq@{Update\+Seq}}
+\index{Update\+Seq@{Update\+Seq}!Single\+Target@{Single\+Target}}
+\subsubsection[{Update\+Seq(bool is\+Detected)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Update\+Seq (
+\begin{DoxyParamCaption}
+\item[{bool}]{is\+Detected}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}
+Update the detection sequence. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Single\+Target.\+h\item 
+src/Single\+Target.\+cpp\end{DoxyCompactItemize}

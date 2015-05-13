@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['sampler',['Sampler',['../classSampler.html',1,'']]],
-  ['size',['Size',['../classSize.html',1,'']]],
-  ['strongclassifier',['StrongClassifier',['../classStrongClassifier.html',1,'']]],
-  ['strongclassifierdirectselect',['StrongClassifierDirectSelect',['../classStrongClassifierDirectSelect.html',1,'']]]
+  ['rect',['rect',['../structrect.html',1,'rect'],['../classRect.html',1,'Rect']]],
+  ['rgifeature',['RGIFeature',['../classRGIFeature.html',1,'']]],
+  ['rgiintegralimage',['RGIIntegralImage',['../classRGIIntegralImage.html',1,'']]],
+  ['row_5fdata',['row_data',['../structrow__data.html',1,'']]]
 ];

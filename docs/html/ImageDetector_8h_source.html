@@ -94,28 +94,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// #include &quot;FeatureExtractor.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Classifier.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Pool.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structrect.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structrect.html">rect</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">int</span> x1;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">int</span> y1;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> x2;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">int</span> y2;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> re;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">int</span> count;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="structrect.html">rect</a>(<span class="keywordtype">int</span> _x1 = 0, <span class="keywordtype">int</span> _y1 = 0, <span class="keywordtype">int</span> _x2 = 0, <span class="keywordtype">int</span> _y2 = 0)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        : x1(_x1), y1(_y1), x2(_x2), y2(_y2), re(-1), count(1) {}</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">// Use some specific feature and classifier to detect pedestrain.</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Apply this directly on the whole image.</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classImageDetector.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classImageDetector.html">ImageDetector</a> {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classImageDetector.html">ImageDetector</a>(<a class="code" href="classIntegralImage.html">IntegralImage</a> *i, <a class="code" href="classClassifier.html">Classifier</a> *c, <a class="code" href="structOptions.html">Options</a> &amp;op);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classImageDetector.html#aca346dbe30c325653c6c9ef1a0ffd0b2">Detect</a>(<span class="keyword">const</span> cv::Mat &amp;img, </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">const</span> cv::Point &amp;origin = cv::Point(0, 0),</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">bool</span> isMerge = <span class="keyword">true</span>,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;UnionFind.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structrect.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structrect.html">rect</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">int</span> x1;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> y1;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">int</span> x2;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> y2;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">int</span> re;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">int</span> count;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="structrect.html">rect</a>(<span class="keywordtype">int</span> _x1 = 0, <span class="keywordtype">int</span> _y1 = 0, <span class="keywordtype">int</span> _x2 = 0, <span class="keywordtype">int</span> _y2 = 0)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        : x1(_x1), y1(_y1), x2(_x2), y2(_y2), re(-1), count(1) {}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Use some specific feature and classifier to detect pedestrain.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// Apply this directly on the whole image.</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classImageDetector.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classImageDetector.html">ImageDetector</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classImageDetector.html">ImageDetector</a>(<a class="code" href="classClassifier.html">Classifier</a> *c, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;op);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classImageDetector.html#ae04e532f1de2cb8da3b514b7585ef624">Detect</a>(<span class="keyword">const</span> cv::Mat &amp;img, <span class="keyword">const</span> <a class="code" href="classIntegralImage.html">IntegralImage</a> *intImage,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">const</span> <a class="code" href="classRect.html">Rect</a> &amp;subRegion,</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">const</span> cv::Mat &amp;bkg = defaultBackground</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        );</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
@@ -128,37 +128,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classPool.html">Pool&lt;rect&gt;</a> dets;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classIntegralImage.html">IntegralImage</a> *intImage;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classClassifier.html">Classifier</a> *classifier;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    feat scaleMin;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    feat scaleMax;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    feat scaleStep;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> slideStep;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> evidence;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span> modelHeight;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> modelWidth;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Temp pool used in merge.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classPool.html">Pool&lt;rect&gt;</a> temp;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Some helper functions.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Is these two detection the same one?</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">bool</span> IsEqual(<span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;r1, <span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;r2) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">bool</span> IsOverlap(<span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;r, <span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;t) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> DrawDetection(cv::Mat &amp;img, <a class="code" href="classPool.html">Pool&lt;rect&gt;</a> &amp;dets);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classImageDetector_html_aca346dbe30c325653c6c9ef1a0ffd0b2"><div class="ttname"><a href="classImageDetector.html#aca346dbe30c325653c6c9ef1a0ffd0b2">ImageDetector::Detect</a></div><div class="ttdeci">virtual bool Detect(const cv::Mat &amp;img, const cv::Point &amp;origin=cv::Point(0, 0), bool isMerge=true, const cv::Mat &amp;bkg=defaultBackground)</div><div class="ttdef"><b>Definition:</b> ImageDetector.cpp:16</div></div>
-<div class="ttc" id="classImageDetector_html"><div class="ttname"><a href="classImageDetector.html">ImageDetector</a></div><div class="ttdef"><b>Definition:</b> ImageDetector.h:28</div></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classClassifier.html">Classifier</a> *classifier;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    feat scaleMin;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    feat scaleMax;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    feat scaleStep;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> slideStep;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> evidence;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> modelHeight;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span> modelWidth;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Temp pool used in merge.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classPool.html">Pool&lt;rect&gt;</a> temp;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// This is used in union-find.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classPool.html">Pool&lt;int&gt;</a> roots;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classUnionFind.html">UnionFind</a> *unionFind;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Some helper functions.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Is these two detection the same one?</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> IsEqual(<span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;r1, <span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;r2) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">bool</span> IsOverlap(<span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;r, <span class="keyword">const</span> <a class="code" href="structrect.html">rect</a> &amp;t) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> DrawDetection(cv::Mat &amp;img, <a class="code" href="classPool.html">Pool&lt;rect&gt;</a> &amp;dets);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classUnionFind_html"><div class="ttname"><a href="classUnionFind.html">UnionFind</a></div><div class="ttdef"><b>Definition:</b> UnionFind.h:9</div></div>
+<div class="ttc" id="classRect_html"><div class="ttname"><a href="classRect.html">Rect</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:34</div></div>
+<div class="ttc" id="classImageDetector_html"><div class="ttname"><a href="classImageDetector.html">ImageDetector</a></div><div class="ttdef"><b>Definition:</b> ImageDetector.h:29</div></div>
+<div class="ttc" id="classImageDetector_html_ae04e532f1de2cb8da3b514b7585ef624"><div class="ttname"><a href="classImageDetector.html#ae04e532f1de2cb8da3b514b7585ef624">ImageDetector::Detect</a></div><div class="ttdeci">virtual bool Detect(const cv::Mat &amp;img, const IntegralImage *intImage, const Rect &amp;subRegion, const cv::Mat &amp;bkg=defaultBackground)</div><div class="ttdef"><b>Definition:</b> ImageDetector.cpp:14</div></div>
 <div class="ttc" id="classPool_html"><div class="ttname"><a href="classPool.html">Pool&lt; rect &gt;</a></div></div>
 <div class="ttc" id="classIntegralImage_html"><div class="ttname"><a href="classIntegralImage.html">IntegralImage</a></div><div class="ttdef"><b>Definition:</b> IntegralImage.h:11</div></div>
-<div class="ttc" id="structrect_html"><div class="ttname"><a href="structrect.html">rect</a></div><div class="ttdef"><b>Definition:</b> ImageDetector.h:14</div></div>
+<div class="ttc" id="structrect_html"><div class="ttname"><a href="structrect.html">rect</a></div><div class="ttdef"><b>Definition:</b> ImageDetector.h:15</div></div>
 <div class="ttc" id="classClassifier_html"><div class="ttname"><a href="classClassifier.html">Classifier</a></div><div class="ttdef"><b>Definition:</b> Classifier.h:12</div></div>
-<div class="ttc" id="structOptions_html"><div class="ttname"><a href="structOptions.html">Options</a></div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:34</div></div>
+<div class="ttc" id="structOptions_html"><div class="ttname"><a href="structOptions.html">Options</a></div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

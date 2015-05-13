@@ -9,10 +9,10 @@ Inheritance diagram for Image\+Detector\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classImageDetector_ae661e19aa8fce824ff3e159efae1dd71}{}{\bfseries Image\+Detector} (\hyperlink{classIntegralImage}{Integral\+Image} $\ast$i, \hyperlink{classClassifier}{Classifier} $\ast$c, \hyperlink{structOptions}{Options} \&op)\label{classImageDetector_ae661e19aa8fce824ff3e159efae1dd71}
+\hypertarget{classImageDetector_a46465717138658c7f29146d4aa057d98}{}{\bfseries Image\+Detector} (\hyperlink{classClassifier}{Classifier} $\ast$c, const \hyperlink{structOptions}{Options} \&op)\label{classImageDetector_a46465717138658c7f29146d4aa057d98}
 
 \item 
-virtual bool \hyperlink{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{Detect} (const cv\+::\+Mat \&img, const cv\+::\+Point \&origin=cv\+::\+Point(0, 0), bool is\+Merge=true, const cv\+::\+Mat \&bkg=default\+Background)
+virtual bool \hyperlink{classImageDetector_ae04e532f1de2cb8da3b514b7585ef624}{Detect} (const cv\+::\+Mat \&img, const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&sub\+Region, const cv\+::\+Mat \&bkg=default\+Background)
 \item 
 \hypertarget{classImageDetector_a866cc9f2e6b109ea8a897e96c4b106a1}{}void {\bfseries Draw\+Detection} (cv\+::\+Mat \&img)\label{classImageDetector_a866cc9f2e6b109ea8a897e96c4b106a1}
 
@@ -37,9 +37,6 @@ virtual bool \hyperlink{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{De
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classImageDetector_a604ac20e008c67fe067fc01bfcf16c2b}{}\hyperlink{classIntegralImage}{Integral\+Image} $\ast$ {\bfseries int\+Image}\label{classImageDetector_a604ac20e008c67fe067fc01bfcf16c2b}
-
 \item 
 \hypertarget{classImageDetector_a85a290b68f969c9fab97926b38e256a1}{}\hyperlink{classClassifier}{Classifier} $\ast$ {\bfseries classifier}\label{classImageDetector_a85a290b68f969c9fab97926b38e256a1}
 
@@ -67,29 +64,35 @@ virtual bool \hyperlink{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{De
 \item 
 \hypertarget{classImageDetector_a75b3168312f048818022f8c4973dfcdb}{}\hyperlink{classPool}{Pool}$<$ \hyperlink{structrect}{rect} $>$ {\bfseries temp}\label{classImageDetector_a75b3168312f048818022f8c4973dfcdb}
 
+\item 
+\hypertarget{classImageDetector_a4d7c61674662b82c81fad48bfdec5c98}{}\hyperlink{classPool}{Pool}$<$ int $>$ {\bfseries roots}\label{classImageDetector_a4d7c61674662b82c81fad48bfdec5c98}
+
+\item 
+\hypertarget{classImageDetector_a7fc4034bd73af54cd123fc02aa989bab}{}\hyperlink{classUnionFind}{Union\+Find} $\ast$ {\bfseries union\+Find}\label{classImageDetector_a7fc4034bd73af54cd123fc02aa989bab}
+
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}{}\index{Image\+Detector@{Image\+Detector}!Detect@{Detect}}
+\hypertarget{classImageDetector_ae04e532f1de2cb8da3b514b7585ef624}{}\index{Image\+Detector@{Image\+Detector}!Detect@{Detect}}
 \index{Detect@{Detect}!Image\+Detector@{Image\+Detector}}
-\subsubsection[{Detect(const cv\+::\+Mat \&img, const cv\+::\+Point \&origin=cv\+::\+Point(0, 0), bool is\+Merge=true, const cv\+::\+Mat \&bkg=default\+Background)}]{\setlength{\rightskip}{0pt plus 5cm}bool Image\+Detector\+::\+Detect (
+\subsubsection[{Detect(const cv\+::\+Mat \&img, const Integral\+Image $\ast$int\+Image, const Rect \&sub\+Region, const cv\+::\+Mat \&bkg=default\+Background)}]{\setlength{\rightskip}{0pt plus 5cm}bool Image\+Detector\+::\+Detect (
 \begin{DoxyParamCaption}
 \item[{const cv\+::\+Mat \&}]{img, }
-\item[{const cv\+::\+Point \&}]{origin = {\ttfamily cv\+:\+:Point(0,~0)}, }
-\item[{bool}]{is\+Merge = {\ttfamily true}, }
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{sub\+Region, }
 \item[{const cv\+::\+Mat \&}]{bkg = {\ttfamily defaultBackground}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classImageDetector_aca346dbe30c325653c6c9ef1a0ffd0b2}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classImageDetector_ae04e532f1de2cb8da3b514b7585ef624}
 Detect, return the resutl in a vector. Notice that sometimes we only want to detect in a subregion of the original image, in such case we have to give the origin parameter, which is the coordinates of the upper-\/left corner in the original image. 
 \begin{DoxyParams}{Parameters}
-{\em img} & the image we need to detect. \\
+{\em img} & the image \\
 \hline
-{\em origin} & the coordinates of the img\textquotesingle{}s upper-\/left corner in its parents (if any) \\
+{\em int\+Image} & the integral image \\
 \hline
-{\em bkg} & unused here, for \hyperlink{classBKGCutDetector}{B\+K\+G\+Cut\+Detector}. \\
+{\em sub\+Region} & the sub\+Region we want to detect \\
 \hline
-{\em is\+Merge} & merge the detection with accumulated evidence. \\
+{\em bkg} & background \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -97,7 +100,7 @@ true if everything is fine.
 \end{DoxyReturn}
 
 
-Reimplemented in \hyperlink{classBKGCutDetector_ab1e2f37a3436e58197f1429085677b8f}{B\+K\+G\+Cut\+Detector}.
+Reimplemented in \hyperlink{classBKGCutDetector_af20d7a8db9419da74cafdf977eed9c29}{B\+K\+G\+Cut\+Detector}.
 
 
 

@@ -10,8 +10,7 @@
 \hypertarget{classHoGFeature_a1e8f745b4991e6f97c1ce16ba981baa1}{}{\bfseries Ho\+G\+Feature} (int offset\+W, int offset\+H, int w, int h)\label{classHoGFeature_a1e8f745b4991e6f97c1ce16ba981baa1}
 
 \item 
-\hypertarget{classHoGFeature_aae463c642f7ff64980eebe9f0519eae0}{}bool {\bfseries Extract} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, \hyperlink{classFeature}{Feature} $\ast$feature, float scale=1.\+0f) const \label{classHoGFeature_aae463c642f7ff64980eebe9f0519eae0}
-
+bool \hyperlink{classHoGFeature_aae463c642f7ff64980eebe9f0519eae0}{Extract} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, \hyperlink{classFeature}{Feature} $\ast$feature, float scale=1.\+0f) const 
 \end{DoxyCompactItemize}
 
 
@@ -20,6 +19,21 @@ Extract the Ho\+G of subregion in the roi. \begin{DoxyAuthor}{Author}
 Zhengrong Wang. 
 \end{DoxyAuthor}
 
+
+\subsection{Member Function Documentation}
+\hypertarget{classHoGFeature_aae463c642f7ff64980eebe9f0519eae0}{}\index{Ho\+G\+Feature@{Ho\+G\+Feature}!Extract@{Extract}}
+\index{Extract@{Extract}!Ho\+G\+Feature@{Ho\+G\+Feature}}
+\subsubsection[{Extract(const Integral\+Image $\ast$int\+Image, const Rect \&roi, Feature $\ast$feature, float scale=1.\+0f) const }]{\setlength{\rightskip}{0pt plus 5cm}bool Ho\+G\+Feature\+::\+Extract (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi, }
+\item[{{\bf Feature} $\ast$}]{feature, }
+\item[{float}]{scale = {\ttfamily 1.0f}}
+\end{DoxyParamCaption}
+) const}\label{classHoGFeature_aae463c642f7ff64980eebe9f0519eae0}
+The patch is like this\+:
+
+$<$-\/-\/-\/---\mbox{[}scaled\+With / 2\mbox{]}-\/-\/-\/---$^\wedge$-\/-\/-\/-\/---\mbox{[}scaled\+Width -\/ scaled\+Width / 2\mbox{]}-\/-\/-\/---$>$ $\vert$ $\vert$ $\vert$ \mbox{[}scaled\+Height / 2\mbox{]} $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $^\wedge$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$^\wedge$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$^\wedge$ $\vert$ $\vert$ $\vert$ \mbox{[}scaled\+Height -\/ $\vert$ $\vert$ scaled\+Height / 2\mbox{]} $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ $^\wedge$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$^\wedge$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$^\wedge$
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

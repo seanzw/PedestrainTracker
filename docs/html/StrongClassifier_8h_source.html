@@ -118,14 +118,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Whether we replace the weakest classifier in trainging.</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> useFeatureReplace;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classRect_html"><div class="ttname"><a href="classRect.html">Rect</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:25</div></div>
-<div class="ttc" id="classSize_html"><div class="ttname"><a href="classSize.html">Size</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:12</div></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> NormalizeAlpha() {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">float</span> sum = 0.0f;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; numSelector; i++) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            sum += alpha[i];</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">float</span> invSum = 1.0f / sum;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; numSelector; i++) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            alpha[i] *= invSum;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classRect_html"><div class="ttname"><a href="classRect.html">Rect</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:34</div></div>
+<div class="ttc" id="classSize_html"><div class="ttname"><a href="classSize.html">Size</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:14</div></div>
 <div class="ttc" id="classIntegralImage_html"><div class="ttname"><a href="classIntegralImage.html">IntegralImage</a></div><div class="ttdef"><b>Definition:</b> IntegralImage.h:11</div></div>
-<div class="ttc" id="classClassifierSelector_html"><div class="ttname"><a href="classClassifierSelector.html">ClassifierSelector</a></div><div class="ttdef"><b>Definition:</b> ClassifierSelector.h:13</div></div>
+<div class="ttc" id="classClassifierSelector_html"><div class="ttname"><a href="classClassifierSelector.html">ClassifierSelector</a></div><div class="ttdef"><b>Definition:</b> ClassifierSelector.h:14</div></div>
 <div class="ttc" id="classStrongClassifier_html"><div class="ttname"><a href="classStrongClassifier.html">StrongClassifier</a></div><div class="ttdef"><b>Definition:</b> StrongClassifier.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
