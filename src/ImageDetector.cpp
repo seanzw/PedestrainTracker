@@ -30,7 +30,7 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 				roi.left = j + subRegion.left;
 				if (classifier->Classify(intImage, roi, scale) > 0) {
 					temp.Push(rect(roi.left,
-						roi.upper, 
+						roi.upper,
 						roi.left + roi.width,
 						roi.upper + roi.height));
 				}
@@ -105,7 +105,8 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 				if (IsEqual(temp[i], temp[j])) {
 					if (temp[i].re == -1) {
 						temp[i].re = temp[j].re = i;
-					} else {
+					}
+					else {
 						temp[j].re = temp[i].re;
 					}
 				}
@@ -116,11 +117,11 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 		for (int i = 0; i < temp.size; i++) {
 			int count = 0;
 			for (int j = i; j < temp.size; j++) {
-				if (temp[i].re == i && temp[j].re == i) 
+				if (temp[i].re == i && temp[j].re == i)
 					count++;
 			}
 
-			if (temp[i].re == i) 
+			if (temp[i].re == i)
 				temp[i].count = count;
 
 			for (int j = i; j < temp.size; j++) {
@@ -134,14 +135,14 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 	for (int i = 0; i < temp.size; i++)
 	{
 		// This one has no friends...
-		if (temp[i].re == -1) 
+		if (temp[i].re == -1)
 			continue;
 
 		if (temp[i].re >= 0 && temp[i].count >= evidence) {
 			rect t(0, 0, 0, 0);
 
 			for (int j = i; j < temp.size; j++) {
-				if (temp[j].re != temp[i].re) 
+				if (temp[j].re != temp[i].re)
 					continue;
 
 				t.x1 += temp[j].x1;
@@ -159,11 +160,11 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 
 			dets.Push(t);
 
-			if (t.count <= 1) 
+			if (t.count <= 1)
 				printf("ERROR: COUNT WRONG!");
 		}
 	}
-	
+
 
 	return true;
 }
@@ -179,7 +180,7 @@ void ImageDetector::DrawDetection(cv::Mat &img) {
 		pt1.y = dets[i].y1;
 		pt2.x = dets[i].x2;
 		pt2.y = dets[i].y2;
-		
+
 
 		for (int j = 0; j < dets.size; j++) {
 
@@ -198,7 +199,7 @@ void ImageDetector::DrawDetection(cv::Mat &img) {
 				dets[i].re = 110;
 			}
 		}
-		
+
 		if (flag == 0)
 			cv::rectangle(img, pt1, pt2, cv::Scalar(0.f, 255.f, 0.f, 1.f), 3);
 	}
