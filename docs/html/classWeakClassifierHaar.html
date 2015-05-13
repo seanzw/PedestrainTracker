@@ -112,8 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2b7ad8b6691f6739ebe75c5301fa252b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b7ad8b6691f6739ebe75c5301fa252b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>Classify</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, float scale=1.0f)</td></tr>
 <tr class="separator:a2b7ad8b6691f6739ebe75c5301fa252b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5880dbf4a75a29e61e32903faef1dae6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5880dbf4a75a29e61e32903faef1dae6"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Evaluate</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi)</td></tr>
+<tr class="memitem:a5880dbf4a75a29e61e32903faef1dae6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifierHaar.html#a5880dbf4a75a29e61e32903faef1dae6">Evaluate</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi)</td></tr>
 <tr class="separator:a5880dbf4a75a29e61e32903faef1dae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac577e6b2c75eb48bc93068966c522f3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac577e6b2c75eb48bc93068966c522f3f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetPosDist</b> ()</td></tr>
@@ -126,6 +125,43 @@ virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>Evaluate</b>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Using Haar <a class="el" href="classFeature.html">Feature</a> to construct a weak classifier. Also estimate the positive and negative cluster with Kalman filter. </p><dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a5880dbf4a75a29e61e32903faef1dae6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float WeakClassifierHaar::Evaluate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>roi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>[0.0, 1.0] </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classWeakClassifier.html#a083dddaa52fe399386f07a20f231ec49">WeakClassifier</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa8dc6734dc435c246d9605aceea2c9a7"></a>
 <div class="memitem">
 <div class="memproto">

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['options',['Options',['../structOptions.html',1,'']]]
+  ['multitracker',['MultiTracker',['../classMultiTracker.html',1,'']]]
 ];

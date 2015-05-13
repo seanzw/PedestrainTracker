@@ -104,11 +104,11 @@ Inheritance diagram for ImageDetector:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae661e19aa8fce824ff3e159efae1dd71"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae661e19aa8fce824ff3e159efae1dd71"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ImageDetector</b> (<a class="el" href="classIntegralImage.html">IntegralImage</a> *i, <a class="el" href="classClassifier.html">Classifier</a> *c, <a class="el" href="structOptions.html">Options</a> &amp;op)</td></tr>
-<tr class="separator:ae661e19aa8fce824ff3e159efae1dd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca346dbe30c325653c6c9ef1a0ffd0b2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageDetector.html#aca346dbe30c325653c6c9ef1a0ffd0b2">Detect</a> (const cv::Mat &amp;img, const cv::Point &amp;origin=cv::Point(0, 0), bool isMerge=true, const cv::Mat &amp;bkg=defaultBackground)</td></tr>
-<tr class="separator:aca346dbe30c325653c6c9ef1a0ffd0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46465717138658c7f29146d4aa057d98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46465717138658c7f29146d4aa057d98"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ImageDetector</b> (<a class="el" href="classClassifier.html">Classifier</a> *c, const <a class="el" href="structOptions.html">Options</a> &amp;op)</td></tr>
+<tr class="separator:a46465717138658c7f29146d4aa057d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae04e532f1de2cb8da3b514b7585ef624"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageDetector.html#ae04e532f1de2cb8da3b514b7585ef624">Detect</a> (const cv::Mat &amp;img, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;subRegion, const cv::Mat &amp;bkg=defaultBackground)</td></tr>
+<tr class="separator:ae04e532f1de2cb8da3b514b7585ef624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a866cc9f2e6b109ea8a897e96c4b106a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a866cc9f2e6b109ea8a897e96c4b106a1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawDetection</b> (cv::Mat &amp;img)</td></tr>
 <tr class="separator:a866cc9f2e6b109ea8a897e96c4b106a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,9 +133,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOverlap</b> (const 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a604ac20e008c67fe067fc01bfcf16c2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a604ac20e008c67fe067fc01bfcf16c2b"></a>
-<a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>intImage</b></td></tr>
-<tr class="separator:a604ac20e008c67fe067fc01bfcf16c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85a290b68f969c9fab97926b38e256a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85a290b68f969c9fab97926b38e256a1"></a>
 <a class="el" href="classClassifier.html">Classifier</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>classifier</b></td></tr>
 <tr class="separator:a85a290b68f969c9fab97926b38e256a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +160,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>modelWidth</b></td></t
 <tr class="memitem:a75b3168312f048818022f8c4973dfcdb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75b3168312f048818022f8c4973dfcdb"></a>
 <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="structrect.html">rect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>temp</b></td></tr>
 <tr class="separator:a75b3168312f048818022f8c4973dfcdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7c61674662b82c81fad48bfdec5c98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d7c61674662b82c81fad48bfdec5c98"></a>
+<a class="el" href="classPool.html">Pool</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>roots</b></td></tr>
+<tr class="separator:a4d7c61674662b82c81fad48bfdec5c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc4034bd73af54cd123fc02aa989bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fc4034bd73af54cd123fc02aa989bab"></a>
+<a class="el" href="classUnionFind.html">UnionFind</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>unionFind</b></td></tr>
+<tr class="separator:a7fc4034bd73af54cd123fc02aa989bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aca346dbe30c325653c6c9ef1a0ffd0b2"></a>
+<a class="anchor" id="ae04e532f1de2cb8da3b514b7585ef624"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -181,14 +184,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>modelWidth</b></td></t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const cv::Point &amp;&#160;</td>
-          <td class="paramname"><em>origin</em> = <code>cv::Point(0,&#160;0)</code>, </td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isMerge</em> = <code>true</code>, </td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>subRegion</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -210,16 +213,16 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>modelWidth</b></td></t
 </div><div class="memdoc">
 <p>Detect, return the resutl in a vector. Notice that sometimes we only want to detect in a subregion of the original image, in such case we have to give the origin parameter, which is the coordinates of the upper-left corner in the original image. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">img</td><td>the image we need to detect. </td></tr>
-    <tr><td class="paramname">origin</td><td>the coordinates of the img's upper-left corner in its parents (if any) </td></tr>
-    <tr><td class="paramname">bkg</td><td>unused here, for <a class="el" href="classBKGCutDetector.html">BKGCutDetector</a>. </td></tr>
-    <tr><td class="paramname">isMerge</td><td>merge the detection with accumulated evidence. </td></tr>
+    <tr><td class="paramname">img</td><td>the image </td></tr>
+    <tr><td class="paramname">intImage</td><td>the integral image </td></tr>
+    <tr><td class="paramname">subRegion</td><td>the subRegion we want to detect </td></tr>
+    <tr><td class="paramname">bkg</td><td>background </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if everything is fine. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classBKGCutDetector.html#ab1e2f37a3436e58197f1429085677b8f">BKGCutDetector</a>.</p>
+<p>Reimplemented in <a class="el" href="classBKGCutDetector.html#af20d7a8db9419da74cafdf977eed9c29">BKGCutDetector</a>.</p>
 
 </div>
 </div>

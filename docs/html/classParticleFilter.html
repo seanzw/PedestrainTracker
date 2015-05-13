@@ -86,7 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classParticleFilter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ParticleFilter Class Reference</div>  </div>
@@ -94,30 +93,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="ParticleFilter_8h_source.html">ParticleFilter.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ParticleFilter:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classParticleFilter.png" usemap="#ParticleFilter_map" alt=""/>
+  <map id="ParticleFilter_map" name="ParticleFilter_map">
+<area href="classParticleFilterConstVelocity.html" alt="ParticleFilterConstVelocity" shape="rect" coords="0,56,162,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a35a9c63314a651517636b607b93905a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35a9c63314a651517636b607b93905a3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleFilter</b> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;target, int n=100)</td></tr>
-<tr class="separator:a35a9c63314a651517636b607b93905a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7696b97b667be113891f929d70c74393"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7696b97b667be113891f929d70c74393"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Propagate</b> ()</td></tr>
-<tr class="separator:a7696b97b667be113891f929d70c74393"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eb32a3720985e474999ccb5f69bc079"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2eb32a3720985e474999ccb5f69bc079"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Observe</b> ()</td></tr>
-<tr class="separator:a2eb32a3720985e474999ccb5f69bc079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05d7aeddc103fc32b6de3a751c37471"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ad05d7aeddc103fc32b6de3a751c37471">ParticleFilter</a> (int n=100, int szParticle=2)</td></tr>
+<tr class="separator:ad05d7aeddc103fc32b6de3a751c37471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f8647624fb770f966eeacb5e2b94310"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f8647624fb770f966eeacb5e2b94310"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleFilter</b> (const <a class="el" href="classRect.html">Rect</a> &amp;target, int n=100, int szParticle=2)</td></tr>
+<tr class="separator:a8f8647624fb770f966eeacb5e2b94310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166db9f33feabf14126df2de541a593d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a166db9f33feabf14126df2de541a593d">Propagate</a> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
+<tr class="separator:a166db9f33feabf14126df2de541a593d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac564ef678bef8d6ff2fc70258cc7e822"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ac564ef678bef8d6ff2fc70258cc7e822">Observe</a> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage)</td></tr>
+<tr class="separator:ac564ef678bef8d6ff2fc70258cc7e822"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc0bf5137e9e7d8f59961618dbd9215"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a7dc0bf5137e9e7d8f59961618dbd9215">Observe</a> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;detection, float detectionWeight, float classifierWeight)</td></tr>
+<tr class="separator:a7dc0bf5137e9e7d8f59961618dbd9215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b01cd9d9d0fa181b89ffe3dcf5fbab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a76b01cd9d9d0fa181b89ffe3dcf5fbab">ResampleWithBest</a> ()</td></tr>
+<tr class="separator:a76b01cd9d9d0fa181b89ffe3dcf5fbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab191492fa8c67ecb0546e69d50fa2481"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ab191492fa8c67ecb0546e69d50fa2481">ResampleWithConfidence</a> ()</td></tr>
+<tr class="separator:ab191492fa8c67ecb0546e69d50fa2481"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a666ab9bee3ed479c5e9387f8d5908e48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a666ab9bee3ed479c5e9387f8d5908e48"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawParticles</b> (cv::Mat &amp;img, const cv::Scalar &amp;color) const </td></tr>
 <tr class="separator:a666ab9bee3ed479c5e9387f8d5908e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b8f53b1f9245417ecab6f3dcb483e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10b8f53b1f9245417ecab6f3dcb483e7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawParticlesWithConfidence</b> (cv::Mat &amp;img, const cv::Scalar &amp;color) const </td></tr>
+<tr class="separator:a10b8f53b1f9245417ecab6f3dcb483e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace5259baa39baccc26212d9ed116cf7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace5259baa39baccc26212d9ed116cf7c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawTarget</b> (cv::Mat &amp;img, const cv::Scalar &amp;color) const </td></tr>
 <tr class="separator:ace5259baa39baccc26212d9ed116cf7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c226ecb5b701d7cac2c99cf6168e05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2c226ecb5b701d7cac2c99cf6168e05"></a>
+const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTarget</b> () const </td></tr>
+<tr class="separator:ab2c226ecb5b701d7cac2c99cf6168e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0244f4fb69b92deb70aa470f2cc85ca4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitParticles</b> ()</td></tr>
+<tr class="separator:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0244f4fb69b92deb70aa470f2cc85ca4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitParticles</b> ()</td></tr>
-<tr class="separator:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a566b57dbca5caadbf1c9dce31b3407be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a566b57dbca5caadbf1c9dce31b3407be"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>BinarSearch</b> (float prob) const </td></tr>
 <tr class="separator:a566b57dbca5caadbf1c9dce31b3407be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,12 +150,18 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>numParticles</b>
 <tr class="memitem:a0175a0c46621095d013e8fc539b94eed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0175a0c46621095d013e8fc539b94eed"></a>
 int *&#160;</td><td class="memItemRight" valign="bottom"><b>particles</b></td></tr>
 <tr class="separator:a0175a0c46621095d013e8fc539b94eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affbf0bd98b03f8c047db2106c40ecfd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affbf0bd98b03f8c047db2106c40ecfd1"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>sizeParticle</b></td></tr>
+<tr class="separator:affbf0bd98b03f8c047db2106c40ecfd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68e04e60c13a06afc10bcce6b4d056b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68e04e60c13a06afc10bcce6b4d056b6"></a>
 float *&#160;</td><td class="memItemRight" valign="bottom"><b>confidence</b></td></tr>
 <tr class="separator:a68e04e60c13a06afc10bcce6b4d056b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa97f15d13d905348953cdc3122871255"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa97f15d13d905348953cdc3122871255"></a>
 <a class="el" href="classRect.html">Rect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>target</b></td></tr>
 <tr class="separator:aa97f15d13d905348953cdc3122871255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b276ac5acdc39a1c7f5fc89dc9529d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10b276ac5acdc39a1c7f5fc89dc9529d"></a>
+std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><b>generator</b></td></tr>
+<tr class="separator:a10b276ac5acdc39a1c7f5fc89dc9529d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a861497b4329e28e078d7ebfa381baae9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a861497b4329e28e078d7ebfa381baae9"></a>
 std::normal_distribution&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gaussian</b></td></tr>
 <tr class="separator:a861497b4329e28e078d7ebfa381baae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,25 +171,192 @@ std::uniform_real_distribution&lt; float &gt;&#160;</td><td class="memItemRight"
 <tr class="memitem:a23a3c5e7016d74cf775031b612c19839"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23a3c5e7016d74cf775031b612c19839"></a>
 int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></td></tr>
 <tr class="separator:a23a3c5e7016d74cf775031b612c19839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401acf4c7135f33a419a7291594d8f22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a401acf4c7135f33a419a7291594d8f22"></a>
-<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>classifier</b></td></tr>
-<tr class="separator:a401acf4c7135f33a419a7291594d8f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41408c9a167ae09cf8b77f4df483a5c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41408c9a167ae09cf8b77f4df483a5c4"></a>
-<a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>intImage</b></td></tr>
-<tr class="separator:a41408c9a167ae09cf8b77f4df483a5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
-Static Protected Attributes</h2></td></tr>
-<tr class="memitem:affbf0bd98b03f8c047db2106c40ecfd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affbf0bd98b03f8c047db2106c40ecfd1"></a>
-static const int&#160;</td><td class="memItemRight" valign="bottom"><b>sizeParticle</b> = 2</td></tr>
-<tr class="separator:affbf0bd98b03f8c047db2106c40ecfd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10b276ac5acdc39a1c7f5fc89dc9529d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10b276ac5acdc39a1c7f5fc89dc9529d"></a>
-static std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><b>generator</b></td></tr>
-<tr class="separator:a10b276ac5acdc39a1c7f5fc89dc9529d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A basic particle filter. It just propagates the particles and observe using the strong classifier's evaluate function. We leave the training to upper class. </p><dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ad05d7aeddc103fc32b6de3a751c37471"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ParticleFilter::ParticleFilter </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>szParticle</em> = <code>2</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This constructor doesn't initialize particles. Used for child class such as ParticleFitlerConstVelocity. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac564ef678bef8d6ff2fc70258cc7e822"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::Observe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td>
+          <td class="paramname"><em>classifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Observe with classifier output confidence. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7dc0bf5137e9e7d8f59961618dbd9215"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::Observe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td>
+          <td class="paramname"><em>classifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>detection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>detectionWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>classifierWeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Observe with classifier output confidence and associated detection. </p>
+
+</div>
+</div>
+<a class="anchor" id="a166db9f33feabf14126df2de541a593d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::Propagate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>imgSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Propagate the particles.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imgSize</td><td>Is the particle still inside the image? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classParticleFilterConstVelocity.html#a72868ab78e4c4f49ce756e986839f993">ParticleFilterConstVelocity</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76b01cd9d9d0fa181b89ffe3dcf5fbab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::ResampleWithBest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Resample directly around the best particle. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab191492fa8c67ecb0546e69d50fa2481"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::ResampleWithConfidence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Resample with the confidence. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="ParticleFilter_8h_source.html">ParticleFilter.h</a></li>
 <li>src/ParticleFilter.cpp</li>
 </ul>

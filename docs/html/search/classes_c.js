@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['tracker',['Tracker',['../classTracker.html',1,'']]],
-  ['tuple',['Tuple',['../structTuple.html',1,'']]]
+  ['singlesampler',['SingleSampler',['../classSingleSampler.html',1,'']]],
+  ['singletarget',['SingleTarget',['../classSingleTarget.html',1,'']]],
+  ['size',['Size',['../classSize.html',1,'']]],
+  ['strongclassifier',['StrongClassifier',['../classStrongClassifier.html',1,'']]],
+  ['strongclassifierdirectselect',['StrongClassifierDirectSelect',['../classStrongClassifierDirectSelect.html',1,'']]]
 ];

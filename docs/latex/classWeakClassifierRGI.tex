@@ -1,0 +1,71 @@
+\hypertarget{classWeakClassifierRGI}{}\section{Weak\+Classifier\+R\+G\+I Class Reference}
+\label{classWeakClassifierRGI}\index{Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}}
+
+
+{\ttfamily \#include $<$Weak\+Classifier\+R\+G\+I.\+h$>$}
+
+Inheritance diagram for Weak\+Classifier\+R\+G\+I\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classWeakClassifierRGI}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classWeakClassifierRGI_abbd6a27d77c3f38bcf2dce39d7571cf7}{}{\bfseries Weak\+Classifier\+R\+G\+I} (const \hyperlink{classSize}{Size} \&patch\+Size)\label{classWeakClassifierRGI_abbd6a27d77c3f38bcf2dce39d7571cf7}
+
+\item 
+bool \hyperlink{classWeakClassifierRGI_ab4719f5dcf7acf6e79beb4d246addaa5}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target)
+\item 
+\hypertarget{classWeakClassifierRGI_a026ab7a9f1c19ced68746121aacd6374}{}int {\bfseries Classify} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, float scale=1.\+0f)\label{classWeakClassifierRGI_a026ab7a9f1c19ced68746121aacd6374}
+
+\item 
+float \hyperlink{classWeakClassifierRGI_aaff18f2962e93ad64eb7b4c6e127b91c}{Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi)
+\item 
+\hypertarget{classWeakClassifierRGI_aa48904ae41002320da3e5563aaf1ca60}{}void {\bfseries Reset\+Pos\+Dist} ()\label{classWeakClassifierRGI_aa48904ae41002320da3e5563aaf1ca60}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Using R\+G\+I feature to construct a weak classifier. \begin{DoxyAuthor}{Author}
+Zhengrong Wang 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classWeakClassifierRGI_aaff18f2962e93ad64eb7b4c6e127b91c}{}\index{Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}}
+\subsubsection[{Evaluate(const Integral\+Image $\ast$int\+Image, const Rect \&roi)}]{\setlength{\rightskip}{0pt plus 5cm}float Weak\+Classifier\+R\+G\+I\+::\+Evaluate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classWeakClassifierRGI_aaff18f2962e93ad64eb7b4c6e127b91c}
+\begin{DoxyReturn}{Returns}
+\mbox{[}0.\+0, 1.\+0\mbox{]} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classWeakClassifier_a083dddaa52fe399386f07a20f231ec49}{Weak\+Classifier}.
+
+\hypertarget{classWeakClassifierRGI_ab4719f5dcf7acf6e79beb4d246addaa5}{}\index{Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}!Update@{Update}}
+\index{Update@{Update}!Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}}
+\subsubsection[{Update(const Integral\+Image $\ast$int\+Image, const Rect \&roi, int target)}]{\setlength{\rightskip}{0pt plus 5cm}bool Weak\+Classifier\+R\+G\+I\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Rect} \&}]{roi, }
+\item[{int}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classWeakClassifierRGI_ab4719f5dcf7acf6e79beb4d246addaa5}
+Update this weak classifer. Return true if after update, this weak classifer still can not classify this sample correctly. 
+
+Reimplemented from \hyperlink{classWeakClassifier_ad4c967e2f0d186a841722f8fea9dbd9c}{Weak\+Classifier}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Weak\+Classifier\+R\+G\+I.\+h\item 
+src/Weak\+Classifier\+R\+G\+I.\+cpp\end{DoxyCompactItemize}

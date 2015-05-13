@@ -9,7 +9,7 @@
 \item 
 void \hyperlink{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{Update} (const \hyperlink{classFeature}{Feature} \&feature, int target)
 \item 
-int \hyperlink{classClassifierThreshold_a74dff1a82e6d201d6bceedd198e1f105}{Classify} (const \hyperlink{classFeature}{Feature} \&feature)
+int \hyperlink{classClassifierThreshold_a1151b0d98ef528494a75718514b73a38}{Classify} (const \hyperlink{classFeature}{Feature} \&feature) const 
 \item 
 \hypertarget{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}{}void {\bfseries Reset} ()\label{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}
 
@@ -28,20 +28,22 @@ Zhengrong Wang.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classClassifierThreshold_a74dff1a82e6d201d6bceedd198e1f105}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Classify@{Classify}}
+\hypertarget{classClassifierThreshold_a1151b0d98ef528494a75718514b73a38}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Classify@{Classify}}
 \index{Classify@{Classify}!Classifier\+Threshold@{Classifier\+Threshold}}
-\subsubsection[{Classify(const Feature \&feature)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ int {\bf Classifier\+Threshold}$<$ N $>$\+::Classify (
+\subsubsection[{Classify(const Feature \&feature) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ int {\bf Classifier\+Threshold}$<$ N $>$\+::Classify (
 \begin{DoxyParamCaption}
 \item[{const {\bf Feature} \&}]{feature}
 \end{DoxyParamCaption}
-)}\label{classClassifierThreshold_a74dff1a82e6d201d6bceedd198e1f105}
-Evaluate the feature. Use the simple Euclidean distance to pos and neg cluster. 
+) const}\label{classClassifierThreshold_a1151b0d98ef528494a75718514b73a38}
+Classify the feature. Use the simple Euclidean distance to pos and neg cluster.
+
+
 \begin{DoxyParams}{Parameters}
-{\em feature} & the feature extracted, should be N dimension. \\
+{\em feature} & the feature extracted, should be N dimension \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int\+: 1 for positive, -\/1 for negative. 
+1 for positive, -\/1 for negative 
 \end{DoxyReturn}
 \hypertarget{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Update@{Update}}
 \index{Update@{Update}!Classifier\+Threshold@{Classifier\+Threshold}}

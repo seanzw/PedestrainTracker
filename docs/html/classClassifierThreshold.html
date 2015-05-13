@@ -96,8 +96,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9bae753884c08a274b2204af8e97340"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierThreshold.html#ae9bae753884c08a274b2204af8e97340">Update</a> (const <a class="el" href="classFeature.html">Feature</a> &amp;feature, int target)</td></tr>
 <tr class="separator:ae9bae753884c08a274b2204af8e97340"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74dff1a82e6d201d6bceedd198e1f105"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierThreshold.html#a74dff1a82e6d201d6bceedd198e1f105">Classify</a> (const <a class="el" href="classFeature.html">Feature</a> &amp;feature)</td></tr>
-<tr class="separator:a74dff1a82e6d201d6bceedd198e1f105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1151b0d98ef528494a75718514b73a38"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierThreshold.html#a1151b0d98ef528494a75718514b73a38">Classify</a> (const <a class="el" href="classFeature.html">Feature</a> &amp;feature) const </td></tr>
+<tr class="separator:a1151b0d98ef528494a75718514b73a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f566cc491d863b15828561cbdfcd7a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f566cc491d863b15828561cbdfcd7a0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr>
 <tr class="separator:a1f566cc491d863b15828561cbdfcd7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,7 +111,7 @@ class ClassifierThreshold&lt; N &gt;</h3>
 
 <p>This class use N-D Gaussian distribution for pos and neg data set. Given a feature, it returns whether it's positive or negative. </p><dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a74dff1a82e6d201d6bceedd198e1f105"></a>
+<a class="anchor" id="a1151b0d98ef528494a75718514b73a38"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -122,17 +122,18 @@ template&lt;int N&gt; </div>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classFeature.html">Feature</a> &amp;&#160;</td>
           <td class="paramname"><em>feature</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Evaluate the feature. Use the simple Euclidean distance to pos and neg cluster. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Classify the feature. Use the simple Euclidean distance to pos and neg cluster.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">feature</td><td>the feature extracted, should be N dimension. </td></tr>
+    <tr><td class="paramname">feature</td><td>the feature extracted, should be N dimension </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int: 1 for positive, -1 for negative. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 for positive, -1 for negative </dd></dl>
 
 </div>
 </div>
