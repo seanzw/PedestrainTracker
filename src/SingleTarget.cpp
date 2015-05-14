@@ -48,6 +48,9 @@ void SingleTarget::Update(const IntegralImage *intImage, const Rect &roi, int ta
 
 }
 
-
+void SingleTarget::CalculateMatchScore(const IntegralImage *intImage,
+	const Pool<Rect> &dets, Pool<float> &matchArray) const {
+	// TO DO
+}
 
 

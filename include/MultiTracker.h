@@ -39,7 +39,7 @@ private:
 	ImageDetector *detector;
 
 	// Target pool.
-	TargetFreeList *targets;
+	TargetsFreeList *targets;
 
 	// Size of the frame.
 	const Size imgSize;

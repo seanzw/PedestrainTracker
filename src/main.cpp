@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
 	opt.modelWidth = WIDTH;
 	opt.binaryThre = 25.5f;
 	opt.invPerimeterRatio = 0.05f;
-	opt.maxAreaRatio = 0.05f;
+	opt.maxAreaRatio = 0.005f;
 	opt.minAreaRatio = 0.001f;
 
 

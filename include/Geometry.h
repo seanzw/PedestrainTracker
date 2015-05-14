@@ -57,7 +57,7 @@ public:
 	Point2D &operator=(const Rect &r);
 
 	inline float SquaredDistance(const Point2D &other) const {
-		return (row - other.row) * (row - other.row) + (col - other.col) * (col - other.col);
+		return (float)((row - other.row) * (row - other.row) + (col - other.col) * (col - other.col));
 	}
 
 	inline float Distance(const Point2D &other) const {
@@ -69,7 +69,7 @@ public:
 
 inline float GetGaussianProb(float mean, float sigma, float value) {
 	float invSimga = 1.0f / sigma;
-	return ONEOVERSQRT2PI * invSimga * expf(-0.5 * powf((value - mean) * invSimga, 2.0));
+	return ONEOVERSQRT2PI * invSimga * expf(-0.5f * powf((value - mean) * invSimga, 2.0f));
 }
 
 #endif

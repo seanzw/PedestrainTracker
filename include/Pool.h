@@ -16,7 +16,7 @@ public:
 	std::vector<T> data;
 
 	// Constructor.
-	Pool() : size(0) {}
+	Pool(int sz = 0) : size(sz) { data = std::vector<T>(sz); }
 
 	// Overload the operator.
 	T &operator[](uint index) {

@@ -12,6 +12,7 @@
 #include "StrongClassifierDirectSelect.h"
 #include "ParticleFilterConstVelocity.h"
 #include "IntegralImage.h"
+#include "Pool.h"
 
 class SingleTarget {
 public:
@@ -56,6 +57,16 @@ public:
 	 * and we are damn sure this is the correct one.
 	 */
 	void Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
+
+	/**
+	 * Calculate the match score with all the detections.
+	 *
+	 * @param intImage		in: integral image
+	 * @param dets			in: detections
+	 * @param marchArray	out: the match score
+	 */
+	void CalculateMatchScore(const IntegralImage *intImage, 
+		const Pool<Rect> &dets, Pool<float> &matchArray) const;
 
 	/**
 	 * Update the detection sequence.

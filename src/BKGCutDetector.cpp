@@ -47,33 +47,32 @@ bool BKGCutDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 			boxArea >= minAreaRatio * imgArea) {
 
 			// Add directly.
-			rect det = CreateROI(box.x, box.y, box.height, box.width, 10, img.size().height, img.size().width);
+			Rect det = CreateROI(box.x, box.y, box.height, box.width, 10, img.size().height, img.size().width);
 			dets.Push(det);
 		}
 		else {
 			// Use classifier to judge.
 			// Expand the ROI by 30 pixels to make sure that classifier will
 			// find the pedestrain.
-			rect det = CreateROI(box.x, box.y, box.height, box.width, 30, img.size().height, img.size().width);
-			cv::Mat block = img(cv::Rect(det.x1, det.y1, det.x2 - det.x1, det.y2 - det.y1));
+			Rect det = CreateROI(box.x, box.y, box.height, box.width, 30, img.size().height, img.size().width);
+			cv::Mat block = img((cv::Rect)det);
 
 			BKGDEBUG("block", block);
 			BKGWAIT;
 
-			Rect subRegion(det.x1, det.y1, det.x2 - det.x1, det.y2 - det.y1);
-			ImageDetector::Detect(block, intImage, subRegion);
+			ImageDetector::Detect(block, intImage, det);
 		}
 	}
 
 	return true;
 }
 
-rect BKGCutDetector::CreateROI(int x, int y, int roi_h, int roi_w, int edge_width, int height, int width) {
+Rect BKGCutDetector::CreateROI(int x, int y, int roi_h, int roi_w, int edge_width, int height, int width) {
 	int roix, roiy, roih, roiw;
 	roix = ((x - edge_width) > 0) ? (x - edge_width) : 1;
 	roiy = ((y - edge_width) > 0) ? (y - edge_width) : 1;
 	roih = ((roiy + roi_h + 2 * edge_width) > height) ? (height - roiy) : (roi_h + 2 * edge_width);
 	roiw = ((roix + roi_w + 2 * edge_width) > width) ? (width - roix) : (roi_w + 2 * edge_width);
-	rect roi(roix, roiy, roiw + roix, roih + roiy);
+	Rect roi(roiy, roix, roiw, roih);
 	return roi;
 }

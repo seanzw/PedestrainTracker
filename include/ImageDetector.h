@@ -52,7 +52,7 @@ public:
 	void Clear();
 
 	// Detections.
-	Pool<rect> dets;
+	Pool<Rect> dets;
 
 protected:
 	Classifier *classifier;

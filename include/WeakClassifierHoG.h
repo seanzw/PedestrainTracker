@@ -60,7 +60,7 @@ private:
 			if (value >= min + step * i - 0.000001 && value <= min + step * (i + 1) + 0.000001)
 				return i;
 
-		printf("We can't find the district: min = %f, max = %f, value = %f\n", min, max, value);
+		printf("WeakClassifier::District: We can't find the district: min = %f, max = %f, value = %f\n", min, max, value);
 		exit(0);
 		return -1;
 	}

@@ -158,7 +158,7 @@ bool ImageDetector::Detect(const cv::Mat &img, const IntegralImage *intImage,
 			t.x2 = t.x2 / t.count;
 			t.y2 = t.y2 / t.count;
 
-			dets.Push(t);
+			dets.Push(Rect(t.y1, t.x1, t.x2 - t.x1, t.y2 - t.y1));
 
 			if (t.count <= 1)
 				printf("ERROR: COUNT WRONG!");
@@ -175,33 +175,34 @@ void ImageDetector::DrawDetection(cv::Mat &img) {
 	for (int i = 0; i < dets.size; i++) {
 		int flag = 0;
 
-		cv::Point pt1, pt2;
-		pt1.x = dets[i].x1;
-		pt1.y = dets[i].y1;
+		/*cv::Point pt1, pt2;
+		pt1.x = dets[i].left;
+		pt1.y = dets[i].upper;
 		pt2.x = dets[i].x2;
-		pt2.y = dets[i].y2;
+		pt2.y = dets[i].y2;*/
 
 
-		for (int j = 0; j < dets.size; j++) {
+		//for (int j = 0; j < dets.size; j++) {
 
-			if (i != j &&
-				dets[i].x1 >= dets[j].x1 && dets[i].x2 <= dets[j].x2 &&
-				dets[i].y1 >= dets[j].y1 && dets[i].y2 <= dets[j].y2 &&
-				dets[j].re != 110)
-			{
-				flag = 1;
-				dets[i].re = 110;
-			}
-			else if (i != j && IsOverlap(dets[i], dets[j]) == 1 && dets[j].re != 110 &&
-				(dets[i].x2 - dets[i].x1)*(dets[i].y2 - dets[i].y1) <= (dets[j].x2 - dets[j].x1)*(dets[j].y2 - dets[j].y1))
-			{
-				flag = 1;
-				dets[i].re = 110;
-			}
-		}
+		//	if (i != j &&
+		//		dets[i].x1 >= dets[j].x1 && dets[i].x2 <= dets[j].x2 &&
+		//		dets[i].y1 >= dets[j].y1 && dets[i].y2 <= dets[j].y2 &&
+		//		dets[j].re != 110)
+		//	{
+		//		flag = 1;
+		//		dets[i].re = 110;
+		//	}
+		//	else if (i != j && IsOverlap(dets[i], dets[j]) == 1 && dets[j].re != 110 &&
+		//		(dets[i].x2 - dets[i].x1)*(dets[i].y2 - dets[i].y1) <= (dets[j].x2 - dets[j].x1)*(dets[j].y2 - dets[j].y1))
+		//	{
+		//		flag = 1;
+		//		dets[i].re = 110;
+		//	}
+		//}
 
 		if (flag == 0)
-			cv::rectangle(img, pt1, pt2, cv::Scalar(0.f, 255.f, 0.f, 1.f), 3);
+			cv::rectangle(img, (cv::Rect)dets[i], cv::Scalar(0.f, 255.f, 0.f, 1.f), 2);
+			//cv::rectangle(img, pt1, pt2, cv::Scalar(0.f, 255.f, 0.f, 1.f), 2);
 	}
 }
 

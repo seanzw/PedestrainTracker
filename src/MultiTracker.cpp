@@ -8,7 +8,7 @@ MultiTracker::MultiTracker(ImageDetector *d, int c, const Size &sz)
 	rgiIntImage = new RGIIntegralImage(imgSize.width, imgSize.height);
 
 	// Initialize the targets free list.
-	targets = new TargetFreeList(c, 500, 50, 250, 4);
+	targets = new TargetsFreeList(c, 500, 50, 250, 4);
 
 }
 

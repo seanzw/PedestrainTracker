@@ -9,21 +9,21 @@
 
 #include "SingleTarget.h"
 
-struct TargetFreeListNode {
+struct TargetsFreeListNode {
 	SingleTarget *target;
-	TargetFreeListNode *nextFree;
+	TargetsFreeListNode *nextFree;
 	bool isFree;
 
-	TargetFreeListNode(int numParticles, 
+	TargetsFreeListNode(int numParticles, 
 		int numSelectors, int numWeakClassifiers, int numBackups);
-	~TargetFreeListNode();
+	~TargetsFreeListNode();
 };
 
-class TargetFreeList {
+class TargetsFreeList {
 public:
-	TargetFreeList(int capacity, int numParticles,
+	TargetsFreeList(int capacity, int numParticles,
 		int numSelectors, int numWeakClassifiers, int numBackups);
-	~TargetFreeList();
+	~TargetsFreeList();
 
 	/**
 	 * Reset one target.
@@ -32,17 +32,30 @@ public:
 
 	int InitializeTarget(const Rect &target, const Point2D &initVelocity);
 
+	/**
+	 * Propagate all the targets' particles.
+	 */
 	void Propagate(const Size &imgSize);
 
 	// void Update(int index, const IntegralImage *intImage, );
 
+	/**
+	 * Calculate the target-detection matching score matrix.
+	 *
+	 * @param intImage		integral image
+	 * @param dets			detections
+	 * @param matchMat		matching score matrix
+	 */
+	void CalculateMatchScore(const IntegralImage *intImage, 
+		const Pool<Rect> &dets, Pool<Pool<float>> &matchMat) const;
+
 	// The array of nodes.
-	std::vector<TargetFreeListNode> listNodes;
+	std::vector<TargetsFreeListNode> listNodes;
 	const int capacity;
 
 private:
 
-	TargetFreeListNode *freeNodes;
+	TargetsFreeListNode *freeNodes;
 
 };
 

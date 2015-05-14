@@ -53,9 +53,9 @@ protected:
 	 * @param roi_w			the width of the rectangle.
 	 * @param edge_width	how many pixels you want to expand?
 	 * @param height, width	the size of the original image.
-	 * @return rect.
+	 * @return Rect.
 	 */
-	rect CreateROI(int x, int y, int roi_h, int roi_w, int edge_width, int height, int width);
+	Rect CreateROI(int x, int y, int roi_h, int roi_w, int edge_width, int height, int width);
 };
 
 #endif
