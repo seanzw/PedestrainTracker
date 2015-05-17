@@ -15,9 +15,11 @@ public:
 	WeakClassifierRGI(const Size &patchSize);
 	virtual ~WeakClassifierRGI();
 
-	bool Update(const IntegralImage *intImage, const Rect &roi, int target);
-	int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
-	float Evaluate(const IntegralImage *intImage, const Rect &roi);
+	virtual bool Update(const IntegralImage *intImage, const Rect &roi, int target);
+	virtual int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
+	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi);
+
+	virtual void Initialize(const Size &patchSize);
 
 	void ResetPosDist();
 

@@ -20,6 +20,11 @@ public:
 
 	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi) const;
 
+	/**
+	 * Initialize this strong classifier for a new target WITHOUT training.
+	 */
+	virtual void Initialize(const Size &patchSize);
+
 	virtual bool Update(const IntegralImage *intImage, const Rect &roi, 
 		int target, float importance = 1.0f);
 

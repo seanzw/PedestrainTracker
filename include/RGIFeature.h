@@ -20,6 +20,11 @@ public:
 	void GetInitialDistribution(EstimatedGaussianDistribution<NUM_RGI_BINS> *distribution) const;
 	bool Extract(const IntegralImage *intImage, const Rect &roi, Feature *feature);
 
+	/**
+	 * Reset this feature.
+	 */
+	void Reset(const Size &patchSize);
+
 private:
 
 	Rect patch, scaledPatch;

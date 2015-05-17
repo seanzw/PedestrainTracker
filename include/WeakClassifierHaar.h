@@ -20,6 +20,8 @@ public:
 	int Classify(const IntegralImage *intImage, const Rect &roi, float scale = 1.0f);
 	float Evaluate(const IntegralImage *intImage, const Rect &roi);
 
+	virtual void Initialize(const Size &patchSize);
+
 	void ResetPosDist();
 
 private:
@@ -27,8 +29,6 @@ private:
 	HaarFeature *haarFeature;
 
 	Feature feature;
-
-	void GenerateRandomClassifier();
 };
 
 #endif

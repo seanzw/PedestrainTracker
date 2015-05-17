@@ -11,6 +11,8 @@
 #include "IntegralImage.h"
 #include "Feature.h"
 
+#define HAAR_FEATURE_MAX_NUM_AREAS 4
+
 class HaarFeature {
 public:
 	HaarFeature(const Size &patchSize);
@@ -20,6 +22,11 @@ public:
 	void GetInitialDistribution(EstimatedGaussianDistribution<1> *distribution) const;
 
 	bool Extract(const IntegralImage *intImage, const Rect &roi, Feature *feature);
+
+	/**
+	 * Reset this feature. Randomly generate a new one.
+	 */
+	void Reset(const Size &patchSize);
 
 	float GetResponse() { return response; }
 

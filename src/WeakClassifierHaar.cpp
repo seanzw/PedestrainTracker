@@ -2,7 +2,7 @@
 
 WeakClassifierHaar::WeakClassifierHaar(const Size &patchSize) {
 	haarFeature = new HaarFeature(patchSize);
-	GenerateRandomClassifier();
+	thresholder = new ClassifierThreshold<1>();
 
 	// Set the initial distribution.
 	haarFeature->GetInitialDistribution((EstimatedGaussianDistribution<1> *)thresholder->GetDistribution(1));
@@ -14,13 +14,22 @@ WeakClassifierHaar::~WeakClassifierHaar() {
 	delete thresholder;
 }
 
-void WeakClassifierHaar::ResetPosDist() {
+void WeakClassifierHaar::Initialize(const Size &patchSize) {
+	// Reset the haar feature.
+	haarFeature->Reset(patchSize);
+
+	// Reset the threshold.
+	thresholder->Reset();
+
+	// Set the initial distribution.
+	// Set the initial distribution.
 	haarFeature->GetInitialDistribution((EstimatedGaussianDistribution<1> *)thresholder->GetDistribution(1));
 	haarFeature->GetInitialDistribution((EstimatedGaussianDistribution<1> *)thresholder->GetDistribution(-1));
 }
 
-void WeakClassifierHaar::GenerateRandomClassifier() {
-	thresholder = new ClassifierThreshold<1>();
+void WeakClassifierHaar::ResetPosDist() {
+	haarFeature->GetInitialDistribution((EstimatedGaussianDistribution<1> *)thresholder->GetDistribution(1));
+	haarFeature->GetInitialDistribution((EstimatedGaussianDistribution<1> *)thresholder->GetDistribution(-1));
 }
 
 bool WeakClassifierHaar::Update(const IntegralImage *intImage, const Rect &roi, int target) {

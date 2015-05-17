@@ -31,6 +31,14 @@ public:
 	virtual ~ClassifierSelector();
 
 	/**
+	 * Initialize this selector for a new target.
+	 * Notice the number of weak classifiers will not change,
+	 * but all the features will be randomly generated again.
+	 * This is designed to reduce the new/delete operation.
+	 */
+	void Initialize(const Size &patchSize);
+
+	/**
 	 * Train the weak classifiers.
 	 *
 	 * @param intImage		the integral image

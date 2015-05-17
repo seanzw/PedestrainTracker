@@ -12,6 +12,12 @@ const int HaarFeature::minimumArea = 9;
 
 HaarFeature::HaarFeature(const Size &imageSize) {
 	try {
+		// Prepare the buffer.
+		scaledWeights = new float[HAAR_FEATURE_MAX_NUM_AREAS];
+		scaledAreas = new Rect[HAAR_FEATURE_MAX_NUM_AREAS];
+		weights = new int[HAAR_FEATURE_MAX_NUM_AREAS];
+		areas = new Rect[HAAR_FEATURE_MAX_NUM_AREAS];
+
 		GenerateRandomFeature(imageSize);
 	}
 	catch (...) {
@@ -28,6 +34,11 @@ HaarFeature::~HaarFeature() {
 	delete[] areas;
 	delete[] weights;
 }
+
+void HaarFeature::Reset(const Size &patchSize) {
+	GenerateRandomFeature(patchSize);
+}
+
 
 void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 
@@ -66,10 +77,8 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 				continue;
 
 			numAreas = 2;
-			weights = new int[numAreas];
 			weights[0] = 1;
 			weights[1] = -1;
-			areas = new Rect[numAreas];
 			areas[0].left = upperLeftCorner.col;
 			areas[0].upper = upperLeftCorner.row;
 			areas[0].height = baseDim.height;
@@ -96,10 +105,8 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 				continue;
 
 			numAreas = 2;
-			weights = new int[numAreas];
 			weights[0] = 1;
 			weights[1] = -1;
-			areas = new Rect[numAreas];
 			areas[0].left = upperLeftCorner.col;
 			areas[0].upper = upperLeftCorner.row;
 			areas[0].height = baseDim.height;
@@ -124,11 +131,9 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 				continue;
 
 			numAreas = 3;
-			weights = new int[numAreas];
 			weights[0] = 1;
 			weights[1] = -2;
 			weights[2] = 1;
-			areas = new Rect[numAreas];
 			areas[0].left = upperLeftCorner.col;
 			areas[0].upper = upperLeftCorner.row;
 			areas[0].height = baseDim.height;
@@ -157,11 +162,9 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 				continue;
 
 			numAreas = 3;
-			weights = new int[numAreas];
 			weights[0] = 1;
 			weights[1] = -2;
 			weights[2] = 1;
-			areas = new Rect[numAreas];
 			areas[0].left = upperLeftCorner.col;
 			areas[0].upper = upperLeftCorner.row;
 			areas[0].height = baseDim.height;
@@ -189,12 +192,10 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 				continue;
 
 			numAreas = 4;
-			weights = new int[numAreas];
 			weights[0] = 1;
 			weights[1] = -1;
 			weights[2] = -1;
 			weights[3] = 1;
-			areas = new Rect[numAreas];
 			areas[0].left = upperLeftCorner.col;
 			areas[0].upper = upperLeftCorner.row;
 			areas[0].height = baseDim.height;
@@ -226,8 +227,6 @@ void HaarFeature::GenerateRandomFeature(const Size &imageSize) {
 	initSize = imageSize;
 	curSize = initSize;
 	scaledWidth = scaledHeight = 1.0f;
-	scaledAreas = new Rect[numAreas];
-	scaledWeights = new float[numAreas];
 
 	for (int i = 0; i < numAreas; i++) {
 		scaledAreas[i] = areas[i];

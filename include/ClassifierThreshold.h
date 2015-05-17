@@ -33,7 +33,10 @@ public:
 	 */
 	int Classify(const Feature &feature) const;
 
-	void Reset();
+	/**
+	 * Reset everything to the start state.
+	 */
+	inline void Reset();
 
 	void *GetDistribution(int target) const;
 
@@ -84,6 +87,11 @@ template<int N> void *ClassifierThreshold<N>::GetDistribution(int target) const 
 		return posSamples;
 	else
 		return negSamples;
+}
+
+template<int N> void ClassifierThreshold<N>::Reset() {
+	posSamples->Reset();
+	negSamples->Reset();
 }
 
 #endif

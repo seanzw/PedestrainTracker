@@ -15,7 +15,12 @@ public:
 
 	virtual ~StrongClassifierDirectSelect();
 
-	bool Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
+	/**
+	 * Initialize a new target for this strong classifier WITHOUT training.
+	 */
+	virtual void Initialize(const Size &patchSize);
+
+	virtual bool Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
 
 private:
 	/**

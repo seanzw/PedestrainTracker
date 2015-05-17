@@ -14,6 +14,20 @@ public:
 	~EstimatedGaussianDistribution();
 
 	/**
+	 * Reset everything to the start state.
+	 */
+	inline void Reset(float pm = 1000.0f, float ps = 1000.0f, float rm = 0.01f, float rs = 0.01f) {
+		pMean = pm;
+		pSigma = ps;
+		rMean = rm;
+		rSigma = rs;
+		for (int i = 0; i < N; i++) {
+			mean[i] = 0.0f;
+			sigma[i] = 1.0f;
+		}
+	}
+
+	/**
 	 * Use Kalman filter to update the Gaussian distribution.
 	 */
 	void Update(const float *value);
@@ -27,12 +41,8 @@ public:
 };
 
 template<int N> EstimatedGaussianDistribution<N>::EstimatedGaussianDistribution(
-	float pm, float ps, float rm, float rs)
-	: pMean(pm), pSigma(ps), rMean(rm), rSigma(rs) {
-	for (int i = 0; i < N; i++) {
-		mean[i] = 0.0f;
-		sigma[i] = 1.0f;
-	}
+	float pm, float ps, float rm, float rs) {
+	Reset(pm, ps, rm, rs);
 }
 
 template<int N> EstimatedGaussianDistribution<N>::~EstimatedGaussianDistribution() {

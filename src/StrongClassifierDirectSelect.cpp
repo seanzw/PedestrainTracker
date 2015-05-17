@@ -31,6 +31,17 @@ StrongClassifierDirectSelect::~StrongClassifierDirectSelect() {
 	delete[] this->selectors;
 }
 
+void StrongClassifierDirectSelect::Initialize(const Size &patchSize) {
+
+	// Reset all the alphas.
+	StrongClassifier::Initialize(patchSize);
+
+	// Reset all the selectors.
+	for (int i = 0; i < numSelector; i++) {
+		selectors[i]->Initialize(patchSize);
+	}
+}
+
 bool StrongClassifierDirectSelect::Update(const IntegralImage *intImage,
 	const Rect &roi,
 	int target,

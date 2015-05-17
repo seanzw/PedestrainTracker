@@ -32,6 +32,15 @@ RGIFeature::~RGIFeature() {
 
 }
 
+void RGIFeature::Reset(const Size &patchSize) {
+	try {
+		GeneratreRandomFeature(patchSize);
+	}
+	catch (...) {
+
+	}
+}
+
 void RGIFeature::GeneratreRandomFeature(const Size &imgSize) {
 
 	bool valid = false;

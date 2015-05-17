@@ -21,6 +21,11 @@ public:
 	virtual bool Update(const IntegralImage *intImage, const Rect &roi, int target);
 
 	/**
+	 Initialize the weak classifier.
+	 */
+	virtual void Initialize(const Size &patchSize);
+
+	/**
 	 * @return	[0.0, 1.0]
 	 */
 	virtual float Evaluate(const IntegralImage *intImage, const Rect &roi);

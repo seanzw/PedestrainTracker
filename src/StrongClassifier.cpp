@@ -27,6 +27,13 @@ float StrongClassifier::Evaluate(const IntegralImage *intImage, const Rect &roi)
 	return value;
 }
 
+void StrongClassifier::Initialize(const Size &patchSize) {
+	this->patchSize = patchSize;
+
+	// Reset the alpha.
+	memset((void *)this->alpha, 0, sizeof(float) * this->numSelector);
+}
+
 bool StrongClassifier::Update(const IntegralImage *intImage, const Rect &roi, int target,
 	float importance) {
 	return false;

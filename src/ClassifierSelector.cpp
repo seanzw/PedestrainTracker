@@ -9,8 +9,6 @@ ClassifierSelector::ClassifierSelector(int numW, const Size &patchSize, int numB
 	nextBackup = numWeakClassifer;
 	wCorrect = new float[numWeakClassifer + numBackup];
 	wWrong = new float[numWeakClassifer + numBackup];
-	memset((void *)wCorrect, 0, sizeof(float) * (numWeakClassifer + numBackup));
-	memset((void *)wWrong, 0, sizeof(float) * (numWeakClassifer + numBackup));
 
 	// Initialize the weak classifiers.
 	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
@@ -39,8 +37,6 @@ ClassifierSelector::ClassifierSelector(int numW, WeakClassifier **weaks, int num
 	nextBackup = numWeakClassifer;
 	wCorrect = new float[numWeakClassifer + numBackup];
 	wWrong = new float[numWeakClassifer + numBackup];
-	memset((void *)wCorrect, 0, sizeof(float) * (numWeakClassifer + numBackup));
-	memset((void *)wWrong, 0, sizeof(float) * (numWeakClassifer + numBackup));
 
 	// We use weak classifiers from outside.
 	isReferenced = true;
@@ -61,6 +57,25 @@ ClassifierSelector::~ClassifierSelector() {
 	}
 	delete[] wCorrect;
 	delete[] wWrong;
+}
+
+void ClassifierSelector::Initialize(const Size &patchSize) {
+	if (!isReferenced) {
+		// Reset all the weak classifiers.
+		for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+			weakClassifiers[i]->Initialize(patchSize);
+		}
+	}
+
+	// Reset this selector state.
+	selectedClassifier = 0;
+	nextBackup = numWeakClassifer;
+
+	// Initialize the data.
+	// This makes the error rate 0.5.
+	for (int i = 0; i < numWeakClassifer + numBackup; i++) {
+		wWrong[i] = wCorrect[i] = 1;
+	}
 }
 
 int ClassifierSelector::Classify(const IntegralImage *intImage, const Rect &roi) {

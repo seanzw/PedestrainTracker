@@ -20,6 +20,18 @@ void WeakClassifierRGI::ResetPosDist() {
 	rgiFeature->GetInitialDistribution((EstimatedGaussianDistribution<NUM_RGI_BINS> *)thresholder->GetDistribution(-1));
 }
 
+void WeakClassifierRGI::Initialize(const Size &patchSize) {
+	// Reset the RGI feature extractor.
+	rgiFeature->Reset(patchSize);
+
+	// Reset the classifier threshold.
+	thresholder->Reset();
+
+	// Set the initial distribution.
+	rgiFeature->GetInitialDistribution((EstimatedGaussianDistribution<NUM_RGI_BINS> *)thresholder->GetDistribution(1));
+	rgiFeature->GetInitialDistribution((EstimatedGaussianDistribution<NUM_RGI_BINS> *)thresholder->GetDistribution(-1));
+}
+
 void WeakClassifierRGI::GenerateRandomClassifier() {
 	thresholder = new ClassifierThreshold<NUM_RGI_BINS>();
 }
