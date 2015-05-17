@@ -34,7 +34,6 @@ public:
 	~SingleTarget();
 
 	void InitializeTarget(const Rect &target, const Point2D &initVelocity);
-	void ResetTarget();
 
 	/**
 	 * Propagate the particles.
@@ -44,14 +43,19 @@ public:
 
 	/**
 	 * Observe the particles.
-	 * weight_particle = detectionWeight * P(particle, detection) + classifierWeight * Conf(particle)
+	 * weight_particle = detectionWeight * P(particle, detection) + (1.0f - detectionWeight) * Conf(particle)
 	 *
 	 * @param detection			The associate detection, if any.
 	 * @param detectionWeight	weight for detection term
 	 * @param classifierWeight	weight for classifier term
 	 */
-	void Observe(const IntegralImage *intImage, const Rect *detection,
-		float detectionWeight, float classifierWeight);
+	inline void Observe(const IntegralImage *intImage, const Rect &detection,
+		float detectionWeight);
+
+	/**
+	 * Observe the particles without matched detections.
+	 */
+	inline void Observe(const IntegralImage *intImage);
 
 	/**
 	 * Update the classifier.

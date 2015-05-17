@@ -52,7 +52,7 @@ public:
 	 * Observe with classifier output confidence and associated detection.
 	 */
 	void Observe(const StrongClassifier *classifier, const IntegralImage *intImage,
-		const Rect &detection, float detectionWeight, float classifierWeight);
+		const Rect &detection, float detectionWeight);
 
 	/**
 	 * Resample directly around the best particle.

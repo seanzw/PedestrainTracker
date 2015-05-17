@@ -1,14 +1,17 @@
 #include "MultiTracker.h"
 
-MultiTracker::MultiTracker(ImageDetector *d, int c, const Size &sz)
-	: imgSize(sz), detector(d) {
+MultiTracker::MultiTracker(ImageDetector *d, int c, const Size &sz, float thre)
+	: imgSize(sz), detector(d), matchThre(thre) {
 
 	// Initialize the integral images.
 	hogIntImage = new HoGIntegralImage(imgSize.width, imgSize.height);
 	rgiIntImage = new RGIIntegralImage(imgSize.width, imgSize.height);
 
 	// Initialize the targets free list.
-	targets = new TargetsFreeList(c, 500, 50, 250, 4);
+	targets = new TargetsFreeList(c, 500, 50, 250, 4, 0.5f);
+
+	// Construct the match matrix.
+	matches = new MatchMatrix(c);
 
 }
 
@@ -18,7 +21,7 @@ MultiTracker::~MultiTracker() {
 	delete targets;
 }
 
-void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
+void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg) {
 
 	// Get the total number of images.
 	int totalFrames = (int)in.get(cv::CAP_PROP_FRAME_COUNT);
@@ -27,6 +30,8 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 	// Create the data buffer.
 	cv::Mat frame((cv::Size)imgSize, CV_8UC3);
 	cv::Mat gray((cv::Size)imgSize, CV_8UC1);
+
+	Rect subRegion(0, 0, imgSize.width, imgSize.height);
 
 	// Read all the frames.
 	while (in.read(frame)) {
@@ -49,13 +54,22 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out) {
 		rgiIntImage->CalculateInt(frame);
 
 		// Detects.
-		//detector->Detect()
+		detector->Detect(gray, hogIntImage, subRegion, bkg);
 
 		// Propagate the particles.
-		//targets->Propagate(imgSize);
+		targets->Propagate(imgSize);
+
+		// Initialize the match score matrix.
+		matches->SetNumDets(detector->dets.size);
+
+		// Calcualate the match score.
+		targets->CalculateMatchScore(rgiIntImage, detector->dets, matches->matchMat);
+
+		// Find match pair.
+		matches->SetTargets(*targets, matchThre);
 
 		// Make the observation.
-		//particleFilter->Observe(classifier, intImage);
+		targets->Observe(rgiIntImage, detector->dets);
 
 		// Draw the particles for debugging.
 		//particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));

@@ -21,8 +21,8 @@ struct TargetsFreeListNode {
 
 class TargetsFreeList {
 public:
-	TargetsFreeList(int capacity, int numParticles,
-		int numSelectors, int numWeakClassifiers, int numBackups);
+	TargetsFreeList(int capacity, int numParticles, int numSelectors, 
+		int numWeakClassifiers, int numBackups, float detWeight);
 	~TargetsFreeList();
 
 	/**
@@ -35,7 +35,12 @@ public:
 	/**
 	 * Propagate all the targets' particles.
 	 */
-	void Propagate(const Size &imgSize);
+	inline void Propagate(const Size &imgSize);
+
+	/**
+	 * Observe all the targets' partices.
+	 */
+	inline void Observe(const IntegralImage *intImage, Pool<Rect> &detections);
 
 	// void Update(int index, const IntegralImage *intImage, );
 
@@ -53,10 +58,19 @@ public:
 	std::vector<TargetsFreeListNode> listNodes;
 	const int capacity;
 
+	// Weight for detection term in particle observation.
+	const float detectionWeight;
+
+	// Allow MatchMatrix to modify the matchDets array.
+	friend class MatchMatrix;
+
 private:
 
 	TargetsFreeListNode *freeNodes;
 
+	// The (detection, target) pair.
+	// Set by MatchMatrix.
+	Pool<int> matchDets;
 };
 
 

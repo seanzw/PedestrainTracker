@@ -11,8 +11,9 @@ TargetsFreeListNode::~TargetsFreeListNode() {
 	delete target;
 }
 
-TargetsFreeList::TargetsFreeList(int c, int numParticles,
-	int numSelectors, int numWeakClassifiers, int numBackups) : capacity(c), freeNodes(NULL) {
+TargetsFreeList::TargetsFreeList(int c, int numParticles, int numSelectors, 
+	int numWeakClassifiers, int numBackups, float detWeight)
+	: capacity(c), freeNodes(NULL), detectionWeight(detWeight) {
 	
 	for (int i = 0; i < capacity; i++) {
 		listNodes.push_back(TargetsFreeListNode(numParticles, numSelectors,
@@ -34,7 +35,6 @@ void TargetsFreeList::ResetOneTarget(int index) {
 	}
 
 	listNodes[index].isFree = true;
-	listNodes[index].target->ResetTarget();
 	listNodes[index].nextFree = freeNodes;
 	freeNodes = &listNodes[index];
 }
@@ -66,5 +66,35 @@ void TargetsFreeList::CalculateMatchScore(const IntegralImage *intImage,
 	}
 }
 
+void TargetsFreeList::Propagate(const Size &imgSize) {
+	for (int i = 0; i < capacity; i++) {
+		if (!listNodes[i].isFree) {
+			listNodes[i].target->Propagate(imgSize);
+		}
+	}
+}
 
+void TargetsFreeList::Observe(const IntegralImage *intImage, Pool<Rect> &detections) {
+	for (int i = 0; i < capacity; i++) {
+		if (!listNodes[i].isFree) {
+			// Look up for a mach detection.
+			if (matchDets[i] != -1) {
+				// This target has a matched detection.
+				// Update the detection sequence.
+				listNodes[i].target->UpdateSeq(true);
+				
+				// Observe.
+				listNodes[i].target->Observe(intImage, detections[matchDets[i]], detectionWeight);
+			}
+			else {
+				// This target has no matched detection.
+				// Update the detection sequence.
+				listNodes[i].target->UpdateSeq(false);
 
+				// Observe.
+				listNodes[i].target->Observe(intImage);
+
+			}
+		}
+	}
+}

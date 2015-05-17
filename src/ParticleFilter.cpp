@@ -54,7 +54,7 @@ void ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralI
 }
 
 void ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralImage *intImage,
-	const Rect &detection, float detectionWeight, float classifierWeight) {
+	const Rect &detection, float detectionWeight) {
 
 	int *curParticle = particles;
 	Rect roi(0, 0, target.width, target.height);
@@ -69,7 +69,7 @@ void ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralI
 		Point2D particlePoint(curParticle[0], curParticle[1]);
 
 		// Evaluate the particle.
-		confidence[i] = classifierWeight * classifier->Evaluate(intImage, roi);
+		confidence[i] = (1.0f - detectionWeight) * classifier->Evaluate(intImage, roi);
 
 		// Add the detection term.
 		confidence[i] += detectionWeight * GetGaussianProb(0.0f, 

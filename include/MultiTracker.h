@@ -14,6 +14,7 @@
 #include "HoGIntegralImage.h"
 #include "TargetsFreeList.h"
 #include "ImageDetector.h"
+#include "MatchMatrix.h"
 
 class MultiTracker : public Tracker {
 public:
@@ -22,12 +23,14 @@ public:
 	 * @param detector	image detector
 	 * @param capacity	maximum number of targets
 	 * @param size		size of a frame
+	 * @patam matchThre	threshold for matching
 	 */
-	MultiTracker(ImageDetector *detector, int capacity, const Size &imgSize);
+	MultiTracker(ImageDetector *detector, int capacity, const Size &imgSize,
+		float matchThre);
 
 	~MultiTracker();
 
-	void Track(cv::VideoCapture &in, cv::VideoWriter &out);
+	void Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg = defaultBackground);
 
 private:
 
@@ -43,6 +46,12 @@ private:
 
 	// Size of the frame.
 	const Size imgSize;
+
+	// Match matrix.
+	MatchMatrix *matches;
+
+	// Threshold for matching.
+	const float matchThre;
 };
 
 #endif
