@@ -64,6 +64,35 @@ public:
 		return sqrtf(SquaredDistance(other));
 	}
 
+	inline float SquaredLength() const {
+		return (float)(row * row + col * col);
+	}
+
+	inline float Length() const {
+		return sqrtf(SquaredLength());
+	}
+
+	inline Point2D operator-(const Point2D &other) const {
+		return Point2D(row - other.row, col - other.col);
+	}
+
+	inline float operator*(const Point2D &other) const {
+		return (float)(row * other.row + col * other.col);
+	}
+
+	inline Point2D operator*(float scale) const {
+		return Point2D(row * scale, col * scale);
+	}
+
+	/**
+	 * Given two vector this and other,
+	 * returns |other - dot(this, other) / (|this| ^ 2) * this|.
+	 */
+	inline float ProjectResidual(const Point2D &other) const {
+		float dot = (*this) * other;
+		return (other - (*this)*(dot / SquaredLength())).Length();
+	}
+
 	int row, col;
 };
 

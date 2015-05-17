@@ -23,6 +23,10 @@ public:
 		return data[index];
 	}
 
+	const T &operator[](uint index) const {
+		return data[index];
+	}
+
 	void Push(const T &t) {
 		if (size == data.size())
 			data.push_back(t);

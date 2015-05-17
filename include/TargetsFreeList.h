@@ -14,15 +14,13 @@ struct TargetsFreeListNode {
 	TargetsFreeListNode *nextFree;
 	bool isFree;
 
-	TargetsFreeListNode(int numParticles, 
-		int numSelectors, int numWeakClassifiers, int numBackups);
+	TargetsFreeListNode(const Options &opts);
 	~TargetsFreeListNode();
 };
 
 class TargetsFreeList {
 public:
-	TargetsFreeList(int capacity, int numParticles, int numSelectors, 
-		int numWeakClassifiers, int numBackups, float detWeight);
+	TargetsFreeList(const Options &opts);
 	~TargetsFreeList();
 
 	/**
@@ -40,7 +38,7 @@ public:
 	/**
 	 * Observe all the targets' partices.
 	 */
-	void Observe(const IntegralImage *intImage, Pool<Rect> &detections);
+	void Observe(const IntegralImage *intImage, const Pool<Rect> &detections);
 
 	// void Update(int index, const IntegralImage *intImage, );
 

@@ -1,14 +1,18 @@
 #include "SingleTarget.h"
 
-SingleTarget::SingleTarget(int nParticles, const Rect &target, const Point2D &velocity,
-	int numSelectors, int numWeakClassifiers, int numBackups) : detectionSeq(0) {
+SingleTarget::SingleTarget(const Options &opts)
+	: detectionSeq(0), velocitySigmaConst(opts.velocitySigmaConst) {
 
 	// Initialize the strong classifier.
-	classifier = new StrongClassifierDirectSelect(numSelectors, numWeakClassifiers,
-		(Size)target, numBackups);
+	classifier = new StrongClassifierDirectSelect(opts.numSelectors,
+		opts.numWeakClassifiers,
+		(Size)opts.target,
+		opts.numBackups);
 
 	// Construct the particle filter.
-	particleFilter = new ParticleFilterConstVelocity(nParticles);
+	particleFilter = new ParticleFilterConstVelocity(opts.nParticles,
+		opts.velocityThre,
+		opts.distWeight);
 	particleFilter->InitBuffer();
 }
 
@@ -54,7 +58,9 @@ void SingleTarget::Update(const IntegralImage *intImage, const Rect &roi, int ta
 
 void SingleTarget::CalculateMatchScore(const IntegralImage *intImage,
 	const Pool<Rect> &dets, Pool<float> &matchArray) const {
-	// TO DO
+	
+	particleFilter->CalculateMatchScore(intImage, classifier, dets, matchArray);
+
 }
 
 

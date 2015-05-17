@@ -8,6 +8,7 @@
 #define IMAGE_DETECTOR_HEADER
 
 // #include "FeatureExtractor.h"
+#include "Options.h"
 #include "Classifier.h"
 #include "Pool.h"
 #include "UnionFind.h"

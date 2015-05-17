@@ -1,23 +1,20 @@
 #include "TargetsFreeList.h"
 
-TargetsFreeListNode::TargetsFreeListNode(int numParticles,
-	int numSelectors, int numWeakClassifiers, int numBackups)
+TargetsFreeListNode::TargetsFreeListNode(const Options &opts)
 	: nextFree(NULL), isFree(true) {
-	target = new SingleTarget(numParticles, Rect(), Point2D(),
-		numSelectors, numWeakClassifiers, numBackups);
+
+	target = new SingleTarget(opts);
 }
 
 TargetsFreeListNode::~TargetsFreeListNode() {
 	delete target;
 }
 
-TargetsFreeList::TargetsFreeList(int c, int numParticles, int numSelectors, 
-	int numWeakClassifiers, int numBackups, float detWeight)
-	: capacity(c), freeNodes(NULL), detectionWeight(detWeight) {
-	
+TargetsFreeList::TargetsFreeList(const Options &opts)
+	: capacity(opts.targetsFreeListCapacity), freeNodes(NULL), detectionWeight(opts.detectionWeight) {
+
 	for (int i = 0; i < capacity; i++) {
-		listNodes.push_back(TargetsFreeListNode(numParticles, numSelectors,
-			numWeakClassifiers, numBackups));
+		listNodes.push_back(TargetsFreeListNode(opts));
 		listNodes[i].nextFree = freeNodes;
 		freeNodes = &listNodes[i];
 	}
@@ -74,7 +71,7 @@ void TargetsFreeList::Propagate(const Size &imgSize) {
 	}
 }
 
-void TargetsFreeList::Observe(const IntegralImage *intImage, Pool<Rect> &detections) {
+void TargetsFreeList::Observe(const IntegralImage *intImage, const Pool<Rect> &detections) {
 	for (int i = 0; i < capacity; i++) {
 		if (!listNodes[i].isFree) {
 			// Look up for a mach detection.

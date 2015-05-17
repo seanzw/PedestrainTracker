@@ -21,12 +21,10 @@ public:
 
 	/**
 	 * @param detector	image detector
-	 * @param capacity	maximum number of targets
 	 * @param size		size of a frame
-	 * @patam matchThre	threshold for matching
+	 * @patam opts		all the options
 	 */
-	MultiTracker(ImageDetector *detector, int capacity, const Size &imgSize,
-		float matchThre);
+	MultiTracker(ImageDetector *detector, const Size &imgSize, const Options &opts);
 
 	~MultiTracker();
 

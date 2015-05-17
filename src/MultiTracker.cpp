@@ -1,17 +1,17 @@
 #include "MultiTracker.h"
 
-MultiTracker::MultiTracker(ImageDetector *d, int c, const Size &sz, float thre)
-	: imgSize(sz), detector(d), matchThre(thre) {
+MultiTracker::MultiTracker(ImageDetector *d, const Size &sz, const Options &opts)
+	: imgSize(sz), detector(d), matchThre(opts.matchThre) {
 
 	// Initialize the integral images.
 	hogIntImage = new HoGIntegralImage(imgSize.width, imgSize.height);
 	rgiIntImage = new RGIIntegralImage(imgSize.width, imgSize.height);
 
 	// Initialize the targets free list.
-	targets = new TargetsFreeList(c, 500, 50, 250, 4, 0.5f);
+	targets = new TargetsFreeList(opts);
 
 	// Construct the match matrix.
-	matches = new MatchMatrix(c);
+	matches = new MatchMatrix(opts.targetsFreeListCapacity);
 
 }
 

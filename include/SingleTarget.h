@@ -9,6 +9,7 @@
 #ifndef SINGLE_TARGET_HEADER
 #define SINGLE_TARGET_HEADER
 
+#include "Options.h"
 #include "StrongClassifierDirectSelect.h"
 #include "ParticleFilterConstVelocity.h"
 #include "IntegralImage.h"
@@ -16,21 +17,27 @@
 
 #define SINGLE_TARGET_VELOCITY_CONST 1.0f
 
+/**
+ * Parameters for an empty target.
+ *
+ * @param nParticles			# particles
+ * @param target				the target region
+ * @param initVelocity			the initial velocity
+ * @param numSelectors			# selectors in strong classifier
+ * @param numWeakClassifiers	# weak classifiers
+ * @param numBackups			# backup weak classifiers
+ * @param distWeight			distance weight for match score
+ * @param velocityThre			velocity threshold for match score
+ * @param velocitySigmaConst	const number for velocity sigma
+ */
+
 class SingleTarget {
 public:
 
 	/**
 	 * Construct an empty target.
-	 *
-	 * @param nParticles			# particles
-	 * @param target				the target region
-	 * @param initVelocity			the initial velocity
-	 * @param numSelectors			# selectors in strong classifier
-	 * @param numWeakClassifiers	# weak classifiers
-	 * @param numBackups			# backup weak classifiers
 	 */
-	SingleTarget(int nParticles, const Rect &target, const Point2D &initVelocity,
-		int numSelectors, int numWeakClassifiers, int numBackups = 0);
+	SingleTarget(const Options &ops);
 	~SingleTarget();
 
 	void InitializeTarget(const Rect &target, const Point2D &initVelocity);
@@ -114,6 +121,8 @@ private:
 	 *
 	 */
 	uchar detectionSeq;
+
+	const float velocitySigmaConst;
 };
 
 #endif

@@ -35,21 +35,6 @@ typedef float feat;
 #define ABS(x) fabsf(x)
 #endif
 
-// Store the options.
-struct Options {
-	feat scaleMin;
-	feat scaleMax;
-	feat scaleStep;
-	feat binaryThre;
-	int slideStep;
-	int evidence;		// Number of neighboring detection to make sure.
-	int modelHeight;
-	int modelWidth;
-	float invPerimeterRatio;	// Used in connected components analysis.
-	float minAreaRatio;
-	float maxAreaRatio;
-};
-
 // This is used as the default background reference.
 static cv::Mat defaultBackground;
 
