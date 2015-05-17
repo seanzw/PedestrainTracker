@@ -3,6 +3,9 @@
  * It just propagates the particles and observe using
  * the strong classifier's evaluate function. We leave
  * the training to upper class.
+ * 
+ * This class doesn't support virtual function!!!!
+ *
  * @author Zhengrong Wang.
  */
 
@@ -17,30 +20,38 @@ public:
 
 	/**
 	 * This constructor doesn't initialize particles.
-	 * Used for child class such as ParticleFitlerConstVelocity.
+	 * Should call InitializeBuffer and InitializeTarget before actually using it.
 	 */
 	ParticleFilter(int n = 100, int szParticle = 2);
 
-	ParticleFilter(const Rect &target, int n = 100, int szParticle = 2);
+	~ParticleFilter();
 
-	virtual ~ParticleFilter();
+	/**
+	 * Initialize the buffer, mainly the particles, confidence, resample buffer.
+	 */
+	void InitBuffer();
+
+	/**
+	 * Initialize the target, used in multiple targets tracking.
+	 */
+	void InitTarget(const Rect &target);
 
 	/**
 	 * Propagate the particles.
 	 * 
 	 * @param imgSize	Is the particle still inside the image?
 	 */
-	virtual void Propagate(const Size &imgSize);
+	void Propagate(const Size &imgSize);
 
 	/**
 	 * Observe with classifier output confidence.
 	 */
-	virtual void Observe(StrongClassifier *classifier, const IntegralImage *intImage);
+	void Observe(const StrongClassifier *classifier, const IntegralImage *intImage);
 
 	/**
 	 * Observe with classifier output confidence and associated detection.
 	 */
-	virtual void Observe(StrongClassifier *classifier, const IntegralImage *intImage,
+	void Observe(const StrongClassifier *classifier, const IntegralImage *intImage,
 		const Rect &detection, float detectionWeight, float classifierWeight);
 
 	/**
@@ -62,9 +73,6 @@ public:
 	void DrawTarget(cv::Mat &img, const cv::Scalar &color) const;
 
 	const Rect &GetTarget() const;
-
-	// Initialize the particles.
-	virtual void InitParticles();
 
 protected:
 
@@ -112,6 +120,11 @@ protected:
 		}
 		return end;
 	}
+
+	/**
+	 * Initialize the particles around the target.
+	 */
+	void InitParticles();
 
 };
 

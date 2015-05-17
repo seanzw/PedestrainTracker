@@ -14,6 +14,8 @@
 #include "IntegralImage.h"
 #include "Pool.h"
 
+#define SINGLE_TARGET_VELOCITY_CONST 1.0f
+
 class SingleTarget {
 public:
 

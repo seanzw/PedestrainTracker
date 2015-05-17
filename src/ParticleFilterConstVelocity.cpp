@@ -1,15 +1,20 @@
 #include "ParticleFilterConstVelocity.h"
 
-ParticleFilterConstVelocity::ParticleFilterConstVelocity(const Rect &t, const Point2D &v, int n) : ParticleFilter(n, 4) {
+ParticleFilterConstVelocity::ParticleFilterConstVelocity(int n) : ParticleFilter(n, 4) {
 
-	target = t;
-	initVelocity = v;
+}
 
+void ParticleFilterConstVelocity::InitBuffer() {
 	particles = new int[numParticles * sizeParticle];
 	InitParticles();
 	confidence = new float[numParticles];
 	resampleBuffer = new int[numParticles * sizeParticle];
+}
 
+void ParticleFilterConstVelocity::InitTarget(const Rect &t, const Point2D &v) {
+	target = t;
+	initVelocity = v;
+	InitParticles();
 }
 
 void ParticleFilterConstVelocity::InitParticles() {

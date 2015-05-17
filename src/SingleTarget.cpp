@@ -18,19 +18,21 @@ SingleTarget::~SingleTarget() {
 }
 
 void SingleTarget::ResetTarget() {
-	// TO DO
+	// TO DO, Acutually we do nothing here.
 	detectionSeq = 0;
 }
 
 void SingleTarget::InitializeTarget(const Rect &target, const Point2D &initVelocity) {
 	// TO DO
+
+
 }
 
 void SingleTarget::Propagate(const Size &imgSize) {
 	
 	// First we need to set the sigma for velocity
 	// according to how many frames we have successfully detected.
-	particleFilter->SetVelocitySigma(1.0f / (float)detectionSeq);
+	particleFilter->SetVelocitySigma(SINGLE_TARGET_VELOCITY_CONST / (float)detectionSeq);
 
 	// Propagate the particles.
 	particleFilter->Propagate(imgSize);

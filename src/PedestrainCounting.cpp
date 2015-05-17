@@ -450,13 +450,13 @@ void TrackVideoSingle(const char *infile, const char *outfile) {
 #endif
 
 	StrongClassifierDirectSelect classifier(50, 250, Size(target.width, target.height), 2);
-	ParticleFilter particleFilter(target, 500);
+	ParticleFilter particleFilter(500);
+	particleFilter.InitBuffer();
+	particleFilter.InitTarget(target);
 	SingleSampler sampler(5, 10);
 
 	// Sample.
 	sampler.Sample(target, Size(width, height));
-
-
 
 	// The first training.
 	for (int i = 0; i < sampler.GetNumPos(); i++) {

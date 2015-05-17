@@ -11,15 +11,16 @@
 
 class ParticleFilterConstVelocity : public ParticleFilter {
 public:
-	ParticleFilterConstVelocity(const Rect &target, const Point2D &initVelocity = Point2D(10, 0), int n = 100);
+	ParticleFilterConstVelocity(int n);
 
-	virtual ~ParticleFilterConstVelocity();
+	~ParticleFilterConstVelocity();
 
-	virtual void Propagate(const Size &imgSize);
+	void InitBuffer();
+	void InitTarget(const Rect &target, const Point2D &initVelocity);
+
+	void Propagate(const Size &imgSize);
 
 	void SetVelocitySigma(float sigma);
-
-	virtual void InitParticles();
 
 protected:
 	// The sizeof particles. Here it should be 2. Its structure like:
@@ -34,6 +35,8 @@ protected:
 
 	// Gaussian noise used in velocity.
 	std::normal_distribution<float> gaussianVelocity;
+
+	void InitParticles();
 };
 
 #endif

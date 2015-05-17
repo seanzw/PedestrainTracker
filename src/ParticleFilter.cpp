@@ -6,26 +6,15 @@ ParticleFilter::ParticleFilter(int n, int szParticle) : numParticles(n), sizePar
 	confidence = NULL;
 }
 
-ParticleFilter::ParticleFilter(const Rect &t, int n, int szParticle) : numParticles(n), target(t), sizeParticle(szParticle) {
-
+void ParticleFilter::InitBuffer() {
 	particles = new int[numParticles * sizeParticle];
-	InitParticles();
 	confidence = new float[numParticles];
 	resampleBuffer = new int[numParticles * sizeParticle];
 }
 
-void ParticleFilter::InitParticles() {
-	int *curPartice = particles;
-	int upper = target.upper;
-	int left = target.left;
-
-	// Initialize the gaussian distribution according to the size.
-	gaussian = std::normal_distribution<float>(0.0f, target.width * 0.25f);
-
-	for (int i = 0; i < numParticles; i++, curPartice += sizeParticle) {
-		curPartice[0] = upper + (int)gaussian(generator);
-		curPartice[1] = left + (int)gaussian(generator);
-	}
+void ParticleFilter::InitTarget(const Rect &t) {
+	target = t;
+	InitParticles();
 }
 
 ParticleFilter::~ParticleFilter() {
@@ -50,7 +39,7 @@ void ParticleFilter::Propagate(const Size &imgSize) {
 	}
 }
 
-void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *intImage) {
+void ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralImage *intImage) {
 	int *curParticle = particles;
 	Rect roi(0, 0, target.width, target.height);
 
@@ -64,7 +53,7 @@ void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *
 	}
 }
 
-void ParticleFilter::Observe(StrongClassifier *classifier, const IntegralImage *intImage,
+void ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralImage *intImage,
 	const Rect &detection, float detectionWeight, float classifierWeight) {
 
 	int *curParticle = particles;
@@ -185,4 +174,18 @@ void ParticleFilter::DrawTarget(cv::Mat &img, const cv::Scalar &color) const {
 
 const Rect &ParticleFilter::GetTarget() const {
 	return target;
+}
+
+void ParticleFilter::InitParticles() {
+	int *curPartice = particles;
+	int upper = target.upper;
+	int left = target.left;
+
+	// Initialize the gaussian distribution according to the size.
+	gaussian = std::normal_distribution<float>(0.0f, target.width * 0.25f);
+
+	for (int i = 0; i < numParticles; i++, curPartice += sizeParticle) {
+		curPartice[0] = upper + (int)gaussian(generator);
+		curPartice[1] = left + (int)gaussian(generator);
+	}
 }
