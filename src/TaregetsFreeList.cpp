@@ -93,7 +93,6 @@ void TargetsFreeList::Observe(const IntegralImage *intImage, Pool<Rect> &detecti
 
 				// Observe.
 				listNodes[i].target->Observe(intImage);
-
 			}
 		}
 	}

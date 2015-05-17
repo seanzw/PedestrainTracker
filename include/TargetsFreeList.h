@@ -35,12 +35,12 @@ public:
 	/**
 	 * Propagate all the targets' particles.
 	 */
-	inline void Propagate(const Size &imgSize);
+	void Propagate(const Size &imgSize);
 
 	/**
 	 * Observe all the targets' partices.
 	 */
-	inline void Observe(const IntegralImage *intImage, Pool<Rect> &detections);
+	void Observe(const IntegralImage *intImage, Pool<Rect> &detections);
 
 	// void Update(int index, const IntegralImage *intImage, );
 

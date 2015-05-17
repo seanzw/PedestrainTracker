@@ -46,17 +46,6 @@ void SingleTarget::Propagate(const Size &imgSize) {
 	particleFilter->Propagate(imgSize);
 }
 
-void SingleTarget::Observe(const IntegralImage *intImage, const Rect &detection,
-	float detectionWight) {
-	
-	// Simply call particle filter's observe
-	particleFilter->Observe(classifier, intImage, detection, detectionWight);
-}
-
-void SingleTarget::Observe(const IntegralImage *intImage) {
-	particleFilter->Observe(classifier, intImage);
-}
-
 void SingleTarget::Update(const IntegralImage *intImage, const Rect &roi, int target, float importance) {
 	// TO DO
 	classifier->Update(intImage, roi, target, importance);

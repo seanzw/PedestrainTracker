@@ -50,12 +50,16 @@ public:
 	 * @param classifierWeight	weight for classifier term
 	 */
 	inline void Observe(const IntegralImage *intImage, const Rect &detection,
-		float detectionWeight);
+		float detectionWeight) {
+		particleFilter->Observe(classifier, intImage, detection, detectionWeight);
+	}
 
 	/**
 	 * Observe the particles without matched detections.
 	 */
-	inline void Observe(const IntegralImage *intImage);
+	inline void Observe(const IntegralImage *intImage) {
+		particleFilter->Observe(classifier, intImage);
+	}
 
 	/**
 	 * Update the classifier.

@@ -13,3 +13,7 @@ void MatchMatrix::SetNumDets(int numDets) {
 		//matchMat.
 	}
 }
+
+void MatchMatrix::SetTargets(TargetsFreeList &targets, float threshold) {
+
+}
