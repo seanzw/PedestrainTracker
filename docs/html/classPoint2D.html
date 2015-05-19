@@ -105,6 +105,23 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>SquaredDistance</b> 
 <tr class="memitem:a53134a6fffd5af2cc0e94267b1c50f4e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53134a6fffd5af2cc0e94267b1c50f4e"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>Distance</b> (const <a class="el" href="classPoint2D.html">Point2D</a> &amp;other) const </td></tr>
 <tr class="separator:a53134a6fffd5af2cc0e94267b1c50f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9be8c903f8a7da91a2e02505050b09e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9be8c903f8a7da91a2e02505050b09e1"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>SquaredLength</b> () const </td></tr>
+<tr class="separator:a9be8c903f8a7da91a2e02505050b09e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad72551cf9211ad6045878f5661b04b45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad72551cf9211ad6045878f5661b04b45"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>Length</b> () const </td></tr>
+<tr class="separator:ad72551cf9211ad6045878f5661b04b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35a2cf89db69f6f26999377c11022e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af35a2cf89db69f6f26999377c11022e3"></a>
+<a class="el" href="classPoint2D.html">Point2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classPoint2D.html">Point2D</a> &amp;other) const </td></tr>
+<tr class="separator:af35a2cf89db69f6f26999377c11022e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf19df4c89caf423fb2d67a750282dc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf19df4c89caf423fb2d67a750282dc2"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classPoint2D.html">Point2D</a> &amp;other) const </td></tr>
+<tr class="separator:acf19df4c89caf423fb2d67a750282dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24634097a05aee2737dbac56d50d97d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24634097a05aee2737dbac56d50d97d5"></a>
+<a class="el" href="classPoint2D.html">Point2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (float scale) const </td></tr>
+<tr class="separator:a24634097a05aee2737dbac56d50d97d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6427afbb9fe1ee956b766c7d7230b44a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPoint2D.html#a6427afbb9fe1ee956b766c7d7230b44a">ProjectResidual</a> (const <a class="el" href="classPoint2D.html">Point2D</a> &amp;other) const </td></tr>
+<tr class="separator:a6427afbb9fe1ee956b766c7d7230b44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -115,6 +132,32 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>row</b></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>col</b></td></tr>
 <tr class="separator:af5f355c29cdbafa6e446208824a77b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6427afbb9fe1ee956b766c7d7230b44a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Point2D::ProjectResidual </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPoint2D.html">Point2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Given two vector this and other, returns |other - dot(this, other) / (|this| ^ 2) * this|. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Geometry_8h_source.html">Geometry.h</a></li>
 <li>src/Geometry.cpp</li>

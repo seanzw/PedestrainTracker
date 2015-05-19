@@ -1,0 +1,88 @@
+\hypertarget{classTargetsFreeList}{}\section{Targets\+Free\+List Class Reference}
+\label{classTargetsFreeList}\index{Targets\+Free\+List@{Targets\+Free\+List}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTargetsFreeList_a09b62a42db80be05c572804054d83125}{}{\bfseries Targets\+Free\+List} (const \hyperlink{structOptions}{Options} \&opts)\label{classTargetsFreeList_a09b62a42db80be05c572804054d83125}
+
+\item 
+void \hyperlink{classTargetsFreeList_abfbc250eed26923b56582c862cf1d254}{Reset\+One\+Target} (int index)
+\item 
+\hypertarget{classTargetsFreeList_aa07866a0019c82181fa866f8cd2bfda9}{}int {\bfseries Initialize\+Target} (const \hyperlink{classRect}{Rect} \&target, const \hyperlink{classPoint2D}{Point2\+D} \&init\+Velocity)\label{classTargetsFreeList_aa07866a0019c82181fa866f8cd2bfda9}
+
+\item 
+void \hyperlink{classTargetsFreeList_abd311cfa3633ed0268aab9ae8135deae}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
+\item 
+void \hyperlink{classTargetsFreeList_a6dbfd6eb0734fa5adc094ebffc6b4926}{Observe} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&detections)
+\item 
+void \hyperlink{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}{Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, \hyperlink{classPool}{Pool}$<$ \hyperlink{classPool}{Pool}$<$ float $>$$>$ \&match\+Mat) const 
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTargetsFreeList_a603b6486904951a69c1abded23e7b57f}{}std\+::vector$<$ \hyperlink{structTargetsFreeListNode}{Targets\+Free\+List\+Node} $>$ {\bfseries list\+Nodes}\label{classTargetsFreeList_a603b6486904951a69c1abded23e7b57f}
+
+\item 
+\hypertarget{classTargetsFreeList_ab9aadb3c5b3411fa6df9c8cf2a8ba159}{}const int {\bfseries capacity}\label{classTargetsFreeList_ab9aadb3c5b3411fa6df9c8cf2a8ba159}
+
+\item 
+\hypertarget{classTargetsFreeList_ab24813bb8b19208e00711d9a4c80f2f5}{}const float {\bfseries detection\+Weight}\label{classTargetsFreeList_ab24813bb8b19208e00711d9a4c80f2f5}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTargetsFreeList_ac3ed72f4c3f22bfca9553b6c316df2ea}{}class {\bfseries Match\+Matrix}\label{classTargetsFreeList_ac3ed72f4c3f22bfca9553b6c316df2ea}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Calculate\+Match\+Score@{Calculate\+Match\+Score}}
+\index{Calculate\+Match\+Score@{Calculate\+Match\+Score}!Targets\+Free\+List@{Targets\+Free\+List}}
+\subsubsection[{Calculate\+Match\+Score(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&dets, Pool$<$ Pool$<$ float $>$$>$ \&match\+Mat) const }]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Calculate\+Match\+Score (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Pool}$<$ {\bf Rect} $>$ \&}]{dets, }
+\item[{{\bf Pool}$<$ {\bf Pool}$<$ float $>$$>$ \&}]{match\+Mat}
+\end{DoxyParamCaption}
+) const}\label{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}
+Calculate the target-\/detection matching score matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em int\+Image} & integral image \\
+\hline
+{\em dets} & detections \\
+\hline
+{\em match\+Mat} & matching score matrix \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTargetsFreeList_a6dbfd6eb0734fa5adc094ebffc6b4926}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Observe@{Observe}}
+\index{Observe@{Observe}!Targets\+Free\+List@{Targets\+Free\+List}}
+\subsubsection[{Observe(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&detections)}]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Observe (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Pool}$<$ {\bf Rect} $>$ \&}]{detections}
+\end{DoxyParamCaption}
+)}\label{classTargetsFreeList_a6dbfd6eb0734fa5adc094ebffc6b4926}
+Observe all the targets\textquotesingle{} partices. \hypertarget{classTargetsFreeList_abd311cfa3633ed0268aab9ae8135deae}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Propagate@{Propagate}}
+\index{Propagate@{Propagate}!Targets\+Free\+List@{Targets\+Free\+List}}
+\subsubsection[{Propagate(const Size \&img\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Propagate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{img\+Size}
+\end{DoxyParamCaption}
+)}\label{classTargetsFreeList_abd311cfa3633ed0268aab9ae8135deae}
+Propagate all the targets\textquotesingle{} particles. \hypertarget{classTargetsFreeList_abfbc250eed26923b56582c862cf1d254}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Reset\+One\+Target@{Reset\+One\+Target}}
+\index{Reset\+One\+Target@{Reset\+One\+Target}!Targets\+Free\+List@{Targets\+Free\+List}}
+\subsubsection[{Reset\+One\+Target(int index)}]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Reset\+One\+Target (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{classTargetsFreeList_abfbc250eed26923b56582c862cf1d254}
+Reset one target. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Targets\+Free\+List.\+h\item 
+src/Taregets\+Free\+List.\+cpp\end{DoxyCompactItemize}

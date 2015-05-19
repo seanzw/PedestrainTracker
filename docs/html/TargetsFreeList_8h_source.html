@@ -93,49 +93,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;SingleTarget.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structTargetFreeListNode.html">   12</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structTargetFreeListNode.html">TargetFreeListNode</a> {</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structTargetsFreeListNode.html">   12</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structTargetsFreeListNode.html">TargetsFreeListNode</a> {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classSingleTarget.html">SingleTarget</a> *target;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="structTargetFreeListNode.html">TargetFreeListNode</a> *nextFree;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="structTargetsFreeListNode.html">TargetsFreeListNode</a> *nextFree;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">bool</span> isFree;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="structTargetFreeListNode.html">TargetFreeListNode</a>(<span class="keywordtype">int</span> numParticles, </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">int</span> numSelectors, <span class="keywordtype">int</span> numWeakClassifiers, <span class="keywordtype">int</span> numBackups);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ~<a class="code" href="structTargetFreeListNode.html">TargetFreeListNode</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classTargetFreeList.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTargetFreeList.html">TargetFreeList</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classTargetFreeList.html">TargetFreeList</a>(<span class="keywordtype">int</span> capacity, <span class="keywordtype">int</span> numParticles,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">int</span> numSelectors, <span class="keywordtype">int</span> numWeakClassifiers, <span class="keywordtype">int</span> numBackups);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ~<a class="code" href="classTargetFreeList.html">TargetFreeList</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTargetFreeList.html#ad9fc512ed531b89b0c1c5d8ff85dd5f7">ResetOneTarget</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="structTargetsFreeListNode.html">TargetsFreeListNode</a>(<span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opts);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ~<a class="code" href="structTargetsFreeListNode.html">TargetsFreeListNode</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classTargetsFreeList.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTargetsFreeList.html">TargetsFreeList</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classTargetsFreeList.html">TargetsFreeList</a>(<span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opts);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ~<a class="code" href="classTargetsFreeList.html">TargetsFreeList</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTargetsFreeList.html#abfbc250eed26923b56582c862cf1d254">ResetOneTarget</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span> InitializeTarget(<span class="keyword">const</span> <a class="code" href="classRect.html">Rect</a> &amp;target, <span class="keyword">const</span> <a class="code" href="classPoint2D.html">Point2D</a> &amp;initVelocity);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span> InitializeTarget(<span class="keyword">const</span> <a class="code" href="classRect.html">Rect</a> &amp;target, <span class="keyword">const</span> <a class="code" href="classPoint2D.html">Point2D</a> &amp;initVelocity);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> Propagate(<span class="keyword">const</span> <a class="code" href="classSize.html">Size</a> &amp;imgSize);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// void Update(int index, const IntegralImage *intImage, );</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// The array of nodes.</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::vector&lt;TargetFreeListNode&gt; listNodes;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> capacity;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTargetsFreeList.html#abd311cfa3633ed0268aab9ae8135deae">Propagate</a>(<span class="keyword">const</span> <a class="code" href="classSize.html">Size</a> &amp;imgSize);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTargetsFreeList.html#a6dbfd6eb0734fa5adc094ebffc6b4926">Observe</a>(<span class="keyword">const</span> <a class="code" href="classIntegralImage.html">IntegralImage</a> *intImage, <span class="keyword">const</span> <a class="code" href="classPool.html">Pool&lt;Rect&gt;</a> &amp;detections);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// void Update(int index, const IntegralImage *intImage, );</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="structTargetFreeListNode.html">TargetFreeListNode</a> *freeNodes;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classSingleTarget_html"><div class="ttname"><a href="classSingleTarget.html">SingleTarget</a></div><div class="ttdef"><b>Definition:</b> SingleTarget.h:16</div></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTargetsFreeList.html#a9eefc5f9a7aa50987295205d1ee1b36e">CalculateMatchScore</a>(<span class="keyword">const</span> <a class="code" href="classIntegralImage.html">IntegralImage</a> *intImage, </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">const</span> <a class="code" href="classPool.html">Pool&lt;Rect&gt;</a> &amp;dets, <a class="code" href="classPool.html">Pool</a>&lt;<a class="code" href="classPool.html">Pool&lt;float&gt;</a>&gt; &amp;matchMat) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// The array of nodes.</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::vector&lt;TargetsFreeListNode&gt; listNodes;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> capacity;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Weight for detection term in particle observation.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> detectionWeight;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Allow MatchMatrix to modify the matchDets array.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMatchMatrix.html">MatchMatrix</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="structTargetsFreeListNode.html">TargetsFreeListNode</a> *freeNodes;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// The (detection, target) pair.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// Set by MatchMatrix.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classPool.html">Pool&lt;int&gt;</a> matchDets;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="structTargetsFreeListNode_html"><div class="ttname"><a href="structTargetsFreeListNode.html">TargetsFreeListNode</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:12</div></div>
+<div class="ttc" id="classTargetsFreeList_html"><div class="ttname"><a href="classTargetsFreeList.html">TargetsFreeList</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:21</div></div>
+<div class="ttc" id="classTargetsFreeList_html_abfbc250eed26923b56582c862cf1d254"><div class="ttname"><a href="classTargetsFreeList.html#abfbc250eed26923b56582c862cf1d254">TargetsFreeList::ResetOneTarget</a></div><div class="ttdeci">void ResetOneTarget(int index)</div><div class="ttdef"><b>Definition:</b> TaregetsFreeList.cpp:27</div></div>
+<div class="ttc" id="classSingleTarget_html"><div class="ttname"><a href="classSingleTarget.html">SingleTarget</a></div><div class="ttdef"><b>Definition:</b> SingleTarget.h:34</div></div>
 <div class="ttc" id="classRect_html"><div class="ttname"><a href="classRect.html">Rect</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:34</div></div>
-<div class="ttc" id="classTargetFreeList_html_ad9fc512ed531b89b0c1c5d8ff85dd5f7"><div class="ttname"><a href="classTargetFreeList.html#ad9fc512ed531b89b0c1c5d8ff85dd5f7">TargetFreeList::ResetOneTarget</a></div><div class="ttdeci">void ResetOneTarget(int index)</div><div class="ttdef"><b>Definition:</b> TaregetFreeList.cpp:29</div></div>
+<div class="ttc" id="classTargetsFreeList_html_a6dbfd6eb0734fa5adc094ebffc6b4926"><div class="ttname"><a href="classTargetsFreeList.html#a6dbfd6eb0734fa5adc094ebffc6b4926">TargetsFreeList::Observe</a></div><div class="ttdeci">void Observe(const IntegralImage *intImage, const Pool&lt; Rect &gt; &amp;detections)</div><div class="ttdef"><b>Definition:</b> TaregetsFreeList.cpp:74</div></div>
 <div class="ttc" id="classSize_html"><div class="ttname"><a href="classSize.html">Size</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:14</div></div>
-<div class="ttc" id="classTargetFreeList_html"><div class="ttname"><a href="classTargetFreeList.html">TargetFreeList</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:22</div></div>
+<div class="ttc" id="classPool_html"><div class="ttname"><a href="classPool.html">Pool&lt; Rect &gt;</a></div></div>
+<div class="ttc" id="classTargetsFreeList_html_abd311cfa3633ed0268aab9ae8135deae"><div class="ttname"><a href="classTargetsFreeList.html#abd311cfa3633ed0268aab9ae8135deae">TargetsFreeList::Propagate</a></div><div class="ttdeci">void Propagate(const Size &amp;imgSize)</div><div class="ttdef"><b>Definition:</b> TaregetsFreeList.cpp:66</div></div>
+<div class="ttc" id="classIntegralImage_html"><div class="ttname"><a href="classIntegralImage.html">IntegralImage</a></div><div class="ttdef"><b>Definition:</b> IntegralImage.h:11</div></div>
+<div class="ttc" id="classTargetsFreeList_html_a9eefc5f9a7aa50987295205d1ee1b36e"><div class="ttname"><a href="classTargetsFreeList.html#a9eefc5f9a7aa50987295205d1ee1b36e">TargetsFreeList::CalculateMatchScore</a></div><div class="ttdeci">void CalculateMatchScore(const IntegralImage *intImage, const Pool&lt; Rect &gt; &amp;dets, Pool&lt; Pool&lt; float &gt;&gt; &amp;matchMat) const </div><div class="ttdef"><b>Definition:</b> TaregetsFreeList.cpp:57</div></div>
+<div class="ttc" id="classMatchMatrix_html"><div class="ttname"><a href="classMatchMatrix.html">MatchMatrix</a></div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:11</div></div>
 <div class="ttc" id="classPoint2D_html"><div class="ttname"><a href="classPoint2D.html">Point2D</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:53</div></div>
-<div class="ttc" id="structTargetFreeListNode_html"><div class="ttname"><a href="structTargetFreeListNode.html">TargetFreeListNode</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:12</div></div>
+<div class="ttc" id="structOptions_html"><div class="ttname"><a href="structOptions.html">Options</a></div><div class="ttdef"><b>Definition:</b> Options.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

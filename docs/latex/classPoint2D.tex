@@ -14,6 +14,23 @@
 \item 
 \hypertarget{classPoint2D_a53134a6fffd5af2cc0e94267b1c50f4e}{}float {\bfseries Distance} (const \hyperlink{classPoint2D}{Point2\+D} \&other) const \label{classPoint2D_a53134a6fffd5af2cc0e94267b1c50f4e}
 
+\item 
+\hypertarget{classPoint2D_a9be8c903f8a7da91a2e02505050b09e1}{}float {\bfseries Squared\+Length} () const \label{classPoint2D_a9be8c903f8a7da91a2e02505050b09e1}
+
+\item 
+\hypertarget{classPoint2D_ad72551cf9211ad6045878f5661b04b45}{}float {\bfseries Length} () const \label{classPoint2D_ad72551cf9211ad6045878f5661b04b45}
+
+\item 
+\hypertarget{classPoint2D_af35a2cf89db69f6f26999377c11022e3}{}\hyperlink{classPoint2D}{Point2\+D} {\bfseries operator-\/} (const \hyperlink{classPoint2D}{Point2\+D} \&other) const \label{classPoint2D_af35a2cf89db69f6f26999377c11022e3}
+
+\item 
+\hypertarget{classPoint2D_acf19df4c89caf423fb2d67a750282dc2}{}float {\bfseries operator$\ast$} (const \hyperlink{classPoint2D}{Point2\+D} \&other) const \label{classPoint2D_acf19df4c89caf423fb2d67a750282dc2}
+
+\item 
+\hypertarget{classPoint2D_a24634097a05aee2737dbac56d50d97d5}{}\hyperlink{classPoint2D}{Point2\+D} {\bfseries operator$\ast$} (float scale) const \label{classPoint2D_a24634097a05aee2737dbac56d50d97d5}
+
+\item 
+float \hyperlink{classPoint2D_a6427afbb9fe1ee956b766c7d7230b44a}{Project\+Residual} (const \hyperlink{classPoint2D}{Point2\+D} \&other) const 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -25,6 +42,16 @@
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Member Function Documentation}
+\hypertarget{classPoint2D_a6427afbb9fe1ee956b766c7d7230b44a}{}\index{Point2\+D@{Point2\+D}!Project\+Residual@{Project\+Residual}}
+\index{Project\+Residual@{Project\+Residual}!Point2\+D@{Point2\+D}}
+\subsubsection[{Project\+Residual(const Point2\+D \&other) const }]{\setlength{\rightskip}{0pt plus 5cm}float Point2\+D\+::\+Project\+Residual (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2\+D} \&}]{other}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classPoint2D_a6427afbb9fe1ee956b766c7d7230b44a}
+Given two vector this and other, returns $\vert$other -\/ dot(this, other) / ($\vert$this$\vert$ $^\wedge$ 2) $\ast$ this$\vert$. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

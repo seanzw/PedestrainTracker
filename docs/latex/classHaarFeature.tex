@@ -1,9 +1,5 @@
 \hypertarget{classHaarFeature}{}\section{Haar\+Feature Class Reference}
 \label{classHaarFeature}\index{Haar\+Feature@{Haar\+Feature}}
-
-
-{\ttfamily \#include $<$Haar\+Feature.\+h$>$}
-
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,6 +12,8 @@
 \hypertarget{classHaarFeature_a9b74485ba82429c7311a0aa490a2f1b6}{}bool {\bfseries Extract} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, \hyperlink{classFeature}{Feature} $\ast$feature)\label{classHaarFeature_a9b74485ba82429c7311a0aa490a2f1b6}
 
 \item 
+void \hyperlink{classHaarFeature_a1ca66bee1bcf71feeb472b5e34ab750c}{Reset} (const \hyperlink{classSize}{Size} \&patch\+Size)
+\item 
 \hypertarget{classHaarFeature_a40d755bcccf0ea1e5ebb154eea7d26ac}{}float {\bfseries Get\+Response} ()\label{classHaarFeature_a40d755bcccf0ea1e5ebb154eea7d26ac}
 
 \item 
@@ -27,11 +25,15 @@
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Haar \hyperlink{classFeature}{Feature} class. Extract a Haar like feature from the image. \begin{DoxyAuthor}{Author}
-Zhengrong Wang 
-\end{DoxyAuthor}
-
+\subsection{Member Function Documentation}
+\hypertarget{classHaarFeature_a1ca66bee1bcf71feeb472b5e34ab750c}{}\index{Haar\+Feature@{Haar\+Feature}!Reset@{Reset}}
+\index{Reset@{Reset}!Haar\+Feature@{Haar\+Feature}}
+\subsubsection[{Reset(const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Haar\+Feature\+::\+Reset (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{patch\+Size}
+\end{DoxyParamCaption}
+)}\label{classHaarFeature_a1ca66bee1bcf71feeb472b5e34ab750c}
+Reset this feature. Randomly generate a new one. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

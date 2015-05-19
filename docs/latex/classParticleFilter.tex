@@ -15,14 +15,15 @@ Inheritance diagram for Particle\+Filter\+:\begin{figure}[H]
 \item 
 \hyperlink{classParticleFilter_ad05d7aeddc103fc32b6de3a751c37471}{Particle\+Filter} (int n=100, int sz\+Particle=2)
 \item 
-\hypertarget{classParticleFilter_a8f8647624fb770f966eeacb5e2b94310}{}{\bfseries Particle\+Filter} (const \hyperlink{classRect}{Rect} \&target, int n=100, int sz\+Particle=2)\label{classParticleFilter_a8f8647624fb770f966eeacb5e2b94310}
-
+void \hyperlink{classParticleFilter_a3bf44906e7f1b546c96815856d330323}{Init\+Buffer} ()
 \item 
-virtual void \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
+void \hyperlink{classParticleFilter_afcde50511c90d318ec335bda8639c58f}{Init\+Target} (const \hyperlink{classRect}{Rect} \&target)
 \item 
-virtual void \hyperlink{classParticleFilter_ac564ef678bef8d6ff2fc70258cc7e822}{Observe} (\hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image)
+void \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
 \item 
-virtual void \hyperlink{classParticleFilter_a7dc0bf5137e9e7d8f59961618dbd9215}{Observe} (\hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&detection, float detection\+Weight, float classifier\+Weight)
+void \hyperlink{classParticleFilter_a4529ea61cf9ab6ddd18f55434a4ff3b9}{Observe} (const \hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image)
+\item 
+void \hyperlink{classParticleFilter_ad1ae015d78e510587c8928fa2ebcf9c0}{Observe} (const \hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&detection, float detection\+Weight)
 \item 
 void \hyperlink{classParticleFilter_a76b01cd9d9d0fa181b89ffe3dcf5fbab}{Resample\+With\+Best} ()
 \item 
@@ -39,15 +40,14 @@ void \hyperlink{classParticleFilter_ab191492fa8c67ecb0546e69d50fa2481}{Resample\
 \item 
 \hypertarget{classParticleFilter_ab2c226ecb5b701d7cac2c99cf6168e05}{}const \hyperlink{classRect}{Rect} \& {\bfseries Get\+Target} () const \label{classParticleFilter_ab2c226ecb5b701d7cac2c99cf6168e05}
 
-\item 
-\hypertarget{classParticleFilter_a0244f4fb69b92deb70aa470f2cc85ca4}{}virtual void {\bfseries Init\+Particles} ()\label{classParticleFilter_a0244f4fb69b92deb70aa470f2cc85ca4}
-
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classParticleFilter_a566b57dbca5caadbf1c9dce31b3407be}{}int {\bfseries Binar\+Search} (float prob) const \label{classParticleFilter_a566b57dbca5caadbf1c9dce31b3407be}
 
+\item 
+void \hyperlink{classParticleFilter_a0244f4fb69b92deb70aa470f2cc85ca4}{Init\+Particles} ()
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -82,7 +82,11 @@ void \hyperlink{classParticleFilter_ab191492fa8c67ecb0546e69d50fa2481}{Resample\
 
 
 \subsection{Detailed Description}
-A basic particle filter. It just propagates the particles and observe using the strong classifier\textquotesingle{}s evaluate function. We leave the training to upper class. \begin{DoxyAuthor}{Author}
+A basic particle filter. It just propagates the particles and observe using the strong classifier\textquotesingle{}s evaluate function. We leave the training to upper class.
+
+This class doesn\textquotesingle{}t support virtual function!!!!
+
+\begin{DoxyAuthor}{Author}
 Zhengrong Wang. 
 \end{DoxyAuthor}
 
@@ -96,35 +100,55 @@ Zhengrong Wang.
 \item[{int}]{sz\+Particle = {\ttfamily 2}}
 \end{DoxyParamCaption}
 )}\label{classParticleFilter_ad05d7aeddc103fc32b6de3a751c37471}
-This constructor doesn\textquotesingle{}t initialize particles. Used for child class such as Particle\+Fitler\+Const\+Velocity. 
+This constructor doesn\textquotesingle{}t initialize particles. Should call Initialize\+Buffer and Initialize\+Target before actually using it. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classParticleFilter_ac564ef678bef8d6ff2fc70258cc7e822}{}\index{Particle\+Filter@{Particle\+Filter}!Observe@{Observe}}
-\index{Observe@{Observe}!Particle\+Filter@{Particle\+Filter}}
-\subsubsection[{Observe(\+Strong\+Classifier $\ast$classifier, const Integral\+Image $\ast$int\+Image)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Observe (
+\hypertarget{classParticleFilter_a3bf44906e7f1b546c96815856d330323}{}\index{Particle\+Filter@{Particle\+Filter}!Init\+Buffer@{Init\+Buffer}}
+\index{Init\+Buffer@{Init\+Buffer}!Particle\+Filter@{Particle\+Filter}}
+\subsubsection[{Init\+Buffer()}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Init\+Buffer (
 \begin{DoxyParamCaption}
-\item[{{\bf Strong\+Classifier} $\ast$}]{classifier, }
+{}
+\end{DoxyParamCaption}
+)}\label{classParticleFilter_a3bf44906e7f1b546c96815856d330323}
+Initialize the buffer, mainly the particles, confidence, resample buffer. \hypertarget{classParticleFilter_a0244f4fb69b92deb70aa470f2cc85ca4}{}\index{Particle\+Filter@{Particle\+Filter}!Init\+Particles@{Init\+Particles}}
+\index{Init\+Particles@{Init\+Particles}!Particle\+Filter@{Particle\+Filter}}
+\subsubsection[{Init\+Particles()}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Init\+Particles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classParticleFilter_a0244f4fb69b92deb70aa470f2cc85ca4}
+Initialize the particles around the target. \hypertarget{classParticleFilter_afcde50511c90d318ec335bda8639c58f}{}\index{Particle\+Filter@{Particle\+Filter}!Init\+Target@{Init\+Target}}
+\index{Init\+Target@{Init\+Target}!Particle\+Filter@{Particle\+Filter}}
+\subsubsection[{Init\+Target(const Rect \&target)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Init\+Target (
+\begin{DoxyParamCaption}
+\item[{const {\bf Rect} \&}]{target}
+\end{DoxyParamCaption}
+)}\label{classParticleFilter_afcde50511c90d318ec335bda8639c58f}
+Initialize the target, used in multiple targets tracking. \hypertarget{classParticleFilter_a4529ea61cf9ab6ddd18f55434a4ff3b9}{}\index{Particle\+Filter@{Particle\+Filter}!Observe@{Observe}}
+\index{Observe@{Observe}!Particle\+Filter@{Particle\+Filter}}
+\subsubsection[{Observe(const Strong\+Classifier $\ast$classifier, const Integral\+Image $\ast$int\+Image)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Observe (
+\begin{DoxyParamCaption}
+\item[{const {\bf Strong\+Classifier} $\ast$}]{classifier, }
 \item[{const {\bf Integral\+Image} $\ast$}]{int\+Image}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classParticleFilter_ac564ef678bef8d6ff2fc70258cc7e822}
-Observe with classifier output confidence. \hypertarget{classParticleFilter_a7dc0bf5137e9e7d8f59961618dbd9215}{}\index{Particle\+Filter@{Particle\+Filter}!Observe@{Observe}}
+)}\label{classParticleFilter_a4529ea61cf9ab6ddd18f55434a4ff3b9}
+Observe with classifier output confidence. \hypertarget{classParticleFilter_ad1ae015d78e510587c8928fa2ebcf9c0}{}\index{Particle\+Filter@{Particle\+Filter}!Observe@{Observe}}
 \index{Observe@{Observe}!Particle\+Filter@{Particle\+Filter}}
-\subsubsection[{Observe(\+Strong\+Classifier $\ast$classifier, const Integral\+Image $\ast$int\+Image, const Rect \&detection, float detection\+Weight, float classifier\+Weight)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Observe (
+\subsubsection[{Observe(const Strong\+Classifier $\ast$classifier, const Integral\+Image $\ast$int\+Image, const Rect \&detection, float detection\+Weight)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Observe (
 \begin{DoxyParamCaption}
-\item[{{\bf Strong\+Classifier} $\ast$}]{classifier, }
+\item[{const {\bf Strong\+Classifier} $\ast$}]{classifier, }
 \item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
 \item[{const {\bf Rect} \&}]{detection, }
-\item[{float}]{detection\+Weight, }
-\item[{float}]{classifier\+Weight}
+\item[{float}]{detection\+Weight}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classParticleFilter_a7dc0bf5137e9e7d8f59961618dbd9215}
+)}\label{classParticleFilter_ad1ae015d78e510587c8928fa2ebcf9c0}
 Observe with classifier output confidence and associated detection. \hypertarget{classParticleFilter_a166db9f33feabf14126df2de541a593d}{}\index{Particle\+Filter@{Particle\+Filter}!Propagate@{Propagate}}
 \index{Propagate@{Propagate}!Particle\+Filter@{Particle\+Filter}}
 \subsubsection[{Propagate(const Size \&img\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Propagate (
 \begin{DoxyParamCaption}
 \item[{const {\bf Size} \&}]{img\+Size}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classParticleFilter_a166db9f33feabf14126df2de541a593d}
+)}\label{classParticleFilter_a166db9f33feabf14126df2de541a593d}
 Propagate the particles.
 
 
@@ -132,10 +156,6 @@ Propagate the particles.
 {\em img\+Size} & Is the particle still inside the image? \\
 \hline
 \end{DoxyParams}
-
-
-Reimplemented in \hyperlink{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{Particle\+Filter\+Const\+Velocity}.
-
 \hypertarget{classParticleFilter_a76b01cd9d9d0fa181b89ffe3dcf5fbab}{}\index{Particle\+Filter@{Particle\+Filter}!Resample\+With\+Best@{Resample\+With\+Best}}
 \index{Resample\+With\+Best@{Resample\+With\+Best}!Particle\+Filter@{Particle\+Filter}}
 \subsubsection[{Resample\+With\+Best()}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+::\+Resample\+With\+Best (

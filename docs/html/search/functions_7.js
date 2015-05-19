@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['particlefilter',['ParticleFilter',['../classParticleFilter.html#ad05d7aeddc103fc32b6de3a751c37471',1,'ParticleFilter']]],
-  ['propagate',['Propagate',['../classParticleFilter.html#a166db9f33feabf14126df2de541a593d',1,'ParticleFilter::Propagate()'],['../classParticleFilterConstVelocity.html#a72868ab78e4c4f49ce756e986839f993',1,'ParticleFilterConstVelocity::Propagate()'],['../classSingleTarget.html#a2036d90f89d1a65966523c559aee3d38',1,'SingleTarget::Propagate()']]]
+  ['observe',['Observe',['../classParticleFilter.html#a4529ea61cf9ab6ddd18f55434a4ff3b9',1,'ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralImage *intImage)'],['../classParticleFilter.html#ad1ae015d78e510587c8928fa2ebcf9c0',1,'ParticleFilter::Observe(const StrongClassifier *classifier, const IntegralImage *intImage, const Rect &amp;detection, float detectionWeight)'],['../classSingleTarget.html#a9ce84c111efa084c8bf9aa89736dffc8',1,'SingleTarget::Observe(const IntegralImage *intImage, const Rect &amp;detection, float detectionWeight)'],['../classSingleTarget.html#a1e22348deeeae3e5d8d1c964df9c8fc8',1,'SingleTarget::Observe(const IntegralImage *intImage)'],['../classTargetsFreeList.html#a6dbfd6eb0734fa5adc094ebffc6b4926',1,'TargetsFreeList::Observe()']]]
 ];

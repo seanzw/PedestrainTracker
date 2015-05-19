@@ -15,6 +15,8 @@ Inheritance diagram for Weak\+Classifier\+:\begin{figure}[H]
 \item 
 virtual bool \hyperlink{classWeakClassifier_ad4c967e2f0d186a841722f8fea9dbd9c}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target)
 \item 
+virtual void \hyperlink{classWeakClassifier_a9e62b318d87b30965646bdc94662c01d}{Initialize} (const \hyperlink{classSize}{Size} \&patch\+Size)
+\item 
 virtual float \hyperlink{classWeakClassifier_a083dddaa52fe399386f07a20f231ec49}{Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi)
 \end{DoxyCompactItemize}
 
@@ -40,6 +42,17 @@ Zhengrong Wang.
 
 
 Reimplemented in \hyperlink{classWeakClassifierHaar_a5880dbf4a75a29e61e32903faef1dae6}{Weak\+Classifier\+Haar}, and \hyperlink{classWeakClassifierRGI_aaff18f2962e93ad64eb7b4c6e127b91c}{Weak\+Classifier\+R\+G\+I}.
+
+\hypertarget{classWeakClassifier_a9e62b318d87b30965646bdc94662c01d}{}\index{Weak\+Classifier@{Weak\+Classifier}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Weak\+Classifier@{Weak\+Classifier}}
+\subsubsection[{Initialize(const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Weak\+Classifier\+::\+Initialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{patch\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classWeakClassifier_a9e62b318d87b30965646bdc94662c01d}
+Initialize the weak classifier. 
+
+Reimplemented in \hyperlink{classWeakClassifierHaar_ac5e1a9ff691bd0dcf9174af88cc9dc1f}{Weak\+Classifier\+Haar}, and \hyperlink{classWeakClassifierRGI_af3d14f1749fa8543ac6f3e52af2cf607}{Weak\+Classifier\+R\+G\+I}.
 
 \hypertarget{classWeakClassifier_ad4c967e2f0d186a841722f8fea9dbd9c}{}\index{Weak\+Classifier@{Weak\+Classifier}!Update@{Update}}
 \index{Update@{Update}!Weak\+Classifier@{Weak\+Classifier}}

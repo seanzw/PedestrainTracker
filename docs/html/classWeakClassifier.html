@@ -108,6 +108,8 @@ Inheritance diagram for WeakClassifier:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad4c967e2f0d186a841722f8fea9dbd9c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifier.html#ad4c967e2f0d186a841722f8fea9dbd9c">Update</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, int target)</td></tr>
 <tr class="separator:ad4c967e2f0d186a841722f8fea9dbd9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e62b318d87b30965646bdc94662c01d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifier.html#a9e62b318d87b30965646bdc94662c01d">Initialize</a> (const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
+<tr class="separator:a9e62b318d87b30965646bdc94662c01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a083dddaa52fe399386f07a20f231ec49"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifier.html#a083dddaa52fe399386f07a20f231ec49">Evaluate</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi)</td></tr>
 <tr class="separator:a083dddaa52fe399386f07a20f231ec49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classClassifier"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classClassifier')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classClassifier.html">Classifier</a></td></tr>
@@ -155,6 +157,33 @@ virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>Evaluate</b>
 <dl class="section return"><dt>Returns</dt><dd>[0.0, 1.0] </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classWeakClassifierHaar.html#a5880dbf4a75a29e61e32903faef1dae6">WeakClassifierHaar</a>, and <a class="el" href="classWeakClassifierRGI.html#aaff18f2962e93ad64eb7b4c6e127b91c">WeakClassifierRGI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9e62b318d87b30965646bdc94662c01d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WeakClassifier::Initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>patchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the weak classifier. </p>
+
+<p>Reimplemented in <a class="el" href="classWeakClassifierHaar.html#ac5e1a9ff691bd0dcf9174af88cc9dc1f">WeakClassifierHaar</a>, and <a class="el" href="classWeakClassifierRGI.html#af3d14f1749fa8543ac6f3e52af2cf607">WeakClassifierRGI</a>.</p>
 
 </div>
 </div>

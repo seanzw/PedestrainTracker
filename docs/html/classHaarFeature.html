@@ -89,8 +89,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">HaarFeature Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="HaarFeature_8h_source.html">HaarFeature.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -103,6 +101,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>GetInitialDistributio
 <tr class="memitem:a9b74485ba82429c7311a0aa490a2f1b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b74485ba82429c7311a0aa490a2f1b6"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Extract</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, <a class="el" href="classFeature.html">Feature</a> *feature)</td></tr>
 <tr class="separator:a9b74485ba82429c7311a0aa490a2f1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca66bee1bcf71feeb472b5e34ab750c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHaarFeature.html#a1ca66bee1bcf71feeb472b5e34ab750c">Reset</a> (const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
+<tr class="separator:a1ca66bee1bcf71feeb472b5e34ab750c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40d755bcccf0ea1e5ebb154eea7d26ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40d755bcccf0ea1e5ebb154eea7d26ac"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>GetResponse</b> ()</td></tr>
 <tr class="separator:a40d755bcccf0ea1e5ebb154eea7d26ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +113,25 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNumAreas</b> ()</td
 int *&#160;</td><td class="memItemRight" valign="bottom"><b>GetWeights</b> ()</td></tr>
 <tr class="separator:a25936c7b13e76190a58ae737de1de360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Haar <a class="el" href="classFeature.html">Feature</a> class. Extract a Haar like feature from the image. </p><dl class="section author"><dt>Author</dt><dd>Zhengrong Wang </dd></dl>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1ca66bee1bcf71feeb472b5e34ab750c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HaarFeature::Reset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>patchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reset this feature. Randomly generate a new one. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="HaarFeature_8h_source.html">HaarFeature.h</a></li>
 <li>src/HaarFeature.cpp</li>
 </ul>

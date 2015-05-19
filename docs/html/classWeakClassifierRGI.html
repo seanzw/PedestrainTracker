@@ -107,13 +107,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abbd6a27d77c3f38bcf2dce39d7571cf7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbd6a27d77c3f38bcf2dce39d7571cf7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>WeakClassifierRGI</b> (const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
 <tr class="separator:abbd6a27d77c3f38bcf2dce39d7571cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4719f5dcf7acf6e79beb4d246addaa5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifierRGI.html#ab4719f5dcf7acf6e79beb4d246addaa5">Update</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, int target)</td></tr>
+<tr class="memitem:ab4719f5dcf7acf6e79beb4d246addaa5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifierRGI.html#ab4719f5dcf7acf6e79beb4d246addaa5">Update</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, int target)</td></tr>
 <tr class="separator:ab4719f5dcf7acf6e79beb4d246addaa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a026ab7a9f1c19ced68746121aacd6374"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a026ab7a9f1c19ced68746121aacd6374"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Classify</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, float scale=1.0f)</td></tr>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>Classify</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, float scale=1.0f)</td></tr>
 <tr class="separator:a026ab7a9f1c19ced68746121aacd6374"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff18f2962e93ad64eb7b4c6e127b91c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifierRGI.html#aaff18f2962e93ad64eb7b4c6e127b91c">Evaluate</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi)</td></tr>
+<tr class="memitem:aaff18f2962e93ad64eb7b4c6e127b91c"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifierRGI.html#aaff18f2962e93ad64eb7b4c6e127b91c">Evaluate</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi)</td></tr>
 <tr class="separator:aaff18f2962e93ad64eb7b4c6e127b91c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d14f1749fa8543ac6f3e52af2cf607"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWeakClassifierRGI.html#af3d14f1749fa8543ac6f3e52af2cf607">Initialize</a> (const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
+<tr class="separator:af3d14f1749fa8543ac6f3e52af2cf607"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa48904ae41002320da3e5563aaf1ca60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa48904ae41002320da3e5563aaf1ca60"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetPosDist</b> ()</td></tr>
 <tr class="separator:aa48904ae41002320da3e5563aaf1ca60"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +161,33 @@ virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>Evaluate</b>
 <dl class="section return"><dt>Returns</dt><dd>[0.0, 1.0] </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classWeakClassifier.html#a083dddaa52fe399386f07a20f231ec49">WeakClassifier</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af3d14f1749fa8543ac6f3e52af2cf607"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WeakClassifierRGI::Initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>patchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the weak classifier. </p>
+
+<p>Reimplemented from <a class="el" href="classWeakClassifier.html#a9e62b318d87b30965646bdc94662c01d">WeakClassifier</a>.</p>
 
 </div>
 </div>

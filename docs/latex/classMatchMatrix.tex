@@ -1,0 +1,54 @@
+\hypertarget{classMatchMatrix}{}\section{Match\+Matrix Class Reference}
+\label{classMatchMatrix}\index{Match\+Matrix@{Match\+Matrix}}
+
+
+{\ttfamily \#include $<$Match\+Matrix.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMatchMatrix_a7d879e8c199fb12bdf820d0ddf4989bd}{}{\bfseries Match\+Matrix} (int capacity)\label{classMatchMatrix_a7d879e8c199fb12bdf820d0ddf4989bd}
+
+\item 
+void \hyperlink{classMatchMatrix_acec2501fa6829ffc411d6a28f81a9fd4}{Set\+Num\+Dets} (int num\+Dets)
+\item 
+void \hyperlink{classMatchMatrix_af831fe20d5065558e866ca4cc7494c5d}{Set\+Targets} (\hyperlink{classTargetsFreeList}{Targets\+Free\+List} \&targets, float threshold)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPool}{Pool}$<$ \hyperlink{classPool}{Pool}$<$ float $>$ $>$ \hyperlink{classMatchMatrix_a98f6c92d3df7bbf59f0db47c2cdffd2b}{match\+Mat}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Use greedy algorithm to find best (detection, target) pair. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classMatchMatrix_acec2501fa6829ffc411d6a28f81a9fd4}{}\index{Match\+Matrix@{Match\+Matrix}!Set\+Num\+Dets@{Set\+Num\+Dets}}
+\index{Set\+Num\+Dets@{Set\+Num\+Dets}!Match\+Matrix@{Match\+Matrix}}
+\subsubsection[{Set\+Num\+Dets(int num\+Dets)}]{\setlength{\rightskip}{0pt plus 5cm}void Match\+Matrix\+::\+Set\+Num\+Dets (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+Dets}
+\end{DoxyParamCaption}
+)}\label{classMatchMatrix_acec2501fa6829ffc411d6a28f81a9fd4}
+Set the number of detections. Should be called before calculating match score matrix. \hypertarget{classMatchMatrix_af831fe20d5065558e866ca4cc7494c5d}{}\index{Match\+Matrix@{Match\+Matrix}!Set\+Targets@{Set\+Targets}}
+\index{Set\+Targets@{Set\+Targets}!Match\+Matrix@{Match\+Matrix}}
+\subsubsection[{Set\+Targets(\+Targets\+Free\+List \&targets, float threshold)}]{\setlength{\rightskip}{0pt plus 5cm}void Match\+Matrix\+::\+Set\+Targets (
+\begin{DoxyParamCaption}
+\item[{{\bf Targets\+Free\+List} \&}]{targets, }
+\item[{float}]{threshold}
+\end{DoxyParamCaption}
+)}\label{classMatchMatrix_af831fe20d5065558e866ca4cc7494c5d}
+After calculating the matching score matrix, use greedy algorithm to find the (target, detection) pair. Only match score $>$ threshold are considered. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classMatchMatrix_a98f6c92d3df7bbf59f0db47c2cdffd2b}{}\index{Match\+Matrix@{Match\+Matrix}!match\+Mat@{match\+Mat}}
+\index{match\+Mat@{match\+Mat}!Match\+Matrix@{Match\+Matrix}}
+\subsubsection[{match\+Mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pool}$<${\bf Pool}$<$float$>$ $>$ Match\+Matrix\+::match\+Mat}\label{classMatchMatrix_a98f6c92d3df7bbf59f0db47c2cdffd2b}
+The match score matrix. It should be (capacity  \# detections). 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Match\+Matrix.\+h\item 
+src/Match\+Matrix.\+cpp\end{DoxyCompactItemize}

@@ -111,6 +111,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7f2079d46afe7a49cef73a1d8b5fc61d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f2079d46afe7a49cef73a1d8b5fc61d"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>Evaluate</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi) const </td></tr>
 <tr class="separator:a7f2079d46afe7a49cef73a1d8b5fc61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed37fe7ac50781e4d6ee6271d47731c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStrongClassifier.html#a4ed37fe7ac50781e4d6ee6271d47731c">Initialize</a> (const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
+<tr class="separator:a4ed37fe7ac50781e4d6ee6271d47731c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6515ad2049961798844049c3ba1e2d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6515ad2049961798844049c3ba1e2d6"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, int target, float importance=1.0f)</td></tr>
 <tr class="separator:ac6515ad2049961798844049c3ba1e2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,7 +147,35 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>useFeatureReplace</b>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Use ClassSelector to build a strong classifier. </p><dl class="section author"><dt>Author</dt><dd>Zhengrong Wang</dd></dl>
 <p>Notice: The feature extractor should be prepared (if there are any preprocess procedure), the caller of strong classifier should do that. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4ed37fe7ac50781e4d6ee6271d47731c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrongClassifier::Initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>patchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize this strong classifier for a new target WITHOUT training. </p>
+
+<p>Reimplemented in <a class="el" href="classStrongClassifierDirectSelect.html#a423d4e2df75252d92c9e24cb9c37b166">StrongClassifierDirectSelect</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="StrongClassifier_8h_source.html">StrongClassifier.h</a></li>
 <li>src/StrongClassifier.cpp</li>
 </ul>

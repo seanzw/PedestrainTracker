@@ -94,20 +94,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9abf9f637e1378b1490cb76dbeadc6be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a9abf9f637e1378b1490cb76dbeadc6be">SingleTarget</a> (int nParticles, const <a class="el" href="classRect.html">Rect</a> &amp;target, const <a class="el" href="classPoint2D.html">Point2D</a> &amp;initVelocity, int numSelectors, int numWeakClassifiers, int numBackups=0)</td></tr>
-<tr class="separator:a9abf9f637e1378b1490cb76dbeadc6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f9683df9354a8256f622db973130833"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a0f9683df9354a8256f622db973130833">SingleTarget</a> (const <a class="el" href="structOptions.html">Options</a> &amp;ops)</td></tr>
+<tr class="separator:a0f9683df9354a8256f622db973130833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa791ad34c84b8a9d9d2e60398e5db2e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa791ad34c84b8a9d9d2e60398e5db2e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeTarget</b> (const <a class="el" href="classRect.html">Rect</a> &amp;target, const <a class="el" href="classPoint2D.html">Point2D</a> &amp;initVelocity)</td></tr>
 <tr class="separator:afa791ad34c84b8a9d9d2e60398e5db2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e8ac2254143bba06f46ee55c957d4ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e8ac2254143bba06f46ee55c957d4ec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetTarget</b> ()</td></tr>
-<tr class="separator:a6e8ac2254143bba06f46ee55c957d4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2036d90f89d1a65966523c559aee3d38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a2036d90f89d1a65966523c559aee3d38">Propagate</a> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
 <tr class="separator:a2036d90f89d1a65966523c559aee3d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ad134f1c4d53e45bcbc636b9fc6a943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a7ad134f1c4d53e45bcbc636b9fc6a943">Observe</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> *detection, float detectionWeight, float classifierWeight)</td></tr>
-<tr class="separator:a7ad134f1c4d53e45bcbc636b9fc6a943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce84c111efa084c8bf9aa89736dffc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a9ce84c111efa084c8bf9aa89736dffc8">Observe</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;detection, float detectionWeight)</td></tr>
+<tr class="separator:a9ce84c111efa084c8bf9aa89736dffc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e22348deeeae3e5d8d1c964df9c8fc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a1e22348deeeae3e5d8d1c964df9c8fc8">Observe</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage)</td></tr>
+<tr class="separator:a1e22348deeeae3e5d8d1c964df9c8fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b2d2b9313f7d3bd8d96af68f840bff4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a5b2d2b9313f7d3bd8d96af68f840bff4">Update</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, int target, float importance=1.0f)</td></tr>
 <tr class="separator:a5b2d2b9313f7d3bd8d96af68f840bff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a450151cccff458e3603a34c99ccd4134"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#a450151cccff458e3603a34c99ccd4134">CalculateMatchScore</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;dets, <a class="el" href="classPool.html">Pool</a>&lt; float &gt; &amp;matchArray) const </td></tr>
+<tr class="separator:a450151cccff458e3603a34c99ccd4134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa620ca1f64fe972c8dc110e0a6012213"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleTarget.html#aa620ca1f64fe972c8dc110e0a6012213">UpdateSeq</a> (bool isDetected)</td></tr>
 <tr class="separator:aa620ca1f64fe972c8dc110e0a6012213"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b77b8dbe78d051ab5f190eef5b9a51a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b77b8dbe78d051ab5f190eef5b9a51a"></a>
@@ -118,57 +119,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ResampleWithConfidenc
 <tr class="separator:a8ba04565921bcbcce7a04c1c76daa4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A single target used in multiple tracker. It's very similar to <a class="el" href="classParticleFilterTracker.html">ParticleFilterTracker</a>. It includes a target specific strong classifier, a particle filter.</p>
-<dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a9abf9f637e1378b1490cb76dbeadc6be"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">SingleTarget::SingleTarget </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nParticles</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classPoint2D.html">Point2D</a> &amp;&#160;</td>
-          <td class="paramname"><em>initVelocity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>numSelectors</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>numWeakClassifiers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>numBackups</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Construct an empty target.</p>
+<div class="textblock"><p>Parameters for an empty target.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nParticles</td><td># particles </td></tr>
@@ -177,16 +128,78 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ResampleWithConfidenc
     <tr><td class="paramname">numSelectors</td><td># selectors in strong classifier </td></tr>
     <tr><td class="paramname">numWeakClassifiers</td><td># weak classifiers </td></tr>
     <tr><td class="paramname">numBackups</td><td># backup weak classifiers </td></tr>
+    <tr><td class="paramname">distWeight</td><td>distance weight for match score </td></tr>
+    <tr><td class="paramname">velocityThre</td><td>velocity threshold for match score </td></tr>
+    <tr><td class="paramname">velocitySigmaConst</td><td>const number for velocity sigma </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a0f9683df9354a8256f622db973130833"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SingleTarget::SingleTarget </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structOptions.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>ops</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Construct an empty target. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a450151cccff458e3603a34c99ccd4134"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleTarget::CalculateMatchScore </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classPool.html">Pool</a>&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matchArray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculate the match score with all the detections.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">intImage</td><td>in: integral image </td></tr>
+    <tr><td class="paramname">dets</td><td>in: detections </td></tr>
+    <tr><td class="paramname">marchArray</td><td>out: the match score </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7ad134f1c4d53e45bcbc636b9fc6a943"></a>
+<a class="anchor" id="a9ce84c111efa084c8bf9aa89736dffc8"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SingleTarget::Observe </td>
@@ -197,20 +210,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ResampleWithConfidenc
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
           <td class="paramname"><em>detection</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>detectionWeight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>classifierWeight</em>&#160;</td>
+          <td class="paramname"><em>detectionWeight</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -218,8 +225,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ResampleWithConfidenc
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Observe the particles. weight_particle = detectionWeight * P(particle, detection) + classifierWeight * Conf(particle)</p>
+<p>Observe the particles. weight_particle = detectionWeight * P(particle, detection) + (1.0f - detectionWeight) * Conf(particle)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">detection</td><td>The associate detection, if any. </td></tr>
@@ -228,6 +240,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ResampleWithConfidenc
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a1e22348deeeae3e5d8d1c964df9c8fc8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleTarget::Observe </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Observe the particles without matched detections. </p>
 
 </div>
 </div>

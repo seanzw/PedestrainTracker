@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['replaceweakestclassifier',['ReplaceWeakestClassifier',['../classClassifierSelector.html#a027e9055c2ed7b27493e208d2ddd5cc9',1,'ClassifierSelector']]],
-  ['replaceweakestclassifierstatistic',['ReplaceWeakestClassifierStatistic',['../classClassifierSelector.html#a07a0717148abf071a4bc3785b72bb3d3',1,'ClassifierSelector']]],
-  ['resamplewithbest',['ResampleWithBest',['../classParticleFilter.html#a76b01cd9d9d0fa181b89ffe3dcf5fbab',1,'ParticleFilter']]],
-  ['resamplewithconfidence',['ResampleWithConfidence',['../classParticleFilter.html#ab191492fa8c67ecb0546e69d50fa2481',1,'ParticleFilter']]],
-  ['resetonetarget',['ResetOneTarget',['../classTargetFreeList.html#ad9fc512ed531b89b0c1c5d8ff85dd5f7',1,'TargetFreeList']]],
-  ['rgiintegralimage',['RGIIntegralImage',['../classRGIIntegralImage.html#ab1974df4946fd93d55ada1a09e91945e',1,'RGIIntegralImage']]]
+  ['particlefilter',['ParticleFilter',['../classParticleFilter.html#ad05d7aeddc103fc32b6de3a751c37471',1,'ParticleFilter']]],
+  ['projectresidual',['ProjectResidual',['../classPoint2D.html#a6427afbb9fe1ee956b766c7d7230b44a',1,'Point2D']]],
+  ['propagate',['Propagate',['../classParticleFilter.html#a166db9f33feabf14126df2de541a593d',1,'ParticleFilter::Propagate()'],['../classSingleTarget.html#a2036d90f89d1a65966523c559aee3d38',1,'SingleTarget::Propagate()'],['../classTargetsFreeList.html#abd311cfa3633ed0268aab9ae8135deae',1,'TargetsFreeList::Propagate()']]]
 ];

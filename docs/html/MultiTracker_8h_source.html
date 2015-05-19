@@ -98,40 +98,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;HoGIntegralImage.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;TargetsFreeList.h&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;ImageDetector.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classMultiTracker.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMultiTracker.html">MultiTracker</a> : <span class="keyword">public</span> <a class="code" href="classTracker.html">Tracker</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classMultiTracker.html#aa54d02b897c4cb671535aa8147ee457a">MultiTracker</a>(<a class="code" href="classImageDetector.html">ImageDetector</a> *detector, <span class="keywordtype">int</span> capacity, <span class="keyword">const</span> <a class="code" href="classSize.html">Size</a> &amp;imgSize);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    ~<a class="code" href="classMultiTracker.html">MultiTracker</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> Track(cv::VideoCapture &amp;in, cv::VideoWriter &amp;out);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Integral Images.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classRGIIntegralImage.html">RGIIntegralImage</a> *rgiIntImage;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classHoGIntegralImage.html">HoGIntegralImage</a> *hogIntImage;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// Detector.</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classImageDetector.html">ImageDetector</a> *detector;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Target pool.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classTargetFreeList.html">TargetFreeList</a> *targets;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Size of the frame.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">const</span> <a class="code" href="classSize.html">Size</a> imgSize;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;MatchMatrix.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classMultiTracker.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMultiTracker.html">MultiTracker</a> : <span class="keyword">public</span> <a class="code" href="classTracker.html">Tracker</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classMultiTracker.html#a313f4618102c4d62b0e67244cef65e93">MultiTracker</a>(<a class="code" href="classImageDetector.html">ImageDetector</a> *detector, <span class="keyword">const</span> <a class="code" href="classSize.html">Size</a> &amp;imgSize, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opts);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    ~<a class="code" href="classMultiTracker.html">MultiTracker</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> Track(cv::VideoCapture &amp;in, cv::VideoWriter &amp;out, <span class="keyword">const</span> cv::Mat &amp;bkg = defaultBackground);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// Integral Images.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classRGIIntegralImage.html">RGIIntegralImage</a> *rgiIntImage;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classHoGIntegralImage.html">HoGIntegralImage</a> *hogIntImage;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// Detector.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classImageDetector.html">ImageDetector</a> *detector;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Target pool.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classTargetsFreeList.html">TargetsFreeList</a> *targets;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Size of the frame.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> <a class="code" href="classSize.html">Size</a> imgSize;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Match matrix.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classMatchMatrix.html">MatchMatrix</a> *matches;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Threshold for matching.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> matchThre;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classTargetsFreeList_html"><div class="ttname"><a href="classTargetsFreeList.html">TargetsFreeList</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:21</div></div>
+<div class="ttc" id="classMultiTracker_html_a313f4618102c4d62b0e67244cef65e93"><div class="ttname"><a href="classMultiTracker.html#a313f4618102c4d62b0e67244cef65e93">MultiTracker::MultiTracker</a></div><div class="ttdeci">MultiTracker(ImageDetector *detector, const Size &amp;imgSize, const Options &amp;opts)</div><div class="ttdef"><b>Definition:</b> MultiTracker.cpp:3</div></div>
 <div class="ttc" id="classRGIIntegralImage_html"><div class="ttname"><a href="classRGIIntegralImage.html">RGIIntegralImage</a></div><div class="ttdef"><b>Definition:</b> RGIIntegralImage.h:15</div></div>
 <div class="ttc" id="classSize_html"><div class="ttname"><a href="classSize.html">Size</a></div><div class="ttdef"><b>Definition:</b> Geometry.h:14</div></div>
-<div class="ttc" id="classImageDetector_html"><div class="ttname"><a href="classImageDetector.html">ImageDetector</a></div><div class="ttdef"><b>Definition:</b> ImageDetector.h:29</div></div>
+<div class="ttc" id="classImageDetector_html"><div class="ttname"><a href="classImageDetector.html">ImageDetector</a></div><div class="ttdef"><b>Definition:</b> ImageDetector.h:30</div></div>
 <div class="ttc" id="classHoGIntegralImage_html"><div class="ttname"><a href="classHoGIntegralImage.html">HoGIntegralImage</a></div><div class="ttdef"><b>Definition:</b> HoGIntegralImage.h:13</div></div>
-<div class="ttc" id="classTargetFreeList_html"><div class="ttname"><a href="classTargetFreeList.html">TargetFreeList</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:22</div></div>
-<div class="ttc" id="classMultiTracker_html"><div class="ttname"><a href="classMultiTracker.html">MultiTracker</a></div><div class="ttdef"><b>Definition:</b> MultiTracker.h:18</div></div>
-<div class="ttc" id="classMultiTracker_html_aa54d02b897c4cb671535aa8147ee457a"><div class="ttname"><a href="classMultiTracker.html#aa54d02b897c4cb671535aa8147ee457a">MultiTracker::MultiTracker</a></div><div class="ttdeci">MultiTracker(ImageDetector *detector, int capacity, const Size &amp;imgSize)</div><div class="ttdef"><b>Definition:</b> MultiTracker.cpp:3</div></div>
+<div class="ttc" id="classMultiTracker_html"><div class="ttname"><a href="classMultiTracker.html">MultiTracker</a></div><div class="ttdef"><b>Definition:</b> MultiTracker.h:19</div></div>
+<div class="ttc" id="classMatchMatrix_html"><div class="ttname"><a href="classMatchMatrix.html">MatchMatrix</a></div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:11</div></div>
+<div class="ttc" id="structOptions_html"><div class="ttname"><a href="structOptions.html">Options</a></div><div class="ttdef"><b>Definition:</b> Options.h:14</div></div>
 <div class="ttc" id="classTracker_html"><div class="ttname"><a href="classTracker.html">Tracker</a></div><div class="ttdef"><b>Definition:</b> Tracker.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

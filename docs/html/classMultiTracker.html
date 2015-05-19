@@ -101,14 +101,18 @@ Inheritance diagram for MultiTracker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa54d02b897c4cb671535aa8147ee457a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMultiTracker.html#aa54d02b897c4cb671535aa8147ee457a">MultiTracker</a> (<a class="el" href="classImageDetector.html">ImageDetector</a> *detector, int capacity, const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
-<tr class="separator:aa54d02b897c4cb671535aa8147ee457a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d8294ffa3bef626d412c9607583bc85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d8294ffa3bef626d412c9607583bc85"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (cv::VideoCapture &amp;in, cv::VideoWriter &amp;out)</td></tr>
-<tr class="separator:a0d8294ffa3bef626d412c9607583bc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a313f4618102c4d62b0e67244cef65e93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMultiTracker.html#a313f4618102c4d62b0e67244cef65e93">MultiTracker</a> (<a class="el" href="classImageDetector.html">ImageDetector</a> *detector, const <a class="el" href="classSize.html">Size</a> &amp;imgSize, const <a class="el" href="structOptions.html">Options</a> &amp;opts)</td></tr>
+<tr class="separator:a313f4618102c4d62b0e67244cef65e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c07da355cd6c7deded2303960aef56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c07da355cd6c7deded2303960aef56"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (cv::VideoCapture &amp;in, cv::VideoWriter &amp;out, const cv::Mat &amp;bkg=defaultBackground)</td></tr>
+<tr class="separator:a20c07da355cd6c7deded2303960aef56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classTracker"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classTracker')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classTracker.html">Tracker</a></td></tr>
+<tr class="memitem:a97a7566844820565a36af39560e7b31a inherit pub_methods_classTracker"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97a7566844820565a36af39560e7b31a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (cv::VideoCapture &amp;in, cv::VideoWriter &amp;out)=0</td></tr>
+<tr class="separator:a97a7566844820565a36af39560e7b31a inherit pub_methods_classTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa54d02b897c4cb671535aa8147ee457a"></a>
+<a class="anchor" id="a313f4618102c4d62b0e67244cef65e93"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -121,14 +125,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (cv::VideoC
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>capacity</em>, </td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>imgSize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
-          <td class="paramname"><em>imgSize</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structOptions.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -140,8 +144,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (cv::VideoC
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">detector</td><td>image detector </td></tr>
-    <tr><td class="paramname">capacity</td><td>maximum number of targets </td></tr>
-    <tr><td class="paramname">size</td><td>size of a frame </td></tr>
+    <tr><td class="paramname">size</td><td>size of a frame  opts all the options </td></tr>
   </table>
   </dd>
 </dl>

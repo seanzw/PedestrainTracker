@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classParticleFilterConstVelocity-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -104,27 +105,37 @@ Inheritance diagram for ParticleFilterConstVelocity:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a705e639dc7d5fd70a8b332e888a4281c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a705e639dc7d5fd70a8b332e888a4281c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleFilterConstVelocity</b> (const <a class="el" href="classRect.html">Rect</a> &amp;target, const <a class="el" href="classPoint2D.html">Point2D</a> &amp;initVelocity=<a class="el" href="classPoint2D.html">Point2D</a>(10, 0), int n=100)</td></tr>
-<tr class="separator:a705e639dc7d5fd70a8b332e888a4281c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72868ab78e4c4f49ce756e986839f993"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilterConstVelocity.html#a72868ab78e4c4f49ce756e986839f993">Propagate</a> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
+<tr class="memitem:a0ae711261a1d992e08de13dac7e2ea70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ae711261a1d992e08de13dac7e2ea70"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleFilterConstVelocity</b> (int n, float velocityThre, float distWeight)</td></tr>
+<tr class="separator:a0ae711261a1d992e08de13dac7e2ea70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57692c0a571ab54262e2762469b10b00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57692c0a571ab54262e2762469b10b00"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitBuffer</b> ()</td></tr>
+<tr class="separator:a57692c0a571ab54262e2762469b10b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3407d048b97f8caebe1353d53f831547"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3407d048b97f8caebe1353d53f831547"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitTarget</b> (const <a class="el" href="classRect.html">Rect</a> &amp;target, const <a class="el" href="classPoint2D.html">Point2D</a> &amp;initVelocity)</td></tr>
+<tr class="separator:a3407d048b97f8caebe1353d53f831547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72868ab78e4c4f49ce756e986839f993"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72868ab78e4c4f49ce756e986839f993"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Propagate</b> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
 <tr class="separator:a72868ab78e4c4f49ce756e986839f993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46aae8bac98e7f6e1f13ad99ec8a38cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46aae8bac98e7f6e1f13ad99ec8a38cd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateMatchScore</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;dets, <a class="el" href="classPool.html">Pool</a>&lt; float &gt; &amp;matchArray) const </td></tr>
+<tr class="separator:a46aae8bac98e7f6e1f13ad99ec8a38cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f6d8afede8039cd3ed08acbcb67b47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91f6d8afede8039cd3ed08acbcb67b47"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetVelocitySigma</b> (float sigma)</td></tr>
 <tr class="separator:a91f6d8afede8039cd3ed08acbcb67b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a219193c3bdc2ed042c5473257227c3fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a219193c3bdc2ed042c5473257227c3fb"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitParticles</b> ()</td></tr>
-<tr class="separator:a219193c3bdc2ed042c5473257227c3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classParticleFilter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classParticleFilter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classParticleFilter.html">ParticleFilter</a></td></tr>
 <tr class="memitem:ad05d7aeddc103fc32b6de3a751c37471 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ad05d7aeddc103fc32b6de3a751c37471">ParticleFilter</a> (int n=100, int szParticle=2)</td></tr>
 <tr class="separator:ad05d7aeddc103fc32b6de3a751c37471 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f8647624fb770f966eeacb5e2b94310 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f8647624fb770f966eeacb5e2b94310"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleFilter</b> (const <a class="el" href="classRect.html">Rect</a> &amp;target, int n=100, int szParticle=2)</td></tr>
-<tr class="separator:a8f8647624fb770f966eeacb5e2b94310 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac564ef678bef8d6ff2fc70258cc7e822 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ac564ef678bef8d6ff2fc70258cc7e822">Observe</a> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage)</td></tr>
-<tr class="separator:ac564ef678bef8d6ff2fc70258cc7e822 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dc0bf5137e9e7d8f59961618dbd9215 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a7dc0bf5137e9e7d8f59961618dbd9215">Observe</a> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;detection, float detectionWeight, float classifierWeight)</td></tr>
-<tr class="separator:a7dc0bf5137e9e7d8f59961618dbd9215 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf44906e7f1b546c96815856d330323 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a3bf44906e7f1b546c96815856d330323">InitBuffer</a> ()</td></tr>
+<tr class="separator:a3bf44906e7f1b546c96815856d330323 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcde50511c90d318ec335bda8639c58f inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#afcde50511c90d318ec335bda8639c58f">InitTarget</a> (const <a class="el" href="classRect.html">Rect</a> &amp;target)</td></tr>
+<tr class="separator:afcde50511c90d318ec335bda8639c58f inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166db9f33feabf14126df2de541a593d inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a166db9f33feabf14126df2de541a593d">Propagate</a> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
+<tr class="separator:a166db9f33feabf14126df2de541a593d inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4529ea61cf9ab6ddd18f55434a4ff3b9 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a4529ea61cf9ab6ddd18f55434a4ff3b9">Observe</a> (const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage)</td></tr>
+<tr class="separator:a4529ea61cf9ab6ddd18f55434a4ff3b9 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ae015d78e510587c8928fa2ebcf9c0 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ad1ae015d78e510587c8928fa2ebcf9c0">Observe</a> (const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;detection, float detectionWeight)</td></tr>
+<tr class="separator:ad1ae015d78e510587c8928fa2ebcf9c0 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76b01cd9d9d0fa181b89ffe3dcf5fbab inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a76b01cd9d9d0fa181b89ffe3dcf5fbab">ResampleWithBest</a> ()</td></tr>
 <tr class="separator:a76b01cd9d9d0fa181b89ffe3dcf5fbab inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab191492fa8c67ecb0546e69d50fa2481 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ab191492fa8c67ecb0546e69d50fa2481">ResampleWithConfidence</a> ()</td></tr>
@@ -142,11 +153,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawTarget</b> (cv::M
 const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTarget</b> () const </td></tr>
 <tr class="separator:ab2c226ecb5b701d7cac2c99cf6168e05 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a219193c3bdc2ed042c5473257227c3fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a219193c3bdc2ed042c5473257227c3fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitParticles</b> ()</td></tr>
+<tr class="separator:a219193c3bdc2ed042c5473257227c3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classParticleFilter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classParticleFilter')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classParticleFilter.html">ParticleFilter</a></td></tr>
+<tr class="memitem:a566b57dbca5caadbf1c9dce31b3407be inherit pro_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a566b57dbca5caadbf1c9dce31b3407be"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>BinarSearch</b> (float prob) const </td></tr>
+<tr class="separator:a566b57dbca5caadbf1c9dce31b3407be inherit pro_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0244f4fb69b92deb70aa470f2cc85ca4 inherit pro_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a0244f4fb69b92deb70aa470f2cc85ca4">InitParticles</a> ()</td></tr>
+<tr class="separator:a0244f4fb69b92deb70aa470f2cc85ca4 inherit pro_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af3179b0f6fc3387f0ed0ecdf857c7295"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3179b0f6fc3387f0ed0ecdf857c7295"></a>
-<a class="el" href="classPoint2D.html">Point2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>initVelocity</b></td></tr>
-<tr class="separator:af3179b0f6fc3387f0ed0ecdf857c7295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af83994fb61bff4a728acced41bdc8cb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af83994fb61bff4a728acced41bdc8cb5"></a>
+<a class="el" href="classPoint2D.html">Point2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b></td></tr>
+<tr class="separator:af83994fb61bff4a728acced41bdc8cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1644ddf56f1c1b20278ca70cdb62ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e1644ddf56f1c1b20278ca70cdb62ff"></a>
+const float&#160;</td><td class="memItemRight" valign="bottom"><b>velocityThre</b></td></tr>
+<tr class="separator:a8e1644ddf56f1c1b20278ca70cdb62ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a022c54f062dd30fb21c73945a888b99f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a022c54f062dd30fb21c73945a888b99f"></a>
+const float&#160;</td><td class="memItemRight" valign="bottom"><b>distWeight</b></td></tr>
+<tr class="separator:a022c54f062dd30fb21c73945a888b99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ebdf630669691c8d00fa1f94022921a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ebdf630669691c8d00fa1f94022921a"></a>
 std::normal_distribution&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gaussianVelocity</b></td></tr>
 <tr class="separator:a4ebdf630669691c8d00fa1f94022921a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,52 +207,11 @@ std::uniform_real_distribution&lt; float &gt;&#160;</td><td class="memItemRight"
 <tr class="memitem:a23a3c5e7016d74cf775031b612c19839 inherit pro_attribs_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23a3c5e7016d74cf775031b612c19839"></a>
 int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></td></tr>
 <tr class="separator:a23a3c5e7016d74cf775031b612c19839 inherit pro_attribs_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_classParticleFilter"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classParticleFilter')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classParticleFilter.html">ParticleFilter</a></td></tr>
-<tr class="memitem:a566b57dbca5caadbf1c9dce31b3407be inherit pro_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a566b57dbca5caadbf1c9dce31b3407be"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>BinarSearch</b> (float prob) const </td></tr>
-<tr class="separator:a566b57dbca5caadbf1c9dce31b3407be inherit pro_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classParticleFilter.html">ParticleFilter</a> with constant velocity.</p>
 <dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a72868ab78e4c4f49ce756e986839f993"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ParticleFilterConstVelocity::Propagate </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
-          <td class="paramname"><em>imgSize</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Propagate the particles.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">imgSize</td><td>Is the particle still inside the image? </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classParticleFilter.html#a166db9f33feabf14126df2de541a593d">ParticleFilter</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="ParticleFilterConstVelocity_8h_source.html">ParticleFilterConstVelocity.h</a></li>
 <li>src/ParticleFilterConstVelocity.cpp</li>
 </ul>

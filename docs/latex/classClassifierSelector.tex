@@ -11,6 +11,8 @@
 \item 
 \hyperlink{classClassifierSelector_a6bf8094c2c8afde715ab75e729efa4af}{Classifier\+Selector} (int num\+W, \hyperlink{classWeakClassifier}{Weak\+Classifier} $\ast$$\ast$weaks, int num\+B=2)
 \item 
+void \hyperlink{classClassifierSelector_a2b2ae235c4577ea96e27f3a21480455f}{Initialize} (const \hyperlink{classSize}{Size} \&patch\+Size)
+\item 
 void \hyperlink{classClassifierSelector_afd948f69609ddac9d1effb6b899c4d08}{Train} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target, float importance, bool $\ast$err\+Mask)
 \item 
 float \hyperlink{classClassifierSelector_ac7f854deb91854b56f24660b77e702ed}{Get\+Error} (int index=-\/1) const 
@@ -104,7 +106,14 @@ Evaluate a feature.
 \begin{DoxyReturn}{Returns}
 the error rate of this seletor, or any specific classifier. 
 \end{DoxyReturn}
-\hypertarget{classClassifierSelector_a027e9055c2ed7b27493e208d2ddd5cc9}{}\index{Classifier\+Selector@{Classifier\+Selector}!Replace\+Weakest\+Classifier@{Replace\+Weakest\+Classifier}}
+\hypertarget{classClassifierSelector_a2b2ae235c4577ea96e27f3a21480455f}{}\index{Classifier\+Selector@{Classifier\+Selector}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Classifier\+Selector@{Classifier\+Selector}}
+\subsubsection[{Initialize(const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Classifier\+Selector\+::\+Initialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{patch\+Size}
+\end{DoxyParamCaption}
+)}\label{classClassifierSelector_a2b2ae235c4577ea96e27f3a21480455f}
+Initialize this selector for a new target. Notice the number of weak classifiers will not change, but all the features will be randomly generated again. This is designed to reduce the new/delete operation. \hypertarget{classClassifierSelector_a027e9055c2ed7b27493e208d2ddd5cc9}{}\index{Classifier\+Selector@{Classifier\+Selector}!Replace\+Weakest\+Classifier@{Replace\+Weakest\+Classifier}}
 \index{Replace\+Weakest\+Classifier@{Replace\+Weakest\+Classifier}!Classifier\+Selector@{Classifier\+Selector}}
 \subsubsection[{Replace\+Weakest\+Classifier(float $\ast$sum\+Errors, const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}int Classifier\+Selector\+::\+Replace\+Weakest\+Classifier (
 \begin{DoxyParamCaption}

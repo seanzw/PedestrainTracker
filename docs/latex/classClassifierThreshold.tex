@@ -11,8 +11,7 @@ void \hyperlink{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{Upda
 \item 
 int \hyperlink{classClassifierThreshold_a1151b0d98ef528494a75718514b73a38}{Classify} (const \hyperlink{classFeature}{Feature} \&feature) const 
 \item 
-\hypertarget{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}{}void {\bfseries Reset} ()\label{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}
-
+void \hyperlink{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}{Reset} ()
 \item 
 \hypertarget{classClassifierThreshold_ac5ea1576c2b8f51dc2643c7f6dbe7724}{}void $\ast$ {\bfseries Get\+Distribution} (int target) const \label{classClassifierThreshold_ac5ea1576c2b8f51dc2643c7f6dbe7724}
 
@@ -45,7 +44,14 @@ Classify the feature. Use the simple Euclidean distance to pos and neg cluster.
 \begin{DoxyReturn}{Returns}
 1 for positive, -\/1 for negative 
 \end{DoxyReturn}
-\hypertarget{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Update@{Update}}
+\hypertarget{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Reset@{Reset}}
+\index{Reset@{Reset}!Classifier\+Threshold@{Classifier\+Threshold}}
+\subsubsection[{Reset()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ void {\bf Classifier\+Threshold}$<$ N $>$\+::Reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classClassifierThreshold_a1f566cc491d863b15828561cbdfcd7a0}
+Reset everything to the start state. \hypertarget{classClassifierThreshold_ae9bae753884c08a274b2204af8e97340}{}\index{Classifier\+Threshold@{Classifier\+Threshold}!Update@{Update}}
 \index{Update@{Update}!Classifier\+Threshold@{Classifier\+Threshold}}
 \subsubsection[{Update(const Feature \&feature, int target)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$int N$>$ void {\bf Classifier\+Threshold}$<$ N $>$\+::Update (
 \begin{DoxyParamCaption}

@@ -98,6 +98,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a21eb14f2ad33c62dd94fdfced0d8d9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bf8094c2c8afde715ab75e729efa4af"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#a6bf8094c2c8afde715ab75e729efa4af">ClassifierSelector</a> (int numW, <a class="el" href="classWeakClassifier.html">WeakClassifier</a> **weaks, int numB=2)</td></tr>
 <tr class="separator:a6bf8094c2c8afde715ab75e729efa4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b2ae235c4577ea96e27f3a21480455f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#a2b2ae235c4577ea96e27f3a21480455f">Initialize</a> (const <a class="el" href="classSize.html">Size</a> &amp;patchSize)</td></tr>
+<tr class="separator:a2b2ae235c4577ea96e27f3a21480455f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd948f69609ddac9d1effb6b899c4d08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#afd948f69609ddac9d1effb6b899c4d08">Train</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;roi, int target, float importance, bool *errMask)</td></tr>
 <tr class="separator:afd948f69609ddac9d1effb6b899c4d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7f854deb91854b56f24660b77e702ed"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassifierSelector.html#ac7f854deb91854b56f24660b77e702ed">GetError</a> (int index=-1) const </td></tr>
@@ -248,6 +250,23 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewBackup</b> ()</t
       </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the error rate of this seletor, or any specific classifier. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b2ae235c4577ea96e27f3a21480455f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClassifierSelector::Initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSize.html">Size</a> &amp;&#160;</td>
+          <td class="paramname"><em>patchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialize this selector for a new target. Notice the number of weak classifiers will not change, but all the features will be randomly generated again. This is designed to reduce the new/delete operation. </p>
 
 </div>
 </div>

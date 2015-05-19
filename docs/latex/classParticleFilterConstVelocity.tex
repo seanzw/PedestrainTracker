@@ -13,27 +13,45 @@ Inheritance diagram for Particle\+Filter\+Const\+Velocity\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classParticleFilterConstVelocity_a705e639dc7d5fd70a8b332e888a4281c}{}{\bfseries Particle\+Filter\+Const\+Velocity} (const \hyperlink{classRect}{Rect} \&target, const \hyperlink{classPoint2D}{Point2\+D} \&init\+Velocity=\hyperlink{classPoint2D}{Point2\+D}(10, 0), int n=100)\label{classParticleFilterConstVelocity_a705e639dc7d5fd70a8b332e888a4281c}
+\hypertarget{classParticleFilterConstVelocity_a0ae711261a1d992e08de13dac7e2ea70}{}{\bfseries Particle\+Filter\+Const\+Velocity} (int n, float velocity\+Thre, float dist\+Weight)\label{classParticleFilterConstVelocity_a0ae711261a1d992e08de13dac7e2ea70}
 
 \item 
-virtual void \hyperlink{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
+\hypertarget{classParticleFilterConstVelocity_a57692c0a571ab54262e2762469b10b00}{}void {\bfseries Init\+Buffer} ()\label{classParticleFilterConstVelocity_a57692c0a571ab54262e2762469b10b00}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a3407d048b97f8caebe1353d53f831547}{}void {\bfseries Init\+Target} (const \hyperlink{classRect}{Rect} \&target, const \hyperlink{classPoint2D}{Point2\+D} \&init\+Velocity)\label{classParticleFilterConstVelocity_a3407d048b97f8caebe1353d53f831547}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{}void {\bfseries Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)\label{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a46aae8bac98e7f6e1f13ad99ec8a38cd}{}void {\bfseries Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, \hyperlink{classPool}{Pool}$<$ float $>$ \&match\+Array) const \label{classParticleFilterConstVelocity_a46aae8bac98e7f6e1f13ad99ec8a38cd}
+
 \item 
 \hypertarget{classParticleFilterConstVelocity_a91f6d8afede8039cd3ed08acbcb67b47}{}void {\bfseries Set\+Velocity\+Sigma} (float sigma)\label{classParticleFilterConstVelocity_a91f6d8afede8039cd3ed08acbcb67b47}
 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\hypertarget{classParticleFilterConstVelocity_a219193c3bdc2ed042c5473257227c3fb}{}virtual void {\bfseries Init\+Particles} ()\label{classParticleFilterConstVelocity_a219193c3bdc2ed042c5473257227c3fb}
+\hypertarget{classParticleFilterConstVelocity_a219193c3bdc2ed042c5473257227c3fb}{}void {\bfseries Init\+Particles} ()\label{classParticleFilterConstVelocity_a219193c3bdc2ed042c5473257227c3fb}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classParticleFilterConstVelocity_af3179b0f6fc3387f0ed0ecdf857c7295}{}\hyperlink{classPoint2D}{Point2\+D} {\bfseries init\+Velocity}\label{classParticleFilterConstVelocity_af3179b0f6fc3387f0ed0ecdf857c7295}
+\hypertarget{classParticleFilterConstVelocity_af83994fb61bff4a728acced41bdc8cb5}{}\hyperlink{classPoint2D}{Point2\+D} {\bfseries velocity}\label{classParticleFilterConstVelocity_af83994fb61bff4a728acced41bdc8cb5}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a8e1644ddf56f1c1b20278ca70cdb62ff}{}const float {\bfseries velocity\+Thre}\label{classParticleFilterConstVelocity_a8e1644ddf56f1c1b20278ca70cdb62ff}
+
+\item 
+\hypertarget{classParticleFilterConstVelocity_a022c54f062dd30fb21c73945a888b99f}{}const float {\bfseries dist\+Weight}\label{classParticleFilterConstVelocity_a022c54f062dd30fb21c73945a888b99f}
 
 \item 
 \hypertarget{classParticleFilterConstVelocity_a4ebdf630669691c8d00fa1f94022921a}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Velocity}\label{classParticleFilterConstVelocity_a4ebdf630669691c8d00fa1f94022921a}
 
 \end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
@@ -42,27 +60,6 @@ virtual void \hyperlink{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e
 \begin{DoxyAuthor}{Author}
 Zhengrong Wang. 
 \end{DoxyAuthor}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{}\index{Particle\+Filter\+Const\+Velocity@{Particle\+Filter\+Const\+Velocity}!Propagate@{Propagate}}
-\index{Propagate@{Propagate}!Particle\+Filter\+Const\+Velocity@{Particle\+Filter\+Const\+Velocity}}
-\subsubsection[{Propagate(const Size \&img\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Particle\+Filter\+Const\+Velocity\+::\+Propagate (
-\begin{DoxyParamCaption}
-\item[{const {\bf Size} \&}]{img\+Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}
-Propagate the particles.
-
-
-\begin{DoxyParams}{Parameters}
-{\em img\+Size} & Is the particle still inside the image? \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented from \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Particle\+Filter}.
-
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

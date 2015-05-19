@@ -19,6 +19,8 @@ Inheritance diagram for Strong\+Classifier\+:\begin{figure}[H]
 \hypertarget{classStrongClassifier_a7f2079d46afe7a49cef73a1d8b5fc61d}{}virtual float {\bfseries Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi) const \label{classStrongClassifier_a7f2079d46afe7a49cef73a1d8b5fc61d}
 
 \item 
+virtual void \hyperlink{classStrongClassifier_a4ed37fe7ac50781e4d6ee6271d47731c}{Initialize} (const \hyperlink{classSize}{Size} \&patch\+Size)
+\item 
 \hypertarget{classStrongClassifier_ac6515ad2049961798844049c3ba1e2d6}{}virtual bool {\bfseries Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target, float importance=1.\+0f)\label{classStrongClassifier_ac6515ad2049961798844049c3ba1e2d6}
 
 \end{DoxyCompactItemize}
@@ -56,6 +58,20 @@ Use Class\+Selector to build a strong classifier. \begin{DoxyAuthor}{Author}
 Zhengrong Wang
 \end{DoxyAuthor}
 Notice\+: The feature extractor should be prepared (if there are any preprocess procedure), the caller of strong classifier should do that. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classStrongClassifier_a4ed37fe7ac50781e4d6ee6271d47731c}{}\index{Strong\+Classifier@{Strong\+Classifier}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Strong\+Classifier@{Strong\+Classifier}}
+\subsubsection[{Initialize(const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Strong\+Classifier\+::\+Initialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{patch\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classStrongClassifier_a4ed37fe7ac50781e4d6ee6271d47731c}
+Initialize this strong classifier for a new target W\+I\+T\+H\+O\+U\+T training. 
+
+Reimplemented in \hyperlink{classStrongClassifierDirectSelect_a423d4e2df75252d92c9e24cb9c37b166}{Strong\+Classifier\+Direct\+Select}.
+
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

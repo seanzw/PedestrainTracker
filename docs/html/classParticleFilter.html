@@ -107,15 +107,16 @@ Inheritance diagram for ParticleFilter:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad05d7aeddc103fc32b6de3a751c37471"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ad05d7aeddc103fc32b6de3a751c37471">ParticleFilter</a> (int n=100, int szParticle=2)</td></tr>
 <tr class="separator:ad05d7aeddc103fc32b6de3a751c37471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f8647624fb770f966eeacb5e2b94310"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f8647624fb770f966eeacb5e2b94310"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleFilter</b> (const <a class="el" href="classRect.html">Rect</a> &amp;target, int n=100, int szParticle=2)</td></tr>
-<tr class="separator:a8f8647624fb770f966eeacb5e2b94310"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a166db9f33feabf14126df2de541a593d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a166db9f33feabf14126df2de541a593d">Propagate</a> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
+<tr class="memitem:a3bf44906e7f1b546c96815856d330323"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a3bf44906e7f1b546c96815856d330323">InitBuffer</a> ()</td></tr>
+<tr class="separator:a3bf44906e7f1b546c96815856d330323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcde50511c90d318ec335bda8639c58f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#afcde50511c90d318ec335bda8639c58f">InitTarget</a> (const <a class="el" href="classRect.html">Rect</a> &amp;target)</td></tr>
+<tr class="separator:afcde50511c90d318ec335bda8639c58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166db9f33feabf14126df2de541a593d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a166db9f33feabf14126df2de541a593d">Propagate</a> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
 <tr class="separator:a166db9f33feabf14126df2de541a593d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac564ef678bef8d6ff2fc70258cc7e822"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ac564ef678bef8d6ff2fc70258cc7e822">Observe</a> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage)</td></tr>
-<tr class="separator:ac564ef678bef8d6ff2fc70258cc7e822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dc0bf5137e9e7d8f59961618dbd9215"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a7dc0bf5137e9e7d8f59961618dbd9215">Observe</a> (<a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;detection, float detectionWeight, float classifierWeight)</td></tr>
-<tr class="separator:a7dc0bf5137e9e7d8f59961618dbd9215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4529ea61cf9ab6ddd18f55434a4ff3b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a4529ea61cf9ab6ddd18f55434a4ff3b9">Observe</a> (const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage)</td></tr>
+<tr class="separator:a4529ea61cf9ab6ddd18f55434a4ff3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ae015d78e510587c8928fa2ebcf9c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ad1ae015d78e510587c8928fa2ebcf9c0">Observe</a> (const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classRect.html">Rect</a> &amp;detection, float detectionWeight)</td></tr>
+<tr class="separator:ad1ae015d78e510587c8928fa2ebcf9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76b01cd9d9d0fa181b89ffe3dcf5fbab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a76b01cd9d9d0fa181b89ffe3dcf5fbab">ResampleWithBest</a> ()</td></tr>
 <tr class="separator:a76b01cd9d9d0fa181b89ffe3dcf5fbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab191492fa8c67ecb0546e69d50fa2481"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#ab191492fa8c67ecb0546e69d50fa2481">ResampleWithConfidence</a> ()</td></tr>
@@ -132,15 +133,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawTarget</b> (cv::M
 <tr class="memitem:ab2c226ecb5b701d7cac2c99cf6168e05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2c226ecb5b701d7cac2c99cf6168e05"></a>
 const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTarget</b> () const </td></tr>
 <tr class="separator:ab2c226ecb5b701d7cac2c99cf6168e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0244f4fb69b92deb70aa470f2cc85ca4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitParticles</b> ()</td></tr>
-<tr class="separator:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a566b57dbca5caadbf1c9dce31b3407be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a566b57dbca5caadbf1c9dce31b3407be"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>BinarSearch</b> (float prob) const </td></tr>
 <tr class="separator:a566b57dbca5caadbf1c9dce31b3407be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleFilter.html#a0244f4fb69b92deb70aa470f2cc85ca4">InitParticles</a> ()</td></tr>
+<tr class="separator:a0244f4fb69b92deb70aa470f2cc85ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -173,7 +173,9 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
 <tr class="separator:a23a3c5e7016d74cf775031b612c19839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A basic particle filter. It just propagates the particles and observe using the strong classifier's evaluate function. We leave the training to upper class. </p><dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
+<div class="textblock"><p>A basic particle filter. It just propagates the particles and observe using the strong classifier's evaluate function. We leave the training to upper class.</p>
+<p>This class doesn't support virtual function!!!!</p>
+<dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad05d7aeddc103fc32b6de3a751c37471"></a>
 <div class="memitem">
@@ -198,12 +200,28 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This constructor doesn't initialize particles. Used for child class such as ParticleFitlerConstVelocity. </p>
+<p>This constructor doesn't initialize particles. Should call InitializeBuffer and InitializeTarget before actually using it. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac564ef678bef8d6ff2fc70258cc7e822"></a>
+<a class="anchor" id="a3bf44906e7f1b546c96815856d330323"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::InitBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialize the buffer, mainly the particles, confidence, resample buffer. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0244f4fb69b92deb70aa470f2cc85ca4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -211,9 +229,47 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
   <td class="mlabels-left">
       <table class="memname">
         <tr>
+          <td class="memname">void ParticleFilter::InitParticles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the particles around the target. </p>
+
+</div>
+</div>
+<a class="anchor" id="afcde50511c90d318ec335bda8639c58f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParticleFilter::InitTarget </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialize the target, used in multiple targets tracking. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4529ea61cf9ab6ddd18f55434a4ff3b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
           <td class="memname">void ParticleFilter::Observe </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td>
           <td class="paramname"><em>classifier</em>, </td>
         </tr>
         <tr>
@@ -228,27 +284,19 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Observe with classifier output confidence. </p>
 
 </div>
 </div>
-<a class="anchor" id="a7dc0bf5137e9e7d8f59961618dbd9215"></a>
+<a class="anchor" id="ad1ae015d78e510587c8928fa2ebcf9c0"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ParticleFilter::Observe </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *&#160;</td>
           <td class="paramname"><em>classifier</em>, </td>
         </tr>
         <tr>
@@ -267,13 +315,7 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>detectionWeight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>classifierWeight</em>&#160;</td>
+          <td class="paramname"><em>detectionWeight</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -281,11 +323,6 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Observe with classifier output confidence and associated detection. </p>
 
@@ -294,9 +331,6 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
 <a class="anchor" id="a166db9f33feabf14126df2de541a593d"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ParticleFilter::Propagate </td>
@@ -306,11 +340,6 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Propagate the particles.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -319,8 +348,6 @@ int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></
   </table>
   </dd>
 </dl>
-
-<p>Reimplemented in <a class="el" href="classParticleFilterConstVelocity.html#a72868ab78e4c4f49ce756e986839f993">ParticleFilterConstVelocity</a>.</p>
 
 </div>
 </div>

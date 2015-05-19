@@ -16,12 +16,14 @@ Inheritance diagram for Weak\+Classifier\+R\+G\+I\+:\begin{figure}[H]
 \hypertarget{classWeakClassifierRGI_abbd6a27d77c3f38bcf2dce39d7571cf7}{}{\bfseries Weak\+Classifier\+R\+G\+I} (const \hyperlink{classSize}{Size} \&patch\+Size)\label{classWeakClassifierRGI_abbd6a27d77c3f38bcf2dce39d7571cf7}
 
 \item 
-bool \hyperlink{classWeakClassifierRGI_ab4719f5dcf7acf6e79beb4d246addaa5}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target)
+virtual bool \hyperlink{classWeakClassifierRGI_ab4719f5dcf7acf6e79beb4d246addaa5}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target)
 \item 
-\hypertarget{classWeakClassifierRGI_a026ab7a9f1c19ced68746121aacd6374}{}int {\bfseries Classify} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, float scale=1.\+0f)\label{classWeakClassifierRGI_a026ab7a9f1c19ced68746121aacd6374}
+\hypertarget{classWeakClassifierRGI_a026ab7a9f1c19ced68746121aacd6374}{}virtual int {\bfseries Classify} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, float scale=1.\+0f)\label{classWeakClassifierRGI_a026ab7a9f1c19ced68746121aacd6374}
 
 \item 
-float \hyperlink{classWeakClassifierRGI_aaff18f2962e93ad64eb7b4c6e127b91c}{Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi)
+virtual float \hyperlink{classWeakClassifierRGI_aaff18f2962e93ad64eb7b4c6e127b91c}{Evaluate} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi)
+\item 
+virtual void \hyperlink{classWeakClassifierRGI_af3d14f1749fa8543ac6f3e52af2cf607}{Initialize} (const \hyperlink{classSize}{Size} \&patch\+Size)
 \item 
 \hypertarget{classWeakClassifierRGI_aa48904ae41002320da3e5563aaf1ca60}{}void {\bfseries Reset\+Pos\+Dist} ()\label{classWeakClassifierRGI_aa48904ae41002320da3e5563aaf1ca60}
 
@@ -49,6 +51,17 @@ Zhengrong Wang
 
 
 Reimplemented from \hyperlink{classWeakClassifier_a083dddaa52fe399386f07a20f231ec49}{Weak\+Classifier}.
+
+\hypertarget{classWeakClassifierRGI_af3d14f1749fa8543ac6f3e52af2cf607}{}\index{Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}}
+\subsubsection[{Initialize(const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Weak\+Classifier\+R\+G\+I\+::\+Initialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{patch\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classWeakClassifierRGI_af3d14f1749fa8543ac6f3e52af2cf607}
+Initialize the weak classifier. 
+
+Reimplemented from \hyperlink{classWeakClassifier_a9e62b318d87b30965646bdc94662c01d}{Weak\+Classifier}.
 
 \hypertarget{classWeakClassifierRGI_ab4719f5dcf7acf6e79beb4d246addaa5}{}\index{Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}!Update@{Update}}
 \index{Update@{Update}!Weak\+Classifier\+R\+G\+I@{Weak\+Classifier\+R\+G\+I}}

@@ -16,7 +16,9 @@ Inheritance diagram for Strong\+Classifier\+Direct\+Select\+:\begin{figure}[H]
 \hypertarget{classStrongClassifierDirectSelect_a9e22d3f25ce43d6f2e3234d502b71df1}{}{\bfseries Strong\+Classifier\+Direct\+Select} (int num\+Selectors, int num\+Weak\+Classifiers, const \hyperlink{classSize}{Size} \&patch\+Size, int num\+Backups=0)\label{classStrongClassifierDirectSelect_a9e22d3f25ce43d6f2e3234d502b71df1}
 
 \item 
-\hypertarget{classStrongClassifierDirectSelect_a70f5944801a3023fb52e5f69028c76eb}{}bool {\bfseries Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target, float importance=1.\+0f)\label{classStrongClassifierDirectSelect_a70f5944801a3023fb52e5f69028c76eb}
+virtual void \hyperlink{classStrongClassifierDirectSelect_a423d4e2df75252d92c9e24cb9c37b166}{Initialize} (const \hyperlink{classSize}{Size} \&patch\+Size)
+\item 
+\hypertarget{classStrongClassifierDirectSelect_a70f5944801a3023fb52e5f69028c76eb}{}virtual bool {\bfseries Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target, float importance=1.\+0f)\label{classStrongClassifierDirectSelect_a70f5944801a3023fb52e5f69028c76eb}
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
@@ -24,6 +26,20 @@ Inheritance diagram for Strong\+Classifier\+Direct\+Select\+:\begin{figure}[H]
 
 \subsection{Detailed Description}
 This strong classifier directly select the best weak classifier and replace the worst one. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classStrongClassifierDirectSelect_a423d4e2df75252d92c9e24cb9c37b166}{}\index{Strong\+Classifier\+Direct\+Select@{Strong\+Classifier\+Direct\+Select}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Strong\+Classifier\+Direct\+Select@{Strong\+Classifier\+Direct\+Select}}
+\subsubsection[{Initialize(const Size \&patch\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Strong\+Classifier\+Direct\+Select\+::\+Initialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Size} \&}]{patch\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classStrongClassifierDirectSelect_a423d4e2df75252d92c9e24cb9c37b166}
+Initialize a new target for this strong classifier W\+I\+T\+H\+O\+U\+T training. 
+
+Reimplemented from \hyperlink{classStrongClassifier_a4ed37fe7ac50781e4d6ee6271d47731c}{Strong\+Classifier}.
+
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
