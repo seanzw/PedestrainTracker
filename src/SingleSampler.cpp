@@ -39,8 +39,8 @@ void SingleSampler::Sample(const Rect &pos, const Size &imgSize) {
 		posSamples[i].height = pos.height;
 		posSamples[i].width = pos.width;
 		while (true) {
-			int offsetHeight = (int)gaussianHeight(generator) * ((rand() % 2) * 2 - 1);
-			int offsetWidth = (int)gaussianWidth(generator) * ((rand() % 2) * 2 - 1);
+			int offsetHeight = (int)gaussianHeight(generator);
+			int offsetWidth = (int)gaussianWidth(generator);
 			posSamples[i].left = pos.left + offsetWidth;
 			posSamples[i].upper = pos.upper + offsetHeight;
 			if (imgSize.IsIn(posSamples[i])) {
@@ -57,8 +57,8 @@ void SingleSampler::Sample(const Rect &pos, const Size &imgSize) {
 		negSamples[i].height = pos.height;
 		negSamples[i].width = pos.width;
 		while (true) {
-			int offsetHeight = (int)gaussianHeight(generator) * ((rand() % 2) * 2 - 1);
-			int offsetWidth = (int)gaussianWidth(generator) * ((rand() % 2) * 2 - 1);
+			int offsetHeight = (int)gaussianHeight(generator);
+			int offsetWidth = (int)gaussianWidth(generator);
 			negSamples[i].left = pos.left + offsetWidth;
 			negSamples[i].upper = pos.upper + offsetHeight;
 			if (imgSize.IsIn(negSamples[i])) {

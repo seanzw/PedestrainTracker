@@ -10,6 +10,9 @@ MultiTracker::MultiTracker(ImageDetector *d, const Size &sz, const Options &opts
 	// Initialize the targets free list.
 	targets = new TargetsFreeList(opts);
 
+	// Initialize the sampler.
+	sampler = new MultiSampler(opts);
+
 	// Construct the match matrix.
 	matches = new MatchMatrix(opts.targetsFreeListCapacity);
 
@@ -71,8 +74,15 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		// Make the observation.
 		targets->Observe(rgiIntImage, detector->dets);
 
+		// Sample around the match pair.
+		sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
+
+		// Online training.
+		// TODO
+		// targets->Train(sampler);
+
 		// Draw the particles for debugging.
-		//particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
+		// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
 		cv::imshow("particles", frame);
 		cv::imwrite("ParticlesConfidence.jpg", frame);
 		cv::waitKey();
@@ -88,20 +98,6 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		//particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 255.0f, 0.0f));
 		cv::imshow("target", frame);
 		cv::waitKey();
-
-		// Use the new target to sample.
-		// sampler->Sample(particleFilter->GetTarget(), imgSize);
-
-		/*
-		// Train the online boosting classifier.
-		for (int i = 0; i < sampler->GetNumPos(); i++) {
-		classifier->Update(intImage, sampler->GetPosSample(i), 1);
-		}
-
-		for (int i = 0; i < sampler->GetNumNeg(); i++) {
-		classifier->Update(intImage, sampler->GetNegSample(i), -1);
-		}
-		*/
 
 		// Write back the result into video.
 		out.write(frame);

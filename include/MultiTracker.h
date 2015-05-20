@@ -15,6 +15,7 @@
 #include "TargetsFreeList.h"
 #include "ImageDetector.h"
 #include "MatchMatrix.h"
+#include "MultiSampler.h"
 
 class MultiTracker : public Tracker {
 public:
@@ -47,6 +48,9 @@ private:
 
 	// Match matrix.
 	MatchMatrix *matches;
+
+	// MultiSampler.
+	MultiSampler *sampler;
 
 	// Threshold for matching.
 	const float matchThre;

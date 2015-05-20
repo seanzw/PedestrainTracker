@@ -62,6 +62,8 @@ public:
 	// Allow MatchMatrix to modify the matchDets array.
 	friend class MatchMatrix;
 
+	const Pool<int> &GetMatchDets() { return matchDets; }
+
 private:
 
 	TargetsFreeListNode *freeNodes;
