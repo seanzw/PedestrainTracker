@@ -12,8 +12,7 @@
 #include "Options.h"
 #include "StrongClassifierDirectSelect.h"
 #include "ParticleFilterConstVelocity.h"
-#include "IntegralImage.h"
-#include "Pool.h"
+#include "MultiSampler.h"
 
 #define SINGLE_TARGET_VELOCITY_CONST 1.0f
 
@@ -49,6 +48,26 @@ public:
 	void Propagate(const Size &imgSize);
 
 	/**
+	 * Train the classifier.
+	 * Only used when there are no overlapping detection
+	 * and we are damn sure this is the correct one.
+	 * @param intImage		integral image
+	 * @param multiSampler	where we can find the samples
+	 * @param id			the id of this target
+	 */
+	void Train(const IntegralImage *intImage, const MultiSampler *multiSampler, int id);
+
+	/**
+	* Calculate the match score with all the detections.
+	*
+	* @param intImage		in: integral image
+	* @param dets			in: detections
+	* @param marchArray	out: the match score
+	*/
+	void CalculateMatchScore(const IntegralImage *intImage,
+		const Pool<Rect> &dets, Pool<float> &matchArray) const;
+
+	/**
 	 * Observe the particles.
 	 * weight_particle = detectionWeight * P(particle, detection) + (1.0f - detectionWeight) * Conf(particle)
 	 *
@@ -67,23 +86,6 @@ public:
 	inline void Observe(const IntegralImage *intImage) {
 		particleFilter->Observe(classifier, intImage);
 	}
-
-	/**
-	 * Update the classifier.
-	 * Only used when there are no overlapping detection
-	 * and we are damn sure this is the correct one.
-	 */
-	void Update(const IntegralImage *intImage, const Rect &roi, int target, float importance = 1.0f);
-
-	/**
-	 * Calculate the match score with all the detections.
-	 *
-	 * @param intImage		in: integral image
-	 * @param dets			in: detections
-	 * @param marchArray	out: the match score
-	 */
-	void CalculateMatchScore(const IntegralImage *intImage, 
-		const Pool<Rect> &dets, Pool<float> &matchArray) const;
 
 	/**
 	 * Update the detection sequence.

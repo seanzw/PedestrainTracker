@@ -50,17 +50,21 @@ void SingleTarget::Propagate(const Size &imgSize) {
 	particleFilter->Propagate(imgSize);
 }
 
-void SingleTarget::Update(const IntegralImage *intImage, const Rect &roi, int target, float importance) {
-	// TO DO
-	classifier->Update(intImage, roi, target, importance);
+void SingleTarget::Train(const IntegralImage *intImage, const MultiSampler *multiSampler, int id) {
 
+	// Update the classifier.
+	for (MultiSampler::const_iterator iter = multiSampler->begin(id);
+		iter != multiSampler->end();
+		++iter) {
+		classifier->Update(intImage, *iter, iter.GetTarget(), 1.0f);
+	}
 }
 
 void SingleTarget::CalculateMatchScore(const IntegralImage *intImage,
 	const Pool<Rect> &dets, Pool<float> &matchArray) const {
-	
-	particleFilter->CalculateMatchScore(intImage, classifier, dets, matchArray);
 
+	particleFilter->CalculateMatchScore(intImage, classifier, dets, matchArray);
 }
+
 
 

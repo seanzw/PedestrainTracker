@@ -78,8 +78,7 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
 
 		// Online training.
-		// TODO
-		// targets->Train(sampler);
+		targets->Train(rgiIntImage, sampler);
 
 		// Draw the particles for debugging.
 		// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));

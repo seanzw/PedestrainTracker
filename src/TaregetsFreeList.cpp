@@ -94,3 +94,12 @@ void TargetsFreeList::Observe(const IntegralImage *intImage, const Pool<Rect> &d
 		}
 	}
 }
+
+void TargetsFreeList::Train(const IntegralImage *intImage, const MultiSampler *multiSampler) {
+	for (int i = 0; i < capacity; i++) {
+		if (!listNodes[i].isFree && matchDets[i] != -1) {
+			// We have matched detection.
+			listNodes[i].target->Train(intImage, multiSampler, i);
+		}
+	}
+}

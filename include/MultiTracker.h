@@ -15,7 +15,6 @@
 #include "TargetsFreeList.h"
 #include "ImageDetector.h"
 #include "MatchMatrix.h"
-#include "MultiSampler.h"
 
 class MultiTracker : public Tracker {
 public:

@@ -64,6 +64,11 @@ public:
 
 	const Pool<int> &GetMatchDets() { return matchDets; }
 
+	/**
+	 * Online training.
+	 */
+	void Train(const IntegralImage *intImage, const MultiSampler *multiSampler);
+
 private:
 
 	TargetsFreeListNode *freeNodes;
