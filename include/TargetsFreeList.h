@@ -50,7 +50,7 @@ public:
 	 * @param matchMat		matching score matrix
 	 */
 	void CalculateMatchScore(const IntegralImage *intImage, 
-		const Pool<Rect> &dets, Pool<Pool<float>> &matchMat) const;
+		const Pool<Rect> &dets, std::vector<MatchMatrix::MatchScore> &matchMat) const;
 
 	// The array of nodes.
 	std::vector<TargetsFreeListNode> listNodes;
@@ -59,23 +59,20 @@ public:
 	// Weight for detection term in particle observation.
 	const float detectionWeight;
 
-	// Allow MatchMatrix to modify the matchDets array.
-	friend class MatchMatrix;
-
-	const Pool<int> &GetMatchDets() { return matchDets; }
+	const std::vector<int> &GetMatchDets() { return matchDets; }
 
 	/**
 	 * Online training.
 	 */
 	void Train(const IntegralImage *intImage, const MultiSampler *multiSampler);
 
+	// The (detection, target) pair.
+	// Set by MatchMatrix.
+	std::vector<int> matchDets;
+
 private:
 
 	TargetsFreeListNode *freeNodes;
-
-	// The (detection, target) pair.
-	// Set by MatchMatrix.
-	Pool<int> matchDets;
 };
 
 

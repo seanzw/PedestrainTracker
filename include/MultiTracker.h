@@ -14,7 +14,6 @@
 #include "HoGIntegralImage.h"
 #include "TargetsFreeList.h"
 #include "ImageDetector.h"
-#include "MatchMatrix.h"
 
 class MultiTracker : public Tracker {
 public:

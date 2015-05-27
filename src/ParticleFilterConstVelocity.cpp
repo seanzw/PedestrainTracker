@@ -59,7 +59,8 @@ void ParticleFilterConstVelocity::SetVelocitySigma(float sigma) {
 
 void ParticleFilterConstVelocity::CalculateMatchScore(const IntegralImage *intImage,
 	const StrongClassifier *classifier,
-	const Pool<Rect> &dets, Pool<float> &matchArray) const {
+	const Pool<Rect> &dets,
+	std::vector<MatchMatrix::MatchScore>::iterator &matchArray) const {
 	
 	Point2D targetPoint(target.upper, target.left);
 
@@ -107,5 +108,8 @@ void ParticleFilterConstVelocity::CalculateMatchScore(const IntegralImage *intIm
 
 		// Get all pieces together.
 		float matchScore = sizeScore * velocityScore * (classifierScore + distWeight * distanceScore);
+
+		// Set the match score.
+		matchArray[i].score = matchScore;
 	}
 }

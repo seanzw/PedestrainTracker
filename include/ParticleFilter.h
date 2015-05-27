@@ -14,6 +14,7 @@
 
 #include "StrongClassifier.h"
 #include "IntegralImage.h"
+#include "MatchMatrix.h"
 
 class ParticleFilter {
 public:

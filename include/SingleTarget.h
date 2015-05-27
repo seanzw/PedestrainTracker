@@ -65,7 +65,8 @@ public:
 	* @param marchArray	out: the match score
 	*/
 	void CalculateMatchScore(const IntegralImage *intImage,
-		const Pool<Rect> &dets, Pool<float> &matchArray) const;
+		const Pool<Rect> &dets,
+		std::vector<MatchMatrix::MatchScore>::iterator &matchArray) const;
 
 	/**
 	 * Observe the particles.

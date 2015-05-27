@@ -25,7 +25,7 @@ public:
 	 * @param matchDets		Matched pairs.
 	 * @param detections	Detections.
 	 */
-	void Sample(const Pool<int> &matchDets, const Pool<Rect> &detections, const Size &imgSize);
+	void Sample(const std::vector<int> &matchDets, const Pool<Rect> &detections, const Size &imgSize);
 
 	/**
 	 * Iterator for target i.

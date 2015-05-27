@@ -39,6 +39,13 @@ public:
 	void clear() {
 		size = 0;
 	}
+
+	void Resize(int sz) {
+		if (sz > size) {
+			data.resize(sz);
+		}
+		size = sz;
+	}
 };
 
 #endif

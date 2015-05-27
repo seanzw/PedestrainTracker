@@ -13,6 +13,8 @@ TargetsFreeListNode::~TargetsFreeListNode() {
 TargetsFreeList::TargetsFreeList(const Options &opts)
 	: capacity(opts.targetsFreeListCapacity), freeNodes(NULL), detectionWeight(opts.detectionWeight) {
 
+	matchDets = std::vector<int>(capacity);
+
 	for (int i = 0; i < capacity; i++) {
 		listNodes.push_back(TargetsFreeListNode(opts));
 		listNodes[i].nextFree = freeNodes;
@@ -55,10 +57,11 @@ int TargetsFreeList::InitializeTarget(const Rect &target, const Point2D &initVel
 }
 
 void TargetsFreeList::CalculateMatchScore(const IntegralImage *intImage,
-	const Pool<Rect> &dets, Pool<Pool<float>> &matchMat) const {
+	const Pool<Rect> &dets, std::vector<MatchMatrix::MatchScore> &matchMat) const {
 	for (int i = 0; i < capacity; i++) {
 		if (!listNodes[i].isFree) {
-			listNodes[i].target->CalculateMatchScore(intImage, dets, matchMat[i]);
+			auto iter = matchMat.begin() + i * dets.size;
+			listNodes[i].target->CalculateMatchScore(intImage, dets, iter);
 		}
 	}
 }

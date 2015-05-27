@@ -66,10 +66,10 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		matches->SetNumDets(detector->dets.size);
 
 		// Calcualate the match score.
-		targets->CalculateMatchScore(rgiIntImage, detector->dets, matches->matchMat);
+		targets->CalculateMatchScore(rgiIntImage, detector->dets, matches->matchMatrix);
 
 		// Find match pair.
-		matches->SetTargets(*targets, matchThre);
+		matches->SetTargets(targets->matchDets, matchThre);
 
 		// Make the observation.
 		targets->Observe(rgiIntImage, detector->dets);

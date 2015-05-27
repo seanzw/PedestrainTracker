@@ -61,7 +61,8 @@ void SingleTarget::Train(const IntegralImage *intImage, const MultiSampler *mult
 }
 
 void SingleTarget::CalculateMatchScore(const IntegralImage *intImage,
-	const Pool<Rect> &dets, Pool<float> &matchArray) const {
+	const Pool<Rect> &dets,
+	std::vector<MatchMatrix::MatchScore>::iterator &matchArray) const {
 
 	particleFilter->CalculateMatchScore(intImage, classifier, dets, matchArray);
 }

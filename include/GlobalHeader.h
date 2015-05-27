@@ -16,6 +16,8 @@
 #include <iomanip>
 #include <string.h>
 #include <random>
+#include <algorithm>
+#include <functional>
 
 #include "opencv\cv.h"
 #include "opencv\highgui.h"

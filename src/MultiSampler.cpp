@@ -15,13 +15,13 @@ MultiSampler::~MultiSampler() {
 
 }
 
-void MultiSampler::Sample(const Pool<int> &matchDets,
+void MultiSampler::Sample(const std::vector<int> &matchDets,
 	const Pool<Rect> &dets, const Size &imgSize) {
 
 	// How many samples we have already drawn for background?
 	int numBKGSamples = 0;
 
-	for (int i = 0; i < matchDets.size; i++) {
+	for (int i = 0; i < matchDets.size(); i++) {
 
 		// This target has no matched detection.
 		// Simply pass it.

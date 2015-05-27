@@ -23,7 +23,7 @@ public:
 
 	void CalculateMatchScore(const IntegralImage *intImage,
 		const StrongClassifier *classifier, const Pool<Rect> &dets,
-		Pool<float> &matchArray) const;
+		std::vector<MatchMatrix::MatchScore>::iterator &matchArray) const;
 
 	void SetVelocitySigma(float sigma);
 
