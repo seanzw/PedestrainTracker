@@ -25,6 +25,9 @@ public:
 		const StrongClassifier *classifier, const Pool<Rect> &dets,
 		std::vector<MatchMatrix::MatchScore>::iterator &matchArray) const;
 
+	//inline void SetVelocity(const Point2D &initV) {
+	//	velocity = initV;
+	//}
 	void SetVelocitySigma(float sigma);
 
 protected:

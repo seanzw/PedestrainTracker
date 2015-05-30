@@ -53,7 +53,7 @@ int TargetsFreeList::InitializeTarget(const Rect &target, const Point2D &initVel
 	newTarget->isFree = false;
 
 	// Get the index of the new target.
-	return (newTarget - &listNodes[0]) / sizeof(TargetsFreeListNode);
+	return newTarget - &listNodes[0];
 
 }
 

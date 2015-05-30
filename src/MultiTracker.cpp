@@ -39,6 +39,9 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 	// Read all the frames.
 	while (in.read(frame)) {
 
+		// Remember to clear all the detections.
+		detector->Clear();
+
 		count++;
 
 		// Detect every two frames.
@@ -98,14 +101,18 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 				// This detection is unmatched.
 				if (count == 0) {
 					// This is the first frame, initialize everything.
-					targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+					int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+					matches->isDetMatched[i] = id;
+					targets->matchDets[id] = i;
 				}
 				else {
 					// We have to check if there is any target nearby.
 					if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
 						// There are no nearby target.
 						// We believe this is a new target.
-						targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+						int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+						matches->isDetMatched[i] = id;
+						targets->matchDets[id] = i;
 					}
 				}
 			}

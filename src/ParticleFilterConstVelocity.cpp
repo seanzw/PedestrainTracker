@@ -18,6 +18,7 @@ void ParticleFilterConstVelocity::InitTarget(const Rect &t, const Point2D &v) {
 }
 
 void ParticleFilterConstVelocity::InitParticles() {
+
 	int *curParticle = particles;
 	int upper = target.upper;
 	int left = target.left;
@@ -28,8 +29,8 @@ void ParticleFilterConstVelocity::InitParticles() {
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
 		curParticle[0] = upper + (int)gaussian(generator);
 		curParticle[1] = left + (int)gaussian(generator);
-		curParticle[3] = velocity.row;
-		curParticle[4] = velocity.col;
+		curParticle[2] = velocity.row;
+		curParticle[3] = velocity.col;
 	}
 }
 
