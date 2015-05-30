@@ -58,6 +58,11 @@ public:
 	void CalculateMatchScore(const IntegralImage *intImage, 
 		const Pool<Rect> &dets, std::vector<MatchMatrix::MatchScore> &matchMat) const;
 
+	/**
+	 * Check if there are targets nearby.
+	 */
+	bool CheckNearbyTarget(const Rect &det, int distThre) const;
+
 	// The array of nodes.
 	std::vector<TargetsFreeListNode> listNodes;
 	const int capacity;

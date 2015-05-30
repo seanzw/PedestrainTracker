@@ -92,6 +92,25 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 #endif
 
+		// Inititalize a target for every unmatched detection.
+		for (int i = 0; i < detector->dets.size; i++) {
+			if (matches->isDetMatched[i] == 0) {
+				// This detection is unmatched.
+				if (count == 0) {
+					// This is the first frame, initialize everything.
+					targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+				}
+				else {
+					// We have to check if there is any target nearby.
+					if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
+						// There are no nearby target.
+						// We believe this is a new target.
+						targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+					}
+				}
+			}
+		}
+
 		// Make the observation.
 		targets->Observe(rgiIntImage, detector->dets);
 
@@ -103,6 +122,13 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 		// Online training.
 		targets->Train(rgiIntImage, sampler);
+
+#ifdef MT_DEBUG
+
+		
+
+#endif
+
 
 		//// Draw the particles for debugging.
 		//// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));

@@ -107,3 +107,14 @@ void TargetsFreeList::Train(const IntegralImage *intImage, const MultiSampler *m
 		}
 	}
 }
+
+bool TargetsFreeList::CheckNearbyTarget(const Rect &det, int distThre) const {
+	for (const auto &node : listNodes) {
+		if (!node.isFree) {
+			if (node.target->CheckNearbyTarget(det, distThre)) {
+				return true;
+			}
+		}
+	}
+	return false;
+}

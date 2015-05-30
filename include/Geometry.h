@@ -44,6 +44,8 @@ public:
 	// Shift this rectangle by an offset.
 	Rect operator+(const Point2D &offset) const;
 
+	bool IsOverlap(const Rect &other) const;
+
 	// Explicit conversion.
 	explicit operator cv::Rect() const;
 

@@ -48,6 +48,14 @@ Rect::operator Size() const {
 	return Size(width, height);
 }
 
+bool Rect::IsOverlap(const Rect &other) const {
+	if (other.upper > upper + height || other.upper < upper - height)
+		return false;
+	if (other.left < left - width || other.left > left + width)
+		return false;
+	return true;
+}
+
 
 Point2D::Point2D(int r, int c) : row(r), col(c) {}
 

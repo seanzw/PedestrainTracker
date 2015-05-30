@@ -67,5 +67,8 @@ void SingleTarget::CalculateMatchScore(const IntegralImage *intImage,
 	particleFilter->CalculateMatchScore(intImage, classifier, dets, matchArray);
 }
 
-
+bool SingleTarget::CheckNearbyTarget(const Rect &det, int distThre) const {
+	const Rect &target = particleFilter->GetTarget();
+	return target.IsOverlap(det);
+}
 

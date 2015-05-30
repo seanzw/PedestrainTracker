@@ -69,6 +69,11 @@ public:
 		std::vector<MatchMatrix::MatchScore>::iterator &matchArray) const;
 
 	/**
+	 * Check if the det is near the target
+	 */
+	bool CheckNearbyTarget(const Rect &det, int distThre) const;
+
+	/**
 	 * Observe the particles.
 	 * weight_particle = detectionWeight * P(particle, detection) + (1.0f - detectionWeight) * Conf(particle)
 	 *
