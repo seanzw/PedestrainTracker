@@ -494,6 +494,37 @@ void TrackVideoSingle(const char *infile, const char *outfile) {
 	pfTracker.Track(in, out);
 }
 
+void TrackVideoMulti(const char *infile, const char *bkgfile, const char *outfile,
+	const char *adaboost, const Options &opt) {
+
+	AdaBoostClassifier classifier(adaboost);
+
+	// Read the background.
+	cv::Mat bkg = cv::imread(bkgfile, CV_LOAD_IMAGE_GRAYSCALE);
+
+	// Open the video.
+	cv::VideoCapture in(infile);
+	if (!in.isOpened()) {
+		printf("Can't open video: %s\n", infile);
+	}
+
+	// Get the basic inforamtion.
+	double fps = in.get(cv::CAP_PROP_FPS);
+	int width = (int)in.get(cv::CAP_PROP_FRAME_WIDTH);
+	int height = (int)in.get(cv::CAP_PROP_FRAME_HEIGHT);
+	int ex = (int)in.get(cv::CAP_PROP_FOURCC);
+
+	// Open the out video.
+	cv::VideoWriter out(outfile, ex, fps / 2.0f, cv::Size(width, height));
+
+	// Initialize the detector.
+	BKGCutDetector detector(&classifier, opt);
+	MultiTracker tracker(&detector, Size(width, height), opt);
+
+	// Do the detection.
+	tracker.Track(in, out, bkg);
+}
+
 void GetTarget(int event, int x, int y, int flags, void *userParam) {
 	if (event == CV_EVENT_LBUTTONDOWN) {
 		Rect *roi = (Rect *)userParam;

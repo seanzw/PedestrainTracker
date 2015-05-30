@@ -12,7 +12,7 @@ public:
 	Tracker();
 	virtual ~Tracker();
 
-	virtual void Track(cv::VideoCapture &in, cv::VideoWriter &out) = 0;
+	virtual void Track(cv::VideoCapture &in, cv::VideoWriter &out);
 };
 
 

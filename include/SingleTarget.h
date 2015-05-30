@@ -105,6 +105,14 @@ public:
 		particleFilter->ResampleWithConfidence();
 	}
 
+	inline void DrawTarget(cv::Mat &img, const cv::Scalar &color) const {
+		particleFilter->DrawTarget(img, color);
+	}
+
+	inline void DrawParticles(cv::Mat &img, const cv::Scalar &color) const {
+		particleFilter->DrawParticlesWithConfidence(img, color);
+	}
+
 private:
 
 	StrongClassifierDirectSelect *classifier;

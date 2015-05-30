@@ -7,6 +7,7 @@
 #ifndef MULTITRACKER_HEADER
 #define MULTITRACKER_HEADER
 
+#define MT_DEBUG
 #define MTPRINTF(...) printf(__VA_ARGS__)
 
 #include "Tracker.h"

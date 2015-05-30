@@ -7,7 +7,6 @@ ParticleFilterConstVelocity::ParticleFilterConstVelocity(int n, float vThre, flo
 
 void ParticleFilterConstVelocity::InitBuffer() {
 	particles = new int[numParticles * sizeParticle];
-	InitParticles();
 	confidence = new float[numParticles];
 	resampleBuffer = new int[numParticles * sizeParticle];
 }

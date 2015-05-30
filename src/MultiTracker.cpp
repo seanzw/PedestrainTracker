@@ -71,8 +71,32 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		// Find match pair.
 		matches->SetTargets(targets->matchDets, matchThre);
 
+#ifdef MT_DEBUG
+
+		// Draw all the detections for debugging.
+		cv::Mat detections = frame.clone();
+		detector->DrawDetection(detections);
+		cv::imshow("detections", detections);
+
+		// Draw all the targets for debugging.
+		cv::Mat tars = frame.clone();
+		targets->DrawTargets(tars);
+		cv::imshow("targets", tars);
+
+		// Draw all the match pair for debugging.
+		cv::Mat mats = frame.clone();
+		targets->DrawMatches(mats, detector->dets);
+		cv::imshow("matches", mats);
+
+		cv::waitKey();
+
+#endif
+
 		// Make the observation.
 		targets->Observe(rgiIntImage, detector->dets);
+
+		// Resample.
+		targets->Resample();
 
 		// Sample around the match pair.
 		sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
@@ -80,23 +104,23 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		// Online training.
 		targets->Train(rgiIntImage, sampler);
 
-		// Draw the particles for debugging.
-		// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
-		cv::imshow("particles", frame);
-		cv::imwrite("ParticlesConfidence.jpg", frame);
-		cv::waitKey();
+		//// Draw the particles for debugging.
+		//// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
+		//cv::imshow("particles", frame);
+		//cv::imwrite("ParticlesConfidence.jpg", frame);
+		//cv::waitKey();
 
-		//particleFilter->ResampleWithBest();
+		////particleFilter->ResampleWithBest();
 
-		// Draw the particles for debugging.
-		//particleFilter->DrawParticles(frame, cv::Scalar(0.0f, 0.0f, 255.0f));
-		cv::imshow("particles", frame);
-		cv::waitKey();
+		//// Draw the particles for debugging.
+		////particleFilter->DrawParticles(frame, cv::Scalar(0.0f, 0.0f, 255.0f));
+		//cv::imshow("particles", frame);
+		//cv::waitKey();
 
-		// Draw the target back into frame.
-		//particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 255.0f, 0.0f));
-		cv::imshow("target", frame);
-		cv::waitKey();
+		//// Draw the target back into frame.
+		////particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 255.0f, 0.0f));
+		//cv::imshow("target", frame);
+		//cv::waitKey();
 
 		// Write back the result into video.
 		out.write(frame);

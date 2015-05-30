@@ -2,7 +2,6 @@
 
 TargetsFreeListNode::TargetsFreeListNode(const Options &opts)
 	: nextFree(NULL), isFree(true) {
-
 	target = new SingleTarget(opts);
 }
 
@@ -14,9 +13,11 @@ TargetsFreeList::TargetsFreeList(const Options &opts)
 	: capacity(opts.targetsFreeListCapacity), freeNodes(NULL), detectionWeight(opts.detectionWeight) {
 
 	matchDets = std::vector<int>(capacity);
+	listNodes.reserve(capacity);
 
 	for (int i = 0; i < capacity; i++) {
-		listNodes.push_back(TargetsFreeListNode(opts));
+		listNodes.emplace_back(opts);
+		listNodes[i].color = cv::Scalar(rand() % 256, rand() % 256, rand() % 256);
 		listNodes[i].nextFree = freeNodes;
 		freeNodes = &listNodes[i];
 	}

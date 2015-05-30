@@ -64,6 +64,19 @@ int main(int argc, char *argv[]) {
 	opt.maxAreaRatio = 0.005f;
 	opt.minAreaRatio = 0.001f;
 
+	opt.detectionWeight = 0.5f;
+	opt.distWeight = 0.5f;
+	opt.initVelocity = Point2D(0, 0);
+	opt.matchThre = 0.5f;
+	opt.nParticles = 500;
+	opt.numBackups = 5;
+	opt.numSelectors = 50;
+	opt.numWeakClassifiers = 250;
+	opt.target = Rect(0, 0, 64, 128);
+	opt.targetsFreeListCapacity = 20;
+	opt.velocitySigmaConst = 10.0f;
+	opt.velocityThre = 10.0f;
+
 
 	//get the time of running program
 	LARGE_INTEGER freq;
@@ -109,6 +122,10 @@ int main(int argc, char *argv[]) {
 
 	if (!strcmp(argv[1], "--particle-tracker")) {
 		TrackVideoSingle(argv[2], argv[3]);
+	}
+
+	if (!strcmp(argv[1], "--multiple-tracker")) {
+		TrackVideoMulti(argv[2], argv[3], argv[4], adaboostFile, opt);
 	}
 
 	QueryPerformanceCounter(&stop_t);
