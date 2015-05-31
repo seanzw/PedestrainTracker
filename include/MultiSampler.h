@@ -39,13 +39,24 @@ public:
 		typedef const_iterator self_type;
 		typedef const Rect value_type;
 		typedef const Rect& reference;
-		typedef const Rect* pointer;
+		typedef std::vector<Rect>::const_pointer pointer;
 		typedef int difference_type;
 		typedef std::input_iterator_tag iterator_category;
-		const_iterator(pointer p, int t, bool *m) : ptr(p), target(t), mask(m) {}
-		self_type operator++() { 
+		const_iterator(pointer p,
+			int t,
+			int l,
+			bool *m) : ptr(p), target(t), mask(m), length(l) {}
+		self_type operator++() {
+
 			self_type old = *this;
-			while (!mask[++i]) {
+
+			// First add one.
+			i++;
+			ptr++;
+
+			// Check if this is a valid one.
+			while (i < length && !mask[i]) {
+				i++;
 				ptr++;
 			}
 			return old;
@@ -60,22 +71,32 @@ public:
 		bool *mask;
 		int target;
 		int i;
+		int length;
 	};
 
-	const_iterator begin(int target) const { return const_iterator(&samples[0], target, mask); }
-	const_iterator end() const { return const_iterator(&samples[0] + samples.size, -1, mask); }
+	const_iterator begin(int target) const { 
+		const_iterator iter = const_iterator(&samples[0], target, samples.size(), mask);
+
+		// If the first target is unused, we have to move iter.
+		if (!mask[0]) {
+			iter++;
+		}
+
+		return iter;
+	}
+	const_iterator end() const { return const_iterator(&samples[0] + samples.size(), -1, samples.size(), mask); }
 
 protected:
 
 	int capacity;
 
 	/**
-	 * Samples pool.
+	 * Samples vector.
 	 * 1D array: (Capacity + 1) * MULTI_SAMPLER_SAMPLES
 	 * [0, capacity * MULTI_SAMPLER_SAMPLES - 1] : samples around targets.
 	 * [capacity * MULTI_SAMPLER_SAMPLES, (capacity + 1) * MULTI_SAMPLER_SAMPLES] : samples for background.
 	 */
-	Pool<Rect> samples;
+	std::vector<Rect> samples;
 	bool *mask;
 
 	static std::default_random_engine generator;

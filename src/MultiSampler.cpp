@@ -6,13 +6,13 @@ MultiSampler::MultiSampler(const Options &opts) {
 
 	capacity = opts.targetsFreeListCapacity;
 	
-	// Set the samples pool as (capacity + 1) rows.
-	samples = Pool<Rect>((opts.targetsFreeListCapacity + 1) * MULTI_SAMPLER_SAMPLES);
-	mask = new bool[samples.size];
+	// Set the samples vector as (capacity + 1) rows.
+	samples.resize((capacity + 1) * MULTI_SAMPLER_SAMPLES);
+	mask = new bool[(capacity + 1) * MULTI_SAMPLER_SAMPLES];
 }
 
 MultiSampler::~MultiSampler() {
-
+	delete[] mask;
 }
 
 void MultiSampler::Sample(const std::vector<int> &matchDets,
