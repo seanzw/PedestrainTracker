@@ -102,12 +102,12 @@ void ParticleFilterConstVelocity::CalculateMatchScore(const IntegralImage *intIm
 			// This target is almost not moving.
 			// Consider the distance instead.
 			velocityScore = GetGaussianProb(0.0f,
-				dets[i].width * 0.125f,
+				dets[i].width * 1.0f,
 				detectionPoint.Distance(targetPoint));
 		}
 
 		// Get all pieces together.
-		float matchScore = sizeScore * velocityScore * (classifierScore + distWeight * distanceScore);
+		float matchScore = 1000.0f * velocityScore * (classifierScore + distWeight * distanceScore + sizeScore);
 
 #ifdef PFCV_DEBUG
 		printf("===== Calculating matching score ======\n");

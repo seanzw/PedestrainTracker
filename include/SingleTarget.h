@@ -117,6 +117,10 @@ public:
 	}
 
 	inline void DrawParticles(cv::Mat &img, const cv::Scalar &color) const {
+		particleFilter->DrawParticles(img, color);
+	}
+
+	inline void DrawParticlesWithConfidence(cv::Mat &img, const cv::Scalar &color) const {
 		particleFilter->DrawParticlesWithConfidence(img, color);
 	}
 

@@ -127,8 +127,27 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		// Make the observation.
 		targets->Observe(rgiIntImage, detector->dets);
 
+#ifdef MT_DEBUG
+
+		// After observation, draw particles with confidence for debugging.
+		targets->DrawParticlesWithConfidence(tars);
+		cv::imshow("targets", tars);
+		cv::waitKey();
+
+#endif
+
 		// Resample.
 		targets->Resample();
+
+#ifdef MT_DEBUG
+
+		// After resample, draw particles and targets for debugging.
+		targets->DrawParticles(tars);
+		targets->DrawTargets(tars);
+		cv::imshow("targets", tars);
+		cv::waitKey();
+
+#endif
 
 		// Sample around the match pair.
 		sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);

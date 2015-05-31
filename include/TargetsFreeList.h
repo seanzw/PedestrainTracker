@@ -90,13 +90,29 @@ public:
 	}
 
 	inline void DrawParticles(cv::Mat &img, int index = -1) const {
+
+		// Here all the particles are black.
+		cv::Scalar black(0.0f, 0.0f, 0.0f);
+
 		if (index < capacity && index >= 0 && !listNodes[index].isFree) {
-			listNodes[index].target->DrawParticles(img, listNodes[index].color);
+			listNodes[index].target->DrawParticles(img, black);
 		}
 		else {
 			for (const auto &node : listNodes) {
 				if (!node.isFree)
-					node.target->DrawParticles(img, node.color);
+					node.target->DrawParticles(img, black);
+			}
+		}
+	}
+
+	inline void DrawParticlesWithConfidence(cv::Mat &img, int index = -1) const {
+		if (index < capacity && index >= 0 && !listNodes[index].isFree) {
+			listNodes[index].target->DrawParticlesWithConfidence(img, listNodes[index].color);
+		}
+		else {
+			for (const auto &node : listNodes) {
+				if (!node.isFree)
+					node.target->DrawParticlesWithConfidence(img, node.color);
 			}
 		}
 	}

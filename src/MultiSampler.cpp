@@ -18,6 +18,9 @@ MultiSampler::~MultiSampler() {
 void MultiSampler::Sample(const std::vector<int> &matchDets,
 	const Pool<Rect> &dets, const Size &imgSize) {
 
+	// Clear the mask.
+	memset((void *)mask, 0, sizeof(bool) * (capacity + 1) * MULTI_SAMPLER_SAMPLES);
+
 	// How many samples we have already drawn for background?
 	int numBKGSamples = 0;
 
@@ -26,10 +29,10 @@ void MultiSampler::Sample(const std::vector<int> &matchDets,
 		// This target has no matched detection.
 		// Simply pass it.
 		if (matchDets[i] == -1) {
-			// Set the mask to false.
-			for (int j = i * MULTI_SAMPLER_SAMPLES; j < (i + 1) * MULTI_SAMPLER_SAMPLES; j++) {
-				mask[j] = false;
-			}
+			//// Set the mask to false.
+			//for (int j = i * MULTI_SAMPLER_SAMPLES; j < (i + 1) * MULTI_SAMPLER_SAMPLES; j++) {
+			//	mask[j] = false;
+			//}
 			continue;
 		}
 
@@ -67,6 +70,10 @@ void MultiSampler::Sample(const std::vector<int> &matchDets,
 
 			int offset = capacity * MULTI_SAMPLER_SAMPLES + numBKGSamples;
 			mask[offset] = true;
+
+			// Set the gaussian random variables.
+			gaussianWidth = std::normal_distribution<float>(det.width * 0.5f, det.width * 0.125f);
+			gaussianHeight = std::normal_distribution<float>(det.height * 0.5f, det.height * 0.125f);
 
 			// Set the size.
 			samples[offset].height = det.height;
