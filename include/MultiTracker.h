@@ -4,17 +4,17 @@
  * The tracker divide a frame into three regions.
  *
  * --------------------------------------------------------
- *|						      1       					   |
- *|		 -------------------------------------------		   |
- *|		|					  2 					|	   |
- *|		|	 ----------------------------------- 	|	   |
- *|		|	|									|	|	   |
- *|		|	|			      3 				|	|	   |
- *|		|	|									|	|	   |
- *|		|	 -----------------------------------    |	   |
- *|		|											|	   |
- *|		 -------------------------------------------		   |
- *|														   |
+ *|                            1                           |
+ *|       -------------------------------------------      |
+ *|      |                     2                     |     |
+ *|      |     ---------------------------------     |     |
+ *|      |    |                                 |    |     |
+ *|      |    |                3                |    |     |
+ *|      |    |                                 |    |     |
+ *|      |     ---------------------------------     |     |
+ *|      |                                           |     |
+ *|       -------------------------------------------      |
+ *|                                                        |
  * --------------------------------------------------------
  *
  * Region 1: Pedestrain inside this region should be count.
@@ -39,16 +39,16 @@
 class MultiTracker : public Tracker {
 public:
 
-	/**
-	 * @param detector	image detector
-	 * @param size		size of a frame
-	 * @patam opts		all the options
-	 */
-	MultiTracker(ImageDetector *detector, const Size &imgSize, const Options &opts);
+    /**
+     * @param detector    image detector
+     * @param size        size of a frame
+     * @patam opts        all the options
+     */
+    MultiTracker(ImageDetector *detector, const Size &imgSize, const Options &opts);
 
-	~MultiTracker();
+    ~MultiTracker();
 
-	void Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg = defaultBackground);
+    void Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg = defaultBackground);
 
 private:
 
@@ -58,38 +58,38 @@ private:
      */
     void Control(int curFrame);
 
-	/**
-	 * The inner region where we will count pedestrains.
-	 */
-	Rect inner;
+    /**
+     * The inner region where we will count pedestrains.
+     */
+    Rect inner;
 
-	/**
-	 * The outer region.
-	 * The pedestrain outside this region will be Reset.
-	 */
-	Rect outer;
+    /**
+     * The outer region.
+     * The pedestrain outside this region will be Reset.
+     */
+    Rect outer;
 
-	// Integral Images.
-	RGIIntegralImage *rgiIntImage;
-	HoGIntegralImage *hogIntImage;
+    // Integral Images.
+    RGIIntegralImage *rgiIntImage;
+    HoGIntegralImage *hogIntImage;
 
-	// Detector.
-	ImageDetector *detector;
+    // Detector.
+    ImageDetector *detector;
 
-	// Target pool.
-	TargetsFreeList *targets;
+    // Target pool.
+    TargetsFreeList *targets;
 
-	// Size of the frame.
-	const Size imgSize;
+    // Size of the frame.
+    const Size imgSize;
 
-	// Match matrix.
-	MatchMatrix *matches;
+    // Match matrix.
+    MatchMatrix *matches;
 
-	// MultiSampler.
-	MultiSampler *sampler;
+    // MultiSampler.
+    MultiSampler *sampler;
 
-	// Threshold for matching.
-	const float matchThre;
+    // Threshold for matching.
+    const float matchThre;
 };
 
 #endif
