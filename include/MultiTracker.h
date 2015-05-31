@@ -1,6 +1,26 @@
 /**
  * Our final weapon!
  *
+ * The tracker divide a frame into three regions.
+ *
+ * --------------------------------------------------------
+ *|						      1       					   |
+ *|		 -------------------------------------------		   |
+ *|		|					  2 					|	   |
+ *|		|	 ----------------------------------- 	|	   |
+ *|		|	|									|	|	   |
+ *|		|	|			      3 				|	|	   |
+ *|		|	|									|	|	   |
+ *|		|	 -----------------------------------    |	   |
+ *|		|											|	   |
+ *|		 -------------------------------------------		   |
+ *|														   |
+ * --------------------------------------------------------
+ *
+ * Region 1: Pedestrain inside this region should be count.
+ * Region 2: Unmatched detection inside this region will be initialize as a new target.
+ * Region 3: Pedestrain inside this region will be reset.
+ *
  * @author Zhengrong Wang.
  */
 
@@ -31,6 +51,23 @@ public:
 	void Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg = defaultBackground);
 
 private:
+
+    /**
+     * All the control logic goes here.
+     * @param curFrame  the current frame number.
+     */
+    void Control(int curFrame);
+
+	/**
+	 * The inner region where we will count pedestrains.
+	 */
+	Rect inner;
+
+	/**
+	 * The outer region.
+	 * The pedestrain outside this region will be Reset.
+	 */
+	Rect outer;
 
 	// Integral Images.
 	RGIIntegralImage *rgiIntImage;

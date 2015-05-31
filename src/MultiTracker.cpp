@@ -111,28 +111,8 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 #endif
 
-		// Inititalize a target for every unmatched detection.
-		for (int i = 0; i < detector->dets.size; i++) {
-			if (matches->isDetMatched[i] == 0) {
-				// This detection is unmatched.
-				if (count == 0) {
-					// This is the first frame, initialize everything.
-					int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
-					matches->isDetMatched[i] = id;
-					targets->matchDets[id] = i;
-				}
-				else {
-					// We have to check if there is any target nearby.
-					if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
-						// There are no nearby target.
-						// We believe this is a new target.
-						int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
-						matches->isDetMatched[i] = id;
-						targets->matchDets[id] = i;
-					}
-				}
-			}
-		}
+        // Do the control logic.
+        Control(count);
 
 		// Make the observation.
 		targets->Observe(rgiIntImage, detector->dets);
@@ -172,6 +152,8 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 #endif
 
 
+
+
 		//// Draw the particles for debugging.
 		//// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
 		//cv::imshow("particles", frame);
@@ -197,4 +179,29 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 	// Release the data buffer.
 	frame.release();
 	gray.release();
+}
+
+void MultiTracker::Control(int curFrame) {
+    // Inititalize a target for every unmatched detection.
+    for (int i = 0; i < detector->dets.size; i++) {
+        if (matches->isDetMatched[i] == 0) {
+            // This detection is unmatched.
+            if (curFrame == 0) {
+                // This is the first frame, initialize everything.
+                int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+                matches->isDetMatched[i] = id;
+                targets->matchDets[id] = i;
+            }
+            else {
+                // We have to check if there is any target nearby.
+                if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
+                    // There are no nearby target.
+                    // We believe this is a new target.
+                    int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+                    matches->isDetMatched[i] = id;
+                    targets->matchDets[id] = i;
+                }
+            }
+        }
+    }
 }
