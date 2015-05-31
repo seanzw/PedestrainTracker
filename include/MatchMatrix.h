@@ -44,6 +44,11 @@ public:
 	void SetTargets(std::vector<int> &targets, float threshold);
 
 	/**
+	 * Print the match score matrix for debugging.
+	 */
+	void PrintMatchMatrix();
+
+	/**
 	 * How many targets?
 	 */
 	const int capacity;

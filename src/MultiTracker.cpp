@@ -71,6 +71,12 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 		// Calcualate the match score.
 		targets->CalculateMatchScore(rgiIntImage, detector->dets, matches->matchMatrix);
 
+#ifdef MT_DEBUG
+
+		// Print the match matrix for debugging.
+		matches->PrintMatchMatrix();
+#endif
+
 		// Find match pair.
 		matches->SetTargets(targets->matchDets, matchThre);
 

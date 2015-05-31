@@ -9,6 +9,8 @@
 #ifndef SINGLE_TARGET_HEADER
 #define SINGLE_TARGET_HEADER
 
+#define ST_DEBUG
+
 #include "Options.h"
 #include "StrongClassifierDirectSelect.h"
 #include "ParticleFilterConstVelocity.h"

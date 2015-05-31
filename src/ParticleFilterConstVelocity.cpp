@@ -109,6 +109,15 @@ void ParticleFilterConstVelocity::CalculateMatchScore(const IntegralImage *intIm
 		// Get all pieces together.
 		float matchScore = sizeScore * velocityScore * (classifierScore + distWeight * distanceScore);
 
+#ifdef PFCV_DEBUG
+		printf("===== Calculating matching score ======\n");
+		printf("Classifier Score  |  Distance Score  |  Size Score  |  Velocity Score\n");
+		printf("  %14f  |  %14f  |  %10f  |  %10f\n", classifierScore, distanceScore, sizeScore, velocityScore);
+		printf("Distance Weight = %f\n", distWeight);
+		printf("MatchScore = %f\n", matchScore);
+		printf("===== Finish Print Matching Score =====\n\n");
+#endif
+
 		// Set the match score.
 		matchArray[i].score = matchScore;
 	}

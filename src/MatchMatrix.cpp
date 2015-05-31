@@ -62,3 +62,17 @@ void MatchMatrix::SetTargets(std::vector<int> &targets, float threshold) {
 		isDetMatched[matchScore.detection] = 1;
 	}
 }
+
+void MatchMatrix::PrintMatchMatrix() {
+	// The current row.
+	int curRow = 0;
+	printf("======= Start Print Match Score Matrix ======\n");
+	for (const auto &matachScore : matchMatrix) {
+		if (matachScore.target > curRow) {
+			printf("\n");
+			curRow++;
+		}
+		printf("  %f  ", matachScore.score);
+	}
+	printf("\n====== Finish Print Match Score Matrix ======\n");
+}

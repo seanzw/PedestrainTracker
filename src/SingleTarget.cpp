@@ -52,11 +52,54 @@ void SingleTarget::Propagate(const Size &imgSize) {
 
 void SingleTarget::Train(const IntegralImage *intImage, const MultiSampler *multiSampler, int id) {
 
+#ifdef ST_DEBUG
+
+	// Visualize the training process for debugging.
+	// First let's try to show the integral image.
+	cv::Mat img(intImage->height, intImage->width, CV_8UC3);
+
+	// Draw the target for debugging.
+	particleFilter->DrawTarget(img, cv::Scalar(255.0f, 255.0f, 255.0f));
+
+#endif
+
 	// Update the classifier.
 	for (MultiSampler::const_iterator iter = multiSampler->begin(id);
 		iter != multiSampler->end();
 		++iter) {
 		classifier->Update(intImage, *iter, iter.GetTarget(), 1.0f);
+
+#ifdef ST_DEBUG
+		
+		// Get the score after training.
+		float score = classifier->Evaluate(intImage, *iter);
+
+		// Draw the training sample for debugging.
+		cv::Scalar color;
+		if (iter.GetTarget() == 1) {
+			// This is a positive trainging sample.
+			// We draw it with green.
+			color = cv::Scalar(0.0f, 255.5f, 0.0f);
+
+			// Print the score after training.
+			printf("Positive sample: %f\n", score);
+		}
+		else {
+			// This is a negative training sample.
+			// We draw it with red.
+			color = cv::Scalar(0.0f, 0.0f, 255.0f);
+
+			// Print the score after training.
+			printf("Negative sample: %f\n", score);
+		}
+
+		cv::rectangle(img, (cv::Rect)*iter, color, 2);
+		cv::imshow("training", img);
+		cv::waitKey();
+
+#endif
+
+
 	}
 }
 

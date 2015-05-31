@@ -7,6 +7,8 @@
 #ifndef PARTICLEFILTER_CONSTVELOCITY_HEADER
 #define PARTICLEFILTER_CONSTVELOCITY_HEADER
 
+#define PFCV_DEBUG
+
 #include "ParticleFilter.h"
 #include "Pool.h"
 
