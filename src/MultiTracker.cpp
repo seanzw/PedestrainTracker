@@ -7,6 +7,11 @@ MultiTracker::MultiTracker(ImageDetector *d, const Size &sz, const Options &opts
 	hogIntImage = new HoGIntegralImage(imgSize.width, imgSize.height);
 	rgiIntImage = new RGIIntegralImage(imgSize.width, imgSize.height);
 
+    // Initialize the region.
+    int margin = 50;
+    outer = Rect(margin, margin, imgSize.width - 2 * margin, imgSize.height - 2 * margin);
+    inner = Rect(2 * margin, 2 * margin, imgSize.width - 4 * margin, imgSize.height - 4 * margin);
+
 	// Initialize the targets free list.
 	targets = new TargetsFreeList(opts);
 
@@ -61,6 +66,11 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 		// Detects.
 		detector->Detect(gray, hogIntImage, subRegion, bkg);
+
+        // Draw the region.
+        // White for inner, black for outer.
+        cv::rectangle(frame, (cv::Rect)inner, cv::Scalar(255.0f, 255.0f, 255.0f), 2);
+        cv::rectangle(frame, (cv::Rect)outer, cv::Scalar(0.0f, 0.0f, 0.0f), 2);
 
 		// Propagate the particles.
 		targets->Propagate(imgSize);
