@@ -182,25 +182,46 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 }
 
 void MultiTracker::Control(int curFrame) {
+
     // Inititalize a target for every unmatched detection.
     for (int i = 0; i < detector->dets.size; i++) {
         if (matches->isDetMatched[i] == 0) {
+
             // This detection is unmatched.
-            if (curFrame == 0) {
-                // This is the first frame, initialize everything.
-                int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
-                matches->isDetMatched[i] = id;
-                targets->matchDets[id] = i;
-            }
-            else {
-                // We have to check if there is any target nearby.
-                if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
-                    // There are no nearby target.
-                    // We believe this is a new target.
-                    int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
-                    matches->isDetMatched[i] = id;
-                    targets->matchDets[id] = i;
+            // Check if there is nearby target.
+            if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
+
+                // There is no nearby target.
+                if (curFrame < 30) {
+
+                    // We are still in the initialization stage.
+                    // Initialize if the detection is inside outer.
+                    if (outer.IsIn(detector->dets[i])) {
+                        int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+                        matches->isDetMatched[i] = id;
+                        targets->matchDets[id] = i;
+                    }
                 }
+                else {
+
+                    // Normal stage.
+                    // Initialize if the detection is inside outer and not inside inner.
+                    if (outer.IsIn(detector->dets[i]) && !inner.IsIn(detector->dets[i])) {
+                        int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+                        matches->isDetMatched[i] = id;
+                        targets->matchDets[id] = i;
+                    }
+                }
+            }
+        }
+    }
+
+    // Release all the target if it's outside the outer.
+    Rect t;
+    for (int i = 0; i < targets->GetCapacity(); i++) {
+        if (targets->GetTarget(i, t)) {
+            if (!outer.IsIn(t)) {
+                targets->ResetOneTarget(i);
             }
         }
     }

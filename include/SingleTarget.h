@@ -124,6 +124,10 @@ public:
 		particleFilter->DrawParticlesWithConfidence(img, color);
 	}
 
+    inline const Rect &GetTarget() const {
+        return particleFilter->GetTarget();
+    }
+
 private:
 
 	StrongClassifierDirectSelect *classifier;

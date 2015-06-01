@@ -48,6 +48,19 @@ public:
 		}
 	}
 
+    inline bool GetTarget(int index, Rect &t) const {
+        if (listNodes[index].isFree) {
+            return false;
+        }
+        else {
+            t = listNodes[index].target->GetTarget();
+        }
+    }
+
+    inline int GetCapacity() const {
+        return capacity;
+    }
+
 	/**
 	 * Calculate the target-detection matching score matrix.
 	 *

@@ -46,6 +46,20 @@ public:
 
 	bool IsOverlap(const Rect &other) const;
 
+    /**
+     * Is the other rectangle all inside this one.
+     */
+    inline bool IsIn(const Rect &other) const {
+        if (other.upper > upper && other.left > left &&
+            other.upper + other.height < upper + height &&
+            other.left + other.width < left + width) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 	// Explicit conversion.
 	explicit operator cv::Rect() const;
 
