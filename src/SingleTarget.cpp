@@ -94,8 +94,8 @@ void SingleTarget::Train(const IntegralImage *intImage, const MultiSampler *mult
 		}
 
 		cv::rectangle(img, (cv::Rect)*iter, color, 2);
-		cv::imshow("training", img);
-		cv::waitKey();
+		//cv::imshow("training", img);
+		//cv::waitKey();
 
 #endif
 

@@ -83,6 +83,8 @@ void MultiSampler::Sample(const std::vector<int> &matchDets,
 			while (true) {
 				int offsetHeight = (int)gaussianHeight(generator);
 				int offsetWidth = (int)gaussianWidth(generator);
+                offsetHeight = rand() % 2 ? offsetHeight : -offsetHeight;
+                offsetWidth = rand() % 2 ? offsetWidth : -offsetWidth;
 				samples[offset].left = det.left + offsetWidth;
 				samples[offset].upper = det.upper + offsetHeight;
 				if (imgSize.IsIn(samples[offset])) {

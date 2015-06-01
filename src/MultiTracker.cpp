@@ -31,6 +31,10 @@ MultiTracker::~MultiTracker() {
 
 void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg) {
 
+    // Reset the count number;
+    curNumPedestrains = 0;
+    totalNumPedestrains = 0;
+
 	// Get the total number of images.
 	int totalFrames = (int)in.get(cv::CAP_PROP_FRAME_COUNT);
 	int count = -1;
@@ -126,6 +130,9 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 #endif
 
+        // Reset those targets not inside the outer.
+        Reset();
+
 		// Resample.
 		targets->Resample();
 
@@ -151,27 +158,27 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 #endif
 
+        // Write the count number back.
+        cv::putText(frame,
+            std::to_string(curNumPedestrains),
+            cv::Point(100, 100),
+            cv::FONT_HERSHEY_SIMPLEX,
+            1.0f,
+            cv::Scalar(0.0f),
+            2);
+        cv::putText(frame,
+            std::to_string(totalNumPedestrains),
+            cv::Point(150, 100),
+            cv::FONT_HERSHEY_SIMPLEX,
+            1.0f,
+            cv::Scalar(0.0f),
+            2);
+        targets->DrawTargets(frame);
 
-
-
-		//// Draw the particles for debugging.
-		//// particleFilter->DrawParticlesWithConfidence(frame, cv::Scalar(255.0f));
-		//cv::imshow("particles", frame);
-		//cv::imwrite("ParticlesConfidence.jpg", frame);
-		//cv::waitKey();
-
-		////particleFilter->ResampleWithBest();
-
-		//// Draw the particles for debugging.
-		////particleFilter->DrawParticles(frame, cv::Scalar(0.0f, 0.0f, 255.0f));
-		//cv::imshow("particles", frame);
-		//cv::waitKey();
-
-		//// Draw the target back into frame.
-		////particleFilter->DrawTarget(frame, cv::Scalar(0.0f, 255.0f, 0.0f));
-		//cv::imshow("target", frame);
-		//cv::waitKey();
-
+#ifdef MT_DEBUG
+        cv::imshow("result", frame);
+        cv::waitKey();
+#endif
 		// Write back the result into video.
 		out.write(frame);
 	}
@@ -200,6 +207,11 @@ void MultiTracker::Control(int curFrame) {
                         int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;
+
+                        // Increase the count.
+                        curNumPedestrains++;
+                        totalNumPedestrains++;
+
                     }
                 }
                 else {
@@ -215,13 +227,17 @@ void MultiTracker::Control(int curFrame) {
             }
         }
     }
+}
 
-    // Release all the target if it's outside the outer.
+void MultiTracker::Reset() {
+
+    // Release all the target if it's outside the inner.
     Rect t;
     for (int i = 0; i < targets->GetCapacity(); i++) {
         if (targets->GetTarget(i, t)) {
-            if (!outer.IsIn(t)) {
+            if (!inner.IsOverlap(t)) {
                 targets->ResetOneTarget(i);
+                curNumPedestrains--;
             }
         }
     }

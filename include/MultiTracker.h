@@ -59,6 +59,17 @@ private:
     void Control(int curFrame);
 
     /**
+     * After resample, reset some targets if they are outside.
+     */
+    void Reset();
+
+    /**
+     * Pedestrain Count.
+     */
+    int curNumPedestrains;
+    int totalNumPedestrains;
+
+    /**
      * The inner region where we will count pedestrains.
      */
     Rect inner;

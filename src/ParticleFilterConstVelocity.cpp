@@ -89,6 +89,8 @@ void ParticleFilterConstVelocity::CalculateMatchScore(const IntegralImage *intIm
 			dets[i].height * 0.125f,
 			dets[i].height - target.height);
 
+        sizeScore *= 1000.0f;
+
 		// Gate function 2: velocity term;
 		float velocityScore = 0.0f;
 		if (velocity.SquaredLength() > velocityThre) {
@@ -107,7 +109,7 @@ void ParticleFilterConstVelocity::CalculateMatchScore(const IntegralImage *intIm
 		}
 
 		// Get all pieces together.
-		float matchScore = 1000.0f * velocityScore * (classifierScore + distWeight * distanceScore + sizeScore);
+		float matchScore = 1000.0f * velocityScore * sizeScore * (classifierScore + distWeight * distanceScore);
 
 #ifdef PFCV_DEBUG
 		printf("===== Calculating matching score ======\n");

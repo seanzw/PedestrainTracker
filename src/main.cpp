@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
 	opt.maxAreaRatio = 0.005f;
 	opt.minAreaRatio = 0.001f;
 
-	opt.detectionWeight = 0.5f;
+	opt.detectionWeight = 1.0f;
 	opt.distWeight = 0.5f;
 	opt.initVelocity = Point2D(0, 0);
 	opt.matchThre = 0.5f;
