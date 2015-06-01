@@ -52,6 +52,9 @@ int TargetsFreeList::InitializeTarget(const Rect &target, const Point2D &initVel
 	newTarget->nextFree = NULL;
 	newTarget->isFree = false;
 
+    // Randomly choose a new color.
+    newTarget->color = cv::Scalar(rand() % 256, rand() % 256, rand() % 256);
+
 	// Get the index of the new target.
 	return newTarget - &listNodes[0];
 

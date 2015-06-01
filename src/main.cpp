@@ -67,8 +67,8 @@ int main(int argc, char *argv[]) {
 	opt.detectionWeight = 1.0f;
 	opt.distWeight = 0.5f;
 	opt.initVelocity = Point2D(0, 0);
-	opt.matchThre = 0.5f;
-	opt.nParticles = 500;
+	opt.matchThre = 5.0f;
+	opt.nParticles = 200;
 	opt.numBackups = 5;
 	opt.numSelectors = 50;
 	opt.numWeakClassifiers = 250;
