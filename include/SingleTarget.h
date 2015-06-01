@@ -128,6 +128,10 @@ public:
         return particleFilter->GetTarget();
     }
 
+    inline void SetTarget(const Rect &t) {
+        particleFilter->SetTarget(t);
+    }
+
 private:
 
 	StrongClassifierDirectSelect *classifier;

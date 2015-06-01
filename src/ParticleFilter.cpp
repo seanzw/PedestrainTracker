@@ -172,10 +172,6 @@ void ParticleFilter::DrawTarget(cv::Mat &img, const cv::Scalar &color) const {
 		color, 2);
 }
 
-const Rect &ParticleFilter::GetTarget() const {
-	return target;
-}
-
 void ParticleFilter::InitParticles() {
 	int *curPartice = particles;
 	int upper = target.upper;

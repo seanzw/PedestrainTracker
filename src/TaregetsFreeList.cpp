@@ -80,9 +80,14 @@ void TargetsFreeList::Observe(const IntegralImage *intImage, const Pool<Rect> &d
 		if (!listNodes[i].isFree) {
 			// Look up for a mach detection.
 			if (matchDets[i] != -1) {
+
 				// This target has a matched detection.
+                // Set the size the same as the detection.
+                // TODO
+                //listNodes[i].target->SetTarget(detections[matchDets[i]]);
+
 				// Update the detection sequence.
-				listNodes[i].target->UpdateSeq(true);
+				 listNodes[i].target->UpdateSeq(true);
 				
 				// Observe.
 				listNodes[i].target->Observe(intImage, detections[matchDets[i]], detectionWeight);
@@ -109,12 +114,14 @@ void TargetsFreeList::Train(const IntegralImage *intImage, const MultiSampler *m
 }
 
 bool TargetsFreeList::CheckNearbyTarget(const Rect &det, int distThre) const {
+    int index = 0;
 	for (const auto &node : listNodes) {
-		if (!node.isFree) {
+		if (!node.isFree && matchDets[index] == -1) {
 			if (node.target->CheckNearbyTarget(det, distThre)) {
 				return true;
 			}
 		}
+        index++;
 	}
 	return false;
 }

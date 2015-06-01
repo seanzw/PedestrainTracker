@@ -73,7 +73,13 @@ public:
 	// Draw the target;
 	void DrawTarget(cv::Mat &img, const cv::Scalar &color) const;
 
-	const Rect &GetTarget() const;
+    inline const Rect &GetTarget() const {
+        return target;
+    }
+
+    inline void SetTarget(const Rect &t) {
+        target = t;
+    }
 
 protected:
 

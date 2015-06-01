@@ -195,7 +195,7 @@ void MultiTracker::Control(int curFrame) {
         if (matches->isDetMatched[i] == 0) {
 
             // This detection is unmatched.
-            // Check if there is nearby target.
+            // Check if there is nearby unmatched target.
             if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
 
                 // There is no nearby target.
