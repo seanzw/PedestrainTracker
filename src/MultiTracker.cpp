@@ -204,7 +204,12 @@ void MultiTracker::Control(int curFrame) {
                     // We are still in the initialization stage.
                     // Initialize if the detection is inside outer.
                     if (outer.IsIn(detector->dets[i])) {
-                        int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+
+                        // Initialize the velocity towards the center of the frame.
+                        Point2D initV((imgSize.height / 2 - detector->dets[i].upper) / 20,
+                            (imgSize.width / 2 - detector->dets[i].left) / 20);
+
+                        int id = targets->InitializeTarget(detector->dets[i], initV);
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;
 
@@ -219,7 +224,12 @@ void MultiTracker::Control(int curFrame) {
                     // Normal stage.
                     // Initialize if the detection is inside outer and not inside inner.
                     if (outer.IsIn(detector->dets[i]) && !inner.IsIn(detector->dets[i])) {
-                        int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
+
+                        // Initialize the velocity towards the center of the frame.
+                        Point2D initV((imgSize.height / 2 - detector->dets[i].upper) / 20,
+                            (imgSize.width / 2 - detector->dets[i].left) / 20);
+
+                        int id = targets->InitializeTarget(detector->dets[i], initV);
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;
 
@@ -240,7 +250,7 @@ void MultiTracker::Reset() {
     Rect t;
     for (int i = 0; i < targets->GetCapacity(); i++) {
         if (targets->GetTarget(i, t)) {
-            if (!inner.IsOverlap(t)) {
+            if (!outer.IsIn(t)) {
                 targets->ResetOneTarget(i);
                 curNumPedestrains--;
             }
