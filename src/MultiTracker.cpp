@@ -222,6 +222,11 @@ void MultiTracker::Control(int curFrame) {
                         int id = targets->InitializeTarget(detector->dets[i], Point2D(0, 0));
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;
+
+                        // Increase the count.
+                        curNumPedestrains++;
+                        totalNumPedestrains++;
+
                     }
                 }
             }
