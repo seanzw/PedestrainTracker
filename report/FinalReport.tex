@@ -64,11 +64,7 @@ With multiple threads or even GPU programming, we may archieve the real time int
 
 \end{itemize}
 
-\item \textbf{Current Progress}
-
-\begin{itemize}
-
-\item Code Reconstruction
+\item \textbf{Code Reconstruction}
 
 First we reconstruct the code. We left kmeas and meanshift algorithm unchanged cause they are not important in our project. And we divide the whole project into these 5 parts.
 
@@ -161,7 +157,7 @@ Here are some results from our reconstruction: Figure~\ref{fig:detector}. We can
     \label{fig:detector}
 \end{figure}
 
-\item Online Boosting
+\item \textbf{Online Boosting}
 
 After the reconstruction, we start to work on the online boosting algorithm to track a single target. The main work is focus on Classifier part. We implement the following new classes.
 
@@ -253,7 +249,7 @@ And the importance of this sample is updated with:
 \end{subequations}
 \end{itemize}
 
-\item Particle Filter
+\item \textbf{Particle Filter}
 
 After we have the online boosting strong classifier. We try to combine it with particle filter.
 
@@ -278,17 +274,16 @@ This is used in training the classifier.
     \label{fig:singlesampler}
 \end{figure}
 
-\item \lstinline{ParticleFilter}
+\item \lstinline{ParticleFilterConstVelocity}
 
-This is a basic particle filter. The state space is just the position $[upper, left]$. The motion model is also very simple:
+This is a basic particle filter with constant velocity. The state space is just the position $[upper, left]$ and the velocity. The motion model is also very simple:
 
-\begin{equation}
-p_{t}=p_{t-1}+N(0, \sigma)
-\end{equation}
+\begin{align}
+p_{t}&=p_{t-1}+v_{t-1}+N(0, \sigma_p)\\
+v_{t}&=v_{t-1}+N(0, \sigma_v)
+\end{align}
 
-where $N(0, \sigma)$ is a Gaussian random variable with variance proportional to the size of the target.
-
-As for observation, it just use the scores given by strong classifier as the weight of the particles and resample it. We may improve the motion model later.
+where $N(0, \sigma_p)$ is a Gaussian random variable with variance proportional to the size of the target, and $N(0, \sigma_v)$ is a Gaussian random vairiable with variance proportional to how many frames in the past has been successfully detected.
 
 \item \lstinline{ParticleFilterTracker}
 
@@ -296,7 +291,25 @@ This class just combines everything together, use particle filter and strong cla
 
 \end{itemize}
 
-\item Result
+\item \textbf{Match Matrix}
+
+Since we are trying to track mulitple targets, we will have multiple detections and targets in one frame. In order to solve this data-association problem, we define a match score\cite{eth_biwi_00633}:
+
+\begin{equation}
+s(tr, d)=g(tr, d)\cdot(c_{tr}(d)+\alpha\cdot\sum_{p\in tr}^{N}p_{N}(d-p))
+\end{equation}
+
+The exact meaning of this equation can be found in \cite{eth_biwi_00633}. We won't talk much about it here.
+
+A match score matrix will be calculated for each pair of (target, detection). Then a greedy algorithm will be applied to find the match.
+
+\begin{enumerate}
+\item find the maximum match score and set this as a matched pair
+\item eliminate this target and this detection
+\item go back to (a) if there are still unmatched detections and targets
+\item finally only pairs with match score higher than a threshold will be taken
+\end{enumerate}
+\item \textbf{Result}
 
 With the following configuration we tested our single tracker on a small video clip. The result can be found \href{https://zerowong.github.io/PedestrainCounting/results/singleTrackerTestGray01.avi}{here}.
 
@@ -370,7 +383,6 @@ Well we need more code to solve this data association problem.
     \label{fig:singleTrackerRGIExchange}
 \end{figure}
 
-\end{itemize}
 
 \item \textbf{Further Plan}
 
