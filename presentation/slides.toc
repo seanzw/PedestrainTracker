@@ -1,0 +1,13 @@
+\beamer@endinputifotherversion {3.14pt}
+\beamer@sectionintoc {2}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {3}{Detection}{3}{0}{2}
+\beamer@subsectionintoc {3}{1}{HOG + Adaboost}{3}{0}{2}
+\beamer@subsectionintoc {3}{2}{Background Subtraction}{4}{0}{2}
+\beamer@subsectionintoc {3}{3}{Results}{5}{0}{2}
+\beamer@sectionintoc {4}{Tracking}{6}{0}{3}
+\beamer@subsectionintoc {4}{1}{Particle Filter}{6}{0}{3}
+\beamer@subsectionintoc {4}{2}{Online Boosting Classifier}{8}{0}{3}
+\beamer@subsectionintoc {4}{3}{Single Target Tracking}{12}{0}{3}
+\beamer@subsectionintoc {4}{4}{Multiple Targets Tracking}{14}{0}{3}
+\beamer@subsectionintoc {4}{5}{Energy Minimization}{17}{0}{3}
+\beamer@sectionintoc {5}{Summary}{19}{0}{4}

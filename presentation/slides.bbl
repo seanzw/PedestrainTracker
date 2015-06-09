@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Grabner and Bischof(2006)]{Grabner:2006:OBV:1153170.1153451}
+Helmut Grabner and Horst Bischof.
+\newblock On-line boosting and vision.
+\newblock In \emph{Proceedings of the 2006 IEEE Computer Society Conference on
+  Computer Vision and Pattern Recognition - Volume 1}, CVPR '06, pages
+  260--267, Washington, DC, USA, 2006. IEEE Computer Society.
+\newblock ISBN 0-7695-2597-0.
+\newblock \doi{10.1109/CVPR.2006.215}.
+\newblock URL \url{http://dx.doi.org/10.1109/CVPR.2006.215}.
+
+\end{thebibliography}

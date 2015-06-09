@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.3)  3 JUN 2015 12:04
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.3)  3 JUN 2015 13:08
 entering extended mode
 **C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/FinalReport.tex
 (C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/FinalReport.tex
@@ -405,7 +405,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [1
 
 {C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}]
-Overfull \hbox (55.46556pt too wide) in paragraph at lines 132--133
+Overfull \hbox (55.46556pt too wide) in paragraph at lines 136--137
 [][][][] \OT1/cmr/m/n/10 in-her-it-s from [][][]. It cut-s the back-ground and 
 us-es the [][][]
  []
@@ -414,17 +414,17 @@ us-es the [][][]
 File: images/ImageDetector.jpg Graphic file (type jpg)
 
 <use images/ImageDetector.jpg>
-Package pdftex.def Info: images/ImageDetector.jpg used on input line 148.
+Package pdftex.def Info: images/ImageDetector.jpg used on input line 152.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
 <images/BKGCutDetector.jpg, id=28, 770.88pt x 578.16pt>
 File: images/BKGCutDetector.jpg Graphic file (type jpg)
 
 <use images/BKGCutDetector.jpg>
-Package pdftex.def Info: images/BKGCutDetector.jpg used on input line 154.
+Package pdftex.def Info: images/BKGCutDetector.jpg used on input line 158.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 148--155
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 152--159
  [][][] 
  []
 
@@ -433,132 +433,152 @@ n.0.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.211 \end{align}
+l.217 \end{align}
                  pdfTeX warning (ext4): destination with the same identifier (n
 ame{equation.0.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.211 \end{align}
+l.217 \end{align}
                   <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/ima
 ges/ImageDetector.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCounting/repor
 t/images/BKGCutDetector.jpg>]pdfTeX warning (ext4): destination with the same i
 dentifier (name{equation.0.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.216 \begin{equation}
+l.222 \begin{equation}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.248 \end{align}
+l.254 \end{align}
                  pdfTeX warning (ext4): destination with the same identifier (n
 ame{equation.0.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.248 \end{align}
+l.254 \end{align}
                   <images/SingleSampler.jpg, id=65, 770.88pt x 578.16pt>
 File: images/SingleSampler.jpg Graphic file (type jpg)
 
 <use images/SingleSampler.jpg>
-Package pdftex.def Info: images/SingleSampler.jpg used on input line 271.
+Package pdftex.def Info: images/SingleSampler.jpg used on input line 277.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
  [4pdfTeX warning (ext4): destination with the same identifier (name{equation.0
 .3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.300 \end{equation}
+l.306 \end{equation}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{equation.0.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.300 \end{equation}
+l.306 \end{equation}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{equation.0.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.300 \end{equation}
+l.306 \end{equation}
                     ]
-<images/ParticlesConfidence.jpg, id=83, 770.88pt x 578.16pt>
+<images/ParticlesConfidence.jpg, id=89, 770.88pt x 578.16pt>
 File: images/ParticlesConfidence.jpg Graphic file (type jpg)
 
 <use images/ParticlesConfidence.jpg>
-Package pdftex.def Info: images/ParticlesConfidence.jpg used on input line 332.
+Package pdftex.def Info: images/ParticlesConfidence.jpg used on input line 357.
 
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
-
-<images/SingleTrackerGrayExchange01.jpg, id=89, 578.16pt x 433.62pt>
+ [5 <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/SingleSamp
+ler.jpg>]
+<images/SingleTrackerGrayExchange01.jpg, id=107, 578.16pt x 433.62pt>
 File: images/SingleTrackerGrayExchange01.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerGrayExchange01.jpg>
 Package pdftex.def Info: images/SingleTrackerGrayExchange01.jpg used on input l
-ine 355.
+ine 376.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-<images/SingleTrackerGrayExchange02.jpg, id=90, 578.16pt x 433.62pt>
+<images/SingleTrackerGrayExchange02.jpg, id=108, 578.16pt x 433.62pt>
 File: images/SingleTrackerGrayExchange02.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerGrayExchange02.jpg>
 Package pdftex.def Info: images/SingleTrackerGrayExchange02.jpg used on input l
-ine 361.
+ine 382.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 355--362
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 376--383
  [][][] 
  []
 
-[5 <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/SingleSampl
-er.jpg>] <images/SingleTrackerRGIExchange01.jpg, id=107, 578.16pt x 433.62pt>
+<images/SingleTrackerRGIExchange01.jpg, id=109, 578.16pt x 433.62pt>
 File: images/SingleTrackerRGIExchange01.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerRGIExchange01.jpg>
 Package pdftex.def Info: images/SingleTrackerRGIExchange01.jpg used on input li
-ne 374.
+ne 395.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-<images/SingleTrackerRGIExchange02.jpg, id=108, 578.16pt x 433.62pt>
+<images/SingleTrackerRGIExchange02.jpg, id=110, 578.16pt x 433.62pt>
 File: images/SingleTrackerRGIExchange02.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerRGIExchange02.jpg>
 Package pdftex.def Info: images/SingleTrackerRGIExchange02.jpg used on input li
-ne 380.
+ne 401.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 374--381
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 395--402
  [][][] 
  []
 
 [6 <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/ParticlesCo
 nfidence.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/
 SingleTrackerGrayExchange01.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCoun
-ting/report/images/SingleTrackerGrayExchange02.jpg>] [7 <C:/Users/Zero/Document
-s/GitHub/PedestrainCounting/report/images/SingleTrackerRGIExchange01.jpg> <C:/U
-sers/Zero/Documents/GitHub/PedestrainCounting/report/images/SingleTrackerRGIExc
-hange02.jpg>]
-(C:\Users\Zero\Documents\GitHub\PedestrainCounting\report\FinalReport.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 487.
+ting/report/images/SingleTrackerGrayExchange02.jpg>]
+<images/MultiTrackerInit01.png, id=125, 578.16pt x 433.62pt>
+File: images/MultiTrackerInit01.png Graphic file (type png)
 
-[8
+<use images/MultiTrackerInit01.png>
+Package pdftex.def Info: images/MultiTrackerInit01.png used on input line 477.
+(pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
+
+<images/MultiTrackerLost01.png, id=127, 578.16pt x 433.62pt>
+File: images/MultiTrackerLost01.png Graphic file (type png)
+
+<use images/MultiTrackerLost01.png>
+Package pdftex.def Info: images/MultiTrackerLost01.png used on input line 483.
+(pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
+
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 477--484
+ [][][] 
+ []
+
+[7 <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/SingleTrack
+erRGIExchange01.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/
+images/SingleTrackerRGIExchange02.jpg>] [8 <C:/Users/Zero/Documents/GitHub/Pede
+strainCounting/report/images/MultiTrackerInit01.png> <C:/Users/Zero/Documents/G
+itHub/PedestrainCounting/report/images/MultiTrackerLost01.png>]
+(C:\Users\Zero\Documents\GitHub\PedestrainCounting\report\FinalReport.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 523.
+
+[9
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 487.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 523.
  (C:\Users\Zero\Documents\GitHub\PedestrainCounting\report\FinalReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 487.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 487.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 523.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 523.
 Package rerunfilecheck Info: File `FinalReport.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 7972 strings out of 495354
- 113970 string characters out of 3183860
+ 7987 strings out of 495354
+ 114361 string characters out of 3183860
  252271 words of memory out of 3000000
- 10995 multiletter control sequences out of 15000+200000
+ 11004 multiletter control sequences out of 15000+200000
  9849 words of font info for 36 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,10n,58p,712b,1131s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,10n,58p,590b,1131s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/CTEX/MiKTeX/fon
 ts/type1/public/amsfonts/cm/cmbx12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:
@@ -570,9 +590,9 @@ TeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/CTEX/MiKTeX/fonts/type1/public
 C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmti10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on FinalReport.pdf (8 pages, 1024231 bytes).
+Output written on FinalReport.pdf (9 pages, 1502629 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 214 PDF objects out of 1000 (max. 8388607)
+ 65 named destinations out of 1000 (max. 500000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

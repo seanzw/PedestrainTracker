@@ -88,21 +88,25 @@ virtual unsigned int GetSum(const Rect &roi) const;
 virtual void GetSum(const Rect &roi, float *result) const;
 \end{lstlisting}
 
-Other integral image classes should overload these two functions according to their purpose. Here we mainly implement two integral images.
+Other integral image classes should overload these two functions according to their purpose. Here we mainly implement 3 integral images.
 
 \lstinline{GrayScaleIntegralImage} calculates the integral image for a grayscale image. It overloads the first \lstinline{GetSum} function.
 
 \lstinline{HoGIntegralImage} calculates the 9 bins HoG for a grayscale image. Of course this is used to extract the HoG feature.
 
+\lstinline{RGIIntegralImage} calculates the integral image for 3 channel: RED, BLUE, INTENSITY.
+
 \item FeatureExtractor
 
-In this part we implement three classes: \lstinline{Feature}, \lstinline{HaarFeature}, \lstinline{HoGFeature}.
+In this part we implement three classes: \lstinline{Feature}, \lstinline{HaarFeature}, \lstinline{HoGFeature}, \lstinline{RGIFeature}.
 
 \lstinline{Feature} is bascially just a container for the feature we extraced using the other two classes.
 
 \lstinline{HaarFeature} extracts a haar-like feature given an integral image and roi. When being constructed, it randomly chooses from the five haar-like features.
 
 \lstinline{HoGFeature} extracts a HoG feature given an \lstinline{HoGIntegralImage} and roi.
+
+\lstinline{RGIFeature} extracts a RGI feature given an \lstinline{RGIIntegralImage} and roi.
 
 \item Classifier
 
@@ -186,9 +190,11 @@ h(\mathbf{x})=\min_{+, -}(D(f(\mathbf{x}), \mu_{+}), D(f(\mathbf{x}), \mu_{-}))
 
 where $D(f(\mathbf{x}), \mu)$ is just the Euclidean distance in feature space.
 
-\item \lstinline{WeakClassifierHaar}
+\item \lstinline{WeakClassifier}
 
-It uses the Haar-like feature above and the \lstinline{ClassifierThreshold} to build a weak classifier. For classify, it uses \lstinline{HaarFeature} to extract the feature and sends it to \lstinline{ClassifierThreshold} to classify. For training, it uses the Kalman filter in \lstinline{EstimatedGaussianDistribution}.
+It uses some feature above and the \lstinline{ClassifierThreshold} to build a weak classifier. For classify, it uses \lstinline{HaarFeature} to extract the feature and sends it to \lstinline{ClassifierThreshold} to classify. For training, it uses the Kalman filter in \lstinline{EstimatedGaussianDistribution}.
+
+Here we will test Haar-like feature and RGI feature for online boosting.
 
 \item \lstinline{ClassifierSelector}
 
@@ -309,14 +315,33 @@ A match score matrix will be calculated for each pair of (target, detection). Th
 \item go back to (a) if there are still unmatched detections and targets
 \item finally only pairs with match score higher than a threshold will be taken
 \end{enumerate}
-\item \textbf{Result}
+
+\item \textbf{Experiment}
+
+All the experiment is executed on Dell Inspiron 14R SE with the following configuration.
+All the experiment result can be found \href{https://zerowong.github.io/PedestrainCounting/results/}{here}.
+
+\begin{itemize}
+
+\item Intel Core i7-3612QM 2.10GHz
+\item 8.00GB RAM
+\item System: Windows 8.1 x64
+\item OpenCV: 3.00
+
+\end{itemize}
+
+For video we have three clips: \href{https://zerowong.github.io/PedestrainCounting/results/test/1.avi}{1.avi}, \href{https://zerowong.github.io/PedestrainCounting/results/test/2.avi}{2.avi}, \href{https://zerowong.github.io/PedestrainCounting/results/test/3.avi}{3.avi}.
+
+For single image detection we only use \href{https://zerowong.github.io/PedestrainCounting/results/test/test.jpg}{test.jpg}, which is from \href{https://zerowong.github.io/PedestrainCounting/results/test/1.avi}{1.avi}.
+
+The original baseline program is tested with all default settings.
 
 With the following configuration we tested our single tracker on a small video clip. The result can be found \href{https://zerowong.github.io/PedestrainCounting/results/singleTrackerTestGray01.avi}{here}.
 
 \begin{itemize}
 
-\item The online boosting classifier is built with grayscale haar-like feature.
-\item The particle filter just selects the best particle as the target and resamples around it.
+\item The online boosting classifier is built with RGI subpatch feature.
+\item The particle filter resamples with confidence of each particle.
 \item 500 particles.
 \item User initializes the target bounding box.
 
@@ -335,15 +360,11 @@ We can see that the classifier works quite good in Figure~\ref{fig:particlesConf
     \label{fig:particlesConfidence}
 \end{figure}
 
-\end{itemize}
+\item Drift problem.
 
-\item RGI feature
+From Figure~\ref{fig:singleTrackerGrayExchange} we can see that the current grayscale Haar-like classifier can still not distinguish different pedestrains. We think this is due to the grayscale haar-like feature doesn't contain enough information. \cite{eth_biwi_00633} reports that with RGI (Red, Green, Intensity) histogram feature, 3 bins for each channel the results are quite good. 
 
-From Figure~\ref{fig:singleTrackerGrayExchange} we can see that the current classifier can still not distinguish different pedestrains. We think this is due to the grayscale haar-like feature doesn't contain enough information. \cite{eth_biwi_00633} reports that with RGI (Red, Green, Intensity) histogram feature, 3 bins for each channel the results are quite good. 
-
-Hence we implement \lstinline{RGIIntegralImage}, \lstinline{RGIFeature} and \lstinline{WeakClassifierRGI}. These classes use RGI feature to construct the weak classifier. The resulting video can be found \href{https://zerowong.github.io/PedestrainCounting/results/singleTrackerTestRGI01.avi}{here}. From this video and Figure~\ref{fig:singleTrackerRGIExchange} we can see that the classifier is more robustic and can handle some situation as two people crossing each other. However in Figure~\ref{fig:sub:singleRGI02} the classifier still goes for wrong pedestrain! Well they wear the same jeans I guess...
-
-Well we need more code to solve this data association problem.
+Hence we use RGI feature to construct the weak classifier. The resulting video can be found \href{https://zerowong.github.io/PedestrainCounting/results/singleTrackerTestRGI01.avi}{here}. From this video and Figure~\ref{fig:singleTrackerRGIExchange} we can see that the classifier is more robustic and can handle some situation as two people crossing each other. However in Figure~\ref{fig:sub:singleRGI02} the classifier still goes for wrong pedestrain! Well they wear the same jeans.
 
 \begin{figure}[htb]
     \begin{center}
@@ -382,44 +403,6 @@ Well we need more code to solve this data association problem.
     \caption{With RGI feature, the tracker is more robustic, but still lost its target finally. (Black for original target)}
     \label{fig:singleTrackerRGIExchange}
 \end{figure}
-
-
-\item \textbf{Further Plan}
-
-\begin{itemize}
-
-\item Mean-shift to find the target
-
-Now the particle filter just selects the best particle as the target, and resamples arount it. However this loses almost every advantage of particle filter. So our next plan is to use mean-shift to find the target from all these particles.
-
-\item Multi-target Tracker
-
-This is our final object. The main problem is data association. We are not sure we will be able to finish this. But we will see.
-
-\end{itemize}
-
-
-\item \textbf{Experiment}
-
-All the experiment is executed on Dell Inspiron 14R SE with the following configuration.
-All the experiment result can be found \href{https://zerowong.github.io/PedestrainCounting/results/}{here}.
-
-\begin{itemize}
-
-\item Intel Core i7-3612QM 2.10GHz
-\item 8.00GB RAM
-\item System: Windows 8.1 x64
-\item OpenCV: 3.00
-
-\end{itemize}
-
-For video we have three clips: \href{https://zerowong.github.io/PedestrainCounting/results/test/1.avi}{1.avi}, \href{https://zerowong.github.io/PedestrainCounting/results/test/2.avi}{2.avi}, \href{https://zerowong.github.io/PedestrainCounting/results/test/3.avi}{3.avi}.
-
-For single image detection we only use \href{https://zerowong.github.io/PedestrainCounting/results/test/test.jpg}{test.jpg}, which is from \href{https://zerowong.github.io/PedestrainCounting/results/test/1.avi}{1.avi}.
-
-The original baseline program is tested with all default settings.
-
-\begin{itemize}
 
 \item HoG Detector.
 
@@ -476,7 +459,60 @@ Reconstructed   & 159.14s  &           &                \\
 \end{tabular}
 \end{center}
 
+\item Multiple Pedestrains Tracking and Counting
+
+This is the finally object of this project. However after two months' hard-working, we still can't get satisfactory result. The result can be found \href{https://zerowong.github.io/PedestrainCounting/results/multiTargetTracking01.avi}{here}. We will analyse the results.
+
+First we can see in Figure~\ref{fig:sub:multiTrackerInit} that when there are no occlution, the detector works fine, and the multiple tracker successfully initializes the three targets and the count them.
+
+However when the pedestrain is occluded, the detector failed to detect him. And since we didn't have any occlusion reasoning for this situation, the particle filter soon lost its target, which can been seen in Figure~\ref{fig:sub:multiTrackerLost}.
+
+\begin{figure}[htb]
+    \begin{center}
+        \subfigure[]{\label{fig:sub:multiTrackerInit}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/MultiTrackerInit01.png}
+            \end{minipage}%
+        }%
+        \subfigure[]{\label{fig:sub:multiTrackerLost}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/MultiTrackerLost01.png}
+            \end{minipage}%
+        }%
+    \end{center}
+    \caption{Initialization of Multiple Tracker}
+    \label{fig:multiTracker}
+\end{figure}
+
 \end{itemize}
+
+\item \textbf{Analyzation}
+
+\begin{itemize}
+\item Accomplishment
+
+We reconstructed the original baseline Adaboost classifier and improved the performance.
+
+An online-boosting tracking system has been successfully implemented. It is quite good in tracking for single target. We also tried HoG, Haar-like and RGI features.
+
+\item Problems
+
+Since this is a tracking system based on detection, it requires a state of art detector. However the detector we used here is not so good. If the detector fails to detect the target for consecutive frames, the particle filter will also loses its target.
+
+What's more, the match matrix is not working very fine. If there are multiple targets nearby, it sometimes gets confused.
+
+All of these problems limit the performance of our system.
+
+\item Solutions
+
+The solutions to the above problem is straight forward. Use a state-of-art detector will significantly improve the performance.
+
+\end{itemize}
+
+\item \textbf{Continous Energy Minimize Method}
+
 
 \end{enumerate}
 
