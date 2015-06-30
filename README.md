@@ -1,5 +1,4 @@
 # Pedestrain Tracker
-----------
 ### Intro
 This is the group project of Digital Image Processing, Tsinghua University, 2015 Spring. We have three great partners:
 
@@ -22,9 +21,9 @@ The only third party library you will need is [OpenCV 3.0.0](). And please compi
 ### Detection
 For detection part we use simple HOG feature and AdaBoost classifier. We rewrite the baseline program in `C++` style and improve the perfomance.
 ### Tracking
-We use particle filter with a online-boosting classifier with RGI feature for each target/pedestrain. We use match matrix and greedy algorithm to handle the data association problem. The main idea is based on this [paper]().
+We use particle filter with a online-boosting classifier with RGI feature for each target/pedestrain. We use match matrix and greedy algorithm to handle the data association problem. The main idea is based on this [paper](http://www.mmp.rwth-aachen.de/publications/pdf/breitenstein-detectorconfidencefilter-iccv09.pdf).
 ### Result
-Here is a simple [project website](). You can find everything there.
+Here is a simple [project website](https://zerowong.github.io/PedestrainTracker). You can find everything there.
 
 * [Documents](https://zerowong.github.io/PedestrainTracker/docs/html/index.html)
 * [Final Report](https://zerowong.github.io/PedestrainTracker/report/FinalReport.pdf)
