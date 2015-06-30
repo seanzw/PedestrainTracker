@@ -1,12 +1,10 @@
 # Pedestrain Tracker
+----------
 ### Intro
 This is the group project of Digital Image Processing, Tsinghua University, 2015 Spring. We have three great partners:
 
 - [Zhengrong Wang](https://zerowong.github.io/)
 - [Hsienyu Meng](https://github.com/xianyuMeng)
-
-----------
-
 - [Liuyang Zhan](https://github.com/zhanlythu)
 
 We tried to do some simple pedestrain tracking based on detection. Use it at your own risk.
