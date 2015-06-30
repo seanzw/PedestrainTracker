@@ -9,7 +9,7 @@ This is the group project of Digital Image Processing, Tsinghua University, 2015
 We tried to do some simple pedestrain tracking based on detection. Use it at your own risk.
 
 ### Usage
-The only third party library you will need is [OpenCV 3.0.0](). And please compile it with VS 2013. Other platform should be fine, but I haven't tested it.
+The only third party library you will need is [OpenCV 3.0.0](http://opencv.org/downloads.html). And please compile it with VS 2013. Other platform should be fine, but I haven't tested it.
 
 * `-b srcVideo tempDiectorary outputImage` : Use mean-shift to construct the background.
 * `-phog srcImage outputImage` : Apply HOG detector to a single image.
@@ -27,8 +27,8 @@ Here is a simple [project website](https://zerowong.github.io/PedestrainTracker)
 
 * [Documents](https://zerowong.github.io/PedestrainTracker/docs/html/index.html)
 * [Final Report](https://zerowong.github.io/PedestrainTracker/report/FinalReport.pdf)
-* [Mean-shift Background Image](https://zerowong.github.io/PedestrainTracker/result/Background/S3MF1.jpg)
-* [Detector for a video](https://zerowong.github.io/PedestrainTracker/result/VideoDetector/BKG_reconstructed_1.avi)
+* [Mean-shift Background Image](https://zerowong.github.io/PedestrainTracker/results/Background/S3MF1.jpg)
+* [Detector for a video](https://zerowong.github.io/PedestrainTracker/results/VideoDetector/BKG_reconstructed_1.avi)
 * [Single target tracking result with Gray Haar feature](https://zerowong.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/singleTrackerTestGray01.avi)
 * [Single target tracking result with RGI feature](https://zerowong.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/singleTrackerTestRGI01.avi)
 * [Yet another single target tracking result](https://zerowong.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/S3MF1_single_tracker.avi)

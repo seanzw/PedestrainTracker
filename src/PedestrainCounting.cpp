@@ -89,13 +89,11 @@ IplImage* PedestrainCounter::video_bkg_detect(
 
 	int h = frameH; int w = frameW;
 	int countH = 0; int countW = 0;
-	while (h > H_thres)
-	{
+	while (h > H_thres) {
 		h = (int)floor(h / 2);
 		countH++;
 	}
-	while (w > W_thres)
-	{
+	while (w > W_thres) {
 		w = (int)floor(w / 2);
 		countW++;
 	}
@@ -123,16 +121,13 @@ IplImage* PedestrainCounter::video_bkg_detect(
 	Tuple* tuples = new Tuple[pic_num_all];
 	Tuple* means = new Tuple[num_cluster];
 
-	for (int i = 0; i < pic_num_all; i++)
-	{
+	for (int i = 0; i < pic_num_all; i++) {
 		init_Tuple(tuples[i], h*w);
 	}
-	for (int i = 0; i < num_cluster; i++)
-	{
+	for (int i = 0; i < num_cluster; i++) {
 		init_Tuple(means[i], h*w);
 	}
-	for (int hh = 0; hh < pow(2, countH); hh++)
-	{
+	for (int hh = 0; hh < pow(2, countH); hh++) {
 		for (int ww = 0; ww < pow(2, countW); ww++)
 		{
 			// Read in elements.
@@ -167,10 +162,8 @@ IplImage* PedestrainCounter::video_bkg_detect(
 			cout << "The most probable background is cluster " << row_ordered[0].label << endl;
 
 			// Get local background and copy it.
-			for (int ii = 0; ii < h; ii++)
-			{
-				for (int jj = 0; jj < w; jj++)
-				{
+			for (int ii = 0; ii < h; ii++) {
+				for (int jj = 0; jj < w; jj++) {
 					bkg_data[ii*bkg_step + jj] = max(0, min(255, (int)means[row_ordered[0].label].data[ii*w + jj]));
 				}
 			}
@@ -184,13 +177,11 @@ IplImage* PedestrainCounter::video_bkg_detect(
 
 	// Release memory.
 	TCHAR order[300];
-	for (int ii = 0; ii < num_cluster; ii++)
-	{
+	for (int ii = 0; ii < num_cluster; ii++) {
 		delete_tuple(means[ii]);
 	}
 	delete[]means;
-	for (int ii = 0; ii < pic_num_all; ii++)
-	{
+	for (int ii = 0; ii < pic_num_all; ii++) {
 		delete_tuple(tuples[ii]);
 	}
 	delete[] tuples;
@@ -199,8 +190,7 @@ IplImage* PedestrainCounter::video_bkg_detect(
 	return background;
 };
 
-void PedestrainCounter::create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_num_all)
-{
+void PedestrainCounter::create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_num_all) {
 	CvCapture *capture = cvCaptureFromAVI(pIn);
 	double fps = cvGetCaptureProperty(capture, CV_CAP_PROP_FPS);
 	int frameW = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
@@ -225,10 +215,8 @@ void PedestrainCounter::create_meanshift_queue(const TCHAR *pIn, const TCHAR* pO
 
 	IplImage* frame = NULL;
 	TCHAR infilename[256];
-	while (frame = cvQueryFrame(capture))
-	{
-		if (!(pic_num%pic_interval))
-		{
+	while (frame = cvQueryFrame(capture)) {
+		if (!(pic_num%pic_interval)) {
 			++count;
 
 			cvCvtColor(frame, frame_gray, CV_RGB2GRAY);
@@ -255,8 +243,7 @@ void PedestrainCounter::create_meanshift_queue(const TCHAR *pIn, const TCHAR* pO
             pic_num++;
 			continue;
 		}
-		if (pic_num > pic_interval*pic_num_all)
-		{
+		if (pic_num > pic_interval*pic_num_all) {
 			break;
 		}
 
@@ -271,8 +258,7 @@ void PedestrainCounter::create_meanshift_queue(const TCHAR *pIn, const TCHAR* pO
 	return;
 };
 
-void PedestrainCounter::readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int frameH, int frameW)
-{
+void PedestrainCounter::readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int frameH, int frameW) {
 	int h = roi.height;
 	int w = roi.width;
 
@@ -282,8 +268,7 @@ void PedestrainCounter::readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_a
 	IplImage* img_meanshift_roi = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
 	CvMat* Matdata = cvCreateMat(h, w, CV_32FC1);
 
-	for (int i = 0; i < pic_num_all; i++)
-	{
+	for (int i = 0; i < pic_num_all; i++) {
 		sprintf_s(infilename, "%s\\%d.jpg", pIn, i + 1);
 		cout << infilename << endl;
 
