@@ -98,8 +98,8 @@ private:
     MatchMatrix *matches;
 
     // MultiSampler.
-    // MultiSampler *sampler;
-    SingleSampler *sampler;
+    MultiSampler *sampler;
+    // SingleSampler *sampler;
 
 
     // Threshold for matching.

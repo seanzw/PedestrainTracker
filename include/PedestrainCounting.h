@@ -71,36 +71,4 @@ private:
     Options opt;
 };
 
-//void PrintHelp();
-//
-//void DetectSinglePictureHOG(const char *in, const char *out,
-//	const char *adaboost, const Options &opt);
-//
-//void DetectSinglePictureBKG(const char *in, const char *bkg, const char *out,
-//	const char *adaboost, const Options &opt);
-//
-//void DetectVideoHOG(const char *in, const char *out,
-//	const char *adaboost, const Options &opt);
-//
-//void DetectVideoBKG(const char *in, const char *bkg, const char *out,
-//	const char *adaboost, const Options &opt);
-//
-//void TrackVideoSingle(const char *in, const char *out);
-//
-//void TrackVideoMulti(const char *in, const char *bkg, const char *out,
-//	const char *adaboost, const Options &opt);
-//
-//void GetTarget(int event, int x, int y, int flags, void *userParams);
-//
-//IplImage* video_bkg_detect(
-//	const TCHAR *pIn, const TCHAR* pTemp, int num_cluster, int r, int pic_num_all,
-//	int H_thres, int W_thres);
-//
-//void create_meanshift_queue(const TCHAR *pIn,
-//	const TCHAR* pOut, int r, int pic_num_all);
-//
-//void readin_tuples(
-//	TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi,
-//	int frameH, int frameW);
-
 #endif

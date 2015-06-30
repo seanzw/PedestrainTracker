@@ -16,8 +16,8 @@ MultiTracker::MultiTracker(ImageDetector *d, const Size &sz, const Options &opts
 	targets = new TargetsFreeList(opts);
 
 	// Initialize the sampler.
-	// sampler = new MultiSampler(opts);
-    sampler = new SingleSampler(5, 5);
+	sampler = new MultiSampler(opts);
+    //sampler = new SingleSampler(5, 5);
 
 	// Construct the match matrix.
 	matches = new MatchMatrix(opts.targetsFreeListCapacity);
@@ -148,10 +148,10 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 #endif
 
 		// Sample around the match pair.
-		// sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
+		sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
 
 		// Online training.
-		// targets->Train(rgiIntImage, sampler);
+		targets->Train(rgiIntImage, sampler);
 
 #ifdef MT_DEBUG
 
@@ -213,8 +213,8 @@ void MultiTracker::Control(int curFrame) {
                         int id = targets->InitializeTarget(detector->dets[i], initV);
 
                         /** Test function.*/
-                        sampler->Sample(detector->dets[i], imgSize);
-                        targets->Train(id, rgiIntImage, sampler);
+                        //sampler->Sample(detector->dets[i], imgSize);
+                        //targets->Train(id, rgiIntImage, sampler);
 
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;

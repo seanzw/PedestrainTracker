@@ -86,7 +86,6 @@ void TargetsFreeList::Observe(const IntegralImage *intImage, const Pool<Rect> &d
 
 				// This target has a matched detection.
                 // Set the size the same as the detection.
-                // TODO
                 // listNodes[i].target->SetTarget(detections[matchDets[i]]);
 
 				// Update the detection sequence.

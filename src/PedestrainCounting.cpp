@@ -489,6 +489,7 @@ void PedestrainCounter::TrackVideoSingle(const char *infile, const char *outfile
 	cv::Mat first(width, height, CV_8UC3);
 	in.read(first);
 	cv::imshow("First Frame", first);
+
 	cv::setMouseCallback("First Frame", PedestrainCounter::GetTarget, (void *)&target);
 	cv::waitKey(0);
 	cv::rectangle(first, (cv::Rect)target, cv::Scalar(255.0f), 2);
