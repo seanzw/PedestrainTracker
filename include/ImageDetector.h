@@ -52,6 +52,9 @@ public:
 	// Clear all the detections.
 	void Clear();
 
+    // Shrink all the detections.
+    void Shrink();
+
 	// Detections.
 	Pool<Rect> dets;
 

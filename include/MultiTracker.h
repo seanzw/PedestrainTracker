@@ -99,7 +99,7 @@ private:
 
     // MultiSampler.
     MultiSampler *sampler;
-    // SingleSampler *sampler;
+    SingleSampler *singleSampler;
 
 
     // Threshold for matching.

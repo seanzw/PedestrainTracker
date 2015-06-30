@@ -8,18 +8,18 @@ MultiTracker::MultiTracker(ImageDetector *d, const Size &sz, const Options &opts
 	rgiIntImage = new RGIIntegralImage(imgSize.width, imgSize.height);
 
     // Initialize the region.
-    int margin = 40;
-    //outer = Rect(margin, margin, imgSize.width - 2 * margin, imgSize.height - 2 * margin);
-    //inner = Rect(2 * margin, 2 * margin, imgSize.width - 4 * margin, imgSize.height - 4 * margin);
-    outer = Rect(margin, imgSize.width * 0.6, 2 * margin, imgSize.height - 2 * margin);
-    inner = Rect(2 * margin, outer.left + 0.5 * margin, margin, imgSize.height - 4 * margin);
+    int margin = 60;
+    outer = Rect(margin, margin, imgSize.width - 2 * margin, imgSize.height - 2 * margin);
+    inner = Rect(2 * margin, 2 * margin, imgSize.width - 4 * margin, imgSize.height - 4 * margin);
+    //outer = Rect(margin, imgSize.width * 0.6, 2 * margin, imgSize.height - 2 * margin);
+    //inner = Rect(2 * margin, outer.left + 0.5 * margin, margin, imgSize.height - 4 * margin);
 
 	// Initialize the targets free list.
 	targets = new TargetsFreeList(opts);
 
 	// Initialize the sampler.
 	sampler = new MultiSampler(opts);
-    //sampler = new SingleSampler(5, 5);
+    singleSampler = new SingleSampler(5, 5);
 
 	// Construct the match matrix.
 	matches = new MatchMatrix(opts.targetsFreeListCapacity);
@@ -30,6 +30,9 @@ MultiTracker::~MultiTracker() {
 	delete hogIntImage;
 	delete rgiIntImage;
 	delete targets;
+    delete sampler;
+    delete singleSampler;
+    delete matches;
 }
 
 void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::Mat &bkg) {
@@ -73,6 +76,7 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 		// Detects.
 		detector->Detect(gray, hogIntImage, subRegion, bkg);
+        detector->Shrink();
 
         // Draw the region.
         // White for inner, black for outer.
@@ -149,11 +153,13 @@ void MultiTracker::Track(cv::VideoCapture &in, cv::VideoWriter &out, const cv::M
 
 #endif
 
+        // targets->Train(rgiIntImage, singleSampler, imgSize);
+
 		// Sample around the match pair.
-		sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
+		// sampler->Sample(targets->GetMatchDets(), detector->dets, imgSize);
 
 		// Online training.
-		targets->Train(rgiIntImage, sampler);
+		//targets->Train(rgiIntImage, sampler);
 
 #ifdef MT_DEBUG
 
@@ -202,7 +208,7 @@ void MultiTracker::Control(int curFrame) {
             if (!targets->CheckNearbyTarget(detector->dets[i], 20)) {
 
                 // There is no nearby target.
-                if (curFrame < 30) {
+                if (curFrame < 0) {
 
                     // We are still in the initialization stage.
                     // Initialize if the detection is inside outer.
@@ -215,8 +221,8 @@ void MultiTracker::Control(int curFrame) {
                         int id = targets->InitializeTarget(detector->dets[i], initV);
 
                         /** Test function.*/
-                        //sampler->Sample(detector->dets[i], imgSize);
-                        //targets->Train(id, rgiIntImage, sampler);
+                        singleSampler->Sample(detector->dets[i], imgSize);
+                        targets->Train(id, rgiIntImage, singleSampler);
 
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;
@@ -238,6 +244,11 @@ void MultiTracker::Control(int curFrame) {
                             (imgSize.width / 2 - detector->dets[i].left) / 20);
 
                         int id = targets->InitializeTarget(detector->dets[i], initV);
+
+                        /** Test function.*/
+                        singleSampler->Sample(detector->dets[i], imgSize);
+                        targets->Train(id, rgiIntImage, singleSampler);
+
                         matches->isDetMatched[i] = id;
                         targets->matchDets[id] = i;
 

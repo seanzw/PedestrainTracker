@@ -90,6 +90,7 @@ public:
 	 * Online training.
 	 */
 	void Train(const IntegralImage *intImage, const MultiSampler *multiSampler);
+    void Train(const IntegralImage *intImage, SingleSampler *sampler, const Size imgSize);
     void Train(int idx, const IntegralImage *intImage, const SingleSampler *singleSampler);
 
 	inline void DrawTargets(cv::Mat &img, int index = -1) const {

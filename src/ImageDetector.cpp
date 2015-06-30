@@ -249,3 +249,12 @@ bool ImageDetector::IsOverlap(const rect &r, const rect &t) const {
 void ImageDetector::Clear() {
 	dets.clear();
 }
+
+void ImageDetector::Shrink() {
+    for (auto & det : dets.data) {
+        det.left += det.width * 0.2;
+        det.width *= 0.6;
+        det.upper += det.height * 0.2;
+        det.height *= 0.6;
+    }
+}
