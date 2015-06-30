@@ -15,7 +15,38 @@ void \hyperlink{classTargetsFreeList_abd311cfa3633ed0268aab9ae8135deae}{Propagat
 \item 
 void \hyperlink{classTargetsFreeList_a6dbfd6eb0734fa5adc094ebffc6b4926}{Observe} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&detections)
 \item 
-void \hyperlink{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}{Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, \hyperlink{classPool}{Pool}$<$ \hyperlink{classPool}{Pool}$<$ float $>$$>$ \&match\+Mat) const 
+\hypertarget{classTargetsFreeList_ab78acc51961ee187462aee4f255c1273}{}void {\bfseries Resample} ()\label{classTargetsFreeList_ab78acc51961ee187462aee4f255c1273}
+
+\item 
+\hypertarget{classTargetsFreeList_ab3732078a01c7875a4417f951621b3dd}{}bool {\bfseries Get\+Target} (int index, \hyperlink{classRect}{Rect} \&t) const \label{classTargetsFreeList_ab3732078a01c7875a4417f951621b3dd}
+
+\item 
+\hypertarget{classTargetsFreeList_ab7627d7885056454812805db6eb69357}{}int {\bfseries Get\+Capacity} () const \label{classTargetsFreeList_ab7627d7885056454812805db6eb69357}
+
+\item 
+void \hyperlink{classTargetsFreeList_a5a8a36a78a916259c0df3f17fcd837f0}{Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, std\+::vector$<$ \hyperlink{structMatchMatrix_1_1MatchScore}{Match\+Matrix\+::\+Match\+Score} $>$ \&match\+Mat) const 
+\item 
+bool \hyperlink{classTargetsFreeList_a763e34bae15ed0f7feb255baa60c6096}{Check\+Nearby\+Target} (const \hyperlink{classRect}{Rect} \&det, int dist\+Thre) const 
+\item 
+\hypertarget{classTargetsFreeList_a0108fcb6355d6db4c599a95e7cc13e94}{}const std\+::vector$<$ int $>$ \& {\bfseries Get\+Match\+Dets} ()\label{classTargetsFreeList_a0108fcb6355d6db4c599a95e7cc13e94}
+
+\item 
+void \hyperlink{classTargetsFreeList_abf67eb9c2bbef26350460597ba017d3b}{Train} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classMultiSampler}{Multi\+Sampler} $\ast$multi\+Sampler)
+\item 
+\hypertarget{classTargetsFreeList_a909bf5b6bff911d54e19b5b40b3e867b}{}void {\bfseries Train} (int idx, const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classSingleSampler}{Single\+Sampler} $\ast$single\+Sampler)\label{classTargetsFreeList_a909bf5b6bff911d54e19b5b40b3e867b}
+
+\item 
+\hypertarget{classTargetsFreeList_ab86808dde009bd794ac39cc0ea58559b}{}void {\bfseries Draw\+Targets} (cv\+::\+Mat \&img, int index=-\/1) const \label{classTargetsFreeList_ab86808dde009bd794ac39cc0ea58559b}
+
+\item 
+\hypertarget{classTargetsFreeList_ad8a27707e9cd557e3f1c55abc3e9b317}{}void {\bfseries Draw\+Particles} (cv\+::\+Mat \&img, int index=-\/1) const \label{classTargetsFreeList_ad8a27707e9cd557e3f1c55abc3e9b317}
+
+\item 
+\hypertarget{classTargetsFreeList_ae54b269e667b5c198bf7170f86475c09}{}void {\bfseries Draw\+Particles\+With\+Confidence} (cv\+::\+Mat \&img, int index=-\/1) const \label{classTargetsFreeList_ae54b269e667b5c198bf7170f86475c09}
+
+\item 
+\hypertarget{classTargetsFreeList_abafc30cce178ddc20cd07b527c9273ba}{}void {\bfseries Draw\+Matches} (cv\+::\+Mat \&img, \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ dets)\label{classTargetsFreeList_abafc30cce178ddc20cd07b527c9273ba}
+
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -28,25 +59,22 @@ void \hyperlink{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}{Calculat
 \item 
 \hypertarget{classTargetsFreeList_ab24813bb8b19208e00711d9a4c80f2f5}{}const float {\bfseries detection\+Weight}\label{classTargetsFreeList_ab24813bb8b19208e00711d9a4c80f2f5}
 
-\end{DoxyCompactItemize}
-\subsection*{Friends}
-\begin{DoxyCompactItemize}
 \item 
-\hypertarget{classTargetsFreeList_ac3ed72f4c3f22bfca9553b6c316df2ea}{}class {\bfseries Match\+Matrix}\label{classTargetsFreeList_ac3ed72f4c3f22bfca9553b6c316df2ea}
+\hypertarget{classTargetsFreeList_add764e995fb32f8aa491b6012e07bfb7}{}std\+::vector$<$ int $>$ {\bfseries match\+Dets}\label{classTargetsFreeList_add764e995fb32f8aa491b6012e07bfb7}
 
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Calculate\+Match\+Score@{Calculate\+Match\+Score}}
+\hypertarget{classTargetsFreeList_a5a8a36a78a916259c0df3f17fcd837f0}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Calculate\+Match\+Score@{Calculate\+Match\+Score}}
 \index{Calculate\+Match\+Score@{Calculate\+Match\+Score}!Targets\+Free\+List@{Targets\+Free\+List}}
-\subsubsection[{Calculate\+Match\+Score(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&dets, Pool$<$ Pool$<$ float $>$$>$ \&match\+Mat) const }]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Calculate\+Match\+Score (
+\subsubsection[{Calculate\+Match\+Score(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&dets, std\+::vector$<$ Match\+Matrix\+::\+Match\+Score $>$ \&match\+Mat) const }]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Calculate\+Match\+Score (
 \begin{DoxyParamCaption}
 \item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
 \item[{const {\bf Pool}$<$ {\bf Rect} $>$ \&}]{dets, }
-\item[{{\bf Pool}$<$ {\bf Pool}$<$ float $>$$>$ \&}]{match\+Mat}
+\item[{std\+::vector$<$ {\bf Match\+Matrix\+::\+Match\+Score} $>$ \&}]{match\+Mat}
 \end{DoxyParamCaption}
-) const}\label{classTargetsFreeList_a9eefc5f9a7aa50987295205d1ee1b36e}
+) const}\label{classTargetsFreeList_a5a8a36a78a916259c0df3f17fcd837f0}
 Calculate the target-\/detection matching score matrix.
 
 
@@ -58,7 +86,15 @@ Calculate the target-\/detection matching score matrix.
 {\em match\+Mat} & matching score matrix \\
 \hline
 \end{DoxyParams}
-\hypertarget{classTargetsFreeList_a6dbfd6eb0734fa5adc094ebffc6b4926}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Observe@{Observe}}
+\hypertarget{classTargetsFreeList_a763e34bae15ed0f7feb255baa60c6096}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Check\+Nearby\+Target@{Check\+Nearby\+Target}}
+\index{Check\+Nearby\+Target@{Check\+Nearby\+Target}!Targets\+Free\+List@{Targets\+Free\+List}}
+\subsubsection[{Check\+Nearby\+Target(const Rect \&det, int dist\+Thre) const }]{\setlength{\rightskip}{0pt plus 5cm}bool Targets\+Free\+List\+::\+Check\+Nearby\+Target (
+\begin{DoxyParamCaption}
+\item[{const {\bf Rect} \&}]{det, }
+\item[{int}]{dist\+Thre}
+\end{DoxyParamCaption}
+) const}\label{classTargetsFreeList_a763e34bae15ed0f7feb255baa60c6096}
+Check if there are targets nearby. \hypertarget{classTargetsFreeList_a6dbfd6eb0734fa5adc094ebffc6b4926}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Observe@{Observe}}
 \index{Observe@{Observe}!Targets\+Free\+List@{Targets\+Free\+List}}
 \subsubsection[{Observe(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&detections)}]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Observe (
 \begin{DoxyParamCaption}
@@ -80,7 +116,15 @@ Propagate all the targets\textquotesingle{} particles. \hypertarget{classTargets
 \item[{int}]{index}
 \end{DoxyParamCaption}
 )}\label{classTargetsFreeList_abfbc250eed26923b56582c862cf1d254}
-Reset one target. 
+Reset one target. \hypertarget{classTargetsFreeList_abf67eb9c2bbef26350460597ba017d3b}{}\index{Targets\+Free\+List@{Targets\+Free\+List}!Train@{Train}}
+\index{Train@{Train}!Targets\+Free\+List@{Targets\+Free\+List}}
+\subsubsection[{Train(const Integral\+Image $\ast$int\+Image, const Multi\+Sampler $\ast$multi\+Sampler)}]{\setlength{\rightskip}{0pt plus 5cm}void Targets\+Free\+List\+::\+Train (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Multi\+Sampler} $\ast$}]{multi\+Sampler}
+\end{DoxyParamCaption}
+)}\label{classTargetsFreeList_abf67eb9c2bbef26350460597ba017d3b}
+Online training. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

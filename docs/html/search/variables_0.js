@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['matchmat',['matchMat',['../classMatchMatrix.html#a98f6c92d3df7bbf59f0db47c2cdffd2b',1,'MatchMatrix']]]
+  ['capacity',['capacity',['../classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9',1,'MatchMatrix']]]
 ];

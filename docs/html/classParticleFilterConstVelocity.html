@@ -91,8 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ParticleFilterConstVelocity Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="ParticleFilterConstVelocity_8h_source.html">ParticleFilterConstVelocity.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ParticleFilterConstVelocity:</div>
 <div class="dyncontent">
@@ -117,9 +115,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>InitTarget</b> (const
 <tr class="memitem:a72868ab78e4c4f49ce756e986839f993"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72868ab78e4c4f49ce756e986839f993"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Propagate</b> (const <a class="el" href="classSize.html">Size</a> &amp;imgSize)</td></tr>
 <tr class="separator:a72868ab78e4c4f49ce756e986839f993"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46aae8bac98e7f6e1f13ad99ec8a38cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46aae8bac98e7f6e1f13ad99ec8a38cd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateMatchScore</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;dets, <a class="el" href="classPool.html">Pool</a>&lt; float &gt; &amp;matchArray) const </td></tr>
-<tr class="separator:a46aae8bac98e7f6e1f13ad99ec8a38cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0599ad9b4df7d0be14432960e7438148"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0599ad9b4df7d0be14432960e7438148"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateMatchScore</b> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classStrongClassifier.html">StrongClassifier</a> *classifier, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;dets, std::vector&lt; <a class="el" href="structMatchMatrix_1_1MatchScore.html">MatchMatrix::MatchScore</a> &gt;::iterator &amp;matchArray) const </td></tr>
+<tr class="separator:a0599ad9b4df7d0be14432960e7438148"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f6d8afede8039cd3ed08acbcb67b47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91f6d8afede8039cd3ed08acbcb67b47"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetVelocitySigma</b> (float sigma)</td></tr>
 <tr class="separator:a91f6d8afede8039cd3ed08acbcb67b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,9 +147,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawParticlesWithConf
 <tr class="memitem:ace5259baa39baccc26212d9ed116cf7c inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace5259baa39baccc26212d9ed116cf7c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawTarget</b> (cv::Mat &amp;img, const cv::Scalar &amp;color) const </td></tr>
 <tr class="separator:ace5259baa39baccc26212d9ed116cf7c inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2c226ecb5b701d7cac2c99cf6168e05 inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2c226ecb5b701d7cac2c99cf6168e05"></a>
+<tr class="memitem:ad795d2552d8471903363755b3aa8534c inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad795d2552d8471903363755b3aa8534c"></a>
 const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTarget</b> () const </td></tr>
-<tr class="separator:ab2c226ecb5b701d7cac2c99cf6168e05 inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ad795d2552d8471903363755b3aa8534c inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c0564bc3414b5ac156325d6bf6546e inherit pub_methods_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4c0564bc3414b5ac156325d6bf6546e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTarget</b> (const <a class="el" href="classRect.html">Rect</a> &amp;t)</td></tr>
+<tr class="separator:ac4c0564bc3414b5ac156325d6bf6546e inherit pub_methods_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -195,6 +196,9 @@ float *&#160;</td><td class="memItemRight" valign="bottom"><b>confidence</b></td
 <tr class="memitem:aa97f15d13d905348953cdc3122871255 inherit pro_attribs_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa97f15d13d905348953cdc3122871255"></a>
 <a class="el" href="classRect.html">Rect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>target</b></td></tr>
 <tr class="separator:aa97f15d13d905348953cdc3122871255 inherit pro_attribs_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4d929abf5b5189a235df44e52a20d34 inherit pro_attribs_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4d929abf5b5189a235df44e52a20d34"></a>
+std::deque&lt; <a class="el" href="classRect.html">Rect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>prevDets</b></td></tr>
+<tr class="separator:af4d929abf5b5189a235df44e52a20d34 inherit pro_attribs_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10b276ac5acdc39a1c7f5fc89dc9529d inherit pro_attribs_classParticleFilter"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10b276ac5acdc39a1c7f5fc89dc9529d"></a>
 std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><b>generator</b></td></tr>
 <tr class="separator:a10b276ac5acdc39a1c7f5fc89dc9529d inherit pro_attribs_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,10 +212,7 @@ std::uniform_real_distribution&lt; float &gt;&#160;</td><td class="memItemRight"
 int *&#160;</td><td class="memItemRight" valign="bottom"><b>resampleBuffer</b></td></tr>
 <tr class="separator:a23a3c5e7016d74cf775031b612c19839 inherit pro_attribs_classParticleFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classParticleFilter.html">ParticleFilter</a> with constant velocity.</p>
-<dl class="section author"><dt>Author</dt><dd>Zhengrong Wang. </dd></dl>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="ParticleFilterConstVelocity_8h_source.html">ParticleFilterConstVelocity.h</a></li>
 <li>src/ParticleFilterConstVelocity.cpp</li>
 </ul>

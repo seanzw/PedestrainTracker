@@ -88,62 +88,80 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*******************************************</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> Header for whole system.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *******************************************/</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef PEDESTRAIN_COUNTING_HEADER</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PEDESTRAIN_COUNTING_HEADER</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;kmeans.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;meanshift.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;VideoDetector.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;BKGCutDetector.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;AdaBoostClassifier.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;HoGIntegralImage.h&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;RGIIntegralImage.h&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;GrayScaleIntegralImage.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;StrongClassifierDirectSelect.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;ParticleFilterTracker.h&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> BKG_DETECTION_NUM_CLUSTER = 3;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> BKG_VIDEO_PIC_NUM_ALL = 50;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define adaboostFile &quot;..\\HOGClassifier\\&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> Pedestrain Count System.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> @author Zhengrong Wang</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *******************************************/</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef PEDESTRAIN_COUNTING_HEADER</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define PEDESTRAIN_COUNTING_HEADER</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;kmeans.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;meanshift.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;VideoDetector.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;BKGCutDetector.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;AdaBoostClassifier.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;HoGIntegralImage.h&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;RGIIntegralImage.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;GrayScaleIntegralImage.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;StrongClassifierDirectSelect.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;ParticleFilterTracker.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;MultiTracker.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> BKG_DETECTION_NUM_CLUSTER = 3;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> BKG_VIDEO_PIC_NUM_ALL = 50;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define HEIGHT 64</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define WIDTH 32</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> PrintHelp();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define adaboostFile &quot;HOGClassifier\\&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define HEIGHT 64</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define WIDTH 32</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> DetectSinglePictureHOG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classPedestrainCounter.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPedestrainCounter.html">PedestrainCounter</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> DetectSinglePictureBKG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *bkg, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classPedestrainCounter.html">PedestrainCounter</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    ~<a class="code" href="classPedestrainCounter.html">PedestrainCounter</a>() {}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> DetectVideoHOG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> DetectVideoBKG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *bkg, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> TrackVideoSingle(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *out);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> GetTarget(<span class="keywordtype">int</span> event, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> flags, <span class="keywordtype">void</span> *userParams);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> ParseParams(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> PrintHelp();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> DetectSinglePictureHOG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> DetectSinglePictureBKG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *bkg, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;IplImage* video_bkg_detect(</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> TCHAR *pIn, <span class="keyword">const</span> TCHAR* pTemp, <span class="keywordtype">int</span> num_cluster, <span class="keywordtype">int</span> r, <span class="keywordtype">int</span> pic_num_all,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">int</span> H_thres, <span class="keywordtype">int</span> W_thres);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> create_meanshift_queue(<span class="keyword">const</span> TCHAR *pIn,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">const</span> TCHAR* pOut, <span class="keywordtype">int</span> r, <span class="keywordtype">int</span> pic_num_all);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> readin_tuples(</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    TCHAR pIn[], <a class="code" href="structTuple.html">Tuple</a>* &amp;tuples, <span class="keywordtype">int</span> pic_num_all, CvRect roi,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">int</span> frameH, <span class="keywordtype">int</span> frameW);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> DetectVideoHOG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> DetectVideoBKG(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *bkg, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> TrackVideoSingle(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *out);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> TrackVideoMulti(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keyword">const</span> <span class="keywordtype">char</span> *bkg, <span class="keyword">const</span> <span class="keywordtype">char</span> *out,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *adaboost, <span class="keyword">const</span> <a class="code" href="structOptions.html">Options</a> &amp;opt);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GetTarget(<span class="keywordtype">int</span> event, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> flags, <span class="keywordtype">void</span> *userParams);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    IplImage* video_bkg_detect(</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">const</span> TCHAR *pIn, <span class="keyword">const</span> TCHAR* pTemp, <span class="keywordtype">int</span> num_cluster, <span class="keywordtype">int</span> r, <span class="keywordtype">int</span> pic_num_all,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">int</span> H_thres, <span class="keywordtype">int</span> W_thres);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> create_meanshift_queue(<span class="keyword">const</span> TCHAR *pIn,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">const</span> TCHAR* pOut, <span class="keywordtype">int</span> r, <span class="keywordtype">int</span> pic_num_all);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> readin_tuples(</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        TCHAR pIn[], <a class="code" href="structTuple.html">Tuple</a>* &amp;tuples, <span class="keywordtype">int</span> pic_num_all, CvRect roi,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">int</span> frameH, <span class="keywordtype">int</span> frameW);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structOptions.html">Options</a> opt;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classPedestrainCounter_html"><div class="ttname"><a href="classPedestrainCounter.html">PedestrainCounter</a></div><div class="ttdef"><b>Definition:</b> PedestrainCounting.h:30</div></div>
 <div class="ttc" id="structTuple_html"><div class="ttname"><a href="structTuple.html">Tuple</a></div><div class="ttdef"><b>Definition:</b> kmeans.h:26</div></div>
 <div class="ttc" id="structOptions_html"><div class="ttname"><a href="structOptions.html">Options</a></div><div class="ttdef"><b>Definition:</b> Options.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -1,0 +1,59 @@
+\hypertarget{classMultiSampler_1_1const__iterator}{}\section{Multi\+Sampler\+:\+:const\+\_\+iterator Class Reference}
+\label{classMultiSampler_1_1const__iterator}\index{Multi\+Sampler\+::const\+\_\+iterator@{Multi\+Sampler\+::const\+\_\+iterator}}
+
+
+{\ttfamily \#include $<$Multi\+Sampler.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a6e64a0ff7e5ee735d8c88a0d70ab2857}{}typedef \hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator} {\bfseries self\+\_\+type}\label{classMultiSampler_1_1const__iterator_a6e64a0ff7e5ee735d8c88a0d70ab2857}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a061a7f72b735f641eac3373be5cff1e2}{}typedef const \hyperlink{classRect}{Rect} {\bfseries value\+\_\+type}\label{classMultiSampler_1_1const__iterator_a061a7f72b735f641eac3373be5cff1e2}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_af29ff2e6562c89f361c005303a8b59a6}{}typedef const \hyperlink{classRect}{Rect} \& {\bfseries reference}\label{classMultiSampler_1_1const__iterator_af29ff2e6562c89f361c005303a8b59a6}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_ae917012c8ae8fc0bb9038dcdca31a3ff}{}typedef std\+::vector$<$ \hyperlink{classRect}{Rect} $>$\+::const\+\_\+pointer {\bfseries pointer}\label{classMultiSampler_1_1const__iterator_ae917012c8ae8fc0bb9038dcdca31a3ff}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a6cd88cbb7da488729378360af404868b}{}typedef int {\bfseries difference\+\_\+type}\label{classMultiSampler_1_1const__iterator_a6cd88cbb7da488729378360af404868b}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a615d1a82ff9d2359fd94781e2c977f07}{}typedef std\+::input\+\_\+iterator\+\_\+tag {\bfseries iterator\+\_\+category}\label{classMultiSampler_1_1const__iterator_a615d1a82ff9d2359fd94781e2c977f07}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_ab8df4993fe9f10b840fa4c2289e9d73f}{}{\bfseries const\+\_\+iterator} (pointer p, int t, int l, bool $\ast$m)\label{classMultiSampler_1_1const__iterator_ab8df4993fe9f10b840fa4c2289e9d73f}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_aa405394946b760c88a6c0e3d8ec6cb81}{}\hyperlink{classMultiSampler_1_1const__iterator}{self\+\_\+type} {\bfseries operator++} ()\label{classMultiSampler_1_1const__iterator_aa405394946b760c88a6c0e3d8ec6cb81}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a59a75b91fe1df4c903301d0d5a5f9d1d}{}\hyperlink{classRect}{reference} {\bfseries operator$\ast$} ()\label{classMultiSampler_1_1const__iterator_a59a75b91fe1df4c903301d0d5a5f9d1d}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a85274928beda73df172cd5b21e484435}{}pointer {\bfseries operator-\/$>$} ()\label{classMultiSampler_1_1const__iterator_a85274928beda73df172cd5b21e484435}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a62afe0acae0d8c5a0fb0e5a37d5c1047}{}bool {\bfseries operator==} (const \hyperlink{classMultiSampler_1_1const__iterator}{self\+\_\+type} \&rhs)\label{classMultiSampler_1_1const__iterator_a62afe0acae0d8c5a0fb0e5a37d5c1047}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_a7e3dc1a902c4df204e898e4cbfce0dbf}{}bool {\bfseries operator!=} (const \hyperlink{classMultiSampler_1_1const__iterator}{self\+\_\+type} \&rhs)\label{classMultiSampler_1_1const__iterator_a7e3dc1a902c4df204e898e4cbfce0dbf}
+
+\item 
+\hypertarget{classMultiSampler_1_1const__iterator_ac215c17c1828c75e1cf5550a77966869}{}int {\bfseries Get\+Target} ()\label{classMultiSampler_1_1const__iterator_ac215c17c1828c75e1cf5550a77966869}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Iterator for target i. Since we won\textquotesingle{}t modify the sample, we only provide const iterator. Here the \hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator} is different from C++11. In C++11\+: \hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator} = (\hyperlink{classRect}{Rect} $\ast$ const); Here\+: \hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator} = (\hyperlink{classRect}{Rect} const $\ast$) = (const \hyperlink{classRect}{Rect} $\ast$); 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Multi\+Sampler.\+h\end{DoxyCompactItemize}

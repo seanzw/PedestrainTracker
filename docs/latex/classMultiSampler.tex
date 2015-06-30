@@ -1,0 +1,75 @@
+\hypertarget{classMultiSampler}{}\section{Multi\+Sampler Class Reference}
+\label{classMultiSampler}\index{Multi\+Sampler@{Multi\+Sampler}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMultiSampler_aca627fa4a72f7e7160dc5c8b519124d1}{}{\bfseries Multi\+Sampler} (const \hyperlink{structOptions}{Options} \&opts)\label{classMultiSampler_aca627fa4a72f7e7160dc5c8b519124d1}
+
+\item 
+void \hyperlink{classMultiSampler_af1ef1ab752aff145c7205c137f157691}{Sample} (const std\+::vector$<$ int $>$ \&match\+Dets, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&detections, const \hyperlink{classSize}{Size} \&img\+Size)
+\item 
+\hypertarget{classMultiSampler_a2eaa867c6f0a660c8b172252ce289f84}{}\hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator} {\bfseries begin} (int target) const \label{classMultiSampler_a2eaa867c6f0a660c8b172252ce289f84}
+
+\item 
+\hypertarget{classMultiSampler_a2db4ffc56e50cebe82b1df13e7b43bcf}{}\hyperlink{classMultiSampler_1_1const__iterator}{const\+\_\+iterator} {\bfseries end} () const \label{classMultiSampler_a2db4ffc56e50cebe82b1df13e7b43bcf}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMultiSampler_a15d6a18e01886258b9fbbda0e5d9b3ce}{}int {\bfseries capacity}\label{classMultiSampler_a15d6a18e01886258b9fbbda0e5d9b3ce}
+
+\item 
+std\+::vector$<$ \hyperlink{classRect}{Rect} $>$ \hyperlink{classMultiSampler_a2d082269a868defb6316e4ce4377438e}{samples}
+\item 
+\hypertarget{classMultiSampler_a6bceab84bd3c04adb118b4b752b10ca7}{}bool $\ast$ {\bfseries mask}\label{classMultiSampler_a6bceab84bd3c04adb118b4b752b10ca7}
+
+\item 
+\hypertarget{classMultiSampler_a52bd76ecf27c52ceac4ae57859f4d2a5}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Width}\label{classMultiSampler_a52bd76ecf27c52ceac4ae57859f4d2a5}
+
+\item 
+\hypertarget{classMultiSampler_a6fd61aaca77e32bdbbb6f96cfc2f1e47}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Height}\label{classMultiSampler_a6fd61aaca77e32bdbbb6f96cfc2f1e47}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMultiSampler_aac018e24b7d3e07ea2058eac5d3f9731}{}static std\+::default\+\_\+random\+\_\+engine {\bfseries generator}\label{classMultiSampler_aac018e24b7d3e07ea2058eac5d3f9731}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMultiSampler_af1ef1ab752aff145c7205c137f157691}{}\index{Multi\+Sampler@{Multi\+Sampler}!Sample@{Sample}}
+\index{Sample@{Sample}!Multi\+Sampler@{Multi\+Sampler}}
+\subsubsection[{Sample(const std\+::vector$<$ int $>$ \&match\+Dets, const Pool$<$ Rect $>$ \&detections, const Size \&img\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}void Multi\+Sampler\+::\+Sample (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ int $>$ \&}]{match\+Dets, }
+\item[{const {\bf Pool}$<$ {\bf Rect} $>$ \&}]{detections, }
+\item[{const {\bf Size} \&}]{img\+Size}
+\end{DoxyParamCaption}
+)}\label{classMultiSampler_af1ef1ab752aff145c7205c137f157691}
+Draw samples around the targets and detection pair. 
+\begin{DoxyParams}{Parameters}
+{\em match\+Dets} & Matched pairs. \\
+\hline
+{\em detections} & Detections. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classMultiSampler_a2d082269a868defb6316e4ce4377438e}{}\index{Multi\+Sampler@{Multi\+Sampler}!samples@{samples}}
+\index{samples@{samples}!Multi\+Sampler@{Multi\+Sampler}}
+\subsubsection[{samples}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Rect}$>$ Multi\+Sampler\+::samples\hspace{0.3cm}{\ttfamily [protected]}}\label{classMultiSampler_a2d082269a868defb6316e4ce4377438e}
+Samples vector. 1\+D array\+: (Capacity + 1) $\ast$ M\+U\+L\+T\+I\+\_\+\+S\+A\+M\+P\+L\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S \mbox{[}0, capacity $\ast$ M\+U\+L\+T\+I\+\_\+\+S\+A\+M\+P\+L\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S -\/ 1\mbox{]} \+: samples around targets. \mbox{[}capacity $\ast$ M\+U\+L\+T\+I\+\_\+\+S\+A\+M\+P\+L\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S, (capacity + 1) $\ast$ M\+U\+L\+T\+I\+\_\+\+S\+A\+M\+P\+L\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\mbox{]} \+: samples for background. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Multi\+Sampler.\+h\item 
+src/Multi\+Sampler.\+cpp\end{DoxyCompactItemize}

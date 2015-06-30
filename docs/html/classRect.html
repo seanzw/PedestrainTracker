@@ -99,6 +99,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7fbb8992edb8c3839c83045213d21631"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fbb8992edb8c3839c83045213d21631"></a>
 <a class="el" href="classRect.html">Rect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classPoint2D.html">Point2D</a> &amp;offset) const </td></tr>
 <tr class="separator:a7fbb8992edb8c3839c83045213d21631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d8491cab865d559ccb00fe88027714"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90d8491cab865d559ccb00fe88027714"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOverlap</b> (const <a class="el" href="classRect.html">Rect</a> &amp;other) const </td></tr>
+<tr class="separator:a90d8491cab865d559ccb00fe88027714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab55f8bbc938075ff7a23fb95bfdd26"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRect.html#a3ab55f8bbc938075ff7a23fb95bfdd26">IsIn</a> (const <a class="el" href="classRect.html">Rect</a> &amp;other) const </td></tr>
+<tr class="separator:a3ab55f8bbc938075ff7a23fb95bfdd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb25e86036b7faa93e86aee8ba24cd35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb25e86036b7faa93e86aee8ba24cd35"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator cv::Rect</b> () const </td></tr>
 <tr class="separator:afb25e86036b7faa93e86aee8ba24cd35"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,6 +126,32 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>height</b></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>width</b></td></tr>
 <tr class="separator:a367714e71d566668addb140c7981b5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3ab55f8bbc938075ff7a23fb95bfdd26"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Rect::IsIn </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Is the other rectangle all inside this one. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Geometry_8h_source.html">Geometry.h</a></li>
 <li>src/Geometry.cpp</li>

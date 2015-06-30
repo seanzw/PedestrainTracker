@@ -92,28 +92,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define MATCH_MATRIX_HEADER</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;Pool.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;TargetsFreeList.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classMatchMatrix.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMatchMatrix.html">MatchMatrix</a> {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classMatchMatrix.html">MatchMatrix</a>(<span class="keywordtype">int</span> capacity);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    ~<a class="code" href="classMatchMatrix.html">MatchMatrix</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMatchMatrix.html#acec2501fa6829ffc411d6a28f81a9fd4">SetNumDets</a>(<span class="keywordtype">int</span> numDets);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classMatchMatrix.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMatchMatrix.html">MatchMatrix</a> {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="classMatchMatrix.html">MatchMatrix</a>(<span class="keywordtype">int</span> <a class="code" href="classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9">capacity</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ~<a class="code" href="classMatchMatrix.html">MatchMatrix</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structMatchMatrix_1_1MatchScore.html">   15</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordtype">float</span> score;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">int</span> target;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">int</span> detection;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a>() : target(-1), detection(-1), score(0.0f) {}</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMatchMatrix.html#af831fe20d5065558e866ca4cc7494c5d">SetTargets</a>(<a class="code" href="classTargetsFreeList.html">TargetsFreeList</a> &amp;targets, <span class="keywordtype">float</span> threshold);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classMatchMatrix.html#a98f6c92d3df7bbf59f0db47c2cdffd2b">   32</a></span>&#160;    <a class="code" href="classPool.html">Pool&lt;Pool&lt;float&gt;</a>&gt; <a class="code" href="classMatchMatrix.html#a98f6c92d3df7bbf59f0db47c2cdffd2b">matchMat</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classTargetsFreeList_html"><div class="ttname"><a href="classTargetsFreeList.html">TargetsFreeList</a></div><div class="ttdef"><b>Definition:</b> TargetsFreeList.h:21</div></div>
-<div class="ttc" id="classMatchMatrix_html_af831fe20d5065558e866ca4cc7494c5d"><div class="ttname"><a href="classMatchMatrix.html#af831fe20d5065558e866ca4cc7494c5d">MatchMatrix::SetTargets</a></div><div class="ttdeci">void SetTargets(TargetsFreeList &amp;targets, float threshold)</div><div class="ttdef"><b>Definition:</b> MatchMatrix.cpp:17</div></div>
-<div class="ttc" id="classPool_html"><div class="ttname"><a href="classPool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> Pool.h:11</div></div>
-<div class="ttc" id="classMatchMatrix_html_a98f6c92d3df7bbf59f0db47c2cdffd2b"><div class="ttname"><a href="classMatchMatrix.html#a98f6c92d3df7bbf59f0db47c2cdffd2b">MatchMatrix::matchMat</a></div><div class="ttdeci">Pool&lt; Pool&lt; float &gt; &gt; matchMat</div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:32</div></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">bool</span> operator&lt;(<span class="keyword">const</span> <a class="code" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> score &lt; other.score;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structMatchMatrix_1_1MatchScore.html#a421a9d1378477bc3eca2d21be3727f29">   29</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structMatchMatrix_1_1MatchScore.html#a421a9d1378477bc3eca2d21be3727f29">operator&gt;</a>(<span class="keyword">const</span> <a class="code" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> score &gt; other.score;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMatchMatrix.html#acec2501fa6829ffc411d6a28f81a9fd4">SetNumDets</a>(<span class="keywordtype">int</span> numDets);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMatchMatrix.html#a34460be87975b20a17bbe4931c842093">SetTargets</a>(std::vector&lt;int&gt; &amp;targets, <span class="keywordtype">float</span> threshold);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMatchMatrix.html#a89f3a9ba25e87097b7c68aea556270ba">PrintMatchMatrix</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9">   54</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9">capacity</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classMatchMatrix.html#a79a0696b5718167910fdc83cb63da755">   60</a></span>&#160;    std::vector&lt;MatchScore&gt; <a class="code" href="classMatchMatrix.html#a79a0696b5718167910fdc83cb63da755">matchMatrix</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classMatchMatrix.html#ae0739695c34fa591511ed653bc2f5173">   66</a></span>&#160;    std::vector&lt;char&gt; <a class="code" href="classMatchMatrix.html#ae0739695c34fa591511ed653bc2f5173">isDetMatched</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMatchMatrix_html_a79a0696b5718167910fdc83cb63da755"><div class="ttname"><a href="classMatchMatrix.html#a79a0696b5718167910fdc83cb63da755">MatchMatrix::matchMatrix</a></div><div class="ttdeci">std::vector&lt; MatchScore &gt; matchMatrix</div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:60</div></div>
+<div class="ttc" id="structMatchMatrix_1_1MatchScore_html"><div class="ttname"><a href="structMatchMatrix_1_1MatchScore.html">MatchMatrix::MatchScore</a></div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:15</div></div>
+<div class="ttc" id="classMatchMatrix_html_ae0739695c34fa591511ed653bc2f5173"><div class="ttname"><a href="classMatchMatrix.html#ae0739695c34fa591511ed653bc2f5173">MatchMatrix::isDetMatched</a></div><div class="ttdeci">std::vector&lt; char &gt; isDetMatched</div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:66</div></div>
+<div class="ttc" id="structMatchMatrix_1_1MatchScore_html_a421a9d1378477bc3eca2d21be3727f29"><div class="ttname"><a href="structMatchMatrix_1_1MatchScore.html#a421a9d1378477bc3eca2d21be3727f29">MatchMatrix::MatchScore::operator&gt;</a></div><div class="ttdeci">bool operator&gt;(const MatchScore &amp;other) const </div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:29</div></div>
+<div class="ttc" id="classMatchMatrix_html_a89f3a9ba25e87097b7c68aea556270ba"><div class="ttname"><a href="classMatchMatrix.html#a89f3a9ba25e87097b7c68aea556270ba">MatchMatrix::PrintMatchMatrix</a></div><div class="ttdeci">void PrintMatchMatrix()</div><div class="ttdef"><b>Definition:</b> MatchMatrix.cpp:66</div></div>
+<div class="ttc" id="classMatchMatrix_html_a34460be87975b20a17bbe4931c842093"><div class="ttname"><a href="classMatchMatrix.html#a34460be87975b20a17bbe4931c842093">MatchMatrix::SetTargets</a></div><div class="ttdeci">void SetTargets(std::vector&lt; int &gt; &amp;targets, float threshold)</div><div class="ttdef"><b>Definition:</b> MatchMatrix.cpp:38</div></div>
 <div class="ttc" id="classMatchMatrix_html_acec2501fa6829ffc411d6a28f81a9fd4"><div class="ttname"><a href="classMatchMatrix.html#acec2501fa6829ffc411d6a28f81a9fd4">MatchMatrix::SetNumDets</a></div><div class="ttdeci">void SetNumDets(int numDets)</div><div class="ttdef"><b>Definition:</b> MatchMatrix.cpp:11</div></div>
-<div class="ttc" id="classMatchMatrix_html"><div class="ttname"><a href="classMatchMatrix.html">MatchMatrix</a></div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:11</div></div>
+<div class="ttc" id="classMatchMatrix_html_aea0cf328c2400c73e0146d9e68e310d9"><div class="ttname"><a href="classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9">MatchMatrix::capacity</a></div><div class="ttdeci">const int capacity</div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:54</div></div>
+<div class="ttc" id="classMatchMatrix_html"><div class="ttname"><a href="classMatchMatrix.html">MatchMatrix</a></div><div class="ttdef"><b>Definition:</b> MatchMatrix.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -14,13 +14,17 @@
 \item 
 void \hyperlink{classSingleTarget_a2036d90f89d1a65966523c559aee3d38}{Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)
 \item 
+void \hyperlink{classSingleTarget_a13cab0742ea9f690c87fbb7cc1e7978e}{Train} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classMultiSampler}{Multi\+Sampler} $\ast$multi\+Sampler, int id)
+\item 
+void \hyperlink{classSingleTarget_ab22b42729018c6b9b37ee991a0f55778}{Train} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classSingleSampler}{Single\+Sampler} $\ast$sampler)
+\item 
+void \hyperlink{classSingleTarget_a9979d02b76cebbf00240484d88d71029}{Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, std\+::vector$<$ \hyperlink{structMatchMatrix_1_1MatchScore}{Match\+Matrix\+::\+Match\+Score} $>$\+::iterator \&match\+Array) const 
+\item 
+bool \hyperlink{classSingleTarget_af144eab566d3d52391ba1b432b767faa}{Check\+Nearby\+Target} (const \hyperlink{classRect}{Rect} \&det, int dist\+Thre) const 
+\item 
 void \hyperlink{classSingleTarget_a9ce84c111efa084c8bf9aa89736dffc8}{Observe} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&detection, float detection\+Weight)
 \item 
 void \hyperlink{classSingleTarget_a1e22348deeeae3e5d8d1c964df9c8fc8}{Observe} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image)
-\item 
-void \hyperlink{classSingleTarget_a5b2d2b9313f7d3bd8d96af68f840bff4}{Update} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classRect}{Rect} \&roi, int target, float importance=1.\+0f)
-\item 
-void \hyperlink{classSingleTarget_a450151cccff458e3603a34c99ccd4134}{Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, \hyperlink{classPool}{Pool}$<$ float $>$ \&match\+Array) const 
 \item 
 void \hyperlink{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}{Update\+Seq} (bool is\+Detected)
 \item 
@@ -28,6 +32,21 @@ void \hyperlink{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}{Update\+Seq
 
 \item 
 \hypertarget{classSingleTarget_a8ba04565921bcbcce7a04c1c76daa4ca}{}void {\bfseries Resample\+With\+Confidence} ()\label{classSingleTarget_a8ba04565921bcbcce7a04c1c76daa4ca}
+
+\item 
+\hypertarget{classSingleTarget_affde5a4d83abae23455e12eabd64d457}{}void {\bfseries Draw\+Target} (cv\+::\+Mat \&img, const cv\+::\+Scalar \&color) const \label{classSingleTarget_affde5a4d83abae23455e12eabd64d457}
+
+\item 
+\hypertarget{classSingleTarget_a850e7f7214d3177b9efa1f67dad41eda}{}void {\bfseries Draw\+Particles} (cv\+::\+Mat \&img, const cv\+::\+Scalar \&color) const \label{classSingleTarget_a850e7f7214d3177b9efa1f67dad41eda}
+
+\item 
+\hypertarget{classSingleTarget_a24266a5f070d9ca5f5c153b457da9809}{}void {\bfseries Draw\+Particles\+With\+Confidence} (cv\+::\+Mat \&img, const cv\+::\+Scalar \&color) const \label{classSingleTarget_a24266a5f070d9ca5f5c153b457da9809}
+
+\item 
+\hypertarget{classSingleTarget_ac2902853bb78b4ea5ab08fd20c3b4696}{}const \hyperlink{classRect}{Rect} \& {\bfseries Get\+Target} () const \label{classSingleTarget_ac2902853bb78b4ea5ab08fd20c3b4696}
+
+\item 
+\hypertarget{classSingleTarget_a5e750db6690a4591801f1e37d987f3e6}{}void {\bfseries Set\+Target} (const \hyperlink{classRect}{Rect} \&t)\label{classSingleTarget_a5e750db6690a4591801f1e37d987f3e6}
 
 \end{DoxyCompactItemize}
 
@@ -69,15 +88,15 @@ Parameters for an empty target.
 Construct an empty target. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classSingleTarget_a450151cccff458e3603a34c99ccd4134}{}\index{Single\+Target@{Single\+Target}!Calculate\+Match\+Score@{Calculate\+Match\+Score}}
+\hypertarget{classSingleTarget_a9979d02b76cebbf00240484d88d71029}{}\index{Single\+Target@{Single\+Target}!Calculate\+Match\+Score@{Calculate\+Match\+Score}}
 \index{Calculate\+Match\+Score@{Calculate\+Match\+Score}!Single\+Target@{Single\+Target}}
-\subsubsection[{Calculate\+Match\+Score(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&dets, Pool$<$ float $>$ \&match\+Array) const }]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Calculate\+Match\+Score (
+\subsubsection[{Calculate\+Match\+Score(const Integral\+Image $\ast$int\+Image, const Pool$<$ Rect $>$ \&dets, std\+::vector$<$ Match\+Matrix\+::\+Match\+Score $>$\+::iterator \&match\+Array) const }]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Calculate\+Match\+Score (
 \begin{DoxyParamCaption}
 \item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
 \item[{const {\bf Pool}$<$ {\bf Rect} $>$ \&}]{dets, }
-\item[{{\bf Pool}$<$ float $>$ \&}]{match\+Array}
+\item[{std\+::vector$<$ {\bf Match\+Matrix\+::\+Match\+Score} $>$\+::iterator \&}]{match\+Array}
 \end{DoxyParamCaption}
-) const}\label{classSingleTarget_a450151cccff458e3603a34c99ccd4134}
+) const}\label{classSingleTarget_a9979d02b76cebbf00240484d88d71029}
 Calculate the match score with all the detections.
 
 
@@ -89,7 +108,15 @@ Calculate the match score with all the detections.
 {\em march\+Array} & out\+: the match score \\
 \hline
 \end{DoxyParams}
-\hypertarget{classSingleTarget_a9ce84c111efa084c8bf9aa89736dffc8}{}\index{Single\+Target@{Single\+Target}!Observe@{Observe}}
+\hypertarget{classSingleTarget_af144eab566d3d52391ba1b432b767faa}{}\index{Single\+Target@{Single\+Target}!Check\+Nearby\+Target@{Check\+Nearby\+Target}}
+\index{Check\+Nearby\+Target@{Check\+Nearby\+Target}!Single\+Target@{Single\+Target}}
+\subsubsection[{Check\+Nearby\+Target(const Rect \&det, int dist\+Thre) const }]{\setlength{\rightskip}{0pt plus 5cm}bool Single\+Target\+::\+Check\+Nearby\+Target (
+\begin{DoxyParamCaption}
+\item[{const {\bf Rect} \&}]{det, }
+\item[{int}]{dist\+Thre}
+\end{DoxyParamCaption}
+) const}\label{classSingleTarget_af144eab566d3d52391ba1b432b767faa}
+Check if the det is near the target \hypertarget{classSingleTarget_a9ce84c111efa084c8bf9aa89736dffc8}{}\index{Single\+Target@{Single\+Target}!Observe@{Observe}}
 \index{Observe@{Observe}!Single\+Target@{Single\+Target}}
 \subsubsection[{Observe(const Integral\+Image $\ast$int\+Image, const Rect \&detection, float detection\+Weight)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Observe (
 \begin{DoxyParamCaption}
@@ -123,17 +150,33 @@ Observe the particles without matched detections. \hypertarget{classSingleTarget
 \item[{const {\bf Size} \&}]{img\+Size}
 \end{DoxyParamCaption}
 )}\label{classSingleTarget_a2036d90f89d1a65966523c559aee3d38}
-Propagate the particles. It sets the sigma for velocity and then call \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Particle\+Filter\+::\+Propagate}. \hypertarget{classSingleTarget_a5b2d2b9313f7d3bd8d96af68f840bff4}{}\index{Single\+Target@{Single\+Target}!Update@{Update}}
-\index{Update@{Update}!Single\+Target@{Single\+Target}}
-\subsubsection[{Update(const Integral\+Image $\ast$int\+Image, const Rect \&roi, int target, float importance=1.\+0f)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Update (
+Propagate the particles. It sets the sigma for velocity and then call \hyperlink{classParticleFilter_a166db9f33feabf14126df2de541a593d}{Particle\+Filter\+::\+Propagate}. \hypertarget{classSingleTarget_a13cab0742ea9f690c87fbb7cc1e7978e}{}\index{Single\+Target@{Single\+Target}!Train@{Train}}
+\index{Train@{Train}!Single\+Target@{Single\+Target}}
+\subsubsection[{Train(const Integral\+Image $\ast$int\+Image, const Multi\+Sampler $\ast$multi\+Sampler, int id)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Train (
 \begin{DoxyParamCaption}
 \item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
-\item[{const {\bf Rect} \&}]{roi, }
-\item[{int}]{target, }
-\item[{float}]{importance = {\ttfamily 1.0f}}
+\item[{const {\bf Multi\+Sampler} $\ast$}]{multi\+Sampler, }
+\item[{int}]{id}
 \end{DoxyParamCaption}
-)}\label{classSingleTarget_a5b2d2b9313f7d3bd8d96af68f840bff4}
-Update the classifier. Only used when there are no overlapping detection and we are damn sure this is the correct one. \hypertarget{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}{}\index{Single\+Target@{Single\+Target}!Update\+Seq@{Update\+Seq}}
+)}\label{classSingleTarget_a13cab0742ea9f690c87fbb7cc1e7978e}
+Train the classifier. Only used when there are no overlapping detection and we are damn sure this is the correct one. 
+\begin{DoxyParams}{Parameters}
+{\em int\+Image} & integral image \\
+\hline
+{\em multi\+Sampler} & where we can find the samples \\
+\hline
+{\em id} & the id of this target \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSingleTarget_ab22b42729018c6b9b37ee991a0f55778}{}\index{Single\+Target@{Single\+Target}!Train@{Train}}
+\index{Train@{Train}!Single\+Target@{Single\+Target}}
+\subsubsection[{Train(const Integral\+Image $\ast$int\+Image, const Single\+Sampler $\ast$sampler)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Train (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integral\+Image} $\ast$}]{int\+Image, }
+\item[{const {\bf Single\+Sampler} $\ast$}]{sampler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classSingleTarget_ab22b42729018c6b9b37ee991a0f55778}
+Train with a single sampler. \hypertarget{classSingleTarget_aa620ca1f64fe972c8dc110e0a6012213}{}\index{Single\+Target@{Single\+Target}!Update\+Seq@{Update\+Seq}}
 \index{Update\+Seq@{Update\+Seq}!Single\+Target@{Single\+Target}}
 \subsubsection[{Update\+Seq(bool is\+Detected)}]{\setlength{\rightskip}{0pt plus 5cm}void Single\+Target\+::\+Update\+Seq (
 \begin{DoxyParamCaption}

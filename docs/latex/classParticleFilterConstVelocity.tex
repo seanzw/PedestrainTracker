@@ -1,9 +1,5 @@
 \hypertarget{classParticleFilterConstVelocity}{}\section{Particle\+Filter\+Const\+Velocity Class Reference}
 \label{classParticleFilterConstVelocity}\index{Particle\+Filter\+Const\+Velocity@{Particle\+Filter\+Const\+Velocity}}
-
-
-{\ttfamily \#include $<$Particle\+Filter\+Const\+Velocity.\+h$>$}
-
 Inheritance diagram for Particle\+Filter\+Const\+Velocity\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,7 +21,7 @@ Inheritance diagram for Particle\+Filter\+Const\+Velocity\+:\begin{figure}[H]
 \hypertarget{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}{}void {\bfseries Propagate} (const \hyperlink{classSize}{Size} \&img\+Size)\label{classParticleFilterConstVelocity_a72868ab78e4c4f49ce756e986839f993}
 
 \item 
-\hypertarget{classParticleFilterConstVelocity_a46aae8bac98e7f6e1f13ad99ec8a38cd}{}void {\bfseries Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, \hyperlink{classPool}{Pool}$<$ float $>$ \&match\+Array) const \label{classParticleFilterConstVelocity_a46aae8bac98e7f6e1f13ad99ec8a38cd}
+\hypertarget{classParticleFilterConstVelocity_a0599ad9b4df7d0be14432960e7438148}{}void {\bfseries Calculate\+Match\+Score} (const \hyperlink{classIntegralImage}{Integral\+Image} $\ast$int\+Image, const \hyperlink{classStrongClassifier}{Strong\+Classifier} $\ast$classifier, const \hyperlink{classPool}{Pool}$<$ \hyperlink{classRect}{Rect} $>$ \&dets, std\+::vector$<$ \hyperlink{structMatchMatrix_1_1MatchScore}{Match\+Matrix\+::\+Match\+Score} $>$\+::iterator \&match\+Array) const \label{classParticleFilterConstVelocity_a0599ad9b4df7d0be14432960e7438148}
 
 \item 
 \hypertarget{classParticleFilterConstVelocity_a91f6d8afede8039cd3ed08acbcb67b47}{}void {\bfseries Set\+Velocity\+Sigma} (float sigma)\label{classParticleFilterConstVelocity_a91f6d8afede8039cd3ed08acbcb67b47}
@@ -52,14 +48,6 @@ Inheritance diagram for Particle\+Filter\+Const\+Velocity\+:\begin{figure}[H]
 \hypertarget{classParticleFilterConstVelocity_a4ebdf630669691c8d00fa1f94022921a}{}std\+::normal\+\_\+distribution$<$ float $>$ {\bfseries gaussian\+Velocity}\label{classParticleFilterConstVelocity_a4ebdf630669691c8d00fa1f94022921a}
 
 \end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-\hyperlink{classParticleFilter}{Particle\+Filter} with constant velocity.
-
-\begin{DoxyAuthor}{Author}
-Zhengrong Wang. 
-\end{DoxyAuthor}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -85,7 +85,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="classTargetsFreeList-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TargetsFreeList Class Reference</div>  </div>
@@ -106,8 +105,39 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeTarget</b> (
 <tr class="separator:abd311cfa3633ed0268aab9ae8135deae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dbfd6eb0734fa5adc094ebffc6b4926"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetsFreeList.html#a6dbfd6eb0734fa5adc094ebffc6b4926">Observe</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;detections)</td></tr>
 <tr class="separator:a6dbfd6eb0734fa5adc094ebffc6b4926"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9eefc5f9a7aa50987295205d1ee1b36e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetsFreeList.html#a9eefc5f9a7aa50987295205d1ee1b36e">CalculateMatchScore</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;dets, <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classPool.html">Pool</a>&lt; float &gt;&gt; &amp;matchMat) const </td></tr>
-<tr class="separator:a9eefc5f9a7aa50987295205d1ee1b36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab78acc51961ee187462aee4f255c1273"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab78acc51961ee187462aee4f255c1273"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Resample</b> ()</td></tr>
+<tr class="separator:ab78acc51961ee187462aee4f255c1273"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3732078a01c7875a4417f951621b3dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3732078a01c7875a4417f951621b3dd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetTarget</b> (int index, <a class="el" href="classRect.html">Rect</a> &amp;t) const </td></tr>
+<tr class="separator:ab3732078a01c7875a4417f951621b3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7627d7885056454812805db6eb69357"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7627d7885056454812805db6eb69357"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetCapacity</b> () const </td></tr>
+<tr class="separator:ab7627d7885056454812805db6eb69357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8a36a78a916259c0df3f17fcd837f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetsFreeList.html#a5a8a36a78a916259c0df3f17fcd837f0">CalculateMatchScore</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; &amp;dets, std::vector&lt; <a class="el" href="structMatchMatrix_1_1MatchScore.html">MatchMatrix::MatchScore</a> &gt; &amp;matchMat) const </td></tr>
+<tr class="separator:a5a8a36a78a916259c0df3f17fcd837f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763e34bae15ed0f7feb255baa60c6096"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetsFreeList.html#a763e34bae15ed0f7feb255baa60c6096">CheckNearbyTarget</a> (const <a class="el" href="classRect.html">Rect</a> &amp;det, int distThre) const </td></tr>
+<tr class="separator:a763e34bae15ed0f7feb255baa60c6096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0108fcb6355d6db4c599a95e7cc13e94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0108fcb6355d6db4c599a95e7cc13e94"></a>
+const std::vector&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetMatchDets</b> ()</td></tr>
+<tr class="separator:a0108fcb6355d6db4c599a95e7cc13e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf67eb9c2bbef26350460597ba017d3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetsFreeList.html#abf67eb9c2bbef26350460597ba017d3b">Train</a> (const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classMultiSampler.html">MultiSampler</a> *multiSampler)</td></tr>
+<tr class="separator:abf67eb9c2bbef26350460597ba017d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a909bf5b6bff911d54e19b5b40b3e867b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a909bf5b6bff911d54e19b5b40b3e867b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Train</b> (int idx, const <a class="el" href="classIntegralImage.html">IntegralImage</a> *intImage, const <a class="el" href="classSingleSampler.html">SingleSampler</a> *singleSampler)</td></tr>
+<tr class="separator:a909bf5b6bff911d54e19b5b40b3e867b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab86808dde009bd794ac39cc0ea58559b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab86808dde009bd794ac39cc0ea58559b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawTargets</b> (cv::Mat &amp;img, int index=-1) const </td></tr>
+<tr class="separator:ab86808dde009bd794ac39cc0ea58559b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8a27707e9cd557e3f1c55abc3e9b317"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8a27707e9cd557e3f1c55abc3e9b317"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawParticles</b> (cv::Mat &amp;img, int index=-1) const </td></tr>
+<tr class="separator:ad8a27707e9cd557e3f1c55abc3e9b317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae54b269e667b5c198bf7170f86475c09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae54b269e667b5c198bf7170f86475c09"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawParticlesWithConfidence</b> (cv::Mat &amp;img, int index=-1) const </td></tr>
+<tr class="separator:ae54b269e667b5c198bf7170f86475c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abafc30cce178ddc20cd07b527c9273ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abafc30cce178ddc20cd07b527c9273ba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawMatches</b> (cv::Mat &amp;img, <a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classRect.html">Rect</a> &gt; dets)</td></tr>
+<tr class="separator:abafc30cce178ddc20cd07b527c9273ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -120,15 +150,12 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>capacity</b></td
 <tr class="memitem:ab24813bb8b19208e00711d9a4c80f2f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab24813bb8b19208e00711d9a4c80f2f5"></a>
 const float&#160;</td><td class="memItemRight" valign="bottom"><b>detectionWeight</b></td></tr>
 <tr class="separator:ab24813bb8b19208e00711d9a4c80f2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:ac3ed72f4c3f22bfca9553b6c316df2ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3ed72f4c3f22bfca9553b6c316df2ea"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>MatchMatrix</b></td></tr>
-<tr class="separator:ac3ed72f4c3f22bfca9553b6c316df2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add764e995fb32f8aa491b6012e07bfb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add764e995fb32f8aa491b6012e07bfb7"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>matchDets</b></td></tr>
+<tr class="separator:add764e995fb32f8aa491b6012e07bfb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a9eefc5f9a7aa50987295205d1ee1b36e"></a>
+<a class="anchor" id="a5a8a36a78a916259c0df3f17fcd837f0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -147,7 +174,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>MatchMatrix</b></td>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classPool.html">Pool</a>&lt; float &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structMatchMatrix_1_1MatchScore.html">MatchMatrix::MatchScore</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>matchMat</em>&#160;</td>
         </tr>
         <tr>
@@ -166,6 +193,33 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>MatchMatrix</b></td>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a763e34bae15ed0f7feb255baa60c6096"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TargetsFreeList::CheckNearbyTarget </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRect.html">Rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>det</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>distThre</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if there are targets nearby. </p>
 
 </div>
 </div>
@@ -227,6 +281,33 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>MatchMatrix</b></td>
       </table>
 </div><div class="memdoc">
 <p>Reset one target. </p>
+
+</div>
+</div>
+<a class="anchor" id="abf67eb9c2bbef26350460597ba017d3b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TargetsFreeList::Train </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIntegralImage.html">IntegralImage</a> *&#160;</td>
+          <td class="paramname"><em>intImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMultiSampler.html">MultiSampler</a> *&#160;</td>
+          <td class="paramname"><em>multiSampler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Online training. </p>
 
 </div>
 </div>

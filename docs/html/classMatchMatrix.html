@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classMatchMatrix-members.html">List of all members</a>  </div>
@@ -93,24 +94,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><code>#include &lt;<a class="el" href="MatchMatrix_8h_source.html">MatchMatrix.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d879e8c199fb12bdf820d0ddf4989bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d879e8c199fb12bdf820d0ddf4989bd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MatchMatrix</b> (int capacity)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MatchMatrix</b> (int <a class="el" href="classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9">capacity</a>)</td></tr>
 <tr class="separator:a7d879e8c199fb12bdf820d0ddf4989bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acec2501fa6829ffc411d6a28f81a9fd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#acec2501fa6829ffc411d6a28f81a9fd4">SetNumDets</a> (int numDets)</td></tr>
 <tr class="separator:acec2501fa6829ffc411d6a28f81a9fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af831fe20d5065558e866ca4cc7494c5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#af831fe20d5065558e866ca4cc7494c5d">SetTargets</a> (<a class="el" href="classTargetsFreeList.html">TargetsFreeList</a> &amp;targets, float threshold)</td></tr>
-<tr class="separator:af831fe20d5065558e866ca4cc7494c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34460be87975b20a17bbe4931c842093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#a34460be87975b20a17bbe4931c842093">SetTargets</a> (std::vector&lt; int &gt; &amp;targets, float threshold)</td></tr>
+<tr class="separator:a34460be87975b20a17bbe4931c842093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89f3a9ba25e87097b7c68aea556270ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#a89f3a9ba25e87097b7c68aea556270ba">PrintMatchMatrix</a> ()</td></tr>
+<tr class="separator:a89f3a9ba25e87097b7c68aea556270ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a98f6c92d3df7bbf59f0db47c2cdffd2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPool.html">Pool</a>&lt; <a class="el" href="classPool.html">Pool</a>&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#a98f6c92d3df7bbf59f0db47c2cdffd2b">matchMat</a></td></tr>
-<tr class="separator:a98f6c92d3df7bbf59f0db47c2cdffd2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0cf328c2400c73e0146d9e68e310d9"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#aea0cf328c2400c73e0146d9e68e310d9">capacity</a></td></tr>
+<tr class="separator:aea0cf328c2400c73e0146d9e68e310d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79a0696b5718167910fdc83cb63da755"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#a79a0696b5718167910fdc83cb63da755">matchMatrix</a></td></tr>
+<tr class="separator:a79a0696b5718167910fdc83cb63da755"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0739695c34fa591511ed653bc2f5173"><td class="memItemLeft" align="right" valign="top">std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchMatrix.html#ae0739695c34fa591511ed653bc2f5173">isDetMatched</a></td></tr>
+<tr class="separator:ae0739695c34fa591511ed653bc2f5173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Use greedy algorithm to find best (detection, target) pair. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a89f3a9ba25e87097b7c68aea556270ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MatchMatrix::PrintMatchMatrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Print the match score matrix for debugging. </p>
+
+</div>
+</div>
 <a class="anchor" id="acec2501fa6829ffc411d6a28f81a9fd4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -128,14 +156,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af831fe20d5065558e866ca4cc7494c5d"></a>
+<a class="anchor" id="a34460be87975b20a17bbe4931c842093"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void MatchMatrix::SetTargets </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classTargetsFreeList.html">TargetsFreeList</a> &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
           <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
@@ -156,12 +184,38 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a98f6c92d3df7bbf59f0db47c2cdffd2b"></a>
+<a class="anchor" id="aea0cf328c2400c73e0146d9e68e310d9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPool.html">Pool</a>&lt;<a class="el" href="classPool.html">Pool</a>&lt;float&gt; &gt; MatchMatrix::matchMat</td>
+          <td class="memname">const int MatchMatrix::capacity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>How many targets? </p>
+
+</div>
+</div>
+<a class="anchor" id="ae0739695c34fa591511ed653bc2f5173"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;char&gt; MatchMatrix::isDetMatched</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Is this detection has already matched to some targert? Avoid using std::vector&lt;char&gt;. </p>
+
+</div>
+</div>
+<a class="anchor" id="a79a0696b5718167910fdc83cb63da755"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structMatchMatrix_1_1MatchScore.html">MatchScore</a>&gt; MatchMatrix::matchMatrix</td>
         </tr>
       </table>
 </div><div class="memdoc">
