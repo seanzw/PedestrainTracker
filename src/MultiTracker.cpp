@@ -8,9 +8,11 @@ MultiTracker::MultiTracker(ImageDetector *d, const Size &sz, const Options &opts
 	rgiIntImage = new RGIIntegralImage(imgSize.width, imgSize.height);
 
     // Initialize the region.
-    int margin = 50;
-    outer = Rect(margin, margin, imgSize.width - 2 * margin, imgSize.height - 2 * margin);
-    inner = Rect(2 * margin, 2 * margin, imgSize.width - 4 * margin, imgSize.height - 4 * margin);
+    int margin = 40;
+    //outer = Rect(margin, margin, imgSize.width - 2 * margin, imgSize.height - 2 * margin);
+    //inner = Rect(2 * margin, 2 * margin, imgSize.width - 4 * margin, imgSize.height - 4 * margin);
+    outer = Rect(margin, imgSize.width * 0.6, 2 * margin, imgSize.height - 2 * margin);
+    inner = Rect(2 * margin, outer.left + 0.5 * margin, margin, imgSize.height - 4 * margin);
 
 	// Initialize the targets free list.
 	targets = new TargetsFreeList(opts);
