@@ -110,7 +110,7 @@ void RGIIntegralImage::GetSum(const Rect &roi, float *result) const {
 
 	unsigned int *originPtr = &intImage[roi.upper * step + roi.left * NUM_RGI_BINS];
 
-	int down = roi.height * step;
+	int down = (roi.height - 1) * step;
 	int right = roi.width * NUM_RGI_BINS;
 
 	// Get the bins.

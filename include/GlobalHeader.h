@@ -15,6 +15,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string.h>
+#include <deque>
 #include <random>
 #include <algorithm>
 #include <functional>

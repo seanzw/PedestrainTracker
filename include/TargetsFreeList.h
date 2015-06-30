@@ -43,8 +43,9 @@ public:
 
 	inline void Resample() {
 		for (auto &node : listNodes) {
-			if (!node.isFree)
-				node.target->ResampleWithBest();
+            if (!node.isFree)
+                //node.target->ResampleWithConfidence();
+                node.target->ResampleWithBest();
 		}
 	}
 
@@ -89,6 +90,7 @@ public:
 	 * Online training.
 	 */
 	void Train(const IntegralImage *intImage, const MultiSampler *multiSampler);
+    void Train(int idx, const IntegralImage *intImage, const SingleSampler *singleSampler);
 
 	inline void DrawTargets(cv::Mat &img, int index = -1) const {
 		if (index < capacity && index >= 0 && !listNodes[index].isFree) {

@@ -29,13 +29,22 @@ ParticleFilter::~ParticleFilter() {
 void ParticleFilter::Propagate(const Size &imgSize) {
 	int *curParticle = particles;
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
-		while (true) {
+        bool success = false;
+		for (int j = 0; j < 5; j++) {
 			curParticle[0] += (int)gaussian(generator);
 			curParticle[1] += (int)gaussian(generator);
 			if (imgSize.IsIn(curParticle[0], curParticle[1], target.width, target.height)) {
+                success = true;
 				break;
 			}
 		}
+        if (!success) {
+            // We failed to propagate this particle.
+            // It is too close to the boundary.
+            // Reset it back to the target.
+            curParticle[0] = target.upper;
+            curParticle[1] = target.left;
+        }
 	}
 }
 
@@ -117,8 +126,9 @@ void ParticleFilter::ResampleWithConfidence() {
 		int particle = BinarSearch(prob) * sizeParticle;
 
 		// Get this particle into resample buffer.
-		curParticle[0] = particles[particle];
-		curParticle[1] = particles[particle + 1];
+        for (int j = 0; j < sizeParticle; j++) {
+            curParticle[j] = particles[particle + j];
+        }
 
 		// Add it to the sum so that we can get the target later.
 		sumUpper += curParticle[0];

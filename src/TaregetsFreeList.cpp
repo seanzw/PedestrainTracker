@@ -87,7 +87,7 @@ void TargetsFreeList::Observe(const IntegralImage *intImage, const Pool<Rect> &d
 				// This target has a matched detection.
                 // Set the size the same as the detection.
                 // TODO
-                //listNodes[i].target->SetTarget(detections[matchDets[i]]);
+                // listNodes[i].target->SetTarget(detections[matchDets[i]]);
 
 				// Update the detection sequence.
 				 listNodes[i].target->UpdateSeq(true);
@@ -114,6 +114,11 @@ void TargetsFreeList::Train(const IntegralImage *intImage, const MultiSampler *m
 			listNodes[i].target->Train(intImage, multiSampler, i);
 		}
 	}
+}
+
+void TargetsFreeList::Train(int idx,
+    const IntegralImage *intImage, const SingleSampler *sampler) {
+    listNodes[idx].target->Train(intImage, sampler);
 }
 
 bool TargetsFreeList::CheckNearbyTarget(const Rect &det, int distThre) const {

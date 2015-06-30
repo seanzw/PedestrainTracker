@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 	opt.distWeight = 0.5f;
 	opt.initVelocity = Point2D(0, 0);
 	opt.matchThre = 5.0f;
-	opt.nParticles = 200;
+	opt.nParticles = 500;
 	opt.numBackups = 5;
 	opt.numSelectors = 50;
 	opt.numWeakClassifiers = 250;

@@ -15,8 +15,9 @@
 #include "StrongClassifierDirectSelect.h"
 #include "ParticleFilterConstVelocity.h"
 #include "MultiSampler.h"
+#include "SingleSampler.h"
 
-#define SINGLE_TARGET_VELOCITY_CONST 1.0f
+#define SINGLE_TARGET_VELOCITY_CONST 10.0f
 
 /**
  * Parameters for an empty target.
@@ -58,6 +59,18 @@ public:
 	 * @param id			the id of this target
 	 */
 	void Train(const IntegralImage *intImage, const MultiSampler *multiSampler, int id);
+
+    /**
+     * Train with a single sampler.
+     */
+    inline void Train(const IntegralImage *intImage, const SingleSampler *sampler) {
+        for (int i = 0; i < sampler->GetNumPos(); i++) {
+            classifier->Update(intImage, sampler->GetPosSample(i), 1, 1.0f);
+        }
+        for (int i = 0; i < sampler->GetNumNeg(); i++) {
+            classifier->Update(intImage, sampler->GetPosSample(i), -1, 1.0f);
+        }
+    }
 
 	/**
 	* Calculate the match score with all the detections.

@@ -35,6 +35,7 @@
 #include "HoGIntegralImage.h"
 #include "TargetsFreeList.h"
 #include "ImageDetector.h"
+#include "SingleSampler.h"
 
 class MultiTracker : public Tracker {
 public:
@@ -97,7 +98,9 @@ private:
     MatchMatrix *matches;
 
     // MultiSampler.
-    MultiSampler *sampler;
+    // MultiSampler *sampler;
+    SingleSampler *sampler;
+
 
     // Threshold for matching.
     const float matchThre;

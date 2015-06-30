@@ -41,15 +41,26 @@ ParticleFilterConstVelocity::~ParticleFilterConstVelocity() {
 void ParticleFilterConstVelocity::Propagate(const Size &imgSize) {
 	int *curParticle = particles;
 	for (int i = 0; i < numParticles; i++, curParticle += sizeParticle) {
-		while (true) {
+        bool success = false;
+		for (int j = 0; j < 5; j++) {
 			curParticle[0] += (curParticle[2] + (int)gaussian(generator));
 			curParticle[1] += (curParticle[3] + (int)gaussian(generator));
 			if (imgSize.IsIn(curParticle[0], curParticle[1], target.width, target.height)) {
 				curParticle[2] += (int)gaussianVelocity(generator);
 				curParticle[3] += (int)gaussianVelocity(generator);
+                success = true;
 				break;
 			}
 		}
+        if (!success) {
+            // We failed to propagate this particle.
+            // It is too close to the boundary.
+            // Reset it back to the target.
+            curParticle[0] = target.upper;
+            curParticle[1] = target.left;
+            curParticle[2] += (int)gaussianVelocity(generator);
+            curParticle[3] += (int)gaussianVelocity(generator);
+        }
 	}
 }
 

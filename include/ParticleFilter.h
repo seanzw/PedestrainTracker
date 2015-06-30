@@ -78,7 +78,20 @@ public:
     }
 
     inline void SetTarget(const Rect &t) {
-        target = t;
+        prevDets.push_back(t);
+        if (prevDets.size() == 5) {
+            prevDets.pop_front();
+        }
+
+        // Set the target size as the average of last four detections.
+        int width = 0, height = 0;
+        for (const auto &det : prevDets) {
+            width += det.width;
+            height += det.height;
+        }
+
+        target.width = width / prevDets.size();
+        target.height = height / prevDets.size();
     }
 
 protected:
@@ -95,6 +108,8 @@ protected:
 	float *confidence;
 
 	Rect target;
+
+    std::deque<Rect> prevDets;
 
 	// Seed.
 	std::default_random_engine generator;
