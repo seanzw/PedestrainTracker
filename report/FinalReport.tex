@@ -316,6 +316,10 @@ A match score matrix will be calculated for each pair of (target, detection). Th
 \item finally only pairs with match score higher than a threshold will be taken
 \end{enumerate}
 
+\item \textbf{Continous Energy Minimize Method}
+
+Since the result from HOG detector and particle filter is not very good, therefore we also tried another method from \cite{Milan:2014:CEM}\cite{Andriyenko:2011:AFG}\cite{Andriyenko:2011:MTT}. It use a Kalman filter or an extended Kalman filter to get a initial tracking result, then minimize an energy function within a temporal window. However this method is not causal and uses information from the future, therefore it can not be realtime.
+
 \item \textbf{Experiment}
 
 All the experiment is executed on Dell Inspiron 14R SE with the following configuration.
@@ -408,7 +412,7 @@ Hence we use RGI feature to construct the weak classifier. The resulting video c
 
 We first use the simple HoG detector to detect a single picture.
 \begin{center}
-\begin{tabular}{l | c | c | r}
+\begin{tabular}{l | c | c | c}
 \hline
                 & Time  & Accuracy  & False Positive \\
 Original        & 3.43s & 5 / 6     & 3              \\
@@ -422,7 +426,7 @@ Reconstructed   & 3.20s & 5 / 6     & 2              \\
 We use the simple Background cut detector to detect pedestrain in a single picture.
 
 \begin{center}
-\begin{tabular}{l | c | c | r}
+\begin{tabular}{l | c | c | c}
 \hline
                 & Time  & Accuracy  & False Positive \\
 Original        & 1.76s & 6 / 6     & 0              \\
@@ -436,11 +440,11 @@ Reconstructed   & 1.27s & 5 / 6     & 0              \\
 We use the simple HoG detector to detect pedestrain in a video.
 
 \begin{center}
-\begin{tabular}{l | c | c | r}
+\begin{tabular}{l | c | c | c}
 \hline
-                & Time  & Accuracy  & False Positive \\
-Original        & 1051s  &           &                \\
-Reconstructed   & 900s &           &                \\
+                & Time  & Accuracy  & False Positive(per frame) \\
+Original        & 1051s  &   48.9\%        &  1.47           \\
+Reconstructed   & 900s &     48.7\%        &    1.41        \\
 \hline
 \end{tabular}
 \end{center}
@@ -450,16 +454,16 @@ Reconstructed   & 900s &           &                \\
 We use the simple Background Cut detector to detect pedestrain in a video.
 
 \begin{center}
-\begin{tabular}{l | c | c | r}
+\begin{tabular}{l | c | c | c}
 \hline
-                & Time  & Accuracy  & False Positive \\
-Original        & 207.36s  &           &                \\
-Reconstructed   & 159.14s  &           &                \\
+                & Time    & Accuracy  & False Positive(per frame) \\
+Original        & 207.36s &  52.7\%   &  0.13                     \\
+Reconstructed   & 159.14s &  52.4\%   &  0.15                     \\
 \hline
 \end{tabular}
 \end{center}
 
-\item Multiple Pedestrains Tracking and Counting
+\item Multiple Pedestrains Tracking
 
 This is the finally object of this project. However after two months' hard-working, we still can't get satisfactory result. The result can be found \href{https://zerowong.github.io/PedestrainCounting/results/multiTargetTracking01.avi}{here}. We will analyse the results.
 
@@ -469,26 +473,61 @@ However when the pedestrain is occluded, the detector failed to detect him. And 
 
 \begin{figure}[htb]
     \begin{center}
-        \subfigure[]{\label{fig:sub:multiTrackerInit}
+        \subfigure[Initialization of Multiple Tracker]{\label{fig:sub:multiTrackerInit}
             \begin{minipage}[c]{0.5\textwidth}
             \centering
             \includegraphics[width = \textwidth]{images/MultiTrackerInit01.png}
             \end{minipage}%
         }%
-        \subfigure[]{\label{fig:sub:multiTrackerLost}
+        \subfigure[Tracker lost its target.]{\label{fig:sub:multiTrackerLost}
             \begin{minipage}[c]{0.5\textwidth}
             \centering
             \includegraphics[width = \textwidth]{images/MultiTrackerLost01.png}
             \end{minipage}%
         }%
     \end{center}
-    \caption{Initialization of Multiple Tracker}
+    \caption{Result of Multiple Tracker}
     \label{fig:multiTracker}
 \end{figure}
 
+\item Energy Minimization
+
+Figure~\ref{fig:sub:energyMin} shows the result of energy minimization method. We can see that it's very good. However as discussed above, this method is not causal.
+
+\begin{figure}[htb]
+    \begin{center}
+         \subfigure[MultipleTracker]{\label{fig:sub:multiTracker}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/MultiTracker01.png}
+            \end{minipage}%
+        }%
+        \subfigure[Energy Minimization]{\label{fig:sub:energyMin}
+            \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{images/EnergyMin01.png}
+            \end{minipage}%
+        }%
+    \end{center}
+    \caption{CountResult}
+    \label{fig:CountResult}
+\end{figure}
+
+\item Pedestrain Counting
+
+We also test our particle filter method and the energy minimization method on pedestrain counting on PETS 2009 S3MF1. Figure~\ref{fig:CountResult} shows the result.
+\begin{center}
+\begin{tabular}{l | c | c | c}
+\hline
+                      & Particle Filter    & Energy Minimization  & Ground Truth \\
+Number of Pedestrain  &   6                &  7                   &  7           \\
+\hline
+\end{tabular}
+\end{center}
+
 \end{itemize}
 
-\item \textbf{Analyzation}
+\item \textbf{Summary}
 
 \begin{itemize}
 \item Accomplishment
@@ -503,15 +542,16 @@ Since this is a tracking system based on detection, it requires a state of art d
 
 What's more, the match matrix is not working very fine. If there are multiple targets nearby, it sometimes gets confused.
 
+Also since all the detection and tracking are done without depth information, this makes occlution reasoning imposssible.
+
 All of these problems limit the performance of our system.
 
 \item Solutions
 
-The solutions to the above problem is straight forward. Use a state-of-art detector will significantly improve the performance.
+The solutions to the above problem is straight forward. Use a state-of-art detector will significantly improve the performance. And also depth information will help a lot.
 
 \end{itemize}
 
-\item \textbf{Continous Energy Minimize Method}
 
 
 \end{enumerate}

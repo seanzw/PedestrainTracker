@@ -1,5 +1,8 @@
 \documentclass{beamer}
 \usepackage{multimedia}
+% \usepackage[english]{babel}
+
+\setbeamertemplate{bibliography item}[triangle]
 
 \usetheme{Berlin}
 \title{Pedestrain Tracking}
@@ -35,7 +38,7 @@
 \frametitle{Background Subtraction}
 \begin{itemize}
 \item Mean-shift to construct background model.
-\item Subtracting background from the current model.
+\item Subtracting background from the current frame.
 \item Find the connected components.
 \begin{itemize}
 	\item Label as pedestrain if it satisfys some criterions.
@@ -114,7 +117,7 @@
 
 \subsection{Online Boosting Classifier}
 \begin{frame}
-	\frametitle{Online Boosting Classifier}
+	\frametitle{Online Boosting Classifier\scriptsize\cite{Grabner:2006:OBV:1153170.1153451}}
 	\begin{columns}[T]
 		\begin{column}{0.6\textwidth}
 		\begin{figure}
@@ -217,18 +220,16 @@
 
 \subsection{Multiple Targets Tracking}
 \begin{frame}
-	\frametitle{Multiple Targets Tracking}
+	\frametitle{Multiple Targets Tracking\scriptsize\cite{eth_biwi_00633}}
 	\begin{itemize}
 		\item Data Association Problem
 		\begin{itemize}
-			\item Match matrix with score:
-
+			\item Match matrix with score $m(tr, d)$:
+			\begin{equation}
+				m(tr, d)=g(tr,d)\cdot(c_{tr}(d)+\alpha\cdot\sum_{p\in tr}^{N}p_{N}(d-p))
+			\end{equation}
 			\item Greedy algorithm to find the match.
-		\end{itemize}
-		\item Occlusion
-		\begin{itemize}
-			\item Depth field.
-			\item Occlusion reasoning.		
+			\item Only the matched pair with score higher than a threshold is used.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -266,7 +267,7 @@
 
 \subsection{Energy Minimization}
 \begin{frame}
-	\frametitle{Energy Minimization}
+	\frametitle{Energy Minimization\scriptsize\cite{Milan:2014:CEM}}
 	\begin{itemize}
 		\item Use Kalman filter or extended Kalman filter to get a initial solution.
 		\item Optimized on a energy function within a temporal window.
@@ -296,18 +297,19 @@
 	\end{itemize}
 \end{frame}
 
-% \begin{frame}{Bibliography}
-% \bibliographystyle{plainnat}
-% \bibliography{Ref}
-% \end{frame}
+\begin{frame}
+	\frametitle{Bibliography}
+    \bibliographystyle{plain}
+    {\scriptsize\bibliography{Ref}}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Thank you!}
 	\begin{itemize}
 		\item Project Website:\\
-		\href{https://zerowong.github.io/PedestrainCounting/}{https://zerowong.github.io/PedestrainCounting/}
+		\href{https://zerowong.github.io/PedestrainCounting/}{https://zerowong.github.io/PedestrainTracker/}
 		\item GitHub Repo:\\
-		\href{https://github.com/zerowong/PedestrainCounting}{https://github.com/zerowong/PedestrainCounting/}
+		\href{https://github.com/zerowong/PedestrainCounting}{https://github.com/zerowong/PedestrainTracker/}
 	\end{itemize}
 	\begin{figure}
 		\begin{center}

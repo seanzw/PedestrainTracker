@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.3)  3 JUN 2015 13:08
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.14)  20 JUN 2015 14:19
 entering extended mode
 **C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/FinalReport.tex
 (C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/FinalReport.tex
@@ -481,53 +481,53 @@ l.306 \end{equation}
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.306 \end{equation}
-                    ]
-<images/ParticlesConfidence.jpg, id=89, 770.88pt x 578.16pt>
+                    ] [5 <C:/Users/Zero/Documents/GitHub/PedestrainCounting/rep
+ort/images/SingleSampler.jpg>]
+<images/ParticlesConfidence.jpg, id=108, 770.88pt x 578.16pt>
 File: images/ParticlesConfidence.jpg Graphic file (type jpg)
 
 <use images/ParticlesConfidence.jpg>
-Package pdftex.def Info: images/ParticlesConfidence.jpg used on input line 357.
+Package pdftex.def Info: images/ParticlesConfidence.jpg used on input line 361.
 
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
- [5 <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/SingleSamp
-ler.jpg>]
-<images/SingleTrackerGrayExchange01.jpg, id=107, 578.16pt x 433.62pt>
+
+<images/SingleTrackerGrayExchange01.jpg, id=114, 578.16pt x 433.62pt>
 File: images/SingleTrackerGrayExchange01.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerGrayExchange01.jpg>
 Package pdftex.def Info: images/SingleTrackerGrayExchange01.jpg used on input l
-ine 376.
+ine 380.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-<images/SingleTrackerGrayExchange02.jpg, id=108, 578.16pt x 433.62pt>
+<images/SingleTrackerGrayExchange02.jpg, id=115, 578.16pt x 433.62pt>
 File: images/SingleTrackerGrayExchange02.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerGrayExchange02.jpg>
 Package pdftex.def Info: images/SingleTrackerGrayExchange02.jpg used on input l
-ine 382.
+ine 386.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 376--383
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 380--387
  [][][] 
  []
 
-<images/SingleTrackerRGIExchange01.jpg, id=109, 578.16pt x 433.62pt>
+<images/SingleTrackerRGIExchange01.jpg, id=116, 578.16pt x 433.62pt>
 File: images/SingleTrackerRGIExchange01.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerRGIExchange01.jpg>
 Package pdftex.def Info: images/SingleTrackerRGIExchange01.jpg used on input li
-ne 395.
+ne 399.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-<images/SingleTrackerRGIExchange02.jpg, id=110, 578.16pt x 433.62pt>
+<images/SingleTrackerRGIExchange02.jpg, id=117, 578.16pt x 433.62pt>
 File: images/SingleTrackerRGIExchange02.jpg Graphic file (type jpg)
 
 <use images/SingleTrackerRGIExchange02.jpg>
 Package pdftex.def Info: images/SingleTrackerRGIExchange02.jpg used on input li
-ne 401.
+ne 405.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 395--402
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 399--406
  [][][] 
  []
 
@@ -535,21 +535,39 @@ Overfull \hbox (6.66666pt too wide) in paragraph at lines 395--402
 nfidence.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/images/
 SingleTrackerGrayExchange01.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCoun
 ting/report/images/SingleTrackerGrayExchange02.jpg>]
-<images/MultiTrackerInit01.png, id=125, 578.16pt x 433.62pt>
+<images/MultiTrackerInit01.png, id=132, 578.16pt x 433.62pt>
 File: images/MultiTrackerInit01.png Graphic file (type png)
 
 <use images/MultiTrackerInit01.png>
-Package pdftex.def Info: images/MultiTrackerInit01.png used on input line 477.
+Package pdftex.def Info: images/MultiTrackerInit01.png used on input line 481.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-<images/MultiTrackerLost01.png, id=127, 578.16pt x 433.62pt>
+<images/MultiTrackerLost01.png, id=134, 578.16pt x 433.62pt>
 File: images/MultiTrackerLost01.png Graphic file (type png)
 
 <use images/MultiTrackerLost01.png>
-Package pdftex.def Info: images/MultiTrackerLost01.png used on input line 483.
+Package pdftex.def Info: images/MultiTrackerLost01.png used on input line 487.
 (pdftex.def)             Requested size: 226.48395pt x 169.85878pt.
 
-Overfull \hbox (6.66666pt too wide) in paragraph at lines 477--484
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 481--488
+ [][][] 
+ []
+
+<images/MultiTracker01.png, id=136, 576.65437pt x 433.62pt>
+File: images/MultiTracker01.png Graphic file (type png)
+
+<use images/MultiTracker01.png>
+Package pdftex.def Info: images/MultiTracker01.png used on input line 504.
+(pdftex.def)             Requested size: 226.48395pt x 170.3087pt.
+
+<images/EnergyMin01.png, id=137, 576.65437pt x 434.37282pt>
+File: images/EnergyMin01.png Graphic file (type png)
+
+<use images/EnergyMin01.png>
+Package pdftex.def Info: images/EnergyMin01.png used on input line 510.
+(pdftex.def)             Requested size: 226.48395pt x 170.60437pt.
+
+Overfull \hbox (6.66666pt too wide) in paragraph at lines 504--511
  [][][] 
  []
 
@@ -557,25 +575,27 @@ Overfull \hbox (6.66666pt too wide) in paragraph at lines 477--484
 erRGIExchange01.jpg> <C:/Users/Zero/Documents/GitHub/PedestrainCounting/report/
 images/SingleTrackerRGIExchange02.jpg>] [8 <C:/Users/Zero/Documents/GitHub/Pede
 strainCounting/report/images/MultiTrackerInit01.png> <C:/Users/Zero/Documents/G
-itHub/PedestrainCounting/report/images/MultiTrackerLost01.png>]
-(C:\Users\Zero\Documents\GitHub\PedestrainCounting\report\FinalReport.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 523.
+itHub/PedestrainCounting/report/images/MultiTrackerLost01.png> <C:/Users/Zero/D
+ocuments/GitHub/PedestrainCounting/report/images/MultiTracker01.png> <C:/Users/
+Zero/Documents/GitHub/PedestrainCounting/report/images/EnergyMin01.png>]
+[9] (C:\Users\Zero\Documents\GitHub\PedestrainCounting\report\FinalReport.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 563.
 
-[9
+[10
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 523.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 563.
  (C:\Users\Zero\Documents\GitHub\PedestrainCounting\report\FinalReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 523.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 523.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 563.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 563.
 Package rerunfilecheck Info: File `FinalReport.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 7987 strings out of 495354
- 114361 string characters out of 3183860
+ 8012 strings out of 495354
+ 114893 string characters out of 3183859
  252271 words of memory out of 3000000
- 11004 multiletter control sequences out of 15000+200000
+ 11020 multiletter control sequences out of 15000+200000
  9849 words of font info for 36 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,10n,58p,590b,1131s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -590,9 +610,9 @@ TeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/CTEX/MiKTeX/fonts/type1/public
 C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmti10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on FinalReport.pdf (9 pages, 1502629 bytes).
+Output written on FinalReport.pdf (10 pages, 2956004 bytes).
 PDF statistics:
- 214 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 72 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
