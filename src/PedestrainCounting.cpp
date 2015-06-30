@@ -1,15 +1,90 @@
 #include "PedestrainCounting.h"
 
-IplImage* video_bkg_detect(
+PedestrainCounter::PedestrainCounter() {
+    opt.scaleMin = 1.5f;
+    opt.scaleMax = 2.5f;
+    opt.scaleStep = 1.07f;
+    opt.slideStep = 2;
+    opt.evidence = 8;
+    opt.modelHeight = HEIGHT;
+    opt.modelWidth = WIDTH;
+    opt.binaryThre = 25.5f;
+    opt.invPerimeterRatio = 0.05f;
+    opt.maxAreaRatio = 0.005f;
+    opt.minAreaRatio = 0.001f;
+
+    opt.detectionWeight = 1.0f;
+    opt.distWeight = 0.5f;
+    opt.initVelocity = Point2D(0, 0);
+    opt.matchThre = 5.0f;
+    opt.nParticles = 500;
+    opt.numBackups = 5;
+    opt.numSelectors = 50;
+    opt.numWeakClassifiers = 250;
+    opt.target = Rect(0, 0, 64, 128);
+    opt.targetsFreeListCapacity = 20;
+    opt.velocitySigmaConst = 10.0f;
+    opt.velocityThre = 10.0f;
+}
+
+void PedestrainCounter::ParseParams(int argc, char *argv[]) {
+
+    if (!strcmp(argv[1], "-h")) {
+        PrintHelp();
+    }
+
+    if (!strcmp(argv[1], "-b")) {
+        Tuple* means = NULL;
+
+        CvCapture *capture = cvCaptureFromAVI(argv[2]);
+        int frameW = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
+        int frameH = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
+        cvReleaseCapture(&capture);
+
+        IplImage* background = cvCreateImage(cvSize(frameW, frameH), IPL_DEPTH_8U, 1);
+
+        background = video_bkg_detect(argv[2], argv[3], BKG_DETECTION_NUM_CLUSTER, MEAN_SHIFT_R, BKG_VIDEO_PIC_NUM_ALL, frameH, frameW);
+        cvSaveImage(argv[4], background);
+    }
+
+    if (!strcmp(argv[1], "-phog")) {
+        DetectSinglePictureHOG(argv[2], argv[3], adaboostFile, opt);
+    }
+
+    if (!strcmp(argv[1], "-p")) {
+        DetectSinglePictureBKG(argv[2], argv[3], argv[4], adaboostFile, opt);
+    }
+
+    if (!strcmp(argv[1], "-vhog")) {
+        DetectVideoHOG(argv[2], argv[3], adaboostFile, opt);
+    }
+
+    if (!strcmp(argv[1], "-v")) {
+        DetectVideoBKG(argv[2], argv[3], argv[4], adaboostFile, opt);
+    }
+
+    if (!strcmp(argv[1], "--particle-tracker")) {
+        TrackVideoSingle(argv[2], argv[3]);
+    }
+
+    if (!strcmp(argv[1], "--multiple-tracker")) {
+        TrackVideoMulti(argv[2], argv[3], argv[4], adaboostFile, opt);
+    }
+    else {
+        PrintHelp();
+    }
+
+}
+
+IplImage* PedestrainCounter::video_bkg_detect(
 	const TCHAR *pIn, const TCHAR* pTemp, int num_cluster, int r, int pic_num_all,
-	int H_thres, int W_thres)
-{
+	int H_thres, int W_thres) {
 	CvCapture *capture = cvCaptureFromAVI(pIn);
 	int frameW = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
 	int frameH = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
 	cvReleaseCapture(&capture);
 
-	//frameH = 480; frameW = 640;
+	// frameH = 480; frameW = 640;
 	IplImage* background = cvCreateImage(cvSize(frameW, frameH), IPL_DEPTH_8U, 1);
 
 	int h = frameH; int w = frameW;
@@ -31,7 +106,7 @@ IplImage* video_bkg_detect(
 
 	cout << "Processing patch's size = (" << h << "," << w << ")" << endl;
 
-	//获得meanshift处理后的图片
+	// Get the images after mean-shift.
 	TCHAR meanshift_path[256];
 	if (pTemp == NULL)
 	{
@@ -60,10 +135,9 @@ IplImage* video_bkg_detect(
 	{
 		for (int ww = 0; ww < pow(2, countW); ww++)
 		{
-			//读取元素
+			// Read in elements.
 			cout << "Processing patch (" << hh << "," << ww << ")" << endl;
 
-			//Tuple* tuples = new Tuple[pic_num_all];
 			for (int i = 0; i < pic_num_all; i++)
 			{
 				delete_tuple(tuples[i]);
@@ -72,13 +146,12 @@ IplImage* video_bkg_detect(
 			CvRect roi = cvRect(ww*w, hh*h, w, h);
 			readin_tuples(meanshift_path, tuples, pic_num_all, roi, frameH, frameW);
 
-			//kmeans聚类
+			// k-means
 			vector<int> *labels = new vector<int>[num_cluster];
 			labels = KMeans(tuples, num_cluster, THRES_Diff, pic_num_all);
 
 			row_data row_current;
 			vector<row_data> row_ordered;
-			//Tuple* means = new Tuple[num_cluster];
 			for (int i = 0; i < num_cluster; i++)
 			{
 				delete_tuple(means[i]);
@@ -93,7 +166,7 @@ IplImage* video_bkg_detect(
 
 			cout << "The most probable background is cluster " << row_ordered[0].label << endl;
 
-			//获得局部背景并复制
+			// Get local background and copy it.
 			for (int ii = 0; ii < h; ii++)
 			{
 				for (int jj = 0; jj < w; jj++)
@@ -109,7 +182,7 @@ IplImage* video_bkg_detect(
 		}
 	}
 
-	//清空内存及文件
+	// Release memory.
 	TCHAR order[300];
 	for (int ii = 0; ii < num_cluster; ii++)
 	{
@@ -118,21 +191,15 @@ IplImage* video_bkg_detect(
 	delete[]means;
 	for (int ii = 0; ii < pic_num_all; ii++)
 	{
-		//sprintf(order,"del %s%d.jpg",meanshift_path,ii);
-		//system("order");
 		delete_tuple(tuples[ii]);
 	}
 	delete[] tuples;
-	//if(flag)
-	//{
-	//	RemoveDirectory(meanshift_path);
-	//}
 
 	cvReleaseImage(&bkg_temp);
 	return background;
 };
 
-void create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_num_all)
+void PedestrainCounter::create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_num_all)
 {
 	CvCapture *capture = cvCaptureFromAVI(pIn);
 	double fps = cvGetCaptureProperty(capture, CV_CAP_PROP_FPS);
@@ -178,15 +245,14 @@ void create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_
 			cvZero(img_sum);
 
 			cvReleaseImage(&img_meanshift);
-			//cvReleaseImage(&temp);
-			++pic_num;
+			pic_num++;
 		}
 		else
 		{
 			cvCvtColor(frame, frame_gray, CV_RGB2GRAY);
 			cvConvert(frame_gray, img_temp);
 			cvAcc(img_temp, img_sum);
-			++pic_num;
+            pic_num++;
 			continue;
 		}
 		if (pic_num > pic_interval*pic_num_all)
@@ -200,19 +266,15 @@ void create_meanshift_queue(const TCHAR *pIn, const TCHAR* pOut, int r, int pic_
 	cvReleaseImage(&img_temp);
 	cvReleaseImage(&temp);
 	cvReleaseImage(&img_zero);
-	//cvReleaseImage(&temp);
 	cvReleaseCapture(&capture);
-
-	//delete [] infilename;
 
 	return;
 };
 
-void readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int frameH, int frameW)
+void PedestrainCounter::readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int frameH, int frameW)
 {
 	int h = roi.height;
 	int w = roi.width;
-	//Tuple tuple1;
 
 	TCHAR infilename[100];
 
@@ -232,8 +294,6 @@ void readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int
 
 		cvConvert(img_meanshift_roi, Matdata);
 		readin_data(tuples[i], h*w, Matdata);
-
-		// cvLoadImage 有内存泄露！！！
 		cvReleaseImage(&img_meanshift);
 
 	}
@@ -244,7 +304,7 @@ void readin_tuples(TCHAR pIn[], Tuple* &tuples, int pic_num_all, CvRect roi, int
 
 };
 
-void PrintHelp() {
+void PedestrainCounter::PrintHelp() {
 	cout << "Extract background image from video" << endl;
 	cout << "HogDetection.exe -b inFile tempFile outFile" << endl;
 	cout << "  inFile: The path of video waiting to be detected" << endl;
@@ -285,7 +345,7 @@ void PrintHelp() {
 	cout << "  neighbor: Minimum scan times of detection (default = 8)" << endl;
 }
 
-void DetectSinglePictureHOG(const char *in, const char *out, 
+void PedestrainCounter::DetectSinglePictureHOG(const char *in, const char *out,
 	const char *adaboost, const Options &opt) {
 	// Read in the AdaBoost classifier.
 	AdaBoostClassifier classifier(adaboost);
@@ -317,7 +377,7 @@ void DetectSinglePictureHOG(const char *in, const char *out,
 	gray.release();
 }
 
-void DetectSinglePictureBKG(const char *in, const char *bkg, const char *out,
+void PedestrainCounter::DetectSinglePictureBKG(const char *in, const char *bkg, const char *out,
 	const char *adaboost, const Options &opt) {
 	// Read in the AdaBoost classifier.
 	AdaBoostClassifier classifier(adaboost);
@@ -349,7 +409,7 @@ void DetectSinglePictureBKG(const char *in, const char *bkg, const char *out,
 
 }
 
-void DetectVideoHOG(const char *infile, const char *outfile, const char *adaboost, const Options &opt) {
+void PedestrainCounter::DetectVideoHOG(const char *infile, const char *outfile, const char *adaboost, const Options &opt) {
 
 	AdaBoostClassifier classifier(adaboost);
 
@@ -377,7 +437,7 @@ void DetectVideoHOG(const char *infile, const char *outfile, const char *adaboos
 	videoDetector.Detect(in, out);
 }
 
-void DetectVideoBKG(const char *infile, const char *bkgfile, const char *outfile,
+void PedestrainCounter::DetectVideoBKG(const char *infile, const char *bkgfile, const char *outfile,
 	const char *adaboost, const Options &opt) {
 
 	AdaBoostClassifier classifier(adaboost);
@@ -409,7 +469,7 @@ void DetectVideoBKG(const char *infile, const char *bkgfile, const char *outfile
 	videoDetector.Detect(in, out, bkg);
 }
 
-void TrackVideoSingle(const char *infile, const char *outfile) {
+void PedestrainCounter::TrackVideoSingle(const char *infile, const char *outfile) {
 	cv::VideoCapture in(infile);
 	if (!in.isOpened()) {
 		printf("Can't open video: %s\n", infile);
@@ -429,7 +489,7 @@ void TrackVideoSingle(const char *infile, const char *outfile) {
 	cv::Mat first(width, height, CV_8UC3);
 	in.read(first);
 	cv::imshow("First Frame", first);
-	cv::setMouseCallback("First Frame", GetTarget, (void *)&target);
+	cv::setMouseCallback("First Frame", PedestrainCounter::GetTarget, (void *)&target);
 	cv::waitKey(0);
 	cv::rectangle(first, (cv::Rect)target, cv::Scalar(255.0f), 2);
 	cv::imshow("First Frame", first);
@@ -494,7 +554,7 @@ void TrackVideoSingle(const char *infile, const char *outfile) {
 	pfTracker.Track(in, out);
 }
 
-void TrackVideoMulti(const char *infile, const char *bkgfile, const char *outfile,
+void PedestrainCounter::TrackVideoMulti(const char *infile, const char *bkgfile, const char *outfile,
 	const char *adaboost, const Options &opt) {
 
 	AdaBoostClassifier classifier(adaboost);
@@ -525,7 +585,7 @@ void TrackVideoMulti(const char *infile, const char *bkgfile, const char *outfil
 	tracker.Track(in, out, bkg);
 }
 
-void GetTarget(int event, int x, int y, int flags, void *userParam) {
+void PedestrainCounter::GetTarget(int event, int x, int y, int flags, void *userParam) {
 	if (event == CV_EVENT_LBUTTONDOWN) {
 		Rect *roi = (Rect *)userParam;
 		roi->upper = y;
