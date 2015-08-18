@@ -2,7 +2,7 @@
 ### Intro
 This is the group project of Digital Image Processing, Tsinghua University, 2015 Spring. We have three great partners:
 
-- [Zhengrong Wang](https://zerowong.github.io/)
+- [Zhengrong Wang](https://seanzw.github.io/)
 - [Hsienyu Meng](https://github.com/xianyuMeng)
 - [Liuyang Zhan](https://github.com/zhanlythu)
 
