@@ -2,7 +2,7 @@
 ### Intro
 This is the group project of Digital Image Processing, Tsinghua University, 2015 Spring. We have three great partners:
 
-- [Zhengrong Wang](https://zerowong.github.io/)
+- [Zhengrong Wang](https://seanzw.github.io/)
 - [Hsienyu Meng](https://github.com/xianyuMeng)
 - [Liuyang Zhan](https://github.com/zhanlythu)
 
@@ -23,14 +23,14 @@ For detection part we use simple HOG feature and AdaBoost classifier. We rewrite
 ### Tracking
 We use particle filter with a online-boosting classifier with RGI feature for each target/pedestrain. We use match matrix and greedy algorithm to handle the data association problem. The main idea is based on this [paper](http://www.mmp.rwth-aachen.de/publications/pdf/breitenstein-detectorconfidencefilter-iccv09.pdf).
 ### Result
-Here is a simple [project website](https://zerowong.github.io/PedestrainTracker). You can find everything there.
+Here is a simple [project website](https://seanzw.github.io/PedestrainTracker). You can find everything there.
 
-* [Documents](https://zerowong.github.io/PedestrainTracker/docs/html/index.html)
-* [Final Report](https://zerowong.github.io/PedestrainTracker/report/FinalReport.pdf)
-* [Mean-shift Background Image](https://zerowong.github.io/PedestrainTracker/results/Background/S3MF1.jpg)
-* [Detector for a video](https://zerowong.github.io/PedestrainTracker/results/VideoDetector/BKG_reconstructed_1.avi)
-* [Single target tracking result with Gray Haar feature](https://zerowong.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/singleTrackerTestGray01.avi)
-* [Single target tracking result with RGI feature](https://zerowong.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/singleTrackerTestRGI01.avi)
-* [Yet another single target tracking result](https://zerowong.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/S3MF1_single_tracker.avi)
-* [Pedestrain Counter result](https://zerowong.github.io/PedestrainTracker/results/PedestrainCounter/S3MF1_multiple_tracker01.avi)
+* [Documents](https://seanzw.github.io/PedestrainTracker/docs/html/index.html)
+* [Final Report](https://seanzw.github.io/PedestrainTracker/report/FinalReport.pdf)
+* [Mean-shift Background Image](https://seanzw.github.io/PedestrainTracker/results/Background/S3MF1.jpg)
+* [Detector for a video](https://seanzw.github.io/PedestrainTracker/results/VideoDetector/BKG_reconstructed_1.avi)
+* [Single target tracking result with Gray Haar feature](https://seanzw.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/singleTrackerTestGray01.avi)
+* [Single target tracking result with RGI feature](https://seanzw.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/singleTrackerTestRGI01.avi)
+* [Yet another single target tracking result](https://seanzw.github.io/PedestrainTracker/results/ParticleFilterSingleTracker/S3MF1_single_tracker.avi)
+* [Pedestrain Counter result](https://seanzw.github.io/PedestrainTracker/results/PedestrainCounter/S3MF1_multiple_tracker01.avi)
 * [Yet another pedestrain counter result](https://zerowong.github.io/PedestrainTracker/results/PedestrainCounter/S3MF1_multiple_tracker02.avi)
